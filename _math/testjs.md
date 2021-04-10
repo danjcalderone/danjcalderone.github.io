@@ -1,5 +1,5 @@
 ---
-title: "rmarkdown example with external js"
+title: "rmarkdown blah example with external js"
 output:
   html_document:
     self_contained: false
