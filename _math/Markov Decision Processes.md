@@ -6,6 +6,20 @@ permalink: /math/markov_decision_processes
 ---
 
 
+<html>
+<body>
+
+  <p>Before the script...</p>
+
+  <script>
+    alert( 'Hello, world!' );
+  </script>
+
+  <p>...After the script.</p>
+
+</body>
+</html>
+
 CHECKING IF THIS UPDATES...BLAH
 
 Markov chains can be used to represent a discrete time stochastic transition process between states.  The probability of transition from one state to another only depends on the current state, not on previous states.  This is actually a less restrictive assumption than one might assume since one can incorporate previous history by augmenting the state space (although there would be however a pretty substantial increase in the size of the problem.)
