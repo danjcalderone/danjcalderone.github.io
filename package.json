@@ -20,6 +20,29 @@
   "engines": {
     "node": ">= 0.10.0"
   },
+  
+  "dependencies": {
+    "pts": "latest",
+    "katex": "latest",
+    "jquery": "3.3.1",
+    "mixitup": "3.3.1",
+    "prefixfree": "1.0.0",
+    "waypoints": "4.0.1",
+    "@popmotion/popcorn": "0.1.2",
+    "fps": "0.0.3",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "react-scripts": "2.0.3",
+    "immutability-helper": "^2.7.1",
+    "mathjs": "^5.0.0",
+    "react-mathjax-preview": "0.1.16",
+    "@tensorflow/tfjs": "1.2.2",
+    "@tensorflow/tfjs-vis": "1.1.0",
+    "lodash": "4.17.13",
+    "papaparse": "5.0.0",
+    "plotly.js-dist": "1.48.3"
+  },  
+  
   "devDependencies": {
     "npm-run-all": "^1.7.0",
     "onchange": "^2.2.0",
