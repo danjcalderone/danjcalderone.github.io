@@ -12,7 +12,37 @@ permalink: /math/markov_decision_processes
   <p>Before the script...</p>
 
   <script>
-    alert( 'Hello, world!' );
+  
+  (function() {
+  
+  var run = Pts.quickStart( "#pt", "#fe3" ); 
+
+  run( (time, ftime) => {
+    // rectangle
+    var rect = Rectangle.fromCenter( space.center, space.size.$divide(3) );
+    var poly = Rectangle.corners( rect );
+    poly.shear2D( (Num.cycle( time%5000/5000 ) - 0.5)/2, space.center );
+    
+    // triangle
+    var tris = poly.segments( 2, 1, true );
+    tris.map( (t) => t.push( space.pointer ) );
+    
+    // circle
+    var circles = tris.map( (t) => Triangle.incircle( t ) );
+    var circums = tris.map( (t) => Triangle.circumcircle( t ) );
+    
+    // drawing
+    form.fillOnly("rgba(255,255,255,.2)", 1 ).circles( circums );
+    form.fillOnly("#123").polygon( poly );
+    form.fill("#f03").circles( circles );
+    form.strokeOnly("#fff ", 3 ).polygons( tris );
+    form.fill("#123").point( space.pointer, 5 );
+    
+  });
+
+})();
+  
+
   </script>
 
   <p>...After the script.</p>
