@@ -5,12 +5,12 @@ type: "Undergraduate course"
 permalink: /math/markov_decision_processes
 ---
 
+{% include /assets/pt.min.js %}
 
 <html>
 <body>
 
   <p>Before the script...</p>
-  <script type="text/javascript" src="assets/pt.min.js"></script>
   <script>
   (function() {
   
