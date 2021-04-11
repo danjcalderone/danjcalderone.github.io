@@ -5,50 +5,6 @@ type: "Undergraduate course"
 permalink: /math/markov_decision_processes
 ---
 
-{% include /assets/pt.min.js %}
-
-<html>
-<body>
-
-  <p>Before the script...</p>
-  <script>
-  (function() {
-  
-  var run = Pts.quickStart( "#pt", "#fe3" ); 
-
-  run( (time, ftime) => {
-    // rectangle
-    var rect = Rectangle.fromCenter( space.center, space.size.$divide(3) );
-    var poly = Rectangle.corners( rect );
-    poly.shear2D( (Num.cycle( time%5000/5000 ) - 0.5)/2, space.center );
-    
-    // triangle
-    var tris = poly.segments( 2, 1, true );
-    tris.map( (t) => t.push( space.pointer ) );
-    
-    // circle
-    var circles = tris.map( (t) => Triangle.incircle( t ) );
-    var circums = tris.map( (t) => Triangle.circumcircle( t ) );
-    
-    // drawing
-    form.fillOnly("rgba(255,255,255,.2)", 1 ).circles( circums );
-    form.fillOnly("#123").polygon( poly );
-    form.fill("#f03").circles( circles );
-    form.strokeOnly("#fff ", 3 ).polygons( tris );
-    form.fill("#123").point( space.pointer, 5 );
-    
-  });
-
-})();
-  
-
-  </script>
-
-  <p>...After the script.</p>
-
-</body>
-</html>
-
 CHECKING IF THIS UPDATES...BLAH
 
 Markov chains can be used to represent a discrete time stochastic transition process between states.  The probability of transition from one state to another only depends on the current state, not on previous states.  This is actually a less restrictive assumption than one might assume since one can incorporate previous history by augmenting the state space (although there would be however a pretty substantial increase in the size of the problem.)
