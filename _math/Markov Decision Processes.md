@@ -10,8 +10,12 @@ permalink: /math/markov_decision_processes
 <body>
 
   <p>Before the script...</p>
-
+  <script type="text/javascript" src="assets/pt.min.js"></script>
   <script>
+  
+  
+  
+  
   
   (function() {
   
