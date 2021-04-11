@@ -12,11 +12,6 @@ permalink: /math/markov_decision_processes
   <p>Before the script...</p>
   <script type="text/javascript" src="assets/pt.min.js"></script>
   <script>
-  
-  
-  
-  
-  
   (function() {
   
   var run = Pts.quickStart( "#pt", "#fe3" ); 
