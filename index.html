@@ -121,6 +121,22 @@
     z-index: -1;
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+  }
+
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
   </style>
 
@@ -145,10 +161,20 @@
 
 
 
-  <div class="blurb">
-    <img src="mug.jpg" alt='mugshot'> </img>
-        <img src="screenshot.png" alt='viz'> </img>
 
+          <div class="row">
+            <div class="column">
+              <img src="mug.jpg" alt='mugshot' style="width:100%">
+            </div>
+            <div class="column">
+              <img src="img_forest.jpg" alt="Forest" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="screenshot.png" alt='viz' style="width:100%">
+            </div>
+          </div>
+
+  <div class="blurb">
   I'm a post-doctoral researcher/lecturer at University of Washington
   under Behcet Ackimese and Lillian Ratliff.
   My research is in control theory and optimization applied to
