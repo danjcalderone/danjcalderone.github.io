@@ -29,108 +29,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.5/math.min.js"> </script>
   <script src="https://unpkg.com/pts@0.10.5/dist/pts.js"></script>
 
-  <!-- <link rel="stylesheet" href="./styles.css" ></link> -->
-
-  <style>
+  <link rel="stylesheet" href="./styles_.css" ></link>
 
 
-
-
-html {
-  font-family: "Montserrat", sans-serif;
-}
-body {
-        padding: 0;
-        margin: 0;
-      }
-
-
-
-header {
-  background: rgba(64, 106, 157, 1);
-  padding: 16px 32px;
-  min-height: 10px;
-}
-
-header h1 {
-  color: #ececec;
-  margin-top: 20px;
-}
-
-header p {
-  color: #e2e1e1;
-  margin-top: 24px;
-}
-
-
-
-nav ul {
-  padding: 0;
-  margin: 0;
-  background: #6c98b6c7;
-  list-style: none;
-  overflow: hidden;
-}
-
-nav li {
-  float: left;
-  font-size: 20px;
-}
-
-nav li a {
-  display: block;
-  padding: 10px 32px;
-  text-decoration: none;
-  color: #ececec;
-}
-
-nav li a:hover {
-  color: #583d72;
-}
-
-nav li a:active {
-  color: #ececec;
-}
-
-.main1 {
-  background-color: rgba(0, 0, 255, 0);
-  height: 800px;
-  width: 800px;
-  position: absolute;
-  z-index: 1;
-}
-.CANVAS {
-  background-color: rgb(0, 0, 255, 0);
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 800px;
-  height: 800px;
-}
-
-
-.EQN {
-  background-color: rgba(0, 0, 255, 0);
-  color: black;
-  position: absolute;
-  font-size: 16px;
-  top: 623px;
-  left: 150px;
-  z-index: -1;
-}
-
-
-  </style>
 
   </head>
-
   <body>
 
-  <header> <h1> .dcmath </h1> </header>
+  <header > <h1> danjcalderone </h1> </header>
   <nav>
     <ul>
-      <li><a href="index.html">hypercube</a></li>
-      <li><a href="matrix.html">matrix</a></li>
+      <li><a href="index.html">home</a></li>
+      <li><a href="hypercube.html">cv</a></li>
+      <li><a href="hypercube.html">research</a></li>
+      <li><a href="hypercube.html">teaching</a></li>
+      <li><a style="background-color: rgba(200,0,0,0.5);" href="https://danjcalderone.github.io/dcmath/">visualizations - IN CONSTRUCTION</a></li>
       <!-- <li><a href="convex.html">convex</a></li>
       <li><a href="graph.html">graph</a></li>
       <li><a href="mdp.html">mdp</a></li> -->
@@ -139,19 +52,34 @@ nav li a:active {
 
 
 
+  <div class="blurb">
+  I'm a post-doctoral researcher/lecturer at University of Washington
+  under Behcet Ackimese and Lillian Ratliff.
+  My research is in control theory and optimization applied to
+  complex cyber-physical systems involving competition.
+  Through teaching linear algebra, optimization, control theory and estimation
+  I also have a passion for math visualization and am working on a suite of
+  web-based interactive visualizations for teaching linear algebra, optimization, control theory, and estimation.
 
-  <div id="main1" >
+  </div>
+
+  <!-- <div id="main1" >
     <canvas id='work1' class='CANVAS' ></canvas>
   </div>
+  <div class="EQN32" id="yinR" ></div>
+  <div class="EQN32" id="xinR" ></div>
+  <div class="EQN32" id="Amaps" ></div>
+  <div class="EQN20" id="label2" ></div>
+  <div class="EQN20" id="warning2" ></div>
+  <div class="EQN20" id="usedigits" ></div>
   <div class="EQN" id="y" ></div>
   <div class="EQN" id="A" ></div>
   <div class="EQN" id="x" ></div>
 
 
 
-  <script type='module' src="./ndimo.js"> </script>
-  <script type='module' src="./ndrawo.js"> </script>
-  <script type='module' src="./hypercubeo.js"> </script>
+  <script type='module' src="./src/_draw/matrix.js"> </script> -->
+
 
   </body>
 </html>
