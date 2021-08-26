@@ -154,6 +154,13 @@
     z-index: 1;
   }
 
+  .col2-container {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) auto;
+  grid-template-rows: minmax(400px, 400px);
+}
+
+
 
   </style>
 
@@ -177,15 +184,12 @@
   </nav>
 
 
-            <div class="row">
-              <div class="column_face">
+            <div class=col2-container>
+              <div>
                 <img src="mug.jpg" alt='mugshot' style="width:100%">
                 <p>CONTACT INFO:</p>
                 <p> dan dot j dot calderone at gmail dot com </p>
-
-
               </div>
-              <div class="column_blurb">
                 <div class="blurb" >
                 I'm a post-doctoral researcher/lecturer at University of Washington
                 under Behcet Ackimese and Lillian Ratliff.
@@ -195,16 +199,9 @@
                 web-based interactive visualizations for teaching linear algebra, optimization, control theory, and estimation.
 
                 </div>
-
             </div>
 
-
-            <div class="row"> Featured Visualization
-          </div>
-
-
-
-          <div class="row">
+                    <div class="row">
             <div class = "example">
             <img src="screenshot.png" alt='viz' style="width:100%">
           </div>
