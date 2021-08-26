@@ -1,0 +1,87 @@
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+header {
+  background: rgba(64, 106, 157, 1);
+  padding: 4px 32px;
+  min-height: 10px;
+}
+
+header h1 {
+  color: #ececec;
+  margin-top: 40px;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  background: #6c98b6c7;
+  list-style: none;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+  font-size: 20px;
+}
+
+nav li b {
+  background-color: "rgba(200,0,0,0.5)";
+}
+
+nav li a {
+  display: block;
+  padding: 10px 32px;
+  text-decoration: none;
+  color: #ececec;
+}
+
+nav li a:hover {
+  color: #583d72;
+}
+
+nav li a:active {
+  color: #ececec;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.blurb {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 255, 0);
+  height: 800px;
+  width: 400px;
+  position: absolute;
+  z-index: 1;
+}
+
+.main1 {
+  background-color: rgba(0, 0, 255, 0);
+  height: 800px;
+  width: 800px;
+  position: absolute;
+  z-index: 1;
+}
+.CANVAS {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 800px;
+}
+
+.EQN {
+  background-color: rgba(0, 0, 255, 0);
+  color: black;
+  position: absolute;
+  font-size: 16px;
+  top: 623px;
+  left: 150px;
+  z-index: -1;
+}
