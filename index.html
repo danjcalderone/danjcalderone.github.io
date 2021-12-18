@@ -207,7 +207,7 @@
       flex-flow: column nowrap;
     }
 
-    .sub-container {
+    .subcontainer {
       display: flex;
       flex-flow: row wrap;
     }
@@ -218,30 +218,47 @@
       flew-flow: row wrap;
     }*/
 
-    .blurb {
-      flex: 2;
-    }
-    .img {
-      flex: 2;
-    }
-
-
-    .blurb-right {
-      flex: 4;
-    }
-
-    .img-left {
-      flex: 2;
-    }
-
-    .img-right {
-      flex: 4;
-    }
-
     /* We tell all items to be 100% width, via flex-basis */
     .subcontainer > * {
-      flex: 1 100%;
+      flex: 1 0;
     }
+
+    .blurbleft {
+      flex: 1;
+      margin: 20px;
+      padding: 30px;
+      background-color: rgba(64, 106, 157, 0.05);
+      font-size: 16px;
+      z-index: 1;
+    }
+    .imgleft {
+      flex: 4;
+      margin: 20px;
+      padding: 30px;
+      background-color: rgba(64, 106, 157, 0.05);
+      font-size: 16px;
+      z-index: 1;
+    }
+
+    .blurbright {
+      flex: 4;
+      margin: 20px;
+      padding: 30px;
+      background-color: rgba(64, 106, 157, 0.05);
+      font-size: 16px;
+      z-index: 1;
+
+    }
+    .imgright {
+      flex: 4;
+      margin: 20px;
+      padding: 30px;
+      background-color: rgba(64, 106, 157, 0.05);
+      font-size: 16px;
+      z-index: 1;
+
+    }
+
 
     /* We rely on source order for mobile-first approach
      * in this case:
@@ -253,14 +270,14 @@
      */
 
     /* Medium screens */
-    @media all and (min-width: 1000px) {
+    /* @media all and (min-width: 800px) { */
       /* We tell both sidebars to share a row */
-      .blurb { flex: 1 auto; }
-      .img { flex: 1 auto; }
-    }
+      /* .blurb { flex: 2 auto; } */
+      /* .img { flex: 1 auto; } */
+    /* } */
 
     /* Large screens */
-    @media all and (min-width: 800px) {}
+    /* @media all and (min-width: 800px) {} */
       /* We invert order of first sidebar and main
        * And tell the main element to take twice as much width as the other two sidebars
        */
@@ -269,7 +286,7 @@
       .main    { order: 2; }
       .aside-2 { order: 3; }
       .footer  { order: 4; } */
-    }
+
 
 
 
@@ -334,14 +351,14 @@
       <div class=maincontainer>
       <!-- <div class=intro-container> -->
       <div class=subcontainer>
-        <div class=blurb-left >
+        <div class=blurbleft >
           <img src="mug.jpg" alt='mugshot'>
           <p style='font-size:16px'><b>CONTACT INFO:</b></p>
           <p style='font-size:16px'> Dan Calderone </p>
           <p style='font-size:16px'> dan dot j dot calderone </p>
           <p style='font-size:16px'> at gmail dot com </p>
         </div>
-        <div class = blurb-right>
+        <div class = blurbright>
           <!-- <div class="blurb" > -->
           I'm a post-doctoral researcher/lecturer at University of Washington
           under Behcet Ackimese and Lillian Ratliff.
@@ -356,7 +373,7 @@
 
       <div class='subcontainer'>
       <!-- <div class=header-container> -->
-      <div class=blurb-left>
+      <div class=blurbleft>
         <!-- <div style="font-size:26px; text-align:left;" >
         <b>FEATURED VISUALIZATION:</b>
         </div> -->
@@ -390,7 +407,7 @@
         <!-- </div> -->
       </div>
 
-        <div class = img-right style="padding:0px">
+        <div class = imgright style="padding:0px">
 
           <canvas id='hypershape' class='CANVAS'></canvas>
 
