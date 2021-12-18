@@ -212,6 +212,20 @@ flex-wrap: wrap;
       justify-content: flex-start;
     }
 
+    .blurb_left {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+
+    .blurb_right {
+      flex-shrink: 3;
+      flex-grow: 4;
+    }
+
+    .img_right {
+      flex-shrink: 3;
+      flex-grow: 4;
+    }
 
 
       </style>
@@ -238,13 +252,14 @@ flex-wrap: wrap;
       <div class=main-container>
       <!-- <div class=intro-container> -->
       <div class=sub-container>
-        <div style="padding:40px">
+        <div class=blurb_left style="padding:40px">
           <img src="mug.jpg" alt='mugshot'>
           <p style='font-size:16px'><b>CONTACT INFO:</b></p>
           <p style='font-size:16px'> Dan Calderone </p>
-          <p style='font-size:16px'> dan dot j dot calderone at gmail dot com </p>
+          <p style='font-size:16px'> dan dot j dot calderone </p>
+          <p style='font-size:16px'> at gmail dot com </p>
         </div>
-        <div class = "column-blurb">
+        <div class = blurb_right>
           <div class="blurb" >
           I'm a post-doctoral researcher/lecturer at University of Washington
           under Behcet Ackimese and Lillian Ratliff.
@@ -258,14 +273,12 @@ flex-wrap: wrap;
       </div>
 
       <div class='sub-container'>
-
       <!-- <div class=header-container> -->
         <div style="font-size:26px; text-align:left;" >
         <b>FEATURED VISUALIZATION:</b>
         </div>
-        </div>
-      <div class=col2-container>
-        <div class=blurb2 style="padding:40px">
+      <div class=blurb_left>
+        <div class=blurb style="padding:40px">
           <b> HYPERSHAPES </b>
           <p>
           We are used to drawing 2D projections of 3D shapes.
@@ -293,7 +306,9 @@ flex-wrap: wrap;
 
         </p>
         </div>
-        <div style="padding:0px">
+      </div>
+
+        <div class = img_right style="padding:0px">
 
           <canvas id='hypershape' class='CANVAS'></canvas>
 
@@ -306,6 +321,7 @@ flex-wrap: wrap;
         margin-right: auto;
         width:95%;" -->
       </div>
+
     </div>
       </div>
 
