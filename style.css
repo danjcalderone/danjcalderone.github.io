@@ -50,6 +50,18 @@ body {
   margin: 0px;
 }
 
+
+.main_container {
+  /* flex-direction: column; */
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+}
+
+.sub_container {
+  flew-flow: row wrap;
+  justify-content: flex-start;
+}
+
 .blurb {
   margin: 10px;
   padding: 10px;
