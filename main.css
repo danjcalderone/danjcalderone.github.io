@@ -261,8 +261,8 @@ body{
   position: relative;
   top: 0px;
   left: 0px;
-  width: 900px;
-  height: 900px;
+  /* width: 900px;
+  height: 900px; */
 }
 
 /* .wrapper .content .module .img */
