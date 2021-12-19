@@ -1,5 +1,288 @@
 /* asfasdfasdf */
 
+
+html {
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Raleway", sans-serif;
+}
+
+header {
+  background: rgba(64, 106, 157, 1);
+  padding: 4px 32px;
+  min-height: 10px;
+}
+
+header h1 {
+  color: #ececec;
+  margin-top: 60px;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  background: #6c98b6c7;
+  list-style: none;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+  font-size: 20px;
+}
+
+nav li b {
+  background-color: "rgba(200,0,0,0.5)";
+}
+
+nav li a {
+  display: block;
+  padding: 10px 32px;
+  text-decoration: none;
+  color: #ececec;
+}
+
+nav li a:hover {
+  color: #583d72;
+}
+
+nav li a:active {
+  color: #ececec;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+
+.main1 {
+  background-color: rgba(0, 0, 255, 0);
+  height: 800px;
+  width: 800px;
+  position: absolute;
+  z-index: 1;
+}
+.CANVAS1 {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 800px;
+}
+
+.EQN {
+  background-color: rgba(0, 0, 255, 0);
+  color: black;
+  position: absolute;
+  font-size: 16px;
+  top: 623px;
+  left: 150px;
+  z-index: -1;
+}
+
+.column_face {
+  float: left;
+  min-width: 250px;
+  max-width: 300px;
+  width: 25%;
+  padding: 50px;
+}
+.column_blurb {
+  max-width: 550px;
+  float: left;
+  width: 45%;
+  padding: 20px;
+}
+
+.blurb {
+  margin: 40px;
+  padding: 30px;
+  background-color: rgba(64, 106, 157, 0.05);
+  font-size: 16px;
+  z-index: 1;
+}
+.blurb2 {
+  margin: 40px;
+  padding: 20px;
+  /* height: auto; */
+  height: 100%;
+  background-color: rgba(64, 106, 157, 0.05);
+  font-size: 16px;
+}
+
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.preview-title {
+  margin: 30px;
+  padding: 30px;
+  background-color: rgba(64, 106, 157, 0.2);
+  font-size: 20px;
+  z-index: 1;
+}
+
+.intro-container {
+display: grid;
+grid-template-columns: minmax(200px, 200px) minmax(400px, 600px);
+grid-template-rows: minmax(300px, 400px);
+}
+
+.header-container {
+display: grid;
+margin-top: 20px;
+margin-bottom: 20px;
+margin-left: 40px;
+font-size: 24px;
+grid-template-columns: auto;
+grid-template-rows: auto;
+}
+
+.col1-container {
+display: grid;
+padding: 20px;
+grid-template-columns: minmax(200px, 300px);
+grid-template-rows: minmax(400px, 400px);
+}
+
+
+.col2-container {
+display: grid;
+padding: 0px;
+grid-template-columns: minmax(300px, 350px) minmax(400px, 550px);
+}
+
+
+/* .flex2 {
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+} */
+
+
+.maincontainer {
+/* flex-direction: column; */
+display: flex;
+min-height:100vh;
+/* flex-direction: column; */
+justify-content: flex-start;
+margin: 0;
+flex-flow: column nowrap;
+}
+
+.subcontainer {
+display: flex;
+max-width: 1000px;
+flex-flow: row wrap;
+}
+
+.subtitle {
+display: flex;
+justify-content: center;
+max-width: 1000px;
+flex-flow: row wrap;
+}
+
+
+.title1 {
+  font-size: 24px;
+}
+
+
+/* flex-direction: row;
+flex-wrap: wrap;
+ flex: 5;
+justify-content: flex-start;
+flew-flow: row wrap;
+}*/
+
+/* We tell all items to be 100% width, via flex-basis */
+.subcontainer > * {
+flex: 1 0;
+}
+
+.blurbleft {
+flex: 1.2;
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+z-index: 1;
+}
+.imgleft {
+flex: 1.2;
+margin: 20px;
+padding: 30px;
+font-size: 16px;
+text-align: center;
+background-color: rgba(64, 106, 157, 0.0);
+z-index: 1;
+}
+
+.blurbright {
+flex: 4;
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+z-index: 1;
+
+}
+
+.blurbThin {
+flex: 1.2;
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+z-index: 1;
+}
+
+.blurbThick {
+flex: 4;
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+z-index: 1;
+}
+
+
+.imgThin {
+flex: 1.2;
+margin: 20px;
+padding: 30px;
+font-size: 16px;
+text-align: center;
+z-index: 1;
+}
+
+.imgThick {
+flex: 4;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+z-index: 1;
+}
+
+.img1 {
+min-width: 200px;
+min-height: 200px;
+max-width: 450px;
+max-height:450px;
+z-index: 1;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+}
+
+
+
 html {
   font-family: "Montserrat", sans-serif;
 }
