@@ -59,20 +59,22 @@
         <div class = blurbThick>
           <!-- <div class="blurb" > -->
           <p style='font-size:16px'><b>Teaching Interests:</b></p>
-          My main teaching interests are in applied linear algebra to various
-          modeling fields including control, optimization, estimation, and machine
-          learning.  I have a particular interest in visualization.
+
+          My research interests lie in the intersection of control theory, game
+          theory and cyber-physical systems.  My thesis was on extending routing
+          game models to Markov Decision Processes (MDP) to study competition
+          between ride-sharing drivers as well as several other game theoretic
+          models in transportation.  At UW, I worked on extensions of the game
+          theory models in my thesis as well as other aspects of learning in games.
+          I also collaborated with Prof. Behcet Ackimese and his team on trajectory
+          planning algorithms using convex optimization.
           </p>
-          <p> My recent and current courses inclued linear algebra, linear system theory
-          classical control theory, multivariable control, estimation theory,
-          convex optimization, and robust control.
-        </p>
         </div>
 
       </div>
       <div class="subtitle">
       <div class="title1">
-      <b>Specific Courses:</b>
+      <b>Research Interests:</b>
       </div >
       </div> <!-- subcontainer -->
 
@@ -82,23 +84,27 @@
       </div>
 
       <div class='blurbThick'>
-        <b> Linear Algebra/Linear System Theory </b>
+        <b> Markov Decision Process Congestion Games </b>
         <p>
-        <b> Primary Topics: </b>
-        Vectors, inner products, linear transforms, matrices, block mtarices, range/nullspace, rank,
-        fundamental thm, Gaussian elimination, matrix inverses/pseudo-inverses, systems of equations,
-        coordinate transforms, similarity transforms, eigenvalues/eigenvectors,
-        diagonalization/Jordan form, spectral mapping, Cayley Hamilton, traces/determinants,
-        matrix exponential, LTI/LTV systems, ODE solutions, Laplace transforms/transfer functions,
-        </p>
+        <b> Technical Summary: </b>
         <p>
-        <b> Class notes: </b>
-        stuff, stuff, stuff...
+        We extend traditional routing game models to scenarios where agents are solving
+        Markov Decision Processes (MDPs) as opposed to shortest path problems.
+        These models essentially replace the shortest path of objective of agents
+        in a routing game with a stochastic shortest path objective.  Our work presents
+        this model in both the finite and infinite horizon cases and serves as a
+        bridge between routing games and mean-field games on graphs, bringing
+        stochastic network transitions into the routing game framework and extending
+        traditional routing game concepts such as price of anarchy and Braess paradox
+        to the mean-field game setup.
         </p>
-        <p>
-        <b> Homeworks: </b>
-        stuff, stuff, stuff...
-        </p>
+        <b>Applications: </b>
+        <p>Competition among ride-sharing drivers in urban areas </p>
+        <p>Competition among urban drivers looking for street parking </p>
+        <b>Papers: </b>
+        <p> </p>
+        <b>Presentations: </b>
+        <p> </p>
       </div>
       </div> <!-- subcontainer -->
 
@@ -107,23 +113,35 @@
       </div>
 
       <div class='blurbThick'>
-        <b> Classical Control Theory </b>
+        <b> Population Games with Continuous-Type Preferences </b>
         <p>
-        <b> Topics: </b>
-        Transfer functions, bode plots.
+        <b> Technical Summary: </b>
+        <p>
+        Traditional population games consider only populations
+        that are fully uniform, ie. all agents are the same.  We extend this framework
+        to situations where populations are modeled as a mass distribution (measure)
+        over a "type space".  The location of each agent (or their infinitesimal bit of mass)
+        in the type space indicates that agent's relative preference for various
+        options available to them.  The type space has dimension equal to the options available.
+        We consider both the one dimensional case, where all options can be compared on one axis;
+        and the multi-dimensional case where we can model relative preferences among many options.
+        We formulate the appropriate equilibrium concept for these population games and
+        show how this equilibrium can be computed via a potential function.  We
+        are currently studying the dual of this potential optimization problem and
+        it's interpretation.
         </p>
-        <p>
-        <b> Class notes: </b>
-        stuff, stuff, stuff...
-        </p>
-        <p>
-        <b> Homeworks: </b>
-        stuff, stuff, stuff...
-        <b> Notebooks: </b>
-        stuff, stuff, stuff...
-        <b> Supplemental: </b>
-        stuff, stuff, stuff...
 
+        <b> Applications: </b>
+        <p>
+        This framework combines smoothly with traditional congestion game notions and we
+        use it to model hetergeneous populations making transportation choices between
+        disparate options such as driving, walking, biking, or taking various forms of
+        public transit.
+        </p>
+
+        <p>
+        <b> Papers: </b>
+        stuff, stuff, stuff...
         </p>
       </div>
 
@@ -136,23 +154,22 @@
       </div>
 
       <div class='blurbThick'>
-        <b> Multivariable Control </b>
+        <b> Braess Paradox: An Algebraic Graph Theory Characterization </b>
         <p>
-        <b> Topics: </b>
-        Transfer functions, bode plots.
+        <b> Technical Summary: </b>
+        Braess paradox is the (in)famous phenomena in routing games where
+        adding roads to a congested network can actually make congestion worse
+        due to the competitive nature of traffic flow.  In this work, we provide
+        an in-depth algebraic characterization of this network phenomena in terms
+        of the graph incidence and Laplacian matrices.  We also present a graph
+        theoretic exposition of several classical results about Braess paradox; in
+        particular that Braess paradox cannot occur in a series-parallel network.
+        Our current work is extending these results to hypergraphs which covers the case
+        of Braess paradox in MDP congestion games.
         </p>
         <p>
-        <b> Class notes: </b>
+        <b> Papers </b>
         stuff, stuff, stuff...
-        </p>
-        <p>
-        <b> Homeworks: </b>
-        stuff, stuff, stuff...
-        <b> Notebooks: </b>
-        stuff, stuff, stuff...
-        <b> Supplemental: </b>
-        stuff, stuff, stuff...
-
         </p>
       </div>
 
@@ -167,26 +184,19 @@
     </div>
 
     <div class='blurbThick'>
-      <b> Estimation Theory </b>
+      <b> Parking Congestion Games </b>
       <p>
-      <b> Topics: </b>
-      Kalman filters, extended Kalman filters, unscented Kalman filters, particle filters.
+      <b> Technical Summary: </b>
+      We add competition for optimal parking spots to routing game models.
+      Our model combines traditional routing game notions with queue theory to
+      formulate a congestion game and corresponding Wardrop equilibrium notion.
+      We then solve this potential game via the appropriate potential function.
       </p>
       <p>
-      <b> Class notes: </b>
-      stuff, stuff, stuff...
-      </p>
-      <p>
-      <b> Homeworks: </b>
-      stuff, stuff, stuff...
-      <b> Notebooks: </b>
-      stuff, stuff, stuff...
-      <b> Supplemental: </b>
-      stuff, stuff, stuff...
-
+      <b> Technical Summary: </b>
+      Competition among drivers for urban parking.
       </p>
     </div>
-
 
   </div> <!-- subcontainer -->
 
@@ -196,57 +206,23 @@
   </div>
 
   <div class='blurbThick'>
-    <b> Convex Optimization </b>
+    <b> Stability of Learning Strategies in Continuous Games </b>
     <p>
-    <b> Topics: </b>
-    convex optimization
+    <b> Technical Summary: </b>
+    We apply stability notions from linear system theory to study learning
+    dynamics in two-player games with continuous action sets.  We present a
+    complete picture of when gradient play is stable (and unstable) in the scalar
+    action case (2x2 game Jacobians). Though straightforward, these results
+    provide much qualitative insight into learning dynamics in different types of
+    games such as potential games, zero-sum games, etc.  We then generalize some
+    of these results to the vector action case.
     </p>
     <p>
-    <b> Class notes: </b>
-    stuff, stuff, stuff...
-    </p>
-    <p>
-    <b> Homeworks: </b>
-    stuff, stuff, stuff...
-    <b> Notebooks: </b>
-    stuff, stuff, stuff...
-    <b> Supplemental: </b>
-    stuff, stuff, stuff...
-
+    <b> Papers </b>
     </p>
   </div>
 
-
-</div> <!-- subcontainer -->
-
-
-  <div class='subcontainer'>
-  <div class='imgThin'>
-  </div>
-
-  <div class='blurbThick'>
-    <b> Robotic Manipulation </b>
-    <p>
-    <b> Topics: </b>
-    Forward kinematics, inverse kinematics
-    </p>
-    <p>
-    <b> Class notes: </b>
-    stuff, stuff, stuff...
-    </p>
-    <p>
-    <b> Homeworks: </b>
-    stuff, stuff, stuff...
-    <b> Notebooks: </b>
-    stuff, stuff, stuff...
-    <b> Supplemental: </b>
-    stuff, stuff, stuff...
-
-    </p>
-  </div>
-
-
-</div> <!-- subcontainer -->
+  </div> <!-- subcontainer -->
 
        </div>  <!-- maincontainer -->
 
