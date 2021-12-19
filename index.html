@@ -35,7 +35,8 @@
       <style>
 
       html {
-        font-family: "Montserrat", sans-serif;
+        /* font-family: "Montserrat", sans-serif; */
+        font-family: "Raleway", sans-serif;
       }
 
       header {
@@ -209,6 +210,7 @@
 
     .subcontainer {
       display: flex;
+      max-width: 1000px;
       flex-flow: row wrap;
     }
       /* flex-direction: row;
@@ -258,6 +260,8 @@
     }
 
     .img {
+      min-width: 200px;
+      min-height: 200px;
       max-width: 600px;
       max-height:600px;
       z-index: 1;
@@ -357,14 +361,11 @@
       <!-- <div class=intro-container> -->
       <div class=subcontainer>
         <div class=blurbleft >
-          <img src="mug.jpg" alt='mugshot'>
-          <p style='font-size:16px'><b>CONTACT INFO:</b></p>
-          <p style='font-size:16px'> Dan Calderone </p>
-          <p style='font-size:16px'> dan dot j dot calderone </p>
-          <p style='font-size:16px'> at gmail dot com </p>
+          <img src="mug.jpg" alt='mugshot' style=max-width:'200px'>
         </div>
         <div class = blurbright>
           <!-- <div class="blurb" > -->
+          <p style='font-size:16px'><b>ABOUT:</b></p>
           I'm a post-doctoral researcher/lecturer at University of Washington
           under Behcet Ackimese and Lillian Ratliff.
           My research is in control theory and optimization applied to
@@ -372,13 +373,18 @@
           I also have a passion for math visualization and am working on a suite of
           web-based interactive visualizations for teaching linear algebra, optimization, control theory, and estimation.
           <!-- </div> -->
+
+          <p style='font-size:16px'><b>CONTACT INFO:</b></p>
+          <p style='font-size:16px'> Dan Calderone </p>
+          <p style='font-size:16px'> dan dot j dot calderone at gmail dot com </p>
+
         </div>
 
       </div>
 
       <div class='subcontainer'>
       <!-- <div class=header-container> -->
-      <div class=blurbleft>
+      <div class='blurbleft'>
         <!-- <div style="font-size:26px; text-align:left;" >
         <b>FEATURED VISUALIZATION:</b>
         </div> -->
@@ -412,8 +418,8 @@
         <!-- </div> -->
       </div>
 
-        <div class = imgright >
-        <div class = img >
+        <div class = 'imgright' >
+        <div class = 'img' >
           <canvas id='hypershape' class='CANVAS'></canvas>
 
 
