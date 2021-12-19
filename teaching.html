@@ -33,6 +33,7 @@
       <!-- <link rel="stylesheet" href="./styles.css" ></link> -->
 
       <style>
+
       html {
         /* font-family: "Montserrat", sans-serif; */
         font-family: "Raleway", sans-serif;
@@ -163,41 +164,41 @@
       display: grid;
       grid-template-columns: minmax(200px, 200px) minmax(400px, 600px);
       grid-template-rows: minmax(300px, 400px);
-      }
+    }
 
-      .header-container {
-      display: grid;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      margin-left: 40px;
-      font-size: 24px;
-      grid-template-columns: auto;
-      grid-template-rows: auto;
-      }
+    .header-container {
+    display: grid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    font-size: 24px;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    }
 
-      .col1-container {
-      display: grid;
-      padding: 20px;
-      grid-template-columns: minmax(200px, 300px);
-      grid-template-rows: minmax(400px, 400px);
-      }
-
-
-      .col2-container {
-      display: grid;
-      padding: 0px;
-      grid-template-columns: minmax(300px, 350px) minmax(400px, 550px);
-      }
+    .col1-container {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: minmax(200px, 300px);
+    grid-template-rows: minmax(400px, 400px);
+    }
 
 
-      /* .flex2 {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      } */
+    .col2-container {
+    display: grid;
+    padding: 0px;
+    grid-template-columns: minmax(300px, 350px) minmax(400px, 550px);
+    }
 
 
-      .maincontainer {
+    /* .flex2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    } */
+
+
+    .maincontainer {
       /* flex-direction: column; */
       display: flex;
       min-height:100vh;
@@ -205,56 +206,42 @@
       justify-content: flex-start;
       margin: 0;
       flex-flow: column nowrap;
-      }
+    }
 
-      .subcontainer {
+    .subcontainer {
       display: flex;
       max-width: 1000px;
       flex-flow: row wrap;
-      }
-
-      .subtitle {
-      display: flex;
-      justify-content: center;
-      max-width: 1000px;
-      flex-flow: row wrap;
-      }
-
-
-      .title1 {
-        font-size: 24px;
-      }
-
-
+    }
       /* flex-direction: row;
       flex-wrap: wrap;
        flex: 5;
       justify-content: flex-start;
       flew-flow: row wrap;
-      }*/
+    }*/
 
-      /* We tell all items to be 100% width, via flex-basis */
-      .subcontainer > * {
+    /* We tell all items to be 100% width, via flex-basis */
+    .subcontainer > * {
       flex: 1 0;
-      }
+    }
 
-      .blurbleft {
-      flex: 1.2;
+    .blurbleft {
+      flex: 1;
       margin: 20px;
       padding: 30px;
       background-color: rgba(64, 106, 157, 0.05);
       font-size: 16px;
       z-index: 1;
-      }
-      .imgleft {
+    }
+    .imgleft {
       flex: 4;
       margin: 20px;
       padding: 30px;
       font-size: 16px;
       z-index: 1;
-      }
+    }
 
-      .blurbright {
+    .blurbright {
       flex: 4;
       margin: 20px;
       padding: 30px;
@@ -262,44 +249,44 @@
       font-size: 16px;
       z-index: 1;
 
-      }
-      .imgright {
+    }
+    .imgright {
       flex: 4;
       margin: 20px;
       padding: 30px;
       font-size: 16px;
       z-index: 1;
 
-      }
+    }
 
-      .img {
+    .img {
       min-width: 200px;
       min-height: 200px;
       max-width: 600px;
       max-height:600px;
       z-index: 1;
-      }
+    }
 
 
 
-      /* We rely on source order for mobile-first approach
-      * in this case:
-      * 1. header
-      * 2. article
-      * 3. aside 1
-      * 4. aside 2
-      * 5. footer
-      */
+    /* We rely on source order for mobile-first approach
+     * in this case:
+     * 1. header
+     * 2. article
+     * 3. aside 1
+     * 4. aside 2
+     * 5. footer
+     */
 
-      /* Medium screens */
-      /* @media all and (min-width: 800px) { */
+    /* Medium screens */
+    /* @media all and (min-width: 800px) { */
       /* We tell both sidebars to share a row */
       /* .blurb { flex: 2 auto; } */
       /* .img { flex: 1 auto; } */
-      /* } */
+    /* } */
 
-      /* Large screens */
-      /* @media all and (min-width: 800px) {} */
+    /* Large screens */
+    /* @media all and (min-width: 800px) {} */
       /* We invert order of first sidebar and main
        * And tell the main element to take twice as much width as the other two sidebars
        */
@@ -309,35 +296,45 @@
       .aside-2 { order: 3; }
       .footer  { order: 4; } */
 
-      /*
 
 
 
 
-      .wrapper {
+
+
+
+
+
+
+
+/*
+
+
+
+
+    .wrapper {
       display: flex;
       flex-flow: row wrap;
       font-weight: bold;
       text-align: center;
-      }
+    }
 
-      .wrapper > * {
+    .wrapper > * {
       padding: 10px;
       flex: 1 100%;
-      }
+    }
 
-      @media all and (min-width: 1000px) {
+    @media all and (min-width: 1000px) {
       .aside { flex: 1 0 0; }
-      }
+    }
 
-      @media all and (min-width: 800px) {
+    @media all and (min-width: 800px) {
       .main    { flex: 3 0px; }
       .aside-1 { order: 1; }
       .main    { order: 2; }
       .aside-2 { order: 3; }
       .footer  { order: 4; }
-      } */
-
+    } */
 
       </style>
 
@@ -384,15 +381,9 @@
         </div>
 
       </div>
-      <div class="subtitle">
-      <div class="title1">
-      <b>Featured Visualizations:</b>
-      </div >
-      </div >
 
       <div class='subcontainer'>
       <!-- <div class=header-container> -->
-
       <div class='blurbleft'>
         <!-- <div style="font-size:26px; text-align:left;" >
         <b>FEATURED VISUALIZATION:</b>
