@@ -254,11 +254,12 @@ z-index: 1;
 
 
 .imgThin {
-flex: 1.2;
+flex: 1.;
 margin: 20px;
 padding: 30px;
 font-size: 16px;
-text-align: center;
+flex-direction: row;
+justify-content: center; 
 z-index: 1;
 }
 
