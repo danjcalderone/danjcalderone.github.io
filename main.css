@@ -188,6 +188,12 @@ max-width: 1000px;
 flex-flow: row wrap;
 }
 
+/* We tell all items to be 100% width, via flex-basis */
+.subcontainer > * {
+flex: 1 0;
+}
+
+
 
 .title1 {
   font-size: 24px;
@@ -201,10 +207,6 @@ justify-content: flex-start;
 flew-flow: row wrap;
 }*/
 
-/* We tell all items to be 100% width, via flex-basis */
-.subcontainer > * {
-flex: 1 0;
-}
 
 .blurbleft {
 flex: 1.2;
@@ -259,7 +261,7 @@ margin: 20px;
 padding: 30px;
 font-size: 16px;
 flex-direction: row;
-justify-content: center; 
+justify-content: center;
 z-index: 1;
 }
 
