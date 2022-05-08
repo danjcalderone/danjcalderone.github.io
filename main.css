@@ -111,6 +111,7 @@ flex-flow: row wrap;
   width: 25%;
   padding: 50px;
 }
+
 .column_blurb {
   max-width: 550px;
   float: left;
@@ -381,7 +382,7 @@ body{
   width: 100%;
 }
 
-/* .wrapper */
+
 .sidebar {
   position: relative;
   min-width: 300px;
@@ -390,7 +391,7 @@ body{
   background-color: #bac3c9c7;
 }
 
-/* .wrapper */
+
 .sidebar ul {
   padding: 0;
   margin: 0;
@@ -398,7 +399,7 @@ body{
 }
 
 
-/* .wrapper */
+
 .sidebar h4{
   color: rgba(34, 76, 127, 0.9);
   text-transform: uppercase;
@@ -407,7 +408,7 @@ body{
   padding: 60px 0px 10px;
 }
 
-/* .wrapper */
+
 .sidebar h1{
   color: rgba(34, 76, 127, 0.9);
   text-transform: uppercase;
@@ -416,7 +417,7 @@ body{
   padding: 40px 30px 20px;
 }
 
-/* .wrapper */
+
 .sidebar h2{
   color: rgba(34, 76, 127, 0.9);
   text-transform: uppercase;
@@ -427,7 +428,7 @@ body{
 }
 
 
-/* .wrapper */
+
 .sidebar h3 {
   color: rgba(34, 76, 127,0.9);
   padding: 35px 55px 5px;
@@ -435,7 +436,7 @@ body{
   border-bottom: 1px solid rb;
 }
 
-/* .wrapper */
+
 .sidebar h5 {
   color: rgba(34, 76, 127,0.9);
   padding: 5px 55px 5px;
@@ -444,14 +445,14 @@ body{
 }
 
 
-/* .wrapper */
+
 .sidebar li{
   padding: 2px 55px ;
   border-bottom: 1px solid rb
 
 }
 
-/* .wrapper */
+
 .sidebar li a{
   color: rgba(34, 76.0, 127, 0.9);
   display: block;
@@ -459,7 +460,7 @@ body{
   font-size: 16px;
 }
 
-/* .wrapper */
+
 .sidebar li un{
   color: rgba(34, 76.0, 127, 0.3);
   display: block;
@@ -467,17 +468,17 @@ body{
 }
 
 
-/* .wrapper */
+
 .sidebar li a .fas{
   width: 25px;
 }
 
-/* .wrapper */
+
 .sidebar li:hover {
   background: #594f8d;
 }
 
-/* .wrapper */
+
 .sidebar li:hover a{
   color: #fff;
 }
@@ -491,14 +492,16 @@ body{
 
 
 
-/* .wrapper */
+
 .content{
   position: relative;
   width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
   /* margin-left: 200px; */
 }
 
-/* .wrapper */
+
 .content .header{
   font-size: 48px;
   color: rgba(34, 76, 127,0.9);
@@ -530,7 +533,7 @@ body{
   position: relative;
 }
 
-/* .wrapper */
+
 .content .module .header{
   font-size: 48px;
   color: rgba(34, 76, 127,0.9);
