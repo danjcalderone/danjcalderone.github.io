@@ -1,4 +1,4 @@
-/* asfasdfasdf */
+j/* asfasdfasdf */
 
 
 html {
@@ -91,7 +91,7 @@ flex-direction: row;
 }
 
 
-.blurbThin {
+/*.blurbThin {
 flex: 4 0 auto;
 margin: 20px;
 padding: 30px;
@@ -100,7 +100,8 @@ font-size: 16px;
 z-index: 1;
 width: 20%;
 max-width: 250px;
-}
+}*/
+
 
 .blurbThick {
 /* flex: 0 4 auto; */
@@ -109,6 +110,27 @@ padding: 30px;
 background-color: rgba(64, 106, 157, 0.05);
 font-size: 16px;
 width: fit-content;
+
+border-radius: 20pt;
+border-width: 2pt;
+border-style: solid;
+border-color: rgba(0,0,0,0.2)
+
+/* clamp(400px, 1000px,1200px); */
+/* z-index: 1; */
+/* width: 1500px; */
+}
+
+
+.blurbThin {
+/* flex: 0 4 auto; */
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+width: 20%; 
+max-width: 250px;
+/*fit-content;*/
 
 border-radius: 20pt;
 border-width: 2pt;
