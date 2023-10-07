@@ -78,7 +78,8 @@ flex-flow: column nowrap;
 .subcontainer {
 display: flex;
 justify-content: center;
-max-width: 1200px;
+max-width: 900px;
+width: 100%;
 height: fit-content;
 flex-direction: row;
 /* flex-flow: row wrap; */
@@ -86,6 +87,7 @@ flex-direction: row;
 
 @media (max-width: 500px) {
   .subcontainer {
+    width: 100%;
     flex-direction: column;
     align-items: center;
   }
@@ -112,17 +114,37 @@ margin: 20px;
 padding: 30px;
 background-color: rgba(64, 106, 157, 0.05);
 font-size: 16px;
-width: fit-content;
+
+width: clamp(400px,80%,1000px);
+/*min-width: 400px;
+width: 80%;
+max-width: 1000px;
+*/  
+
+
+/*fit-content;*/
 
 border-radius: 20pt;
 border-width: 2pt;
 border-style: solid;
 border-color: rgba(0,0,0,0.2)
 
-/* clamp(400px, 1000px,1200px); */
+/* clamp(400px, 1000px,1200px); 
 /* z-index: 1; */
 /* width: 1500px; */
 }
+
+
+@media (max-width: 500px) {
+  .blurbThick {
+/*    min-width: 400px;
+    width: fit-content;
+*/    
+    width: clamp(200px,80%,400px);    
+    height: auto;
+  }
+}
+
 
 
 .blurbThin {
@@ -131,18 +153,17 @@ margin: 20px;
 padding: 30px;
 background-color: rgba(64, 106, 157, 0.05);
 font-size: 16px;
-width: 20%; 
-/*max-width: 250px;*/
-max-width: 280px;
+/*width: clamp(160px,20%,280px);*/
 min-width: 160px;
-height: auto;
+max-width: 280px;
+width:20%;
+/*max-width: 250px;*/
+/*height: auto;*/
 /*fit-content;*/
-
 border-radius: 20pt;
 border-width: 2pt;
 border-style: solid;
 border-color: rgba(0,0,0,0.2)
-
 /* clamp(400px, 1000px,1200px); */
 /* z-index: 1; */
 /* width: 1500px; */
@@ -150,8 +171,9 @@ border-color: rgba(0,0,0,0.2)
 
 @media (max-width: 500px) {
   .blurbThin {
-    width: fit-content;
-    height: fit-content;
+    width: clamp(200px,80%,400px);
+    /*width: fit-content;*/
+    /*height: auto;*/
   }
 }
 
@@ -174,14 +196,61 @@ max-width: 290px;
 
 
 
-
+/*
 .imgThick {
 flex: 0 1 auto;
 text-align: center;
 margin-left: auto;
 margin-right: auto;
 z-index: 1;
+}*/
+
+.imgThick {
+  flex: 0 1 auto;
+/*  min-width
+  width:;
+*/
+  /*min-width: 800px;*/
+  /*width: ;*/
+  /*width: clamp(400px,80%,1000px);*/
+
+  /*width: 80%;
+  max-width: 1000px;
+  min-width: 400px;  */
+
+  margin: 20px 20px;
+  padding: 30px;
+
+
+  width: clamp(400px,80%,1000px);
+
+  height: auto;
+  /*height: 100%;  */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  /*flex-start;*/
+  align-items: center;
+  position: relative;
+  background-color: rgba(255,255,255,0);
+
+  border-radius: 20pt;
+  border-width: 2pt;
+  border-style: solid;
+
+
+
+  /* top: 0px;
+  left: 0px; */
+  /* height: 900px; */
 }
+
+@media (max-width: 500px) {
+  .imgThick {
+    width: clamp(200px,80%,400px);
+  }
+}
+
 
 
 

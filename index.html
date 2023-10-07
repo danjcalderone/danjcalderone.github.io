@@ -37,7 +37,7 @@
 
   <style>
 
-.img1 {
+.IMG1 {
 background-color: rgb(0, 0, 255, 0);
 /* flex: 0 1 auto; */
 /* padding: 0px; */
@@ -45,22 +45,25 @@ background-color: rgb(0, 0, 255, 0);
 position: relative;
 /* top: 0px;
 left: 0px; */
-margin-top: 20px; 
+margin: 20px 0px; 
 /*clamp(10px, 10%, 50px);*/
 margin-right: clamp(10px, 10%, 50px);
 margin-bottom: 20px; 
 /*clamp(10px, 10%, 50px);*/
 margin-left: clamp(10px, 10%, 50px);
 
+/*width: clamp(600px,100%,1000px);*/
 width: 100%;
-min-width: 800px;
+/*min-width: 800px;*/
 aspect-ratio: 2.4 / 1;
 /* height: 900px; */
 border-radius: 20pt;
 border-width: 2pt;
 border-style: solid;
 }
-.img1 .CANVAS {
+
+
+.IMG1 .CANVAS {
 background-color: rgb(0, 0, 255, 0);
 z-index: 1;
 top: 0;
@@ -76,26 +79,12 @@ width: 100%;
 
 
 @media (max-width: 500px) {
-  .img1 {
-    min-width: 0px;
+  .IMG1 {
+    /*min-width: 0px;*/
     width: 100%;
     /*width: 100%;*/
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -212,31 +201,6 @@ z-index: -1;
   left: 0px; */
   /* height: 900px; */
 }
-.imgThick {
-  flex: 0 1 auto;
-/*  min-width
-  width: 100%;
-*/
-  /*min-width: 800px;*/
-  /*width: ;*/
-  height: auto;
-  /*height: 100%;  */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  background-color: rgba(255,255,255,0);
-  /* top: 0px;
-  left: 0px; */
-  /* height: 900px; */
-}
-
-@media (max-width: 500px) {
-  .imgThick {
-    min-width: 400px;
-  }
-}
 
 /*################################################*/
 
@@ -286,9 +250,11 @@ z-index: -1;
 
           <!-- </div> -->
 
-          <p style='font-size:16px'><b>CONTACT INFO:</b></p>
-          <p style='font-size:16px'> Dan Calderone </p>
-          <p style='font-size:16px'> dan dot j dot calderone at gmail dot com </p>
+          <p style='font-size:16px'><b>Contact:</b>
+          dan dot j dot calderone at gmail dot com
+          </p>
+          <!-- <p style='font-size:16px'> Dan Calderone </p> -->
+          <!-- <p style='font-size:16px'> dan dot j dot calderone at gmail dot com </p> -->
 
         </div>
 
@@ -296,7 +262,7 @@ z-index: -1;
 
             <div class="subtitle">
             <div class="title1">
-            <b>Featured Visualization:</b>
+            <b>Featured Visualizations:</b>
             </div >
             </div> <!-- subcontainer -->
 
@@ -341,12 +307,76 @@ z-index: -1;
  -->
         <div class="imgThick"> 
           <!-- section"> -->
-        <div class='img1' style="aspect-ratio: 1.4 / 1" id="addvectors1-container" >
+        <div class='IMG1' style="aspect-ratio: 1.4 / 1" id="addvectors1-container" >
+        <canvas class='CANVAS' id='addvectors1' ></canvas>
+        </div>
+        </div>
+      <!-- </div> -->
+      </div>
+
+
+
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+<!-- ######################################################################## -->
+
+
+ <div class=subcontainer>
+
+        <div class = blurbThin>
+          <!-- <div class="blurb" > -->
+          <p style='font-size:16px'><b>Vector Addition:</b></p>
+
+          <p>
+          Vectors can be visualized relative to an orthogonal axis or with the coordinates represented in parallel.
+          In this visualization, we show vector addition in both the orthogonal axis and parallel axis representation. 
+          In the orthogonal axis case, vector addition can be visualize by connecting the vectors tip-to-tail as shown.  
+        </p>
+
+        <p>
+          The vectors can each be adjusted manually by dragging the corners of the hypercubes or by the heights of the stacks
+          in the parallel representation. Hover and click on the vector elements to highlight them.  The right-top slider 
+          on the equation allows some vectors to be hidden; the clicking hte "lock" symbols and dragging down the vertical slider
+          increases the dimension of the vectors shown up to 8-dimensions. 
+          </p>
+
+          <p>
+          Further info: <a href="https://danjcalderone.github.io/dcmath/linalg/vectoradd.html">visualizations </a>
+        </p>
+
+          <!-- </div> -->
+
+
+        </div>
+
+
+
+        <!-- <div class=content> -->
+      <!-- <div class=subcontainer> -->
+
+<!--         <div class=imgThin >
+        <img src="mug.jpg" alt='mugshot' style=max-width:'200px'>
+        </div>
+ -->
+        <div class="imgThick"> 
+          <!-- section"> -->
+        <div class='IMG1' style="aspect-ratio: 1.4 / 1" id="addvectors1-container" >
         <canvas class='CANVAS' id='addvectors1' ></canvas>
         </div>
         </div>
       <!-- </div> -->
     </div>
+
+
+
+
 
 
 
