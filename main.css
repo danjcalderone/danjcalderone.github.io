@@ -147,16 +147,20 @@ border-color: rgba(0,0,0,0.2)
 
 
 
+
+
+
 .blurbThin {
 /* flex: 0 4 auto; */
 margin: 20px;
 padding: 30px;
 background-color: rgba(64, 106, 157, 0.05);
 font-size: 16px;
-/*width: clamp(160px,20%,280px);*/
-min-width: 160px;
+width: clamp(160px,30%,280px);
+/*min-width: 160px;
 max-width: 280px;
-width:20%;
+width:15%;
+*/
 /*max-width: 250px;*/
 /*height: auto;*/
 /*fit-content;*/
@@ -177,7 +181,41 @@ border-color: rgba(0,0,0,0.2)
   }
 }
 
-.imgThin {
+
+.blurbWide {
+/* flex: 0 4 auto; */
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+/*width: clamp(160px,20%,280px);*/
+/*min-width: 160px;
+max-width: 280px;
+*/
+width:100%;
+/*max-width: 250px;*/
+/*height: auto;*/
+/*fit-content;*/
+border-radius: 20pt;
+border-width: 2pt;
+border-style: solid;
+border-color: rgba(0,0,0,0.2)
+/* clamp(400px, 1000px,1200px); */
+/* z-index: 1; */
+/* width: 1500px; */
+}
+
+@media (max-width: 500px) {
+  .blurbWide {
+    width: clamp(200px,80%,400px);
+    /*width: fit-content;*/
+    /*height: auto;*/
+  }
+}
+
+
+
+/*.imgThin {
 display: flex;
 flex: 0 1 auto;
 margin: 20px;
@@ -188,10 +226,51 @@ flex-direction: column;
 flex-wrap: wrap;
 justify-content: center;
 align-items: center;
-max-width: 290px;
+ width: clamp(160px,30%,280px);
+}*/
+/*max-width: 290px;*/
 /* max-width: 300px; */
 /* z-index: 1; */
 /* width: 10%; */
+/*}*/
+
+
+
+
+
+.imgThin {
+/* flex: 0 4 auto; */
+margin: 20px;
+padding: 30px;
+/*background-color: rgba(64, 106, 157, 0.05);*/
+font-size: 16px;
+width: clamp(160px,30%,280px);
+justify-content: center;
+align-items: center;
+flex-direction: column;
+flex-wrap: wrap;
+/*min-width: 160px;
+max-width: 280px;
+width:15%;
+*/
+/*max-width: 250px;*/
+/*height: auto;*/
+/*fit-content;*/
+/*border-radius: 20pt;
+border-width: 2pt;
+border-style: solid;
+border-color: rgba(0,0,0,0.2)
+*//* clamp(400px, 1000px,1200px); */
+/* z-index: 1; */
+/* width: 1500px; */
+}
+
+@media (max-width: 500px) {
+  .blurbThin {
+    width: clamp(200px,80%,400px);
+    /*width: fit-content;*/
+    /*height: auto;*/
+  }
 }
 
 
@@ -237,6 +316,7 @@ z-index: 1;
   border-radius: 20pt;
   border-width: 2pt;
   border-style: solid;
+  border-color: rgba(0,0,0,0.2)
 
   /* top: 0px;
   left: 0px; */
@@ -446,11 +526,10 @@ flex-flow: row wrap;
 }
 
 /* We tell all items to be 100% width, via flex-basis */
-
-.subcontainer > * {
+/*.subcontainer > * {
 flex: 1 0;
 }
-
+*/
 
 
 .title1 {
