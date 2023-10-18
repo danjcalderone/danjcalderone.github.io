@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></link>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" ></link>
+
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css"
+    integrity="sha384-Cqd8ihRLum0CCg8rz0hYKPoLZ3uw+gES2rXQXycqnL5pgVQIflxAUDS7ZSjITLb5"
+    crossorigin="anonymous"></link>
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js"
+    integrity="sha384-1Or6BdeNQb0ezrmtGeqQHFpppNd7a/gw29xeiSikBbsb44xu3uAo8c7FwbF5jhbd"
+    crossorigin="anonymous"></script>
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js"
+    integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"
+    crossorigin="anonymous"
+    onload="renderMathInElement(document.body)">
+    </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.5/math.min.js"> </script>
+  <script src="https://unpkg.com/pts@0.10.5/dist/pts.js"></script>
+
+
+    <!-- <link rel="stylesheet" href="./css/main.css" ></link> -->
+
+
+    <style>
+
+.img1 {
+  background-color: rgb(0, 0, 255, 0);
+  flex: 0 1 auto;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 95%;
+  aspect-ratio: 1 / 1;
+  /* height: 900px; */
+}
+.img1 .CANVAS {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.img2 {
+  background-color: rgb(0, 0, 255, 0);
+  flex: 0 1 auto;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 95%;
+  aspect-ratio: 2 / 1;
+  /* height: 900px; */
+}
+
+.img2 .CANVAS {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+
+.CANVAS {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1400px;
+  height: 1400px;
+}
+.eqn1 {
+  background-color: rgba(0, 0, 255, 0);
+  color: black;
+  position: absolute;
+  font-size: 16px;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+
+
+
+
+  </style>
+
+  <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link>
+  <!-- <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/main.css" ></link> -->
+  <!-- <link rel="stylesheet" href="/css/main.css" ></link> -->
+
+    </head>
+
+    <body>
+    <header > <h1> danjcalderone </h1> </header>
+
+
+
+    <div w3-include-html="/nav/topics.html"></div>
+
+
+    <div class="wrapper">
+      <div class="sidebar">
+      <!-- <div w3-include-html="/nav/sidebarBLOG.html"></div> -->
+
+
+ <ul>
+    <h1><div id="header">Posts</div></h1>
+
+    <h3> Optimization</h3>
+    <li><a href="/blog/scvx.html"> Successive Convexification (Oct 23) </a> </li>
+    <li><a href="/blog/scvx.html"> Matching + Planning (Oct 23) </a> </li>
+
+    <h3> Linear Algebra</h3>
+    <li><a href="/blog/inner.html"> Inner Product Visualizations (Oct 23) </a> </li>
+
+  </ul>
+
+      
+
+
+      </div>
+      <div class=main_content>
+
+
+        <h1><div id="header">
+          Inner Product 
+          Visualizations
+        </div></h1>
+
+
+        <div class="section basic" >
+        <div class="txt" style="padding:40px">
+
+
+
+              <b> INNER PRODUCTS  </b>
+              <p>
+
+              Vectors contain both the notion of length and direction.
+              While magnitude is a property that vectors share with regular numbers,
+              direction is a uniquely vector property.
+
+              As such we can talk about the relative magnitude of two vectors
+              and we can also talk about whether or not they point in similar directions,
+              opposite directions or whether they are "perpendicular"
+              or "orthogonal" to each other.  The "inner product" or "dot product"
+              of two vectors is at the heart of this direction comparison.
+              </p>
+
+
+              <b> Definition </b>
+                  <p>
+                    The inner product, denoted by \(\langle \cdot, \cdot \rangle\),
+                    between two vectors \(x, y \in \mathbb{R}^n\) is given by
+                    $$
+                    \langle y,x \rangle = \sum_i y_ix_i
+                    $$
+                    We can also write the inner product in several other ways.
+                    $$
+                    \langle y,x \rangle = \sum_i y_ix_i = y^Tx = \lVert y \rVert_2  \lVert x \rVert_2 \cos(\theta)
+                    $$
+                    The expression \(y^Tx\) uses matrix multiplication notation;
+                    \(y^T\) is a row vector and \(x\) as a column vector.
+                    (This expression is perhaps the most clean and useful algebraically.)
+                    The final expression \(\lVert y \rVert \lVert x \rVert_2 \cos(\theta)\)
+                    is the geometric definition of an inner product that we will consider more below.
+                    \(\lVert y \rVert_2\) and \(\lVert x \rVert_2\) are the magnitudes of
+                    \(x\) and \(y\) and \(\theta\) is the angle between the two vectors.
+
+                  </p>
+
+                <b> Geometry of Inner Products </b>
+
+
+                <p>
+                  The geometry of the inner product can be seen by considering
+                  the law of cosines (an extension of the Pythagorean theorem)
+                  detailed in the image below.
+                </p>
+              </div>
+
+                <div class='imgBackground'>
+                <div class='imgFixed' >
+                <img src="/figs/2Dtraj.gif" width=70%></img>
+                </div>
+                </div>
+
+                <div class='imgBackground'>
+                <div class='imgFixed' >
+                <img src="/figs/3Dtraj.gif" width=70%></img>
+                </div>
+                </div>
+
+
+                <div class="txt" style="padding:40px">
+                <p>
+                  Note that the law of cosines is an extension of the Pythagorean
+                  theorem in that it gives a correction term for when \(\theta \neq \pi/2\).
+                  This correction term is closely related to the inner product between
+                  the vectors that form the sides of the triangle.
+                  Consider the norm (squared) of the vector difference \(x-y\)
+                  $$
+                  (x-y)^T(x-y) = x^Tx + y^Ty - 2y^Tx
+                  $$
+                  The law of cosines gives that the last term can be expressed as
+                  $$
+                  2y^Tx = 2 \lVert y \rVert_2  \lVert x \rVert_2 \cos(\theta)
+                  $$
+                  which gives the geometric interpretation of the inner product.
+                  Note from this definition if two vectors \(x\) and \(y\) point in
+                  similar directions (small \(\theta\)) then \(y^Tx\) will be larger;
+                  if they are perpendicular (\(\theta=\pi/2\)) then \(y^Tx = 0\)
+                  and if they point in opposite directions (\(\theta\) closer to \(\pi\)) then
+                  \(y^Tx\) will be negative.
+                  The inner product is closely related to length of one vector after it
+                  is projected onto another.  Specifically if \(y\) is a unit vector,
+                  then \(y^Tx\) is exactly the length of \(x\) after it is projected
+                  onto \(y\) as shown in the image below.
+                </p>
+              </div>
+
+
+
+              <div class='imgFixed'>
+              <img src="/dcmath/figs/stills/VEC/DOTPROJECTION.png" width=40%></img>
+              </div>
+              </div>
+
+              <div class="section hard">
+              <div class="txt" style="padding:40px">
+              <b> Visualizing Scalar Multiplication </b>
+
+
+              <p>
+              To better visualize the geometry of the inner product, we first
+              consider scalar multiplication of two real numbers in the following way.
+              For the product of any two real numbers \(x,y \in \mathbb{R}\),
+              we can think of \(x\) as a step-size and \(y\) as how many steps we take
+              (not necessarily an integer).  On a number line,
+              We can think of this as re-defining a unit for \(y\) as \(x\).
+              Visually this is equivalent to dragging the value of 1 on the \(y\)
+              number line to the value of \(x\) and allowing \(y\) to be stretched as well.
+
+              As 1 goes to \(x\), \(y\) will go to \(xy\).
+
+              If \(x\) is greater than 1, \(y\) gets stretched away from the origin;
+              if \(x\) is less than one then \(y\) gets shrunk toward the origin.
+              If the sign of \(x\) is negative then \(y\) also gets flipped to
+              the otherside of the numberline.
+              The value \(x=1\) is special in that it leaves \(y\) unchanged and \(x=-1\)
+              leaves the magnitude of \(y\) unchanged but just flips
+              the side of the numberline.  We can illustrate this property in the figure below.
+              </p>
+        </div>
+          <!-- <div class="slideshow-container flips" id='SCALARMULT' any='9' style="width:80%"></div> -->
+          <div class='imgBackground'>
+          <div class='imgFixed'>
+          <img src="/dcmath/figs/stills/VEC/INNER_SCALARMULT.png" width=80%></img>
+          </div>
+          </div>
+
+          <div class="txt" style="padding:40px">
+          <b> Visualizing Inner Products </b>
+
+          <p>
+            Unlike scalars, vectors contain both the notion of length and direction.
+            If a scalar has some notion of direction it is simply a binary value \(\pm 1\),
+            ie. is the number positive or negative.  This "direction" determines whether
+            or not multiplying by this number flips the direction of another number.
+            Inner products can be thought of as expanding this binary value of \( \pm 1\)
+            to a full \(360^o\) of relative orientation.  Rather than simply
+            flipping the sign of the vector product based on the directions of the vectors,
+            inner product compares their relative direction and then multiplies by a
+            number in the interval \([-1,1]\) given by \(\cos(\theta)\)
+
+          </p>
+
+
+          <p>
+          To adjust the visualization of scalar multiplication above to apply to
+          inner products we first note that a unit step for \(y\)
+          now includes a direction as well as a length.
+          When taking the inner product rather than redefining the unit vector
+          in the \(y\) direction as \(x\), we can find the vector in the \(y\)
+          direction, \(v\), that would project to the unit vector in the \(x\) direction
+          and redefine that vector as \(x\).
+          If we let, \(y\) get stetched in the same way,
+          the resulting length of the stretched \(y\) will be \(y^Tx\).
+          This is visualized in the
+          diagram below.  Note that when we move \(v\) to \(x\), \(y\) moves
+          along a parallel line.
+          </p>
+        </div>
+
+        <div class='imgBackground'>
+        <div class='imgFixed'>
+        <img src="/dcmath/figs/stills/VEC/INNERPROD_DIAG.png" width=95%></img>
+        </div>
+        </div>
+
+<!--         <div class='img1' style="padding:0px" id="inner1-container" width="95%">
+          <canvas class='CANVAS' id='inner1' ></canvas>
+        </div>
+ -->
+
+        <div class='imgBackground'>
+        <div class='imgFixed'>
+        <img src="/dcmath/figs/stills/VEC/INNERXFIXED.png" width=80%></img>
+        </div>
+        </div>
+
+
+
+
+
+
+          <div class="txt" style="padding:40px">
+
+          <p>
+          The vector \(v\) can be thought of as
+          how far we have to go in the \(y\)-direction to get to one unit in the \(x\)
+          direction.
+          If \(x\) and \(y\) point in the same
+          direction, then \(v\) just has length one (and this picture reduces to the scalar picture)
+          but the more \(x\) and \(y\)
+          point in different directions the larger the vector \(v\) gets, ie.
+          the farther you have to go in the \(y\) direction to move one unit
+          in the \(x\) direction.   For  large
+          \(v\) the action of stretching \(v\) to \(x\) actually ends up shrinking
+          \(y\) and so \(y^Tx\) becomes small. (The diagrams below are dense
+          and worth considering slowly.)
+          </p>
+
+          </div>
+
+          <!-- <div class="slideshow-container flips" id='DOTPRODLEN' any='7' style="width:40%"></div> -->
+
+<!--           <div class='imgBackground'>
+          <div class="slideshow-container flips" id='INNERPRODX' any='6' style="width:50%"></div>
+          </div>
+ -->
+
+          <!-- <div class="slideshow-container flips" id='DOTPRODANGLE' any='9' style="width:40%"></div> -->
+
+          <div class="txt" style="padding:40px">
+          <p>
+          Several other special cases are worthy of note. If \(x\) is just a unit vector
+          this operation ends up just giving the length of \(y\) projected onto
+          the direction of \(x\).  This idea of projection is at the heart of the difference
+          between inner products and scalar products.  Scalar products just scale
+          the magnitude of the thing they multiply; inner products both scale and project
+          the things they multiply.  Another special case is when \(y\) and \(x\)
+          are perpendicular.  Here the visualization above reaches a limiting case
+          where the vector \(v\) shoots off to infinite.  Dragging \(v\) to \(x\) then
+          shrinks \(y\) to 0.  Intuitively since \(y\) does not point in the direction of \(x\)
+          at all, we have to go out to infinite to move one unit in the \(x\) direction.
+          </p>
+        </div>
+
+<!--         <div class='imgBackground'>
+        <div class="slideshow-container flips" id='INNERPRODY' any='13' style="width:70%"></div>
+        </div>
+ -->
+        <div class="txt" width=100% style="padding:40px">
+          <p>
+          The algebra of this visualization is the following.  \(v\) is the vector in the
+          \(y\)-direction such that
+          \(v^T\tfrac{x}{\lVert x\rVert_2} = \lVert v\rVert|_2 \cos \theta = 1\).
+          Since \(v\) and \(y\) point in the
+          same direction, we can define \(y = \beta v\), ie. \(y\) is just a scaled
+          version of \(v\).   We then get that
+          $$
+          y^Tx = \beta  v^T \tfrac{x}{\lVert x \rVert_2} \lVert x \rVert_2  = \beta \lVert x\rVert_2
+          $$
+          ie. the same scaling (\(\beta\)) that scales \(v\) to \(y\) also scales \(x\) to a vector
+          with length \(y^Tx\).  The geometric interpretation above is just this visualized
+          using similar triangles.
+          </p>
+
+        </div>
+        </div>
+
+
+          <!-- <div class="txt" style="padding:40px">
+
+          <b> ORTHOGONALITY  </b>
+          <p>
+
+
+          One of the fundamental notions associated with inner products is the idea
+          of orthogonality.  Two vectors are orthogonal if they are perpendicular, ie.
+          the angle between them is \(\theta = \tfrac{\pi}{2}\).  Intuitivley, if two vectors are orthogonal
+          they represent entirely separate directions that do not affect each other, ie. the projection of one vector
+          onto the other is 0.  For a vector \(x \in \mathbb{R}^n\), the set of vectors orthogonal to \(x\) has
+          dimension \(n-1\).  Subspaces are often defined as being orthogonal to some vector or set of vectors
+          (see the discussion of nullspaces).
+
+          </p>
+          <p> Perpendicular vectors in \(\mathbb{R}^2\) and \(\mathbb{R}^3\) are pictured below.  </p>
+
+          </div> -->
+          <div class="section harder">
+          <div class="txt" style="padding:40px">
+          <b> Inner Products and Quadratic Forms </b>
+
+
+          <p> Note: this section is better understood with background in positive
+          definite matrices.
+          </p>
+
+
+          <p>
+
+          We can generalize the Euclidean inner product with a positive definite symmetric
+          matrix \(P \succ 0\), \(P=P^T \in \mathbb{R}^{n \times n}\)
+          to get the \(P\)-inner product defined as
+
+          $$
+          \langle y,x \rangle_P =
+          \Vert x \Vert_P = y^TPx
+          $$
+          Rather than a uniform, spherical geometry, this inner product induces an ellipsoidal geometry.
+          One interpretation of this inner product is that each vector \(x\) and \(y\) is transformed (stretched) using the coordinate
+          transfromations \(x' = P^{\tfrac{1}{2}}x\) and \(y'=P^{\tfrac{1}{2}}y\)
+          before the regular Euclidean inner product is applied.  The unit ball
+          \(x^TPx = 1\) is ellipsoidal rather than spherical in the \(x\)-coordinates
+          (but it is spherical in the \(x'\)-coordinates).
+          A projection in this ellipsoidal geometry does not follow perpendicular lines
+          but rather lines tangent to the unit ball.  Since the ellipsoid
+          changes based on direction, the directions of projection change with direction
+          as well.
+          The visualization of the inner product given above is similar but now
+          the unit vector in the \(x\)-direction is shown by the ellisoid and
+          \(v\) is the intersection of the \(y\)-direction and the tangent
+          space to the ellipsoid where \(x\) crosses it.  This new geometry is illustrated
+          in the diagram below.
+
+
+
+          </p>
+          </div>
+
+          <div class='imgBackground'>
+          <div class='imgFixed'>
+          <img src="/dcmath/figs/stills/VEC/INNERPRODP_DIAG.png" width=95%></img>
+        </div>
+        </div>
+
+          <div class="txt" style="padding:40px">
+          <p>
+
+
+          Note that for the \(P\)-inner product, orthogonality, ie. \(y^TPx= 0\), does
+          not imply that the angle between the two vectors is \(90^o\).  Graphically,
+          orthogonality is better understood as one vector being parallel
+          to a tangent vector where the other vector crosses the unit ball.
+          This is illustrated below and discussed more in the section on orthogonality.
+          </p>
+          </div>
+
+<!--           <div class='imgBackground'>
+          <div class="slideshow-container flips" id='INNERPROD_ORTHO' any='9' style="width:40%"></div>
+          </div>
+          </div>
+ -->
+
+
+      </div>
+      </div>
+    <!-- <script type='module' src="./matrixo.js"> </script> -->
+    <script src="/dcmath/src/extra/includeHTML.js"> </script>
+
+    </body>
+  </html>
