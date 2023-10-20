@@ -302,93 +302,105 @@
 
               </p>
 
-              <b> Successive Convexification </b>
+              <b> CONVEX SUBPROBLEM </b>
 
               <p>
               We now want seek to improve our trajectories so that 1) the obstacles are avoided and 2) we reduce the amount of control effort that is employed.  We use the successive convexification scheme developed by Behcet Ackimese and company.  
 
-              Our scheme will involve 
+              At each update iteration we will solve the following optimization problem for a given, nominal control and state trajectories \(\mathbf{x}\) and \(\mathbf{u}\).
 
 
               $$
               \begin{aligned}
+              \textbf{OPT}\big(\mathbf{u},\mathbf{x}\big)
+              =
               \min_{\partial u,\partial x} & \quad
               w_u \sum_k (u_k+\partial u_k)^\top R_k (u_k+\partial u_k)  + 
-              w_s\sum_k s_k^\top s_k \\
-              \text{s.t.} & \quad \partial x_{k+1} = A \partial x_k + B \partial u_k, \ \quad \forall k \\
-              & \quad G_k \partial x_k - d_k + s_k \geq 0, \ s_k \geq 0 \quad \forall k 
+              w_s\sum_k v_k^\top v_k \\
+              \text{s.t.} & \quad \partial x_{k+1} = A_k \partial x_k + B_k \partial u_k, \ \quad \forall k \\
+              & \quad \partial x_0 = 0, \ \partial x_T = 0 \\
+              & \quad G_k \partial x_k  - d_k + s_k \geq 0, \ s_k \geq 0 \quad \forall k 
               \end{aligned}
               $$
 
-              </p>
-
-                </div>
 
 
-
-                <div class='imgBackground'>
-                <div class='imgFixed' >
-                <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dtraj_bounds.gif" width=70%></img> -->
-                <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=70%></img>
-                
-                </div>
-                </div>
-
-                <div class='imgBackground'>
-                <div class='imgFixed' >
-<!--                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj_bounds.gif" width=70%></img> -->
-                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=70%></img>
-                </div>
-                </div>
-
-
-
-              </div>
-
-            <div class="txt" style="padding:40px">
-
-              Note that in computing the initial control and state trajectories we have ignored the obstacles and we will need to fix this in the next step.  
+              We now break down each element of the optimization problem. 
 
               </p>
 
-              <b> Successive Convexification </b>
+              <b> Linearized Dynamics </b>
 
               <p>
-              We now want seek to improve our trajectories so that 1) the obstacles are avoided and 2) we reduce the amount of control effort that is employed.  We use the successive convexification scheme developed by Behcet Ackimese and company.  
-
-              Our scheme will involve 
+              Perturbations of the state trajectory around the nominal trajectory will obey a linearized version of the dynamics.  At each time step, the matrices \(A_k\) and \(B_k\) are the Jacobians of the dynamcis with respect to the state and the control 
 
 
+              $$ 
+              A_k = I + \Delta t \frac{\partial f}{\partial x_k}, \qquad B_k = \Delta t \frac{\partial f}{\partial u_k}
               $$
-              \begin{aligned}
-              \min_{\partial u,\partial x} & \quad
-              w_u \sum_k (u_k+\partial u_k)^\top R_k (u_k+\partial u_k)  + 
-              w_s\sum_k s_k^\top s_k \\
-              \text{s.t.} & \quad \partial x_{k+1} = A \partial x_k + B \partial u_k, \ \quad \forall k \\
-              & \quad G_k \partial x_k - d_k + s_k \geq 0, \ s_k \geq 0 \quad \forall k 
-              \end{aligned}
-              $$
+              We also force the perturbations of the initial and final state to be zero, ie.
+              \(\partial x_0 = 0\) and \(\partial x_T = 0 \), so that the desired initial and final states are maintained. 
 
               </p>
 
-                </div>
+              <b> Linearized Boundary Constraints </b>
+              <p> 
 
+                At each time step, we consider a linearized version of the constraint posed by the obstacle for the state at that time step.  Specifically, we can force the  state
+                perturbation at time step \(k\), \(\partial x_k\), to satisfy the linear constraint 
+                $$
+                \begin{aligned}
+                G_k \partial x_k + d_k + v_k \geq 0
+                \end{aligned}
+                $$
+                We illustrate this here for three obstacles in \(\mathbb{R}^2\) and \(\mathbb{R}^3\).  Each row of \(G_k\) corresponds to the normal direction of the obstacle in the direction of the current estimate of that state (\(x_k\)).  The specific parameters \(G_k\) and \(d_k\) can then be computed as follows.  Note here that \(G_k\) and \(d_k\) are both implicitly functions of the current state estimate \(x_k\).  The additional variable \(v_k\) is a buffer variable that allows the constraints to be violated at intermediate iterations; we will, however, penalize this buffer variable heavily in the objective function to push the trajectory outside the obstacles.  To be conservative, we can also provide a buffer around the obstacles as well to keep our trajectory away from them.  In the following figures, we illustrate the linearized constraints at each time step along the state trajectory.  Note that the perturbed state at each time step is bounded by a different set of hyperplanes that approximate the location of the obstacle relative to the current estimate of that particular state. 
 
+              </p>
 
-
-                <div class='imgBackground'>
                 <div class='imgFixed' >
-                <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dtraj.gif" width=70%></img> -->
-                <img src="/figs/blog/scvx/2Dtraj.gif" width=70%></img>
-                </div>
+<!--                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dtraj_bounds.gif" width=45%></img>
+                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj_bounds.gif" width=45%></img>
+ -->                <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
+                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
                 </div>
 
-                <div class='imgBackground'>
+
+
+
+              <b> Objective Function </b>
+
+              <p>
+
+              The simplest version of the objective function penalizes two things. 1) We penalize the buffer variables on the constraints to push the trajectory outside the obstacles.  2) We penalize the total control input \(u_k + \partial u_k\) to minimize the total control effort.   The weighting variables \(w_u\) and \(w_v\) provide the relative penalty on the control effort and satisfying the constraints.  In general, we will want \(w_v\) to be substantially higher than \(w_u\) to ensure that the constraints are satisfied.  In these examples, we set \(w_u = 1\) and \(w_v = 1000\). 
+
+            </p>
+
+            
+
+
+              <b> SUCCESSIVE CONVEXIFICATION </b>
+
+              <p>
+              The algorithm will then proceed as follows.  First, we initialize \(i=0\) and \(\mathbf{u}^{(0)}\) as described above.  We then perform the following iterations
+              $$
+              \begin{aligned}
+              \text{Integrate: } & \quad  \mathbf{u}^{(i)} \Rightarrow\mathbf{x}^{(i)} \\
+               \text{Solve: } & \quad  \partial \mathbf{u}^{(i)},\partial \mathbf{x}^{(i)} = \text{solution to } \textbf{OPT}\big(\mathbf{x}^{(i)},\mathbf{u}^{(i)})\big) \\
+              \text{Update: } & \quad  \mathbf{u}^{(i+1)} = \mathbf{u}^{(i)} + \alpha \partial \mathbf{u}^{(i)} \quad \text{and} \quad i = i + 1
+              \end{aligned}
+              $$
+              for some step-size \(\alpha\) while \(\mathbf{u}^{(i)}\) continues to change. In each iteration, we solve for perturbations to the control (and the state) trajectories that are consistent with a linearized version of the problem around the current trajectory.  The iterative process of improving the trajectories in 2D and 3D is illustrated below 
+              </p>
+            </div>
+
                 <div class='imgFixed' >
-                <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj.gif" width=70%></img> -->
-                <img src="/figs/blog/scvx/3Dtraj.gif" width=70%></img>
+<!--                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dtraj.gif" width=45%></img>
+                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj.gif" width=45%></img>
+ -->                <img src="/figs/blog/scvx/2Dtraj.gif" width=45%></img>
+                <img src="/figs/blog/scvx/3Dtraj.gif" width=45%></img>
                 </div>
-                </div>
+
+
 
 
 
