@@ -286,6 +286,8 @@
 
               The initial state trajectories \(\mathbf{x}^(0)\) can then be computed by integrating the initial contols.  Several such trajectories are shown here passing through their random middle points.  
 
+
+
                 <div class='imgFixed' >
                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dinit.png" width=35%></img>
                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dinit.jpeg" width=35%></img>
@@ -321,9 +323,58 @@
 
               </p>
 
+                </div>
 
 
-              </div>
+
+                <div class='imgBackground'>
+                <div class='imgFixed' >
+                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dtraj_bounds.gif" width=70%></img>
+                <!-- <img src="/figs/3Dtraj_bounds.gif" width=70%></img> -->
+                </div>
+                </div>
+
+                <div class='imgBackground'>
+                <div class='imgFixed' >
+                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj_bounds.gif" width=70%></img>
+                <!-- <img src="/figs/3Dtraj_bounds.gif" width=70%></img> -->
+                </div>
+                </div>
+
+
+
+</div>
+
+            <div class="txt" style="padding:40px">
+
+              Note that in computing the initial control and state trajectories we have ignored the obstacles and we will need to fix this in the next step.  
+
+              </p>
+
+              <b> Successive Convexification </b>
+
+              <p>
+              We now want seek to improve our trajectories so that 1) the obstacles are avoided and 2) we reduce the amount of control effort that is employed.  We use the successive convexification scheme developed by Behcet Ackimese and company.  
+
+              Our scheme will involve 
+
+
+              $$
+              \begin{aligned}
+              \min_{\partial u,\partial x} & \quad
+              w_u \sum_k (u_k+\partial u_k)^\top R_k (u_k+\partial u_k)  + 
+              w_s\sum_k s_k^\top s_k \\
+              \text{s.t.} & \quad \partial x_{k+1} = A \partial x_k + B \partial u_k, \ \quad \forall k \\
+              & \quad G_k \partial x_k - d_k + s_k \geq 0, \ s_k \geq 0 \quad \forall k 
+              \end{aligned}
+              $$
+
+              </p>
+
+                </div>
+
+
+
 
                 <div class='imgBackground'>
                 <div class='imgFixed' >
@@ -339,13 +390,6 @@
                 </div>
                 </div>
 
-                <div class='imgBackground'>
-                <div class='imgFixed' >
-                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj_bounds.gif" width=70%></img>
-                <!-- <img src="/figs/3Dtraj_bounds.gif" width=70%></img> -->
-                </div>
-
-                </div>
 
 
 
