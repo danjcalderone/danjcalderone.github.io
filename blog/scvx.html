@@ -111,8 +111,8 @@
 
   </style>
 
-  <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link>
-  <!-- <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/main.css" ></link> -->
+  <link rel="stylesheet" href="/css/main.css" ></link>
+  <!-- <link rel="stylesheet" href="/main.css" ></link> -->
   <link rel="stylesheet" href="/css/main.css" ></link>
 
     </head>
@@ -163,19 +163,23 @@
               <b> Problem Setup </b>
               <p>
 
-              We consider a basic trajectory planning problem to get between two points.  We want to find a path between the starting and end point consistent with the dynamcis while avoiding the obstacles.  We will consider state vector \(x(t) \in \mathbb{R}^n\) for \(n=2,3\)
-              and controls \(u(t) \in \mathbb{R}^n\) for \(n=2,3\) as well.  We consider the simple environments displayed here with given starting and ending locations, \(x_0\) and \(x_T\) respectively.
+              We consider a basic trajectory planning problem to get between two points.  We want to find a path between the starting and end point consistent with the dynamcis while avoiding a set of obstacles denotes \(\mathcal{O}\).  We will consider state vector \(x(t) \in \mathbb{R}^n\) for \(n=2,3\)
+              and controls \(u(t) \in \mathbb{R}^n\) for \(n=2,3\) as well.  We will consider simple spherical obstacles with centers \(p_o \in \mathbb{R}^{n}\) and radii \(r_o \in \mathbb{R}_+\).   The starting and ending locations at times 0 and T respectively will be given.  We display two such simple environments in 2D and 3D here. 
             </p>
+          </div>
 
                 <div class='imgFixed' >
-<!--                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dinit.png" width=35%></img>
-                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dinit.jpeg" width=35%></img>
- -->                
-                <img src="/figs/blog/scvx/2Dinit.png" width=35%></img>
-                <img src="/figs/blog/scvx/3Dinit.jpeg" width=35%></img>
 
+                
+                <img src="/figs/blog/scvx/environ2D.png" width=45%></img>
+                <img src="/figs/blog/scvx/environ3D.png" width=45%></img>
+                
+<!--                 <img src="/figs/blog/scvx/2Dinit.png" width=35%></img>
+                <img src="/figs/blog/scvx/3Dinit.jpeg" width=35%></img>
+ -->
                 </div>
 
+<div class="txt" style="padding:40px">
 
             <b> Dynamics:  </b>
 
@@ -184,7 +188,7 @@
 
               $$
               \begin{aligned}
-              \dot{x}(t) = u(t)
+              \dot{x}(t) = f(x,u,t) =  u(t)
               \end{aligned}
               $$
               We can now compute the discrete time dynamics
@@ -285,18 +289,19 @@
               $$
 
               The initial state trajectories \(\mathbf{x}^(0)\) can then be computed by integrating the initial contols.  Several such trajectories are shown here passing through their random middle points.  
+            </div>
 
 
 
                 <div class='imgFixed' >
-<!--                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dinit.png" width=35%></img>
-                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dinit.jpeg" width=35%></img>
- -->                <img src="/figs/blog/scvx/2Dinit.png" width=35%></img>
+                <img src="/figs/blog/scvx/2Dinit.jpeg" width=45%></img>
+                <img src="/figs/blog/scvx/3Dinit.jpeg" width=45%></img>
+<!--                 <img src="/figs/blog/scvx/2Dinit.png" width=35%></img>
                 <img src="/figs/blog/scvx/3Dinit.jpeg" width=35%></img>
-                
+ -->                
                 </div>
 
-
+<div class="txt" style="padding:40px">
 
               Note that in computing the initial control and state trajectories we have ignored the obstacles and we will need to fix this in the next step.  
 
@@ -319,7 +324,7 @@
               w_s\sum_k v_k^\top v_k \\
               \text{s.t.} & \quad \partial x_{k+1} = A_k \partial x_k + B_k \partial u_k, \ \quad \forall k \\
               & \quad \partial x_0 = 0, \ \partial x_T = 0 \\
-              & \quad G_k \partial x_k  - d_k + s_k \geq 0, \ s_k \geq 0 \quad \forall k 
+              & \quad G_k \partial x_k  \leq d_k + v_k \geq 0, \ v_k \geq 0 \quad \forall k 
               \end{aligned}
               $$
 
@@ -346,26 +351,69 @@
               <b> Linearized Boundary Constraints </b>
               <p> 
 
-                At each time step, we consider a linearized version of the constraint posed by the obstacle for the state at that time step.  Specifically, we can force the  state
+                At each time step, we consider a linearized version of the constraint posed by each of the obstacles for the state at that time step.  Specifically, we can force the  state
                 perturbation at time step \(k\), \(\partial x_k\), to satisfy the linear constraint 
                 $$
                 \begin{aligned}
-                G_k \partial x_k + d_k + v_k \geq 0
+                G_k \partial x_k  \leq d_k + v_k 0, \quad v_k \geq 0
                 \end{aligned}
                 $$
-                We illustrate this here for three obstacles in \(\mathbb{R}^2\) and \(\mathbb{R}^3\).  Each row of \(G_k\) corresponds to the normal direction of the obstacle in the direction of the current estimate of that state (\(x_k\)).  The specific parameters \(G_k\) and \(d_k\) can then be computed as follows.  Note here that \(G_k\) and \(d_k\) are both implicitly functions of the current state estimate \(x_k\).  The additional variable \(v_k\) is a buffer variable that allows the constraints to be violated at intermediate iterations; we will, however, penalize this buffer variable heavily in the objective function to push the trajectory outside the obstacles.  To be conservative, we can also provide a buffer around the obstacles as well to keep our trajectory away from them.  In the following figures, we illustrate the linearized constraints at each time step along the state trajectory.  Note that the perturbed state at each time step is bounded by a different set of hyperplanes that approximate the location of the obstacle relative to the current estimate of that particular state. 
+                Here \(G \in \mathbb{R}^{|\mathcal{O}|\times n}\) is matrix whose rows give the normal directions toward the surface of each obstacle given the current estimate of \(x_k\) and the elements of \(d_k \in \mathbb{R}^{|\mathcal{O}|}\) gives the distance to each obstacle
+
+                $$  
+                \begin{aligned}
+                G_k = 
+                \begin{bmatrix}
+                - & G_{1k} & - \\
+                & \vdots &  \\
+                - & G_{|\mathcal{O}|k} & - \\
+                \end{bmatrix}, \qquad 
+                d_k = 
+                \begin{bmatrix}
+                d_{1k}  \\
+                \vdots \\
+                d_{|\mathcal{O}|k} 
+                \end{bmatrix}, 
+                \end{aligned}
+                $$
+                as displayed in these figures in 2D and 3D.  
+                </p>            
+
+</div>
+                <div class='imgFixed' >
+                <img src="/figs/blog/scvx/bounds2D.png" width=75%></img>
+                </div>
+
+                <div>
+                <img src="/figs/blog/scvx/bounds3D.png" width=75%></img>
+                </div>
+
+<div class="txt" style="padding:40px">
+                <p>
+
+                Each row of \(G_k\) and each element of \(d_k\) can be computed as 
+                $$  
+                \begin{aligned}
+                G_{ok} = \frac{p_o - x_k}{||p_o - x_k||},  \qquad d_{ok} = ||p_o - x_k|| - r_o
+                \end{aligned}
+                $$
+                where \(p_o \in \mathbb{R}^n\) is the position of each obstacle and \(r_o \in \mathbb{R}_+\) is the radius of each obstacle.  The additional variable \(v_{ok}\) (vectorized as \(v_k \in \mathbb{R}^{|\mathcal{O}|}\)) is a buffer variable that allows the constraints to be violated at intermediate iterations; we will, however, penalize these buffer variables heavily in the objective function to push the trajectory outside the obstacles.  To be conservative, we can also provide a buffer around the obstacles as well to keep our trajectory away from them.  In the following figures, we illustrate the linearized constraints at each time step along the state trajectory.  Note that the perturbed state at each time step is bounded by a different set of hyperplanes that approximate the location of the obstacle relative to the current estimate of that particular state. 
 
               </p>
 
+
+</div>
+
                 <div class='imgFixed' >
-<!--                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dtraj_bounds.gif" width=45%></img>
-                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj_bounds.gif" width=45%></img>
- -->                <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
+                <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=45%></img>
+                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=45%></img>
+                
+<!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
                 <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
-                </div>
+ -->                </div>
 
 
-
+<div class="txt" style="padding:40px">
 
               <b> Objective Function </b>
 
@@ -389,16 +437,19 @@
               \text{Update: } & \quad  \mathbf{u}^{(i+1)} = \mathbf{u}^{(i)} + \alpha \partial \mathbf{u}^{(i)} \quad \text{and} \quad i = i + 1
               \end{aligned}
               $$
-              for some step-size \(\alpha\) while \(\mathbf{u}^{(i)}\) continues to change. In each iteration, we solve for perturbations to the control (and the state) trajectories that are consistent with a linearized version of the problem around the current trajectory.  The iterative process of improving the trajectories in 2D and 3D is illustrated below 
+              for some step-size \(\alpha\) while \(\mathbf{u}^{(i)}\) continues to change. In each iteration, we solve for perturbations to the control (and the state) trajectories that are consistent with a linearized version of the problem around the current trajectory.  The iterative process of improving the trajectories in 2D 
               </p>
             </div>
 
                 <div class='imgFixed' >
-<!--                 <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/2Dtraj.gif" width=45%></img>
-                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/scvx/3Dtraj.gif" width=45%></img>
- -->                <img src="/figs/blog/scvx/2Dtraj.gif" width=45%></img>
+                <img src="/figs/blog/scvx/2Dtraj.gif" width=55%></img>
+              </div>
+              <p> and here in 3D. </p>
+              <div>
+                <img src="/figs/blog/scvx/3Dtraj_wrot2.gif" width=85%></img>
+<!--                  <img src="/figs/blog/scvx/2Dtraj.gif" width=45%></img>
                 <img src="/figs/blog/scvx/3Dtraj.gif" width=45%></img>
-                </div>
+ -->                </div>
 
 
 
