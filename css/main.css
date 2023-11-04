@@ -286,7 +286,7 @@ background-color: rgb(227, 242, 253)
   flex-shrink: 1; */
   flex-basis: auto;
   margin: clamp(20px, 20%, 20px);
-  max-width: 750px;
+  max-width: 1000px;
   position: relative;
   display: flex;
   flex-direction: column;
