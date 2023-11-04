@@ -207,7 +207,12 @@
               \end{aligned}
               $$
 
-              For our example, think of this problem as a company that wants to allocate percentage of it's manpower to various jobs that it can choose.  The column index \(j \in \{1,\dots,n\}\) is the job index, \(x_j\) is the number of jobs taken of that particular type, and \(c_j\) is the reward received for completing each of those jobs.  The row index \(i \in \{1,\dots,m\}\) is the resource index corresponding to different resources that the company has to budget: time, money, equipment, etc.  \(b_i\) is the overall budget for resource \(i\) and \(A_{ij}\) is the rate at which the company uses resource \(i\) to do job \(j\).  (Note that here we are assuming that there are infinite number of jobs of each type that the company could take given the manpower, ie. (\(x_j\) has no upper bound); and also that it is fine for the company to completely only part of a job and get paid for part of it, ie. \(x_j\) does not have to be an integer.)  To display this clearly, we write out the problem data in a table format that mirrors the matrix equation and will also be useful in the algorithm given below.  We consider a simple example where the company considers three different resources \(m=3\), money, time, and equipment \(m = 3\) and there are n different jobs that can be considered \(n=8\)
+              For our example, think of this problem as a company that wants to allocate percentage of it's manpower to various jobs that it can choose.  The column index \(j \in \{1,\dots,n\}\) is the job index, \(x_j\) is the number of jobs taken of that particular type, and \(c_j\) is the reward received for completing each of those jobs.  The row index \(i \in \{1,\dots,m\}\) is the resource index corresponding to different resources that the company has to budget: time, money, equipment, etc.  \(b_i\) is the overall budget for resource \(i\) and \(A_{ij}\) is the rate at which the company uses resource \(i\) to do job \(j\). 
+              </p>
+
+              
+                <p>
+               Note that here we are assuming that there are infinite number of jobs of each type that the company could take given the manpower, ie. (\(x_j\) has no upper bound); and also that it is fine for the company to completely only part of a job and get paid for part of it, ie. \(x_j\) does not have to be an integer.)  To display this clearly, we write out the problem data in a table format that mirrors the matrix equation and will also be useful in the algorithm given below.  We consider a simple example where the company considers three different resources \(m=3\), money, time, and equipment and there are n different jobs that can be considered.  
 
               $$
               \begin{aligned}
@@ -324,18 +329,21 @@
               For the majority of this post, we will take \(m = 2\) (two rows) and \(n = 12\) (twelve columns).  We will choose \(c\), \(A\), and \(b\) to be as follows given in tableau format below.
               </p>              
 
-              <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/simplex/simplex_basic_tableau.jpeg" width=50%></img>
+              <img src="/figs/blog/simplex/simplex_basic_tableau.jpeg" width=50%></img>
 
               <p>
               The column geometry of \(A\) and \(b\) is shown here on the left in 2D; the column geometry of the full tableau is shown here on the right in 3D. 
-            </p>
 
+            </p>
+            <p>
+            <img src="/figs/blog/simplex/simplex_basic1_nomat.jpeg" width=55%></img>
+          </p>
 
 
 
               <b> Geometry: \(Ax = b\) </b>
               <p>
-              From a column geometry perspective the equality constraint \(Ax = b\) requires that \(x\) be a positive linear combination that constructs \(b\) from the columns of \(A\). We give several examples here.  
+              From a column geometry perspective the equality constraint \(Ax = b\) requires that \(x\) be a positive linear combination that constructs \(b\) from the columns of \(A\). We give the basic geometry several examples here.  
 
 
 
@@ -361,24 +369,10 @@
 
             <p>
 
-            The addition of \(c\) to construct the tableau raises the tips of each column vector \(A_j\) (in a third dimension) to the height of \(c_j\) illustrated here.
-          </p>
-
-           <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/simplex/simplex_basic1_nomat.jpeg" width=55%></img>
-                <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/simplex/simplex_gif_main.gif" width=75%></img> -->
-                
-<!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
-                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
- -->                
-<!-- </div> -->
-
-
-
-  <p>
-            For any linear combination \(x\) such that \(Ax = b\), the vector \(\xi = [c^\top x ; \ Ax ]\) will be directly above (or below) the point \(\bar b = [0; \ b]\) in the 3D space. The geometry of this is illustrated here.  
+            The addition of \(c\) to construct the tableau raises the tips of each column vector \(A_j\) (in a third dimension) to the height of \(c_j\) as illustrated above.  For any linear combination \(x\) such that \(Ax = b\), the vector \(\xi = [c^\top x ; \ Ax ]\) will be directly above (or below) the point \(\bar b = [0; \ b]\) in the 3D space. The geometry of this is illustrated here.  
             </p>
 
-        <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/simplex/simplex_basic2_nomat.jpeg" width=55%></img>
+        <img src="/figs/blog/simplex/simplex_basic2_nomat.jpeg" width=55%></img>
 
 
 
@@ -395,7 +389,7 @@
 
                 <div class='imgFixed' >
                 <!-- <img src="/figs/blog/simplex/simplex_gif_main.gif" width=90%></img> -->
-                <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/simplex/simplex_gif_main2.gif" width=75%></img>
+                <img src="/figs/blog/simplex/simplex_gif_main2.gif" width=75%></img>
                 
 <!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
                 <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
@@ -406,6 +400,32 @@
 
 
               <div class="txt" style="padding:40px">
+
+              <b> Prerequistes: Gaussian Elimination/Row-Reduction</b>
+              <p>
+
+              The operations in the symplex method require basic knowledge of Gaussian elimination and row reduction.  A precise understand also requires understanding elementary matrices and how they can be used to perform row operations.  For a longer discussion of Gaussian elimination and the column geometry of row operations we refer the reader to this link:  
+              <a href="/dcmath/linalg/gaussianelim.html"> Gaussian Elimination: Column Geometry</a>.  Here, we simply note that when we row-reduce a matrix from \(M\) to \(M'\), we are implicitly constructing a sequence of elementary matrices \(E_K,\dots,E_1\) with \(E_k \in \mathbb{R}^{ m \times m}\) such that 
+              $$
+              EM = M'
+              $$
+              where \(E = E_K\cdots E_1\). Note that as elementary matrices, each individual \(E_k\) is easily invertible and thus we can compute as we go \(E^{-1} = E_1^{-1}\cdots E_K^{-1}\) and thus we can immediately write the above equation as 
+              $$
+              M = E^{-1}M'
+              $$
+              In
+
+
+
+              and it's we refer the reader to (INSERT LINK).  
+
+
+               should also include elmeeand g
+              For initially simplicity, we will assume that we've constructed an initial basic solution \(x\geq 0\) such that \(Ax = b\) where \(x\) has only two nonzero components.   A general procedure for constructing this initial solution can be found here (INSERT LINK). In many problems this initial solution can also be selected quickly by the user from intuition.  From this initial basic solution, we want to find which columns to swap in in order to improve our cost.  Before 
+              <p>
+
+
+
               <b> Algorithm Details </b>
               <p>
               For initially simplicity, we will assume that we've constructed an initial basic solution \(x\geq 0\) such that \(Ax = b\) where \(x\) has only two nonzero components.   A general procedure for constructing this initial solution can be found here (INSERT LINK). In many problems this initial solution can also be selected quickly by the user from intuition.  From this initial basic solution, we want to find which columns to swap in in order to improve our cost.  Before 
@@ -429,7 +449,7 @@
 
                 <div class='imgFixed' >
                 <img src="/figs/blog/simplex/simplex_basic2.jpeg" width=75%></img>
-                <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/simplex/simplex_gif_main.gif" width=75%></img> -->
+                <!-- <img src="/figs/blog/simplex/simplex_gif_main.gif" width=75%></img> -->
                 
 <!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
                 <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
@@ -441,7 +461,7 @@
 
                 <div class='imgFixed' >
                 <img src="/figs/blog/simplex/simplex_gif_main2.gif" width=75%></img>
-                <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/figs/blog/simplex/simplex_gif_main.gif" width=75%></img> -->
+                <!-- <img src="/figs/blog/simplex/simplex_gif_main.gif" width=75%></img> -->
                 
 <!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
                 <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
