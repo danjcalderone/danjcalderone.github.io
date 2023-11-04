@@ -143,7 +143,19 @@
 
 
         <div class="section basic" >
-        
+
+                          <div class='imgFixed' >
+                <!-- <img src="/figs/blog/simplex/simplex_gif_main.gif" width=90%></img> -->
+                <img src="/figs/blog/simplex/simplex_gif_main2.gif" width=45%></img>
+                
+<!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
+                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
+ -->                </div>
+
+                  <div class='imgFixed'>
+          <div class="slideshow-container flips" id='INNERPRODX' any='6' style="width:50%"></div>
+          </div>
+
 
         <div class="txt" style="padding:40px">
 
@@ -304,7 +316,7 @@
 
             </p>
 
-            <b> Tableu Format </b>b
+            <b> Tableau Format </b>
             <p>
               Unlike many other algorithms, the simplex method is one that can be fairly easily implemented by hand, similar to solving a system of equations.  Indeed, in some sense, the simplex method can be thought as the next generation to Gaussian elimination both in terms of usefulness and complexity.   To this end, the data for a linear program is usually formatted in what is called a tableau format in order to conveniently perform row-reduction operations on both \(A\),\(b\) and \(c\) together.  This format is given as follows
               $$
@@ -328,27 +340,59 @@
               We now turn to the column geometry of the basic canonical form.  
               For the majority of this post, we will take \(m = 2\) (two rows) and \(n = 12\) (twelve columns).  We will choose \(c\), \(A\), and \(b\) to be as follows given in tableau format below.
               </p>              
-
+            </div>
+              <div class="imgFixed">
               <img src="/figs/blog/simplex/simplex_basic_tableau.jpeg" width=50%></img>
+            </div>
 
+
+              <div class="txt" style="padding:40px">
               <p>
               The column geometry of \(A\) and \(b\) is shown here on the left in 2D; the column geometry of the full tableau is shown here on the right in 3D. 
 
             </p>
             <p>
+            </div>
+
+
+          <div class='imgFixed' >
             <img src="/figs/blog/simplex/simplex_basic1_nomat.jpeg" width=55%></img>
           </p>
+        </div>
 
+            <div class="txt" style="padding:40px">
 
 
               <b> Geometry: \(Ax = b\) </b>
               <p>
-              From a column geometry perspective the equality constraint \(Ax = b\) requires that \(x\) be a positive linear combination that constructs \(b\) from the columns of \(A\). We give the basic geometry several examples here.  
+              From a column geometry perspective the equality constraint \(Ax = b\) requires that \(x\) be a positive linear combination that constructs \(b\) from the columns of \(A\). We give the basic geometry several examples here. 
+
+            </p>
+          </div>
+             <div class="imgFixed">
+              <img src="/figs/blog/simplex/coordsexample2.png" width=15%></img>
+              <img src="/figs/blog/simplex/coordsexample3.png" width=15%></img>
+              <img src="/figs/blog/simplex/coordsexample4.png" width=15%></img>
+              <img src="/figs/blog/simplex/coordsexample12.png" width=15%></img>
+            </div>
+
+
+
+
+
+
+              <div class="txt" style="padding:40px">
 
 
 
               Note that the fact that \(b \in \mathbb{R}^2\) means that \(x\) will in general have at least two elements that are nonzero. 
-              Note that some of these combinations have more positive elements than others.  We can show, however, that for any optimal value of the linear program there will be an \(x\) that achieves that value with only two (in general \(m\)) non-zero values. Moreover, 
+
+Note that some of these combinations have more positive elements than others.  
+    Specifically In each of these cases, we take the minimum norm solution for \(x\) that uses a two, three, four, and then, just for fun, all twelve columns.  The coordinates in each case can be visualized by a hypercube of dimension given by the number of nonzero elements.
+
+              
+
+              While we can use any number of columns (greater than 2) to construct solutions to \(Ax=b\), we can show, however, that for any optimal value of the linear program there will be an \(x\) that achieves that value with only two (in general \(m\)) non-zero values. Moreover, 
               suppose if we have an optimal \(x\) with more than two nonzero coordinates shifting the mass of \(x\) to any two coordinates that originally had nonzero elements will keep the overall reward the same.  
 
 
@@ -371,29 +415,24 @@
 
             The addition of \(c\) to construct the tableau raises the tips of each column vector \(A_j\) (in a third dimension) to the height of \(c_j\) as illustrated above.  For any linear combination \(x\) such that \(Ax = b\), the vector \(\xi = [c^\top x ; \ Ax ]\) will be directly above (or below) the point \(\bar b = [0; \ b]\) in the 3D space. The geometry of this is illustrated here.  
             </p>
+          </div>
 
+        <div class='imgFixed' >
         <img src="/figs/blog/simplex/simplex_basic2_nomat.jpeg" width=55%></img>
 
+        </div>
+                
 
+
+            <div class="txt" style="padding:40px">
 
             <p>
-             Geometrically, then the goal of solving the linear program is to find a positive linear combination of \(x\) such that \(Ax = b\) such that the \(\xi\) is as high above the point \(\bar b\) as possible, ie. to maximize \(c^\top x\).  From the discussion above, we have that any optimal solution can be reduced to a solution with only two basis vectors and so because of this we will swap basis vectors in and out in order to increase the height (\(c^\top x \)) until we cannot make any more improvements.  In the next section we will get into the details of this method, but here we give a visualization of what the full algorithm will look like geometrically.  Note how the height of \(\xi\) continuously increases and how at the algorithms termination there are no more basis vectors we can swap in that will increase this height.  
+             Geometrically, then the goal of solving the linear program is to find a positive linear combination of \(x\) such that \(Ax = b\) such that the \(\xi\) is as high above the point \(\bar b\) as possible, ie. to maximize \(c^\top x\).  From the discussion above, we have that any optimal solution can be reduced to a solution with only two basis vectors and so because of this we will swap basis vectors in and out in order to increase the height (\(c^\top x \)) until we cannot make any more improvements.  In the next section we will get into the details of this method, but here we suggest the reader take a brief look at the animated visualization at the top (or the same visualization lower down) to get a feel for how the algorithm progresses geometrically.  Note how the height of \(\xi\) continuously increases and how at the algorithms termination there are no more basis vectors we can swap in that will increase this height.  
 
             </p>
 
-
-
-
-
               </div>
 
-                <div class='imgFixed' >
-                <!-- <img src="/figs/blog/simplex/simplex_gif_main.gif" width=90%></img> -->
-                <img src="/figs/blog/simplex/simplex_gif_main2.gif" width=75%></img>
-                
-<!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
-                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
- -->                </div>
 
 
 
@@ -401,49 +440,186 @@
 
               <div class="txt" style="padding:40px">
 
-              <b> Prerequistes: Gaussian Elimination/Row-Reduction</b>
+              <b> Prequesites: Gaussian Elimination/Row-Reduction</b>
               <p>
 
-              The operations in the symplex method require basic knowledge of Gaussian elimination and row reduction.  A precise understand also requires understanding elementary matrices and how they can be used to perform row operations.  For a longer discussion of Gaussian elimination and the column geometry of row operations we refer the reader to this link:  
-              <a href="/dcmath/linalg/gaussianelim.html"> Gaussian Elimination: Column Geometry</a>.  Here, we simply note that when we row-reduce a matrix from \(M\) to \(M'\), we are implicitly constructing a sequence of elementary matrices \(E_K,\dots,E_1\) with \(E_k \in \mathbb{R}^{ m \times m}\) such that 
+              The operations in the simplex method require basic knowledge of Gaussian elimination and row reduction.  A precise understand also requires understanding elementary matrices and how they can be used to perform row operations.  For a longer discussion of Gaussian elimination and the column geometry of row operations we refer the reader to this link:  
+              <a href="/dcmath/linalg/gaussianelim.html"> Gaussian Elimination: Column Geometry</a>.  
+            </p>
+            <p>
+              Here, we simply note that when we row-reduce a matrix from \(M\) to \(M'\), we are implicitly constructing a sequence of elementary matrices \(E_K,\dots,E_1\) with \(E_k \in \mathbb{R}^{ m \times m}\) such that 
               $$
               EM = M'
               $$
-              where \(E = E_K\cdots E_1\). Note that as elementary matrices, each individual \(E_k\) is easily invertible and thus we can compute as we go \(E^{-1} = E_1^{-1}\cdots E_K^{-1}\) and thus we can immediately write the above equation as 
+              where \(E = E_K\cdots E_1\). Note that as elementary matrices, each individual \(E_k\) is easily invertible and thus we can compute as we go \(E^{-1} = E_1^{-1}\cdots E_K^{-1}\).  This allows us to immediately write the above equation as 
               $$
-              M = E^{-1}M'
+              \begin{aligned}
+              M & = E^{-1}EM \\
+              & = E^{-1}M' = \begin{bmatrix} E^{-1}M_1' & \cdots & E^{-1}M_n' \end{bmatrix}
+              \end{aligned}
               $$
-              In
-
-
-
-              and it's we refer the reader to (INSERT LINK).  
-
-
-               should also include elmeeand g
-              For initially simplicity, we will assume that we've constructed an initial basic solution \(x\geq 0\) such that \(Ax = b\) where \(x\) has only two nonzero components.   A general procedure for constructing this initial solution can be found here (INSERT LINK). In many problems this initial solution can also be selected quickly by the user from intuition.  From this initial basic solution, we want to find which columns to swap in in order to improve our cost.  Before 
-              <p>
-
-
-
-              <b> Algorithm Details </b>
-              <p>
-              For initially simplicity, we will assume that we've constructed an initial basic solution \(x\geq 0\) such that \(Ax = b\) where \(x\) has only two nonzero components.   A general procedure for constructing this initial solution can be found here (INSERT LINK). In many problems this initial solution can also be selected quickly by the user from intuition.  From this initial basic solution, we want to find which columns to swap in in order to improve our cost.  Before 
-              <p>
-
-
-
-
-
-
-
-
-
-
-
-              Detailed description
+              As shown in this second expansion, here we are writing each column of \(M_j\) as a set of coordinates \(M_j'\) relative to the new basis \(E^{-1}\), ie. row reduction can be seen as changing the basis with respect to which the columns of \(M\) are represented.  
               </p>
+
+              <b> Simplex Method: Main Algorithm </b>
+
+              <p>
+              We now discuss the three steps of the simplex method.  These steps center around row reduction operations which implicitly adjusts the basis we are considering for the columns of \(A\).  We note that we will assume that we start with an initial feasible solution that satisfies \(Ax=b\) and \(x\geq 0\).  Constructing this initial feasible solution can be done by using an expanded initial tableau.  Starting from this initial solution we perform these three operations.  
+              </p>
+
+
+
+              <b> Step 1: Row Reduce Basis Columns </b>
+
+              <p>
+              As we perform row operations during the simplex method, we will be implicitly adjusting the basis \(E^{-1}\); specifically the specific row operations will amount to swapping different columns of the tableau into the basis matrix \(E^{-1}\) and representing the rest of the columns with respect to that basis.    To illustrate, this we show the tableau at two different steps: the initial two basis vectors columns 1 and 2 and then at the step where the basis vectors are columns 5 and 8.  We explicitly show the basis matrix \(E^{-1}\) in each case as well.
+
+
+            </p>
+
+          </div>
+              <div class='imgFixed' >
+          <img src="/figs/blog/simplex/tableau0.jpeg" width=35%></img>
+          <img src="/figs/blog/simplex/tableau5.jpeg" width=35%></img>
+          </div>
+
+
+            <div class="txt" style="padding:40px">
+
+
+
+            <p>
+              Note how the current two basis columns from the original tableau show up as the last two columns of the basis matrix.  The reader is encouraged to check that each column in the original tableau is indeed the column in the updated tableau times the basis matrix.  
+            </p>
+            <p> To be explicit,
+            if we perform row operations so that the \(j\)th and \(j'\)th columns of the tableau are zeros in the top row with an identity below them, then the basis matrix \(E^{-1}\) will have the form below.
+              $$
+              \begin{aligned}
+              E^{-1} = 
+              \begin{bmatrix} 1 & \bar{c}^\top \\ 
+              0 & \bar{A} 
+              \end{bmatrix}, \qquad \text{with} \quad
+              \bar{A} = \begin{bmatrix} | & | \\ A_{j} & A_{j'} \\ | & | \end{bmatrix}, \ 
+              \bar{c}^\top  = \begin{bmatrix} c_j & c_{j'} \end{bmatrix}
+              \quad \text{with} \quad \bar{x} = \begin{bmatrix} x_j \\ x_{j'} \end{bmatrix}
+              \end{aligned}
+              $$
+               One can easily check that the matrix \(E\) (all the combined row operations performed thus far) can be written as 
+              $$
+              \begin{aligned}
+              E^{-1} = 
+              \begin{bmatrix} 1 & \bar{c}^\top \\ 
+              0 & \bar{A} 
+              \end{bmatrix}, 
+              \qquad \Rightarrow \qquad 
+              E = 
+              \begin{bmatrix} 1 & -\bar{c}^\top \bar{A}^{-1} \\ 
+              0 & \bar{A}^{-1}
+              \end{bmatrix}
+              \end{aligned}
+              $$
+              Since all the other elements of \(x\) are 0, we can write \(c^\top x = \bar{c}^\top \bar{x}\) and also \(Ax = \bar{A}\bar{x} = b\).  Assuming \(\bar{A}\) is invertible, we can compute explicitly that \(\bar{x} = \bar{A}^{-1}b\).   We then have that the last column of the tableau at the current step is given by 
+              $$
+              \begin{aligned}
+              E 
+              \begin{bmatrix} 0 \\ b \end{bmatrix} =               
+              \begin{bmatrix} 1 & -\bar{c}^\top \bar{A}^{-1} \\ 
+              0 & \bar{A}^{-1}
+              \end{bmatrix}
+              \begin{bmatrix} 0 \\ b \end{bmatrix}
+              =               
+              \begin{bmatrix} -\bar{c}^\top \bar{A}^{-1}b \\ 
+              \bar{A}^{-1} b
+              \end{bmatrix}
+              = 
+              \begin{bmatrix} -\bar{c}^\top \bar{x} \\ 
+              \bar{x}
+              \end{bmatrix}
+              = 
+              \begin{bmatrix} -c^\top x \\
+              \bar{x}
+              \end{bmatrix}
+              \end{aligned}
+              $$
+              We now see that as we perform row operations to select different basis columns, the last column of the tableau shows us both the current nonzero elements of our current guess for \(x\) as well as (minus) the current objective value.  
+              </p>
+
+
+              <b> Step 2: Selecting next basis columns to swap in</b>
+              <p>
+              From the above discussion, we see that row reducing two basis columns of the tableau to 0's in the top row and an identity (possibly with the columns rearranged) in the bottom two rows allows us to track our current estimate of \(x\) and the current value of the objective function at that \(x\).  From here, we could simply check the objective value at all pairs of basis columns and see which pair gives us the largest value.  This combinatorially procedure is of course not tractable, but fortunately we will be able to use the tableau information also to tell us which columns we should swap in to improve the objective value.  
+              </p>
+
+              <p>
+              Noting the structure of \(E^{-1}\), we see that the first column is the first standard basis vector and thus the top row of the tableau corresponds to the height above the plane generated by the basis columns.  We illustrate this here.  Note the three basis vectors shown - the first standard basis vector and the two columns of the original tableau.  Each column of the current tableau is the coordinates of the that original tableau column relative to the current basis.  Specifically, note that if the first element of these coordinates (the top element) is positive that column in the original tableau is above the plane spanned by the current two basis columns; if it is negative it is below this plane.  We illustrate this for two different columns here.  
+              </p>
+            </div>
+
+              <div class='imgFixed' >
+        <img src="/figs/blog/simplex/simplex_vec_pos.png" width=35%></img>
+        <img src="/figs/blog/simplex/simplex_vec_neg.png" width=35%></img>
+
+        </div>
+
+
+            <div class="txt" style="padding:40px">
+              <p>
+              This fact gives us a procedure for swapping in basis columns.  At each pivot step; we pick a non basis column to swap in with a positive element in the top row, ie. a column that is above the current basis plane.  Swapping in this new basis column will raise the plane and thus increase our objective function.  If there is more than one positive element in the top row, our choice is somewhat arbitrary.  There are several entering variable rules that can be applied such as Devex algorithm.  In our examples below, we make a somewhat contrived choice so that the objective function will change slowly in order to visualize the mechanics of the procedure.  In reality, in the below example, we can actually just take one or two quick steps to the solution by picking the later basis columns.  In more complicated settings where the costs weren't selected for visualization purposes it may be less clear which basis columns to swap in.  If there are no columns with positive elements in the top row at any given step, than we're done and our current basis vectors are optimal.  Below we show the tableau in process at an intermediate step where we select a basis vector to swap in. 
+              </p>
+
               </div>
+
+              <div class='imgFixed' >
+              <img src="/figs/blog/simplex/step5_swap.jpeg" width=65%></img>
+              </div>              
+
+            <div class="txt" style="padding:40px">              
+
+              <b>Step 3: Choosing basis column to swap out</b>
+
+              <p>
+              We are now left with a question of which basis vector to swap out at each step.  Intuitively, we swap in basis vectors in order to raise the height of the basis plane.  We choose which vector to swap out in order to ensure that that we can still construct \(b\) as a positive combination of the two basis vectors.  In the graphic depiction above this corresponds to swapping out the current basis vector that is on the same side of the solution as the new basis vector so that the vector \(b\) always lies between the current basis columns of \(A\).  If we were to select basis columns that were on the same side of \(b\) and solutions to \(Ax =b\) would involve negative elements in \(x\) as illustrated here.  For higher dimensional problems, we always want to main that \(b\) is inside the \(m\)-dimensional cone of positive combinations of the \(m\) basis vectors.  Algebraically, the way we ensure this condition as by looking at elements of the columns of the lower columns of the tableau.  Specifically, if we are swapping in the \(k\)th column, we need to row reduce \(A'_k\) to some column of the identity (and then swap out that current basis column).  We need to make sure that our current estimate of \bar{x} stays positive so we care about how these row operations affect the last column of the tableau, b', as well.  If we choose the \(\ell\)th column of the identity, we get the following reduction steps shown here on column \(k\)th column and the last column.
+              $$
+              \begin{aligned}
+              \begin{bmatrix}
+              A'_{1k} & b'_1\\ \vdots & \vdots\\ A'_{\ell k} & b'_\ell \\ \vdots & \vdots \\ A'_{mk} & b'_m
+              \end{bmatrix}
+               \rightarrow \begin{matrix} \text{row} \\ \text{reduction...} \end{matrix}  \rightarrow
+              \begin{bmatrix}
+              0 & b'_1 - (A'_{1k}b'_\ell/A'_{\ell k})\\ \vdots & \vdots\\ 1 & (b'_\ell /A'_{\ell k})\\ \vdots & \vdots \\ 0 & b'_m - (A'_{mk}b'_\ell/A'_{\ell k})
+              \end{bmatrix}
+              \end{aligned}
+              $$
+              <!-- 0 & b'_1 - \tfrac{A'_{1k}b'_\ell}{A'_{\ell k}}\\ \vdots & \vdots\\ 1 & \tfrac{b'_\ell }{A'_{\ell k}} \\ \vdots & \vdots \\ 0 & b'_m - \tfrac{A'_{mk}b'_\ell}{A'_{\ell k}} -->
+              Note that each element of \(b'\) will be positive (since we ensured that on the last step).  Next note that we must pick a row \(\ell\) such that \(A'_{\ell k}\) is positive (so that \((b'_\ell/A'_{\ell k})\) will be positive as well.)  (If there is no such row than the problem is unbounded and there is no solution.)  For the remaining entries, we can safely ignore any rows such that \(A'_{ik}\) is negative since then \(b'_i - (A'_{ik} b'_\ell/A'_{\ell k})\) is guaranteed to be positive.  We are then left with the condition that we need to choose row \(\ell\) such that 
+              $$
+              b'_i - A'_{ik}b'_{\ell}/A'_{\ell k} > 0 
+              $$
+              for all \(i \neq \ell \) such that \(A'_{ik}>0\).  Choosing \(\ell\) to be the row where the fraction \(b'_i/A'_{\ell k}\) is minimized accomplishes this.  
+            </p>
+
+            <p>
+              In the above example note, that as we swap in column 9, we have a choice of swapping out either column 5 or column 8.  We have that \(A'_9 = [ 0.7 ; 0.4] \).  Since both elements are positive, we can consider swapping both of them out.  Computing the fractions detailed above we have that \(b'_1/A'_{1,9} = 0.72/0.72 = 1.\) and \(b'_2/A'_{2,9} = 0.99/0.37= 2.68\) and so we have that we should swap out column 5 (since it has a 1. in the appropriate row).  From the image note that column 5 is indeed on the same side of the target point \(b\), so when we make the swap \(b\) will still lie inbetween the basis columns. 
+            </p>
+
+
+
+
+
+            <b> Visualization </b>
+
+            We now visualize the full algorithm in action. 
+
+
+              </div>
+
+                <div class='imgFixed' >
+                <img src="/figs/blog/simplex/simplex_gif_main2.gif" width=75%></img>
+                <!-- <img src="/figs/blog/simplex/simplex_gif_main.gif" width=75%></img> -->
+                
+<!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
+                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
+ -->                </div>
 
 
 
@@ -459,18 +635,17 @@
 
 
 
-                <div class='imgFixed' >
-                <img src="/figs/blog/simplex/simplex_gif_main2.gif" width=75%></img>
-                <!-- <img src="/figs/blog/simplex/simplex_gif_main.gif" width=75%></img> -->
-                
-<!--                 <img src="/figs/blog/scvx/2Dtraj_bounds.gif" width=40%></img>
-                <img src="/figs/blog/scvx/3Dtraj_bounds.gif" width=55%></img>
- -->                </div>
+
 
 
           </div>
         </div>
       </div>
+
+
+
+      
+    <!-- <script type='module' src="./matrixo.js"> </script> -->
 
 
 
@@ -483,6 +658,20 @@
 
     <!-- <script type='module' src="./matrixo.js"> </script> -->
     <script src="/dcmath/src/extra/includeHTML.js"> </script>
+    <script type='text/javascript' src="/dcmath/src/extra/flip.js"></script>    
+
+    <script>
+    // const slideIndexes ={'SCALARMULT':1, 'DOTPRODLEN':1, 'DOTPRODANGLE':1}
+    const slideIndexes ={'INNERPRODX':1, 'INNERPRODY':1,'INNERPROD_ORTHO':1}
+    addSlides('INNERPRODX',slideIndexes);
+    showSlides('INNERPRODX',slideIndexes['INNERPRODX'],slideIndexes);
+    addSlides('INNERPRODY',slideIndexes);
+    showSlides('INNERPRODY',slideIndexes['INNERPRODY'],slideIndexes);
+    addSlides('INNERPROD_ORTHO',slideIndexes);
+    showSlides('INNERPROD_ORTHO',slideIndexes['INNERPROD_ORTHO'],slideIndexes);
+
+    </script>
+
 
     </body>
   </html>
