@@ -224,10 +224,10 @@ z-index: -1;
         
       <!-- <div class=intro-container> -->
       <div class=subcontainer>
-        <div class=imgThin >
-        <img src="mug.jpg" alt='mugshot' style=max-width:'200px'>
+        <div class=imgThin2 >
+        <img src="mug.jpg" alt='mugshot' style="max-width:240px">
         </div>
-        <div class = blurbThick>
+        <div class = blurbThick2>
           <!-- <div class="blurb" > -->
           <p style='font-size:16px'><b>ABOUT:</b></p>
           I'm a post-doctoral researcher and lecturer at University of Washington
@@ -252,9 +252,79 @@ z-index: -1;
 
       </div>
 
+
+
+
+
+
+
+
+
+
             <div class="subtitle">
             <div class="title1">
-            <b>Featured Visualizations:</b>
+            <b>Featured Blog Posts:</b>
+            </div >
+            </div> <!-- subcontainer -->
+
+
+
+
+
+      <div class='subcontainer' style="padding:0px">
+      <div class='imgThin2' >
+
+
+        <a href="https://danjcalderone.github.io/blog/simplex.html" target="_blank">
+          <img class='img1b' src="figs/blog/simplex/simplex_gif_main2.gif" alt='mugshot' >
+        </a>
+      </div>
+
+      <div class='blurbThick2'>
+        <b> Simplex Method Visualizations </b>
+        <p>
+
+        Visualizing the column geometry of the simplex method can provide clear insight into how the algorithm works and also help visually inclined practitioners remember how to implement it.  In this post, we provide visualize the column geometry of the simplex method for a linear program with constraints \(Ax=b\) and \(x \geq 0\) for \(A \in \mathbb{R}^{2 \times 12}\).
+        </p>
+
+
+        Link: <a href="https://danjcalderone.github.io/blog/simplex.html" target="_blank">Simplex Method Visualizations </a>
+      </div>
+      </div> <!-- subcontainer -->
+
+
+      <div class='subcontainer' style="padding:0px">
+      <div class='imgThin2' >
+        <a href="https://danjcalderone.github.io/blog/scvx.html" target="_blank">
+        <img class='img1b' src="figs/blog/scvx/3Dtraj_bounds.gif" alt='mugshot' >
+      </a>
+      </div>
+
+      <div class='blurbThick2'>
+        <b> Trajectory Planning via Successive Convexification (SCVX)</b>
+        <p>
+
+          Successive convexification (or sequential convex programming) can be a powerful tool for trajectory planning in contexts with obstacles and nonlinear dynamics.  In this post, we show how SCVX can be applied to solve a basic path planning problem in 2D and 3D spaces.  We breakdown each part of the problem and give visualiations to describe the geometry. 
+        </p>
+
+
+        Link: <a href="https://danjcalderone.github.io/blog/scvx.html" target="_blank">Successive Convexification </a>
+      </div>
+      </div> <!-- subcontainer -->
+
+
+
+
+
+
+
+
+
+
+
+            <div class="subtitle">
+            <div class="title1">
+            <b>Featured Interactive Visualizations:</b>
             </div >
             </div> <!-- subcontainer -->
 
@@ -262,7 +332,8 @@ z-index: -1;
 
       <div class=subcontainer>
 
-        <div class = blurbThin>
+
+        <div class = blurbThin2>
           <!-- <div class="blurb" > -->
           <p style='font-size:16px'><b>Vector Shapes:</b></p>
 
@@ -301,7 +372,7 @@ z-index: -1;
         <img src="mug.jpg" alt='mugshot' style=max-width:'200px'>
         </div>
  -->
-        <div class="imgThick"> 
+        <div class="imgThick2"> 
           <!-- section"> -->
         <div class='IMG1' style="aspect-ratio: 2.4 / 1" id="shapes-container" >
         <canvas class='CANVAS' id='shapes' ></canvas>

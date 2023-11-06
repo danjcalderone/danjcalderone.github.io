@@ -78,7 +78,7 @@ flex-flow: column nowrap;
 .subcontainer {
 display: flex;
 justify-content: center;
-align-items: flex-start;
+align-items: center;
 max-width: 1000px;
 width: 100%;
 height: fit-content;
@@ -135,6 +135,32 @@ border-color: rgba(0,0,0,0.2)
 /* width: 1500px; */
 }
 
+.blurbThick2 {
+/* flex: 0 4 auto; */
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+
+width: clamp(400px,80%,1000px);
+/*min-width: 400px;
+width: 80%;
+max-width: 1000px;
+*/  
+
+
+/*fit-content;*/
+
+border-radius: 20pt;
+border-width: 2pt;
+border-style: solid;
+border-color: rgba(0,0,0,0.2)
+
+/* clamp(400px, 1000px,1200px); 
+/* z-index: 1; */
+/* width: 1500px; */
+}
+
 
 @media (max-width: 500px) {
   .blurbThick {
@@ -144,6 +170,14 @@ border-color: rgba(0,0,0,0.2)
     width: clamp(200px,80%,400px);    
     height: auto;
   }
+  .blurbThick2 {
+/*    min-width: 400px;
+    width: fit-content;
+*/    
+    width: clamp(200px,80%,400px);    
+    height: auto;
+  }
+
 }
 
 
@@ -174,8 +208,36 @@ border-color: rgba(0,0,0,0.2)
 /* width: 1500px; */
 }
 
+.blurbThin2 {
+/* flex: 0 4 auto; */
+margin: 20px;
+padding: 30px;
+background-color: rgba(64, 106, 157, 0.05);
+font-size: 16px;
+width: clamp(160px,35%,280px);
+/*min-width: 160px;
+max-width: 280px;
+width:15%;
+*/
+/*max-width: 250px;*/
+/*height: auto;*/
+/*fit-content;*/
+border-radius: 20pt;
+border-width: 2pt;
+border-style: solid;
+border-color: rgba(0,0,0,0.2)
+/* clamp(400px, 1000px,1200px); */
+/* z-index: 1; */
+/* width: 1500px; */
+}
+
 @media (max-width: 500px) {
   .blurbThin {
+    width: clamp(200px,80%,400px);
+    /*width: fit-content;*/
+    /*height: auto;*/
+  }
+  .blurbThin2 {
     width: clamp(200px,80%,400px);
     /*width: fit-content;*/
     /*height: auto;*/
@@ -266,12 +328,47 @@ border-color: rgba(0,0,0,0.2)
 /* width: 1500px; */
 }
 
+.imgThin2 {
+/* flex: 0 4 auto; */
+margin: 10px;
+padding: 0px;
+/*background-color: rgba(64, 106, 157, 0.05);*/
+font-size: 16px;
+width: clamp(160px,35%,320px);
+justify-content: flex-start;
+align-items: center;
+flex-direction: column;
+flex-wrap: wrap;
+/*min-width: 160px;
+max-width: 280px;
+width:15%;
+*/
+/*max-width: 250px;*/
+/*height: auto;*/
+/*fit-content;*/
+/*border-radius: 20pt;
+border-width: 2pt;
+border-style: solid;
+border-color: rgba(0,0,0,0.2)
+*//* clamp(400px, 1000px,1200px); */
+/* z-index: 1; */
+/* width: 1500px; */
+}
+
+
+
 @media (max-width: 500px) {
   .blurbThin {
     width: clamp(200px,80%,400px);
     /*width: fit-content;*/
     /*height: auto;*/
   }
+    .blurbThin2 {
+    width: clamp(200px,80%,400px);
+    /*width: fit-content;*/
+    /*height: auto;*/
+  }
+
 }
 
 
@@ -328,8 +425,54 @@ width: clamp(400px,80%,1000px);
   /* height: 900px; */
 }
 
+.imgThick2 {
+  flex: 0 1 auto;
+/*  min-width
+  width:;
+*/
+  /*min-width: 800px;*/
+  /*width: ;*/
+  /*width: clamp(400px,80%,1000px);*/
+
+  /*width: 80%;
+  max-width: 1000px;
+  min-width: 400px;  */
+
+  margin: 20px;
+padding: 30px;
+align-self: center;
+
+/*  margin: 20px 20px;
+  padding: 0px;
+*/  
+  width: clamp(400px,80%,1000px);
+  height: fit-content;
+  /*height; clamp(400px,100%,800px);*/
+  /*auto;*/
+  /*height: 100%;  */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  /*flex-start;*/
+  align-items: center;
+  position: relative;
+  background-color: rgba(255,255,255,0);
+
+  border-radius: 20pt;
+  border-width: 2pt;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.2)
+
+  /* top: 0px;
+  left: 0px; */
+  /* height: 900px; */
+}
+
 @media (max-width: 500px) {
   .imgThick {
+    width: clamp(200px,80%,400px);
+  }
+    .imgThick2 {
     width: clamp(200px,80%,400px);
   }
 }
@@ -399,9 +542,26 @@ width: clamp(400px,80%,1000px);
   height: 900px; */
 }
 
+.img1b {
+  flex: 0 1 auto;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  max-width: clamp(100px, 260px, 260px);
+  /* width: 900px;
+  height: 900px; */
+}
+
 @media (max-width: 500px) {
   .img1 {max-width: 100px}
+  .img1b {max-width: 300px}
   .imgThin {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .imgThin2 {
     flex-direction: row;
     flex-wrap: wrap;
   }
