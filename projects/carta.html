@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></link>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" ></link>
+
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css"
+    integrity="sha384-Cqd8ihRLum0CCg8rz0hYKPoLZ3uw+gES2rXQXycqnL5pgVQIflxAUDS7ZSjITLb5"
+    crossorigin="anonymous"></link>
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js"
+    integrity="sha384-1Or6BdeNQb0ezrmtGeqQHFpppNd7a/gw29xeiSikBbsb44xu3uAo8c7FwbF5jhbd"
+    crossorigin="anonymous"></script>
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js"
+    integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"
+    crossorigin="anonymous"
+    onload="renderMathInElement(document.body)">
+    </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.5/math.min.js"> </script>
+  <script src="https://unpkg.com/pts@0.10.5/dist/pts.js"></script>
+
+
+    <!-- <link rel="stylesheet" href="./css/main.css" ></link> -->
+
+
+    <style>
+
+.img1 {
+  background-color: rgb(0, 0, 255, 0);
+  flex: 0 1 auto;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 95%;
+  aspect-ratio: 1 / 1;
+  /* height: 900px; */
+}
+.img1 .CANVAS {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.img2 {
+  background-color: rgb(0, 0, 255, 0);
+  flex: 0 1 auto;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 95%;
+  aspect-ratio: 2 / 1;
+  /* height: 900px; */
+}
+
+.img2 .CANVAS {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+
+.CANVAS {
+  background-color: rgb(0, 0, 255, 0);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1400px;
+  height: 1400px;
+}
+.eqn1 {
+  background-color: rgba(0, 0, 255, 0);
+  color: black;
+  position: absolute;
+  font-size: 16px;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+
+
+
+
+  </style>
+
+  <link rel="stylesheet" href="/css/main.css" ></link>
+  <!-- <link rel="stylesheet" href="/main.css" ></link> -->
+  <link rel="stylesheet" href="/css/main.css" ></link>
+
+    </head>
+
+    <body>
+    <header > <h1> danjcalderone </h1> </header>
+
+
+
+    <div w3-include-html="/nav/topics.html"></div>
+
+
+
+    <div class="wrapper">
+      <div class="sidebar">
+      <div w3-include-html="/nav/sidebarBLOG.html"></div>
+
+
+
+
+      </div>
+      <div class=main_content>
+
+
+        <h1><div id="header">
+          Consistent Conjectural Variations Equilibria (CCVE): Dynamics
+        </div></h1>
+
+          <div class='imgFixed' >
+        <div w3-include-html="data/figure5.html"></div>
+      </div>
+
+
+        <div class="section basic" >
+
+        <div class="txt" style="padding:40px">
+
+
+          This page is meant as supplement paper to the monographs (INSERT LINK).  
+
+
+
+
+
+            </div>
+
+
+        <div class="txt" style="padding:40px">
+
+          <b> Motivating Example </b>
+
+
+          <p>
+          Consider the   \( 2 \times 2 \)  CCVE with cost parameters given by 
+
+           $$
+          \begin{aligned}
+          M_1 = 
+          \begin{bmatrix}
+          a_1 & b_1 \\
+          b_1 & 0
+          \end{bmatrix}, \qquad 
+          M_2 = 
+          \begin{bmatrix}
+          0 & b_2 \\
+          b_2 & a_2
+          \end{bmatrix}
+          \end{aligned}
+           $$
+          As discussed in Section XXX, the two potential equilibrium conjectures can be computed as 
+           $$
+          \begin{aligned}
+          L_1,L_1' 
+          & 
+          = 
+          -\tfrac{1}{2}\Bigg(z_1 \pm
+          \sqrt{\tfrac{z_1}{z_2}
+          \Big(
+          z_1 z_2 - 4
+          \Big)}\Bigg) 
+          = 
+          -\frac{z_1}{2}\Bigg(1 \pm
+          \sqrt{
+          1 - \tfrac{4}{z_1z_2}
+          }\Bigg).
+          \end{aligned}
+           $$
+          where   \( z_1 = a_1/b_1 \)  and   \( z_2 = a_2 /b_2 \) .  These conjectures are complex if and only if the   \( z_1,z_2 \)  satisfy the condition.  
+           $$
+          \begin{aligned}
+          z_1z_2(z_1z_2 - 4) < 0 \quad \iff \quad 
+          (z_1z_2)^2 < 4z_1z_2  
+          \end{aligned}
+           $$
+          For   \( a_2 = b_1 = b_2 = 1 \) , this condition is satisfied in the range   \( 0< a_1 \leq 4  \) .  
+
+          In the complex case, the phase of the eigenvalues is given by 
+$$
+\begin{aligned}
+    \phi = \tan^{-1}\left(\frac{\sqrt{z_1z_2(4-z_1z_2)}}{z_1z_2 -2}\right)
+\end{aligned}
+$$
+and the dynamics oscillate according to the equation.
+
+
+$$
+\begin{aligned}
+L_1(k) & = 
+\textbf{Re} +
+\textbf{Im} \tan\Big(k\phi + \psi\Big)
+\end{aligned}
+$$
+
+where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imaginary parts of the equilibrium conjectures (that depend on the initial conditions and problem parameters,   \( k \)  is the time step and   \( \psi \)  is a phase offset that depends on the initial conditions.  In this animation below, we fix   \( a_2 = b_1 = b_2 = 1 \)  and vary   \( a_1 \)  starting from 0 and plot   \( L_1(k) - \textbf{Re})/\textbf{Im} \)  in order to isolate the oscillatory behavior .  Note that the conjecture is constant until we enter complex region; here the conjecture begins to oscillate following the tangent curves shown.   Note that the oscillation can be sporadic for different values of   \( a_1 \)  and the nature of the tangent curve is only seen close to the crossover value   \( a_1 = 4 \) .  
+
+        </p>
+
+
+
+
+            </div>
+
+
+<div class='imgFixed' >
+<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v1.png" width=20%></img> 
+<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v2.png" width=20%></img> 
+<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v3.png" width=20%></img> 
+</div>
+
+<div class='imgFixed' >
+<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/2x2example.gif" width=40%></img> 
+</div>
+
+
+      
+<div class='txt' style="padding:40px">
+
+
+
+<b> Geometry of   \( X(AX)^{-1} \)  </b>
+
+<p>
+Here we give intuition for the geometery of projective transformations. 
+</p>
+
+<b>Subspace </b>
+
+<p>
+In general for terms of the form   \( Y = X(AX)^{-1} \)  where  \( A \in \mathbb{R}^{m \times n} \) is fat  \( (m < n) \) and  \( Y,X \in \mathbb{R}^{n \times m} \) ,  \( Y \) resides in the affine set   \( \mathcal{Y} = \big\{Y \big| AY = I\big\} \) .  This can be checked immediately since clearly  \( A \cdot X(AX)^{-1} = I \) .  Equivalently, the  \( i \)-th column of  \( Y \) satisfies  \( AY_i = I_i \) where  \( I_i \) is the  \( i \)-th column of the identity.  
+
+The set  \( \mathcal{Y} \) can alternatively be characterized as 
+$$ \begin{aligned}
+\mathcal{Y}
+& = \big\{Y \ \big| \ AY = I\big\}
+ = \big\{Y \ \big| \ Y = A^\dagger + N U, \ U \in \mathbb{R}^{m \times m} \big\}
+\end{aligned} $$
+for any invertible  \( U \in \mathbb{R}^{m \times m}$
+where  \( A^\dagger = A^\top(AA^\top)^{-1} \) is the left pseudo-inverse and  \( N \) is any basis for the nullspace.
+
+
+
+
+
+
+Any  \( Y \in \mathcal{Y} \) can also be parametrized by a matrix  \( X \) .  This  \( X \) is not unique, however; any  \( X \) since any  \( X \) that spans the same subspace will result in the same  \( Y \) . Mathematically, this is because  \( X' = XZ_1 \) for square invertible  \( Z_1 \) , yields the same  \( Y \)
+$$ \begin{aligned}
+Y' = 
+X'(AX')^{-1}
+& = XZ_1(AXZ_1)^{-1}  \\
+& = XZ_1Z_1^{-1}(AX)^{-1} = X(AX)^{-1} = Y 
+\end{aligned} $$
+In particular, if desired, we can always take  \( X' \) to be an orthonormal basis for the subspace spanned by  \( X \) by taking  \( Z_1 = (X^\top X)^{-\tfrac{1}{2}} \) .  
+
+
+For a given   \( Y \)  if we wish to characterize the set
+ \( \mathcal{X}(Y) = \big\{X \big| Y = X(AX)^{-1}
+\big\} \) this can be done as follows.
+Write  \( X \) in the alternate coordinates,  \( X = \big[A^\dagger \ N\big]Z  = A^\dagger Z_1 + N Z_2 
+ \) where  \( Z = [Z_1 ; Z_2 ] \) .  For a given  \( Y \) , this then gives
+$$ \begin{aligned}
+Y & = (A^\dagger Z_1 + N Z_2)\big(A(A^\dagger Z_1 + N Z_2)\big)^{-1}  \\
+& = (A^\dagger Z_1 + N Z_2)\big(Z_1 \big)^{-1} \\
+& = A^\dagger  + N Z_2 Z_1^{-1}    
+\end{aligned} $$
+Left multiplying by  \( (N^\top N)^{-1}N^\top \) gives that  \( Z_2 = (N^\top N)^{-1}N^\top Y Z_1 \) which gives 
+$$ \begin{aligned}
+X & = \Big[ A^\dagger \ N \Big]
+\begin{bmatrix} 
+I \\ (N^\top N)^{-1}N^\top Y
+\end{bmatrix}
+Z_1  \\
+& 
+= 
+\Big(A^\dagger + N(N^\top N)^{-1}N^\top Y\Big)
+Z_1 
+\end{aligned} $$
+and thus for any  \( Y \) we have that 
+$$ \begin{aligned}
+\mathcal{X}(Y) & = 
+\big\{X \big| Y = X(AX)^{-1} \big\}  \\
+& = 
+\Big\{X \big| 
+X = \Big(A^\dagger + N(N^\top N)^{-1}N^\top Y\Big)
+Z_1 
+\Big\}
+\end{aligned} $$
+for any invertible  \( Z_1 \in \mathbb{R}^{m \times m} \) . 
+In other words,  \( X \) must be a basis for the subspace  \( \text{span}\big(A^\dagger + N(N^\top N)^{-1}N^\top Y\big) \) . 
+</p>
+
+
+<p>
+
+It is worth computing several examples to get a sense for the geometry. Suppose we take a simple case where  \( A \in \mathbb{R}^{1 \times 2} \) and  \( X,Y \in \mathbb{R}^2 \) .  Consider any  \( X \) written as 
+$$ \begin{aligned}
+X = u_r \ell \cos \theta + u_n \ell \sin \theta
+\end{aligned} $$
+where  \( u_r,u_n \in \mathbb{R}^2 \) are unit vectors in the direction of the range of  \( A^\top \) and the nullspace of  \( A \) , respectively.  In these coordinates, the projective map is given by
+$$ \begin{aligned}
+AX 
+& = \vert\vert A\vert\vert_2 u_r^\top \big(u_r \ell \cos \theta + u_n \ell \sin \theta \big)  = \vert\vert A\vert\vert_2 \ell \cos \theta \\
+\implies \quad 
+& X(AX)^{-1}  = 
+\big(u_r \ell \cos \theta + u_n \ell \sin \theta \big)
+\left(
+\tfrac{1}{\vert\vert A\vert\vert_2 \ell \cos \theta}
+\right) \\
+& \qquad \qquad \ = 
+A^\dagger + 
+\vert\vert A^\dagger\vert\vert_2 
+\tan \theta u_n 
+\end{aligned} $$
+This is illustrated here.
+
+</p>
+
+</div>
+
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x2projective.png" width=25%></img> </div>
+
+
+        <div class="txt" style="padding:40px">
+
+
+Note that if  \( X \) were to rotate around in a circle, the projection would oscillate along the line  \( AY=1 \) .  Note also how  \( \tan \theta \) and the projection blows up as  \( \theta \rightarrow \pm \pi/2 \) .  
+
+While the above geometry is informative, it is somewhat limited by the low dimension.  If the nullspace of  \( A \) has dimension higher than 1, we can see richer geometry.  In Fig.~\ref{fig:AinR1x3} we illustrate the geometry for  \( A \in \mathbb{R}^{1 \times 3} \) with a 2D nullspace.  We show the projected points  \( Y=X(AX)^{-1} \) for various poins  \( X \) on the unit sphere in  \( \mathbb{R}^3 \) . 
+</div>
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x3projective.png" width=45%></img> </div>
+
+        <div class="txt" style="padding:40px">
+
+
+In each of the above cases  \( X,Y \) are simple column vectors.  We now give an example of  \( X, Y \in \mathbb{R}^{3 \times 2} \) .  Suppose  \( A \in \mathbb{R}^{2 \times 3} \) with a 1D nullspace.  For  \( Y = X(AX)^{-1} \) with  \( Y=\big[Y_1 \ Y_2 \big] \) the first column  \( Y_1 \) lives in the space  \( AY_1 = I_1 \) and the second colum in  \( AY_2 = I_2 \) .  For a 1D nullspace, the geometry has the form shown in.  The columns of  \( A^\dagger \) lie in each affine space respectively.  In the figure, we show the convex hull of  \( A^\top \) and  \( A^\dagger \) , denoted  \( A^\top \Delta \) and  \( A^\dagger \Delta \) along with  \( X\Delta \) for various  \( X \)'s with columns on the unit sphere and the resulting  \( Y \)'s.  
+</div>
+
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR2x3projective.png" width=45%></img> </div>
+
+
+</div>
+
+
+
+        <div class="txt" style="padding:40px">
+
+          <b> Specific Asymptotic Cases </b>
+
+
+
+
+
+
+<p>
+This list of special cases is meant to be thorough and touch on most of the interesting cases--- specifically when the crossover eigenvalues contain complex eigenvalue pairs or nontrivial Jordan blocks--- however, it is not meant to be exhaustive. The details of some special cases, such as nontrivial Jordan blocks with complex eigenvalues and other combinations of the cases outlined below can be analyzed using similar techniques. 
+We focus exclusively on the limiting behavior. Various versions of the dynamic expansions could be developed to further elucidate the precise relationship between the transients (due to the evolution of  \( Z_1[k] \) and  \( Z_ s[k]$) with the limiting behaviors (due to the evolution of  \( Z_ c[k]$).  The authors, however, found these expansions to be overly complicated without yielding much insight (though further attempts could be made).  Also, if  \( \max |{\text{spec}}_ s(\mathbf{M})| \) is significantly smaller than  \( \rho_ c \) , the transient portion will die out quickly. 
+
+</p>
+
+
+
+
+
+<b> Parameters for Examples </b>
+
+
+<p>
+The examples in the next section are specifically constructed to display the geometry of interesting corner cases. 
+% To this end they were reversed engineered based on considerations in the previous sections.  
+The qualitative geometry is primarily determined by the eigenvalues of  \( \mathbf{M}_1 \) and specifically crossover eigenvalues and the structure of the matrix  \( \Gamma_ c \) . 
+For each example, we will choose 
+$$ \begin{aligned}
+\Lambda = \textbf{dg}\Big(\big[ \ 1.1 \ \ 1.1 \ \ 1.1  \ \ 1.1 \ \big]\Big), \qquad 
+\Gamma_ s = \textbf{dg}\Big(\big[ \ 0.7 \ \big]\Big)  
+\end{aligned} $$
+The structure of  \( \Gamma_ c \) will vary between each example and will be detailed in each section (though in all cases we will take the magnitude of the eigenvalues of  \( \Gamma_ c \) to be  \( \rho_ c = 1$). The other parameters for each example (including the eigenvectors of  \( \mathbf{M}_1$) as well as a discussion of the specific symmetric cost matrices  \( M_1,M_2 \) that would generate  \( \mathbf{M}_1 = M_2^{-\top}M_1 \) are included in Appendix \ref{app:exampleparams} for each example. 
+
+
+Basic geometry examples 
+
+
+</p>
+</div>
+
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/base.png" width=45%></img> </div>
+
+
+
+
+
+
+        <div class="txt" style="padding:40px">
+<b> Unique-stable equilibrium </b>
+
+The simplest case is when the eigenvalues clearly into two sets of the appropriate size with distinct magnitude eigenvalues, ie.  \( c=0 \) .  In this case  \( \Pi[k] \to 0 \) and the asymptotic limit is the unique-stable equilibrum  \( L_0 = XY^{-1} \) and  \( L[k] = L_0 + \Pi[k] \) .
+
+
+</div>
+
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/unique.png" width=45%></img> </div>
+
+
+
+
+        <div class="txt" style="padding:40px">
+
+
+          <b> 
+Marginally-stable
+continuum of equilibria
+</b>
+
+<p>
+
+Suppose  \( \text{spec})_  c (\mathbf{M})  \subset \mathbb{R} \) contains only positive real eigenvalues of magnitude  \( \rho_ c \) and  \( \Gamma_ c \) is diagonalizable.
+In this case, we have  \( \Gamma_ c = 
+\rho_ c I_{c \times c} \) 
+and   \( Z_ c\big(\xi^\top V_ c Z_ c\big)^{-1} \) remains constant over time and  \( L[k] =XY^\dagger + \Pi[k] \) with 
+
+$$ \begin{aligned}
+\Pi[k] & = \big[U-XY^\dagger V] Z_ c[0](\xi^\top V_ c Z_ c[0])^{-1} \xi^\top,
+\end{aligned} $$
+remains constant as well. There is thus a  \( c_1^2 \)-dimensional subspace of marginally-stable equilibria parametrized by  \( Z_ c[0] \in \mathbb{R}^{c_1 \times c_1} \) . 
+
+</p>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum.png" width=45%></img> </div>
+
+
+<div class="txt" style="padding:40px">
+
+
+
+
+
+<b> Reflecting Equilibria </b>
+
+<p>
+
+In the case where  \( \Gamma_1 \) is diagonalizable and all eigenvalues in  \( {\text{spec}}_ c(\mathbf{M}) \subset \mathbb{R} \) are real but some are negative,  \( \Gamma_ c \) takes the form  \( \rho_ c{I_\pm}_{c \times c} \) where we use  \( I_\pm \) to denote a diagonal matrix with  \( +1 \) or  \( -1 \) on the diagonal. In this case  \( \Pi[k] \) reflects back and forth between two values. Assuming  \( k=0 \) is starting from a time after the transients have decayed, 
+
+
+$$ \begin{aligned}
+\Pi[k] = 
+\begin{cases}
+\Big[U_ c - XY^\dagger  V_ c \Big] 
+Z_ c[0] \Big(\xi^\top V_ c Z_ c[0]\Big)^{-1}\xi^\top 
+&; \ k \text{ even} \\ 
+\Big[U_ c - XY^\dagger  V_ c \Big] 
+I_\pm Z_ c[0] \Big(\xi^\top V_ c I_\pm 
+Z_ c[0] \Big)^{-1}\xi^\top 
+&; \ k \text{ odd} 
+\end{cases}
+\end{aligned} $$
+
+</p>
+</div>
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect.png" width=45%></img> </div>
+
+
+
+
+
+
+
+<div class="txt" style="padding:40px">
+
+
+<b> Periodic-Equilibria (Complex Eigenvalues) </b>
+
+<p>
+
+We now consider the highly important case where the crossover set of eigenvalues contains complex conjugate pairs. This case is particularly important because the majority of real matrices have complex eigenvalues and it is quite likely that the crossover set will contain at least one conjugate pair as well.  
+We detail the asymptotic behavior for multiple conjugate pairs in the crossover set; however, the reader should note that the case of a single crossover pair is the most common and important case. 
+
+To understand the equilibrium behavior in this case, we will no longer take  \( \Gamma_ c \) to be diagonal but rather block diagonal with  \( 2\times 2 \) scaled rotations.  Explicitly, for crossover eigenvalues 
+$$ \begin{aligned}
+{\text{spec}}_ c(\mathbf{M}) = \{\rho_ c e^{\pm i \phi_1},\rho_ c e^{\pm i \phi_2}, \dots \}
+\end{aligned} $$
+take 
+$\Gamma_ c = \rho_ c R  \( 
+where  \( R =\textbf{blkdg}\big(\big[R_{\phi_1} \ R_{\phi_2} \ \dots \big]\big)
+$
+for rotations  \( R_{\phi_j} \in \mathbb{R}^{2 \times 2} \) of angle  \( \phi_j \) . Note that  \( \Gamma_1^k = \rho_ c^k R^k \) where  \( R^k \) can be written as 
+$$ \begin{aligned}
+R^k = \textbf{blkdg}\big(\big[R_{\phi_1}^k \ R_{\phi_2}^k \ \dots \big]\big)
+= 
+\textbf{blkdg}\big(\big[R_{k\phi_1} \ R_{k\phi_2} \ \dots \big]\big)
+\end{aligned} $$
+Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are no longer (complex) eigenvectors but rather appropriate real bases for the planes of rotation.  This can be achieved by taking pairs of columns that contain the real and imaginary parts of eigenvectors as is typical in real, block diagonal expansions of complex eigenstructures.  In this case  \( \Pi[k] \) oscillates based on phases  \( \phi_1,\phi_2, \dots  \(  For any initial condition  \( Z_ c[0] \) we have that
+$$ \begin{aligned}
+\Pi[k] = 
+\Big[U_ c - XY^\dagger  V_ c \Big] 
+R^kZ_ c[0] \Big(\xi^\top V_ c R^kZ_ c[0]\Big)^{-1}\xi^\top 
+\label{eq:PiR}
+\end{aligned} $$
+
+</p>
+
+
+<p>
+Several things are worth considering. First, note the rotational motion of the term  \( Z_ c[k] = R^k Z_ c[0] \) that results in periodic oscillations of the columns of  \( \Pi[k] \) within the plane spanned by  \( U_ c - XY^\dagger  V_ c \) .  If  \( R \in \mathbb{R}^{2 \times 2} \) and  \( Z_ c \in \mathbb{R}^2 \) then the oscillations occur back and forth on a 1D affine space as illustrated in Fig.~\ref{fig:AinR1x2} in Appendix~\ref{app:proj}.  The magnitude of this oscillation follows a tangent curve, as illustrated in the initial motivating example (see Section \ref{sec:motivate}), and depending on the rotation of phase the oscillation pattern can appear deceptively simple, pseudo-random/chaotic, or clearly illustrate the tangent nature.  In the general higher dimensional case, the oscillations can be much more complicated. 
+ Fig.~\ref{fig:AinR1x3} (Appendix ~\ref{app:proj}) gives a good visualization of possible oscillation curves even in the simple case where  \( R \in \mathbb{R}^{3\times 3} \) and  \( Z_ c \in \mathbb{R}^3 \) .  For general  \( R \in \mathbb{R}^{c\times c} \) and  \( Z_ c \in \mathbb{R}^{c \times c_1} \) the oscillations could be very rich.  
+
+</p>
+
+
+
+
+<p>
+It is worth noting also that the magnitude of 
+$R^kZ_ c \big(\xi^\top V_ c R^kZ_ c\big)^{-1}
+ \) is determined solely by the term 
+$\big(\xi^\top V_ c\pi [k]\big)^{-1} \) where 
+$\pi[k] \) here is any orthonormal basis for the span of  \( R^k Z[k] \) (for example
+$
+\pi = R^kZ_ c \big((R^kZ_ c)^\top R^kZ_ c\big)^{-1/2}$).  
+The magnitude of 
+$\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much the rows of  \( \xi^\top V_ c \) and the columns of  \( \pi[k] \) or  \( R^k Z_ c[k] \) line up with each other.  The magnitude can increase dramatically if the any of the columns of  \( R^k Z_ c \) gets close to being orthogonal to the rows of  \( \xi^\top V_ c \) , ie. if  \( \xi^\top V_ c \pi[k] \) becomes close to singular.  In addition there is always several subspaces of initial  \( Z_ c \)'s that will blow up after  \( k \) time steps.  Specifically, take  \( Z_ c = (R^k)^\top Z_ c' \) for any  \( Z_ c' \) such that  \( \xi^\top V_ c Z_ c' \) is not invertible.  After  \( k \) time steps,  \( Z_ c[k] = R^k Z_ c = Z_ c' \) and  \( (\xi^\top V_ c Z_ c[k])^{-1} \)  blows up.
+
+</p>
+</div>
+
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex2D.png" width=45%></img> </div>
+
+
+
+
+
+
+
+<div class="txt" style="padding:40px">
+
+<b> Example of Periodic Asymptotic Behavior. </b>
+
+</div>
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_details1.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
+
+
+<div class="txt" style="padding:40px">
+
+
+  <b> Relationship with Complex Equilibria.</b>
+
+
+
+
+It is worth also showing how the expansion above relates to complex equilibria computed by selecting complex eigenvectors and applying Theorem \ref{thm:equilib}.  Complex equilibria of this type will come in conjugate pairs of the form
+$$ \begin{aligned}
+L,L^* = \Big[X \ \big[U_\text{R} \ U_\text{I} \big] \left[\substack{ I \\ \pm iI}\right]\Big]\big[Y \ 
+\big[V_\text{R} \ V_\text{I} \big] \left[\substack{ I \\ \pm iI}\right]
+\big]^{-1} 
+\end{aligned} $$
+where here  \( [V_{\text{R}}; U_{\text{R}}] \) and  \( [V_{\text{I}}; U_{\text{I}}] \) are the real and imaginary parts of the crossover eigenvectors.  Here, each complex eigenvector defined by the columns  \( U_{\text{R}},U_{\text{I}},V_{\text{R}},V_{\text{I}} \) should \emph{not} include any conjugate pairs since any complete conjugate pairs can be represented via purely real basis vectors (for the plane of rotation) and included in  \( X \) and  \( Y \) .  Using an expansion similar to the one above we can write
+$$ \begin{aligned}
+L,L^* & = XY^\dagger  + 
+\Big[\big[U_\text{R} \ U_\text{I} \big] -XY^\dagger  
+\big[V_\text{R} \ V_\text{I} \big]\Big] \left[\substack{ I \\ \pm iI}\right]
+\Big(
+\big[\xi^\top V_\text{R}  \ \ \xi^\top V_\text{I} \big]
+\left[\substack{ I \\ \pm iI}\right]
+\Big)^{-1} \xi^\top \\
+& = XY^\dagger  + 
+\Big[W_\text{R} \ W_\text{I} \Big] 
+\left[\substack{ I \\ \pm iI}\right]
+\Big(
+\big[
+\mathcal{A} \ \ \mathcal{B} \big]
+\left[\substack{ I \\ \pm iI}\right]
+\Big)^{-1}\xi^\top \\
+& = XY^\dagger  + 
+\Big[W_\text{R} \pm i W_\text{I} \Big] 
+\Big(
+\mathcal{A} \pm i \mathcal{B} 
+\Big)^{-1}\xi^\top
+\end{aligned} $$
+with  \( \mathcal{A} = \xi^\top V_\text{R} \) ,  \( \mathcal{B} = \xi^\top V_\text{I} \) and  \( W_\text{R},W_\text{I} \in \mathbb{R}^{d_\text{I} \times c_\text{R}}$
+$$ \begin{aligned}
+W_\text{R} = U_\text{R} -XY^\dagger  V_\text{R}, \qquad W_\text{I}= U_\text{I} -XY^\dagger   V_\text{I} 
+\end{aligned} $$
+Note here that  \( \mathcal{A},\mathcal{B} \in \mathbb{R}^{c_\text{R} \times c_\text{R}} \) .  
+Using the following expansion due to Frobenius and Shur 
+\cite{bodewig2014matrix}
+$$ \begin{aligned}
+\big(\mathcal{A} \pm \mathcal{B}i\big)^{-1}
+=
+\big(
+I
+\mp
+i \mathcal{A}^{-1}\mathcal{B}
+\big) \mathcal{M}^{-1} 
+\end{aligned} $$
+with  \( \mathcal{M} = 
+\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B} \) .
+We can write 
+$$ \begin{aligned}
+L,L^* 
+& = XY^\dagger  + 
+\Big[W_\text{R} \pm i W_\text{I} \Big] 
+\Big[
+I \mp
+i \mathcal{A}^{-1}\mathcal{B}
+\Big]\mathcal{M}^{-1} \xi^\top \\
+& = XY^\dagger  + 
+\Big[
+\big(W_\text{R} + W_\text{I} \mathcal{A}^{-1}\mathcal{B}\big) 
+\pm
+i \big(W_\text{I} - W_\text{R} \mathcal{A}^{-1}\mathcal{B}\big)
+\Big]  \mathcal{M}^{-1} \xi^\top \\
+& 
+= XY^\dagger  + 
+\Big[
+\textbf{Re} \ \xi^\top  \pm i \ \textbf{Im} \ \xi^\top
+\Big]   
+\end{aligned} $$
+where  \( \textbf{Re},\textbf{Im} \in \mathbb{R}^{d_\text{I} \times c_\text{R}}$
+$$ \begin{aligned}
+\textbf{Re} 
+& = \big(W_\text{R} + W_\text{I} \mathcal{A}^{-1}\mathcal{B}\big) 
+\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1}  
+= 
+\Big[ W_\text{R} \ W_\text{I} \Big]
+\begin{bmatrix} 
+I \\ \mathcal{A}^{-1}\mathcal{B}
+\end{bmatrix}
+\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1}  \\
+\textbf{Im} & = 
+\big(W_\text{I} - W_\text{R} \mathcal{A}^{-1}\mathcal{B}\big)
+\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1}   
+= 
+\Big[ W_\text{R} \ W_\text{I} \Big]
+\begin{bmatrix} 
+ -\mathcal{A}^{-1}\mathcal{B} \\ I
+\end{bmatrix}
+\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1} 
+\end{aligned} $$
+Using the following identity (which can be checked directly)
+$$ \begin{aligned}
+\begin{bmatrix} 
+\mathcal{A} & \mathcal{B}\\
+-\mathcal{B} & \mathcal{A}
+\end{bmatrix}^{-1} 
+=
+\begin{bmatrix} 
+I & - \mathcal{A}^{-1}\mathcal{B} \\
+\mathcal{A}^{-1}\mathcal{B} & I
+\end{bmatrix}
+\begin{bmatrix} 
+\mathcal{M} & 0 \\
+0 & \mathcal{M}
+\end{bmatrix}^{-1}
+\end{aligned} $$
+and noting that 
+$$ \begin{aligned}
+\Big[\textbf{Re}  \ \  \textbf{Im} \Big] 
+& =
+\bigg[W_\text{R}  \ \  W_\text{I} \bigg]
+\begin{bmatrix} 
+I & - \mathcal{A}^{-1}\mathcal{B} \\
+\mathcal{A}^{-1}\mathcal{B} & I
+\end{bmatrix}
+\begin{bmatrix} 
+\mathcal{M} & 0 \\
+0 & \mathcal{M}
+\end{bmatrix}^{-1} \\
+& =
+\bigg[W_\text{R}  \ \  W_\text{I} \bigg]
+\begin{bmatrix} 
+\mathcal{A} & \mathcal{B}\\
+-\mathcal{B} & \mathcal{A}
+\end{bmatrix}^{-1} 
+\end{aligned} $$
+We can write the general expansion in 
+\eqref{eq:PiR} with  \( Z_ c = [Z_{ c 1}; Z_{ c 2}; Z_{ c 3}] \) (with the time dependence suppressed) as
+$$ \begin{aligned}
+\Pi 
+& = 
+\Big[W_\text{R} \ W_\text{I} \ W_3 \Big] 
+\left[
+\substack{Z_{ c 1} \\ Z_{ c 2} \\ Z_{ c 3}}
+\right]
+\Big( \mathcal{A} Z_{ c 1} + 
+\mathcal{B} Z_{ c 2} + 
+\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top \\
+& = 
+\Big[W_\text{R} \ W_\text{I} \Big] 
+\begin{bmatrix} Z_{ c 1} \\ Z_{ c 2} 
+\end{bmatrix}
+\Big( \mathcal{A} Z_{ c 1} + 
+\mathcal{B} Z_{ c 2} + 
+\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top  
++
+W_3 
+Z_{ c 3}
+\Big( \mathcal{A} Z_{ c 1} + 
+\mathcal{B} Z_{ c 2} +
+\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top  \\
+& = 
+\Big[\textbf{Re} \ \ \textbf{Im}  \Big] 
+\begin{bmatrix}
+\mathcal{A} & \mathcal{B} \\
+-\mathcal{B} & \mathcal{A}
+\end{bmatrix}
+\begin{bmatrix}
+Z_{ c 1}  \\  Z_{ c 2}
+\end{bmatrix}  
+\Big( \mathcal{A} Z_{ c 1} + 
+\mathcal{B} Z_{ c 2} + 
+\mathcal{C} Z_{ c 3}  \Big)^{-1} \xi^\top 
++
+W_3 
+Z_{ c 3}
+\Big( \mathcal{A} Z_{ c 1} +
+\mathcal{B} Z_{ c 2}+ 
+\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top 
+\end{aligned} $$
+where  \( W_3 = U_3 - X Y^\dagger  V_3 \) and  \( \mathcal{C} = \xi^\top V_3 \) where all the matrices here are real.  
+Note also that if  \( W_3 = 0 \) ($V_3 = 0 \) ,  \( U_3 = 0$), ie. a complex eigenvector from every conjugate pair in the cross over set is included in the equilibrium, we get the simpler form
+$$ \begin{aligned}
+\Pi 
+& = 
+\Big[\textbf{Re} \ \ \textbf{Im}  \Big] 
+\begin{bmatrix}
+\mathcal{A} & \mathcal{B} \\
+-\mathcal{B} & \mathcal{A}
+\end{bmatrix}
+\begin{bmatrix}
+Z_{ c 1}  \\  Z_{ c 2}
+\end{bmatrix} 
+\Big( \mathcal{A} Z_{ c 1}  + 
+\mathcal{B} Z_{ c 2}  \Big)^{-1} \xi^\top  \notag \\
+& = 
+\textbf{Re} \ \xi^\top + 
+\textbf{Im} \cdot 
+\big(\mathcal{A}Z_{ c 2}
+-\mathcal{B}Z_{ c 1} 
+\big) 
+\big( \mathcal{A} Z_{ c 1} + 
+\mathcal{B} Z_{ c 2}  \big)^{-1} \xi^\top 
+\label{eq:singleReIm}
+\end{aligned} $$
+\subsection*{Single Crossover Conjugate Pair}
+Note that formula \eqref{eq:singleReIm} is particularly applicable in the important common case, where there is only one conjugate pair of crossover eigenvectors/values and  \( \mathcal{A},\mathcal{B}, Z_{ c 1},Z_{ c 2} \) are all scalars,  \( \mathbf{Re},\mathbf{Im} \) are column vectors, and  \( \xi^\top \) is a row vector.  
+In this case, for cross eigenvalues  \( \lambda,\lambda^* = \rho_ c e^{\pm i \phi} \) ,  \( R \) is simply given by  \( R = R_\phi \in \mathbb{R}^{2 \times 2} \) and  \( R^k = R_{k\phi} \) for the phase angle  \( \phi \) . The matrix  \( 
+\big[ \mathcal{A} \ \mathcal{B} ; 
+-\mathcal{B} \ \mathcal{A} \big]
+ \) is also a scaled rotation and can be written as
+$$ \begin{aligned}
+\bmat{
+\mathcal{A} &  \mathcal{B} \\
+-\mathcal{B} & \mathcal{A}
+}
+= 
+\sqrt{\mathcal{A}^2 + \mathcal{B}^2}
+\bmat{
+\cos \psi & -\sin \psi \\
+\sin \psi & \cos \psi
+}  
+= 
+\vert \vert [\mathcal{A} \ \mathcal{B} ] \vert \vert_\text{I}
+R_\psi 
+\end{aligned} $$
+where  \( \psi = -\arctan (\mathcal{B}/\mathcal{A}) \) and then we can also write  \( Z_ c[0] \) as  \( Z_ c[0] = \vert \vert Z_ c[0] \vert \vert_\text{I} \big[ \cos \theta ; \sin \theta \big]
+ \) where  \( \theta = \arctan \big(Z_{ c 2}[0]/Z_{ c 1}[0]\big) \) .  Using the fact that  \( Z_ c[k] = \rho_ c^k R^k Z_ c[0] \) we can then write 
+$$ \begin{aligned}
+\big(\mathcal{A}Z_{ c 2}[k]
+-\mathcal{B}Z_{ c 1}[k]
+\big) 
+\big( \mathcal{A} Z_{ c 1}[k]+ 
+\mathcal{B} Z_{ c 2}[k] \big)^{-1} 
+= 
+\tan \big(k \phi +\psi+\theta\big)
+\end{aligned} $$
+Equation~\eqref{eq:singleReIm}
+then becomes 
+$$ \begin{aligned}
+\Pi[k] = \textbf{Re} \ \xi^\top + \textbf{Im}\tan \big(k \phi +\psi+\theta\big) \xi^\top
+\label{eq:singletan}   
+\end{aligned} $$
+Note the dependence on the growing phase angle  \( k\phi \) 
+from the eigenvalue pair and also the constant offset phases  \( \psi \) (based on the fixed geometry of the problem parameters) and  \( \theta \) (based on the initial conditions).   Note also that the contribution of the real part of the complex equilibria is fixed and the contribution of the imaginary part oscillates with  \( \tan(k\phi + \psi  + \theta) \) . 
+
+
+ To summarize, in the case of a single crossover conjugate pair, real conjectures evolve according to 
+$$ \begin{aligned}
+L[k] & = XY^\dagger + \Big[\textbf{Re} \ \xi^\top \Big] + 
+\tan \big(k \phi +\psi+\theta\big)
+\Big[\textbf{Im}  \ \xi^\top\Big] 
+\end{aligned} $$
+where the pair of complex-conjugate equilibria are given by 
+$$ \begin{aligned}
+L,L^*
+& = XY^\dagger  + 
+\Big[\textbf{Re} \ \xi^\top\Big] \pm i \ \Big[\textbf{Im} \ \xi^\top\Big], 
+\end{aligned} $$
+The single crossover conjugate pair case is the most common when there are complex equilibria and this formula can provide perhaps the quickest and most useful intuition.  
+
+
+
+</div>
+
+<!--
+
+
+
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]
+{figs/real_imag.png}
+\caption{Asymptotic behavior of  \( L[k] \) with complex crossover eigenvalues. (a) Convex-hull of fixed, high rank component  \( L_{\text{eq}} = XY^\dagger \in \mathbb{R}^{3 \times 5} \) . (b) Rank-1 component  \( \Pi[k] \in \mathbb{R}^{3 \times 5} \) . Note the rotational evolution of  \( \Pi[k] \) with increasing  \( k \) .  (c) Combination  \( L[k] = L_{\text{eq}} + \Pi[k] \in \mathbb{R}^{3 \times 5} \) .  
+}
+\label{fig:blah1}
+\end{center}
+\end{figure}
+
+
+
+<b> Jordan Blocks </b>
+
+Another case that clearly must be considered is when the crossover eigenvalues have a non-trivial Jordan structure, ie.  \( \Gamma_1 \) (and thus by implication  \( \mathbf{M}$) is not diagonalizable.  In this case, we take 
+$\Gamma_1 = J \) with eigenvalues of some magnitude  \( \rho_ c \) .
+Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are constructed of eigenvectors and generalized eigenvectors.  In this case  \( \Pi[k] \) is given by 
+$$ \begin{aligned}
+\Pi[k] = 
+\Big[U_ c - XY^\dagger  V_ c \Big] 
+J^kZ_ c \Big(\xi^\top V_ c J^kZ_ c\Big)^{-1}\xi^\top 
+\end{aligned} $$
+
+
+
+To further understand this, we  first examine the term  \( J^k Z_ c \) for a single Jordan block  \( J \in \mathbb{R}^{c \times c} \) .  Powers of  \( J \) can be explicitly given by the formula 
+
+$$ \begin{aligned}
+J = \bmat{
+\lambda & 1 & \cdots & 0 & 0 \\
+0 & \lambda & \cdots & 0 & 0 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \cdots & \lambda & 1 \\
+0 & 0 & \cdots & 0 &  \lambda 
+}
+\quad \implies \quad 
+J^k = \bmat{
+\lambda^k & 
+\left(\substack{k \\ 1 } \right)\lambda^{k-1} & \cdots & 
+\left(\substack{k \\ c-2 } \right)\lambda^{k-c+2} & 
+\left(\substack{k \\ c-1 } \right)\lambda^{k-c+1}  
+\\
+0 & \lambda^k & \cdots &
+\left(\substack{k \\ c-3 } \right)\lambda^{k-c+3} & 
+\left(\substack{k \\ c-2 } \right)\lambda^{k-c+2}  \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \cdots & \lambda^k & \left(\substack{k \\ 1 } \right)\lambda^{k-1} \\
+0 & 0 & \cdots & 0 &  \lambda^k 
+}
+\end{aligned} $$
+Alternatively, we can write 
+$$ \begin{aligned}
+J^k = \big(\lambda I + N)^k 
+= \sum_{j=0}^k
+\left(
+\begin{matrix}k \\ j
+\end{matrix} \right)
+\lambda^{k-j}N^j 
+= \sum_{j=0}^{\min(k,c-1)}
+\left(
+\begin{matrix} k \\ j
+\end{matrix} \right)
+\lambda^{k-j}N^j
+= \sum_{j=0}^{c-1}
+\left(
+\begin{matrix} k \\ j
+\end{matrix} \right)
+\lambda^{k-j}N^j \ \ \text{for} \ k \gg c
+\end{aligned} $$
+where  \( N \in \mathbb{R}^{c \times c} \) is the canonical nilpotent matrix with 1's on the super diagonal.
+Given the projective structure, we do not care about the magnitude of  \( J^k Z_ c \) and thus we can 
+divide each term  of  \( J^k \) by 
+$
+\left(\substack{k \\ c-1 } \right)
+\lambda^{k-c+1}  \( . 
+
+
+
+
+
+
+We first note that for  \( j \leq c-1 \) , we can write 
+$$ \begin{aligned}
+\frac{\left(\substack{k \\ j } \right)}{\left(\substack{k \\ c-1 } \right)}
+& = 
+\frac{k!/(k-j)!j!}{k!/(k-c+1)!(c-1)!}
+= \frac{(k-c+1)!(c-1)!}{(k-j)!j!} 
+= \frac{(k-c+1)(k-c)!(c-1)!}{(k-j)!j!} 
+\end{aligned} $$
+and we then have that 
+$$ \begin{aligned}
+\frac{\left(\substack{k \\ j } \right)}{\left(\substack{k \\ c-1 } \right)}
+& = 
+\frac{
+(c-1) \times \cdots \times (j+1)}
+{(k-j) \times \cdots \times (k-c+2)},
+\ \ \text{for} \ \ j \leq c-2, 
+\qquad 
+\frac{\left(\substack{k \\ j } \right)}{\left(\substack{k \\ c-1 } \right)} = 1
+\ \ \text{for} \ \ j = c-1
+\end{aligned} $$
+Note that for  \( j\leq c-2 \) this term has powers of  \( k \) in the denominator but for  \( j=c-1 \) it is simply 1.
+Now dividing  \( J^k \) by 
+$\left(\substack{k \\ c-1 } \right)
+\lambda^{k-c+1}  \( , we get 
+
+
+$$ \begin{aligned}
+\left(\left(\substack{k \\ c-1 } \right)
+\lambda^{k-c+1}\right)^{-1} J^k 
+& = \sum_{j=0}^{c-1}
+\frac{
+(c-1) \times \cdots \times (j+1)}
+{(k-j) \times \cdots \times (k-c+2)}
+\lambda^{c-1-j}N^j
+\qquad  \text{for} \ k \gg c \\
+& = \sum_{j=0}^{c-2}
+\frac{
+(c-1) \times \cdots \times (j+1)}
+{(k-j) \times \cdots \times (k-c+2)}
+\lambda^{c-1-j}N^j + N^{c-1}
+\qquad  \text{for} \ k \gg c
+\end{aligned} $$
+As  \( k \to \infty \) , for large  \( k \) , we have that the terms in the sum disappear
+$$ \begin{aligned}
+\lim_{k \to \infty}
+\left(\left(\substack{k \\ c-1 } \right)
+\lambda^{k-c+1}\right)^{-1} J^k 
+= 
+\lim_{k \to \infty}
+\sum_{j=0}^{c-1}
+\frac{
+(c-1) \times \cdots \times (j+1)}
+{(k-j) \times \cdots \times (k-c+2)}
+\lambda^{c-1-j}N^j + N^{c-1}
+= N^{c-1}
+\end{aligned} $$
+
+
+
+
+
+
+
+
+It follows that  \( Z_ c[k] = N^{c-1}Z_ c[0] \) approaches  \( \mathbf{I}_1 Z_{cc}[0] \) as  \( k \) gets large where  \( \mathbf{I}_1 \) is the first column of the  \( c \times c  \(  identity.  It follows then that
+$$ \begin{aligned}
+\bmat{ U_ c \\ V_ c} J^kZ_ c \big(\xi^\top V_ c J^k Z_ c \big)^{-1} 
+\to 
+\bmat{ U_ c \\ V_ c} \mathbf{I}_1 Z_{cc}[0] \big(\xi^\top V_ c \mathbf{I}_1 Z_{cc}[0]\big)^{-1} 
+\end{aligned} $$
+
+
+ -->
+
+
+
+
+
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex2D.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_details.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/real_imag.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/jordan.png" width=45%></img> </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+      
+    <!-- <script type='module' src="./matrixo.js"> </script> -->
+
+
+
+
+
+
+
+
+
+
+    <!-- <script type='module' src="./matrixo.js"> </script> -->
+    <script src="/dcmath/src/extra/includeHTML.js"> </script>
+    <!-- <script type='text/javascript' src="/dcmath/src/extra/flip.js"></script>     -->
+
+<!--     <script>
+    // const slideIndexes ={'SCALARMULT':1, 'DOTPRODLEN':1, 'DOTPRODANGLE':1}
+    const slideIndexes ={'INNERPRODX':1, 'INNERPRODY':1,'INNERPROD_ORTHO':1}
+    addSlides('INNERPRODX',slideIndexes);
+    showSlides('INNERPRODX',slideIndexes['INNERPRODX'],slideIndexes);
+    addSlides('INNERPRODY',slideIndexes);
+    showSlides('INNERPRODY',slideIndexes['INNERPRODY'],slideIndexes);
+    addSlides('INNERPROD_ORTHO',slideIndexes);
+    showSlides('INNERPROD_ORTHO',slideIndexes['INNERPROD_ORTHO'],slideIndexes);
+
+    </script>
+ -->
+
+    </body>
+  </html>
