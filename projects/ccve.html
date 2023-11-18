@@ -111,9 +111,10 @@
 
   </style>
 
-  <link rel="stylesheet" href="/css/main.css" ></link>
+  <!-- <link rel="stylesheet" href="/css/main.css" ></link> -->
   <!-- <link rel="stylesheet" href="/main.css" ></link> -->
-  <link rel="stylesheet" href="/css/main.css" ></link>
+  <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/cssmain.css" width=20%></img>  -->
+  <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link>
 
     </head>
 
@@ -223,22 +224,28 @@ $$
 where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imaginary parts of the equilibrium conjectures (that depend on the initial conditions and problem parameters,   \( k \)  is the time step and   \( \psi \)  is a phase offset that depends on the initial conditions.  In this animation below, we fix   \( a_2 = b_1 = b_2 = 1 \)  and vary   \( a_1 \)  starting from 0 and plot   \( L_1(k) - \textbf{Re})/\textbf{Im} \)  in order to isolate the oscillatory behavior .  Note that the conjecture is constant until we enter complex region; here the conjecture begins to oscillate following the tangent curves shown.   Note that the oscillation can be sporadic for different values of   \( a_1 \)  and the nature of the tangent curve is only seen close to the crossover value   \( a_1 = 4 \) .  
 
         </p>
-
-
-
-
-            </div>
+</div>
 
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v1.png" width=20%></img> 
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v2.png" width=20%></img> 
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v3.png" width=20%></img> 
+<img src="/figs/projects/ccve/ccve_2x2example_from0to4.gif" width=40%></img> 
 </div>
 
+
+<div class='txt' style="padding:40px">
+
+  <p> Several specific examples...</p>
+
+  </div>
+
+
+
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/2x2example.gif" width=40%></img> 
+<img src="/figs/projects/ccve/a1v1.png" width=30%></img> 
+<img src="/figs/projects/ccve/a1v2.png" width=30%></img> 
+<img src="/figs/projects/ccve/a1v3.png" width=30%></img> 
 </div>
+
 
 
       
@@ -346,7 +353,12 @@ This is illustrated here.
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x2projective.png" width=25%></img> </div>
+<div class='imgFixed' >
+  <img src="/figs/projects/ccve/AinR1x2projective.png" width=45%></img>
+  <img src="/figs/projects/ccve/projection2x1.gif" width=45% aspect-ratio=1:1 ></img>
+
+
+</div>
 
 
         <div class="txt" style="padding:40px">
@@ -357,16 +369,23 @@ Note that if  \( X \) were to rotate around in a circle, the projection would os
 While the above geometry is informative, it is somewhat limited by the low dimension.  If the nullspace of  \( A \) has dimension higher than 1, we can see richer geometry.  In Fig.~\ref{fig:AinR1x3} we illustrate the geometry for  \( A \in \mathbb{R}^{1 \times 3} \) with a 2D nullspace.  We show the projected points  \( Y=X(AX)^{-1} \) for various poins  \( X \) on the unit sphere in  \( \mathbb{R}^3 \) . 
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x3projective.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/AinR1x3projective.png" width=90%></img> </div>
 
         <div class="txt" style="padding:40px">
 
 
-In each of the above cases  \( X,Y \) are simple column vectors.  We now give an example of  \( X, Y \in \mathbb{R}^{3 \times 2} \) .  Suppose  \( A \in \mathbb{R}^{2 \times 3} \) with a 1D nullspace.  For  \( Y = X(AX)^{-1} \) with  \( Y=\big[Y_1 \ Y_2 \big] \) the first column  \( Y_1 \) lives in the space  \( AY_1 = I_1 \) and the second colum in  \( AY_2 = I_2 \) .  For a 1D nullspace, the geometry has the form shown in.  The columns of  \( A^\dagger \) lie in each affine space respectively.  In the figure, we show the convex hull of  \( A^\top \) and  \( A^\dagger \) , denoted  \( A^\top \Delta \) and  \( A^\dagger \Delta \) along with  \( X\Delta \) for various  \( X \)'s with columns on the unit sphere and the resulting  \( Y \)'s.  
+In each of the above cases  \( X,Y \) are simple column vectors.  
+
+
+
+<!-- 
+
+We now give an example of  \( X, Y \in \mathbb{R}^{3 \times 2} \) .  Suppose  \( A \in \mathbb{R}^{2 \times 3} \) with a 1D nullspace.  For  \( Y = X(AX)^{-1} \) with  \( Y=\big[Y_1 \ Y_2 \big] \) the first column  \( Y_1 \) lives in the space  \( AY_1 = I_1 \) and the second colum in  \( AY_2 = I_2 \) .  For a 1D nullspace, the geometry has the form shown in.  The columns of  \( A^\dagger \) lie in each affine space respectively.  In the figure, we show the convex hull of  \( A^\top \) and  \( A^\dagger \) , denoted  \( A^\top \Delta \) and  \( A^\dagger \Delta \) along with  \( X\Delta \) for various  \( X \)'s with columns on the unit sphere and the resulting  \( Y \)'s.   -->
+
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR2x3projective.png" width=45%></img> </div>
+<!-- <div class='imgFixed' > <img src="/figs/projects/ccve/AinR2x3projective.png" width=80%></img> </div> -->
 
 
 </div>
@@ -384,7 +403,7 @@ In each of the above cases  \( X,Y \) are simple column vectors.  We now give an
 
 <p>
 This list of special cases is meant to be thorough and touch on most of the interesting cases--- specifically when the crossover eigenvalues contain complex eigenvalue pairs or nontrivial Jordan blocks--- however, it is not meant to be exhaustive. The details of some special cases, such as nontrivial Jordan blocks with complex eigenvalues and other combinations of the cases outlined below can be analyzed using similar techniques. 
-We focus exclusively on the limiting behavior. Various versions of the dynamic expansions could be developed to further elucidate the precise relationship between the transients (due to the evolution of  \( Z_1[k] \) and  \( Z_ s[k]$) with the limiting behaviors (due to the evolution of  \( Z_ c[k]$).  The authors, however, found these expansions to be overly complicated without yielding much insight (though further attempts could be made).  Also, if  \( \max |{\text{spec}}_ s(\mathbf{M})| \) is significantly smaller than  \( \rho_ c \) , the transient portion will die out quickly. 
+We focus exclusively on the limiting behavior. Various versions of the dynamic expansions could be developed to further elucidate the precise relationship between the transients (due to the evolution of  \( Z_1[k] \) and  \( Z_ s[k]$) with the limiting behaviors (due to the evolution of  \( Z_ c[k]\).  The authors, however, found these expansions to be overly complicated without yielding much insight (though further attempts could be made).  Also, if  \( \max |{\text{spec}}_ s(\mathbf{M})| \) is significantly smaller than  \( \rho_ c \) , the transient portion will die out quickly. 
 
 </p>
 
@@ -414,7 +433,9 @@ Basic geometry examples
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/base.png" width=45%></img> </div>
+<div class='imgFixed' >
+  <img src="/figs/projects/ccve/base.png" width=60%></img>
+</div>
 
 
 
@@ -424,13 +445,23 @@ Basic geometry examples
         <div class="txt" style="padding:40px">
 <b> Unique-stable equilibrium </b>
 
+<p>
 The simplest case is when the eigenvalues clearly into two sets of the appropriate size with distinct magnitude eigenvalues, ie.  \( c=0 \) .  In this case  \( \Pi[k] \to 0 \) and the asymptotic limit is the unique-stable equilibrum  \( L_0 = XY^{-1} \) and  \( L[k] = L_0 + \Pi[k] \) .
+</p>
 
 
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/unique.png" width=45%></img> </div>
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/unique.png" width=65%></img>
+<img src="/figs/projects/ccve/ccve_unique012.gif" width=40%></img> 
+</div>
+
+<!-- <div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_unique012.gif" width=80%></img> 
+</div>
+ -->
 
 
 
@@ -456,7 +487,15 @@ $$ \begin{aligned}
 remains constant as well. There is thus a  \( c_1^2 \)-dimensional subspace of marginally-stable equilibria parametrized by  \( Z_ c[0] \in \mathbb{R}^{c_1 \times c_1} \) . 
 
 </p>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum.png" width=45%></img> </div>
+</div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/continuum.png" width=80%></img> </div>
+
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_continuum012.gif" width=80%></img> 
+</div>
+
+
+
 
 
 <div class="txt" style="padding:40px">
@@ -488,9 +527,12 @@ Z_ c[0] \Big)^{-1}\xi^\top
 </p>
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/reflect.png" width=80%></img> </div>
 
 
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_reflect012.gif" width=80%></img> 
+</div>
 
 
 
@@ -507,26 +549,34 @@ We now consider the highly important case where the crossover set of eigenvalues
 We detail the asymptotic behavior for multiple conjugate pairs in the crossover set; however, the reader should note that the case of a single crossover pair is the most common and important case. 
 
 To understand the equilibrium behavior in this case, we will no longer take  \( \Gamma_ c \) to be diagonal but rather block diagonal with  \( 2\times 2 \) scaled rotations.  Explicitly, for crossover eigenvalues 
-$$ \begin{aligned}
+
+$$
+\begin{aligned}
 {\text{spec}}_ c(\mathbf{M}) = \{\rho_ c e^{\pm i \phi_1},\rho_ c e^{\pm i \phi_2}, \dots \}
-\end{aligned} $$
+\end{aligned}
+$$
 take 
-$\Gamma_ c = \rho_ c R  \( 
-where  \( R =\textbf{blkdg}\big(\big[R_{\phi_1} \ R_{\phi_2} \ \dots \big]\big)
-$
+\(\Gamma_ c = \rho_ c R \)
+where  \( R =\textbf{blkdg}\big(\big[R_{\phi_1} \ R_{\phi_2} \ \dots \big]\big)\)
 for rotations  \( R_{\phi_j} \in \mathbb{R}^{2 \times 2} \) of angle  \( \phi_j \) . Note that  \( \Gamma_1^k = \rho_ c^k R^k \) where  \( R^k \) can be written as 
-$$ \begin{aligned}
+
+$$
+\begin{aligned}
 R^k = \textbf{blkdg}\big(\big[R_{\phi_1}^k \ R_{\phi_2}^k \ \dots \big]\big)
 = 
 \textbf{blkdg}\big(\big[R_{k\phi_1} \ R_{k\phi_2} \ \dots \big]\big)
-\end{aligned} $$
-Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are no longer (complex) eigenvectors but rather appropriate real bases for the planes of rotation.  This can be achieved by taking pairs of columns that contain the real and imaginary parts of eigenvectors as is typical in real, block diagonal expansions of complex eigenstructures.  In this case  \( \Pi[k] \) oscillates based on phases  \( \phi_1,\phi_2, \dots  \(  For any initial condition  \( Z_ c[0] \) we have that
-$$ \begin{aligned}
+\end{aligned} 
+$$
+
+Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are no longer (complex) eigenvectors but rather appropriate real bases for the planes of rotation.  This can be achieved by taking pairs of columns that contain the real and imaginary parts of eigenvectors as is typical in real, block diagonal expansions of complex eigenstructures.  In this case  \( \Pi[k] \) oscillates based on phases  \( \phi_1,\phi_2, \dots  \)  For any initial condition  \( Z_ c[0] \) we have that
+
+$$
+\begin{aligned}
 \Pi[k] = 
 \Big[U_ c - XY^\dagger  V_ c \Big] 
-R^kZ_ c[0] \Big(\xi^\top V_ c R^kZ_ c[0]\Big)^{-1}\xi^\top 
-\label{eq:PiR}
-\end{aligned} $$
+R^kZ_ c[0] \Big(\xi^\top V_ c R^kZ_ c[0]\Big)^{-1}\xi^\top
+\end{aligned}
+$$
 
 </p>
 
@@ -540,14 +590,13 @@ Several things are worth considering. First, note the rotational motion of the t
 
 
 
+
 <p>
 It is worth noting also that the magnitude of 
-$R^kZ_ c \big(\xi^\top V_ c R^kZ_ c\big)^{-1}
- \) is determined solely by the term 
-$\big(\xi^\top V_ c\pi [k]\big)^{-1} \) where 
-$\pi[k] \) here is any orthonormal basis for the span of  \( R^k Z[k] \) (for example
-$
-\pi = R^kZ_ c \big((R^kZ_ c)^\top R^kZ_ c\big)^{-1/2}$).  
+\(R^kZ_ c \big(\xi^\top V_ c R^kZ_ c\big)^{-1}\) is determined solely by the term 
+\(\big(\xi^\top V_ c\pi [k]\big)^{-1} \) where 
+\(\pi[k] \) here is any orthonormal basis for the span of  \( R^k Z[k] \) (for example
+\( \pi = R^kZ_ c \big((R^kZ_ c)^\top R^kZ_ c\big)^{-1/2} \) ).  
 The magnitude of 
 $\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much the rows of  \( \xi^\top V_ c \) and the columns of  \( \pi[k] \) or  \( R^k Z_ c[k] \) line up with each other.  The magnitude can increase dramatically if the any of the columns of  \( R^k Z_ c \) gets close to being orthogonal to the rows of  \( \xi^\top V_ c \) , ie. if  \( \xi^\top V_ c \pi[k] \) becomes close to singular.  In addition there is always several subspaces of initial  \( Z_ c \)'s that will blow up after  \( k \) time steps.  Specifically, take  \( Z_ c = (R^k)^\top Z_ c' \) for any  \( Z_ c' \) such that  \( \xi^\top V_ c Z_ c' \) is not invertible.  After  \( k \) time steps,  \( Z_ c[k] = R^k Z_ c = Z_ c' \) and  \( (\xi^\top V_ c Z_ c[k])^{-1} \)  blows up.
 
@@ -555,7 +604,9 @@ $\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much 
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex2D.png" width=45%></img> </div>
+
+
+
 
 
 
@@ -569,9 +620,34 @@ $\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much 
 
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_details1.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_details1.png" width=80%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_limits.png" width=80%></img> </div>
+
+
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex012.gif" width=80%></img> 
+</div>
+<!-- <div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex1.gif" width=80%></img> 
+</div>
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex2.gif" width=80%></img> 
+</div>
+ -->
+
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_tan.png" width=80%></img> </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="txt" style="padding:40px">
@@ -580,15 +656,17 @@ $\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much 
   <b> Relationship with Complex Equilibria.</b>
 
 
-
+<p>
 
 It is worth also showing how the expansion above relates to complex equilibria computed by selecting complex eigenvectors and applying Theorem \ref{thm:equilib}.  Complex equilibria of this type will come in conjugate pairs of the form
+
 $$ \begin{aligned}
 L,L^* = \Big[X \ \big[U_\text{R} \ U_\text{I} \big] \left[\substack{ I \\ \pm iI}\right]\Big]\big[Y \ 
 \big[V_\text{R} \ V_\text{I} \big] \left[\substack{ I \\ \pm iI}\right]
 \big]^{-1} 
 \end{aligned} $$
 where here  \( [V_{\text{R}}; U_{\text{R}}] \) and  \( [V_{\text{I}}; U_{\text{I}}] \) are the real and imaginary parts of the crossover eigenvectors.  Here, each complex eigenvector defined by the columns  \( U_{\text{R}},U_{\text{I}},V_{\text{R}},V_{\text{I}} \) should \emph{not} include any conjugate pairs since any complete conjugate pairs can be represented via purely real basis vectors (for the plane of rotation) and included in  \( X \) and  \( Y \) .  Using an expansion similar to the one above we can write
+
 $$ \begin{aligned}
 L,L^* & = XY^\dagger  + 
 \Big[\big[U_\text{R} \ U_\text{I} \big] -XY^\dagger  
@@ -611,13 +689,16 @@ L,L^* & = XY^\dagger  +
 \mathcal{A} \pm i \mathcal{B} 
 \Big)^{-1}\xi^\top
 \end{aligned} $$
-with  \( \mathcal{A} = \xi^\top V_\text{R} \) ,  \( \mathcal{B} = \xi^\top V_\text{I} \) and  \( W_\text{R},W_\text{I} \in \mathbb{R}^{d_\text{I} \times c_\text{R}}$
+with  \( \mathcal{A} = \xi^\top V_\text{R} \) ,  \( \mathcal{B} = \xi^\top V_\text{I} \) and  \( W_\text{R},W_\text{I} \in \mathbb{R}^{d_\text{I} \times c_\text{R}} \)
+
 $$ \begin{aligned}
 W_\text{R} = U_\text{R} -XY^\dagger  V_\text{R}, \qquad W_\text{I}= U_\text{I} -XY^\dagger   V_\text{I} 
 \end{aligned} $$
 Note here that  \( \mathcal{A},\mathcal{B} \in \mathbb{R}^{c_\text{R} \times c_\text{R}} \) .  
+
+
 Using the following expansion due to Frobenius and Shur 
-\cite{bodewig2014matrix}
+
 $$ \begin{aligned}
 \big(\mathcal{A} \pm \mathcal{B}i\big)^{-1}
 =
@@ -649,8 +730,9 @@ i \big(W_\text{I} - W_\text{R} \mathcal{A}^{-1}\mathcal{B}\big)
 \Big[
 \textbf{Re} \ \xi^\top  \pm i \ \textbf{Im} \ \xi^\top
 \Big]   
-\end{aligned} $$
-where  \( \textbf{Re},\textbf{Im} \in \mathbb{R}^{d_\text{I} \times c_\text{R}}$
+\end{aligned} 
+$$
+where  \( \textbf{Re},\textbf{Im} \in \mathbb{R}^{d_\text{I} \times c_\text{R}}\)
 $$ \begin{aligned}
 \textbf{Re} 
 & = \big(W_\text{R} + W_\text{I} \mathcal{A}^{-1}\mathcal{B}\big) 
@@ -707,6 +789,7 @@ I & - \mathcal{A}^{-1}\mathcal{B} \\
 -\mathcal{B} & \mathcal{A}
 \end{bmatrix}^{-1} 
 \end{aligned} $$
+
 We can write the general expansion in 
 \eqref{eq:PiR} with  \( Z_ c = [Z_{ c 1}; Z_{ c 2}; Z_{ c 3}] \) (with the time dependence suppressed) as
 $$ \begin{aligned}
@@ -751,8 +834,11 @@ Z_{ c 3}
 \mathcal{B} Z_{ c 2}+ 
 \mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top 
 \end{aligned} $$
+
 where  \( W_3 = U_3 - X Y^\dagger  V_3 \) and  \( \mathcal{C} = \xi^\top V_3 \) where all the matrices here are real.  
-Note also that if  \( W_3 = 0 \) ($V_3 = 0 \) ,  \( U_3 = 0$), ie. a complex eigenvector from every conjugate pair in the cross over set is included in the equilibrium, we get the simpler form
+Note also that if  \( W_3 = 0 \) (\(V_3 = 0 \) ,  \( U_3 = 0 \) ), ie. a complex eigenvector from every conjugate pair in the cross over set is included in the equilibrium, we get the simpler form
+
+
 $$ \begin{aligned}
 \Pi 
 & = 
@@ -776,27 +862,33 @@ Z_{ c 1}  \\  Z_{ c 2}
 \mathcal{B} Z_{ c 2}  \big)^{-1} \xi^\top 
 \label{eq:singleReIm}
 \end{aligned} $$
-\subsection*{Single Crossover Conjugate Pair}
+</p>
+
+<b> Single Crossover Conjugate Pair </b>
+
+<p>
 Note that formula \eqref{eq:singleReIm} is particularly applicable in the important common case, where there is only one conjugate pair of crossover eigenvectors/values and  \( \mathcal{A},\mathcal{B}, Z_{ c 1},Z_{ c 2} \) are all scalars,  \( \mathbf{Re},\mathbf{Im} \) are column vectors, and  \( \xi^\top \) is a row vector.  
 In this case, for cross eigenvalues  \( \lambda,\lambda^* = \rho_ c e^{\pm i \phi} \) ,  \( R \) is simply given by  \( R = R_\phi \in \mathbb{R}^{2 \times 2} \) and  \( R^k = R_{k\phi} \) for the phase angle  \( \phi \) . The matrix  \( 
 \big[ \mathcal{A} \ \mathcal{B} ; 
 -\mathcal{B} \ \mathcal{A} \big]
  \) is also a scaled rotation and can be written as
+
 $$ \begin{aligned}
-\bmat{
+\begin{bmatrix}
 \mathcal{A} &  \mathcal{B} \\
 -\mathcal{B} & \mathcal{A}
-}
+\end{bmatrix}
 = 
 \sqrt{\mathcal{A}^2 + \mathcal{B}^2}
-\bmat{
+\begin{bmatrix}
 \cos \psi & -\sin \psi \\
 \sin \psi & \cos \psi
-}  
+\end{bmatrix}
 = 
 \vert \vert [\mathcal{A} \ \mathcal{B} ] \vert \vert_\text{I}
 R_\psi 
 \end{aligned} $$
+
 where  \( \psi = -\arctan (\mathcal{B}/\mathcal{A}) \) and then we can also write  \( Z_ c[0] \) as  \( Z_ c[0] = \vert \vert Z_ c[0] \vert \vert_\text{I} \big[ \cos \theta ; \sin \theta \big]
  \) where  \( \theta = \arctan \big(Z_{ c 2}[0]/Z_{ c 1}[0]\big) \) .  Using the fact that  \( Z_ c[k] = \rho_ c^k R^k Z_ c[0] \) we can then write 
 $$ \begin{aligned}
@@ -812,7 +904,6 @@ Equation~\eqref{eq:singleReIm}
 then becomes 
 $$ \begin{aligned}
 \Pi[k] = \textbf{Re} \ \xi^\top + \textbf{Im}\tan \big(k \phi +\psi+\theta\big) \xi^\top
-\label{eq:singletan}   
 \end{aligned} $$
 Note the dependence on the growing phase angle  \( k\phi \) 
 from the eigenvalue pair and also the constant offset phases  \( \psi \) (based on the fixed geometry of the problem parameters) and  \( \theta \) (based on the initial conditions).   Note also that the contribution of the real part of the complex equilibria is fixed and the contribution of the imaginary part oscillates with  \( \tan(k\phi + \psi  + \theta) \) . 
@@ -835,6 +926,28 @@ The single crossover conjugate pair case is the most common when there are compl
 
 
 </div>
+
+
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex2D.png" width=80%></img> </div>
+
+<div class='imgFixed' > <img src="/figs/projects/ccve/real_imag.png" width=80%></img> </div>
+
+
+
+<div class="txt" style="padding:40px">
+<p> And finally showing the asymptotic limit behavior. </p>
+</div>
+
+
+
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex2D012.gif" width=80%></img> 
+</div>
+
+
+
+
+
 
 <!--
 
@@ -1001,14 +1114,8 @@ $$ \begin{aligned}
 
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex2D.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_details.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/real_imag.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/jordan.png" width=45%></img> </div>
+
+<div class='imgFixed' > <img src="/figs/projects/ccve/jordan.png" width=80%></img> </div>
 
 
 
