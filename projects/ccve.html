@@ -129,7 +129,7 @@
 
     <div class="wrapper">
       <div class="sidebar">
-      <div w3-include-html="/nav/sidebarBLOG.html"></div>
+      <div w3-include-html="/nav/sidebarPROJECTS.html"></div>
 
 
 
@@ -139,7 +139,7 @@
 
 
         <h1><div id="header">
-          Consistent Conjectural Variations Equilibria (CCVE): Dynamics
+          Consistent Conjectural Variations <br> Equilibria (CCVE): Dynamics
         </div></h1>
 
 
@@ -361,7 +361,7 @@ This is illustrated here.
 </div>
 
 
-        <div class="txt" style="padding:40px">
+<div class="txt" style="padding:40px">
 
 
 Note that if  \( X \) were to rotate around in a circle, the projection would oscillate along the line  \( AY=1 \) .  Note also how  \( \tan \theta \) and the projection blows up as  \( \theta \rightarrow \pm \pi/2 \) .  
@@ -374,10 +374,15 @@ While the above geometry is informative, it is somewhat limited by the low dimen
 <div class='imgFixed' >
 <img src="/figs/projects/ccve/projection3x1.gif" width=85%  ></img>
  </div>
-        <div class="txt" style="padding:40px">
+        
 
 
+
+  <div class="txt" style="padding:40px">
+
+<p>
 In each of the above cases  \( X,Y \) are simple column vectors.  
+</p>
 
 
 
@@ -391,7 +396,6 @@ We now give an example of  \( X, Y \in \mathbb{R}^{3 \times 2} \) .  Suppose  \(
 <!-- <div class='imgFixed' > <img src="/figs/projects/ccve/AinR2x3projective.png" width=80%></img> </div> -->
 
 
-</div>
 
 
 
@@ -432,21 +436,237 @@ The structure of  \( \Gamma_ c \) will vary between each example and will be det
 </p>
 
 <p>
-The eigenvectors are given by 
+The eigenstructure is determined by the matrix 
+
+$$
+\begin{aligned}
+W = 
+\begin{bmatrix}
+Y & V_c & V_s \\
+X & U_c & U_s
+\end{bmatrix}
+\end{aligned}
+$$
+with 
+$$ 
+\begin{aligned}
+& 
+Y = 
+\begin{bmatrix}
+ 7.52  &  4.85  &  3.04  &  3.29  \\ 
+ -4.04  &  -2.0  &  -1.88  &  -2.04  \\ 
+ -5.22  &  -3.88  &  -1.44  &  -2.64  \\ 
+ 5.62  &  4.17  &  2.62  &  3.84  \\ 
+ -7.08  &  -5.26  &  -3.31  &  -3.58 
+\end{bmatrix}, \quad 
+&
+V_c = 
+\begin{bmatrix}
+ 0.54  &  0.33  &  -0.19  \\ 
+ 0.58  &  -0.06  &  0.1  \\ 
+ 0.06  &  -0.1  &  0.69  \\ 
+ -0.32  &  0.29  &  0.62  \\ 
+ -0.13  &  0.64  &  -0.25 
+\end{bmatrix}, \quad 
+&
+V_s = 
+\begin{bmatrix}
+ 0.39  \\ 
+ -0.17  \\ 
+ 0.32  \\ 
+ -0.46  \\ 
+ -0.39 
+\end{bmatrix} \\
+&
+X = 
+\begin{bmatrix}
+ 0.9  &  1.0  &  0.3  &  -0.3  \\ 
+ 0.7  &  0.0  &  0.0  &  0.7  \\ 
+ 0.0  &  0.3  &  0.9  &  0.8 
+\end{bmatrix}, \quad 
+&
+U_c = 
+\begin{bmatrix}
+ 1.5  &  0.0  &  0.0  \\ 
+ 0.0  &  1.5  &  0.0  \\ 
+ 0.0  &  0.0  &  1.5 
+\end{bmatrix}, \quad 
+&
+U_s = 
+\begin{bmatrix}
+ 0.1  \\ 
+ 0.03  \\ 
+ -0.08 
+\end{bmatrix}
+\end{aligned}
+$$
+These values are specifically chosen to make the examples as clean and informative as possible.  Specifically, we chose \(X\), \(U_c\) as above, \(Y^\dagger \) below, and \(V_c = (XY^\dagger)^\dagger \) to get the following simple form for \(U_c - XY^\dagger V_c \).  
+$$
+\begin{aligned}
+Y^\dagger = 
+\begin{bmatrix}
+ 1.0  &  0.0  &  0.0  &  0.0  &  0.92  \\ 
+ 0.0  &  1.0  &  0.0  &  0.0  &  -0.57  \\ 
+ 0.0  &  0.0  &  1.0  &  0.0  &  -0.74  \\ 
+ 0.0  &  0.0  &  0.0  &  1.0  &  0.79 
+\end{bmatrix}, \quad 
+U_c - XY^\dagger V_c = 
+\begin{bmatrix}
+ 0.3  &  0.0  &  0.0  \\ 
+ 0.0  &  0.3  &  0.0  \\ 
+ 0.0  &  0.0  &  0.3 
+\end{bmatrix}
+\end{aligned}
+$$
+We then choose \(\xi\) to get the following form for \(\xi^\top V_c\) which is the critical normal direction to the projective plane.  
+
+$$
+\begin{aligned}
+\xi^\top = 
+\begin{bmatrix} 2.1  &  1.56  &  0.98  &  1.06  &  1.46 \end{bmatrix}, \quad 
+\xi^\top V_c = 
+\begin{bmatrix}
+ 1.56  &  1.75  &  0.73 
+\end{bmatrix}
+\end{aligned}
+$$
+From here the above form of \(Y\) is uniquely determined based on the fact that \(Y^\dagger Y = I\) and \(\xi^\top Y = 0\). \(U_s\) and \(V_s\) govern the transient behavior and were thus chosen randomly.     
+
+</p>
+
+<p>
+The above examples are contrived to help visualize the dynamics. They could, however, have come from real game scenarios.  
+These matrices define the eigenstructure of the product matrix \(\mathbf{M}_1 = M_2^{-\top} M_1\) and we can back out what \(M_1\) and \(M_2\) could have been to generate this structure.  When considering \(M_1\) and \(M_2\), we will also want to check if the appropriate blocks on the diagonal are positive definite indicating that they are valid game cost matrices.  This whole setup seems somewhat contrived however it is useful in determining that the dynamic behaviors shown could arise in real game scenarios.  Further analysis should be done to determine which cases of the dynamics are most common in different game settings.   
+</p>
+
+<!-- <p> 
+
+
+$$
+\begin{aligned}
+\textbf{M}_1 = M_2^{-\top} M_1 = W Q  \ W^{-1}
+\end{aligned}
+$$
+with \( Q = \textbf{blkdg}\Big([\Lambda,\Gamma_c, \Gamma_s]\Big)\).  We can then take \(M_1,M_2\) as 
+
+$$
+\begin{aligned}
+M_2^{-\top} = WP^\top W^\top, \quad M_1 = W^{-\top}  PQ \ W^{-1}
+\end{aligned}
+$$
+where \(P\) is any symmetric permutation matrix that ensures that \(PQ\) is symmetric.  When \(\Gamma_c\), and thus \(Q\), is fully diagonal, we can simply take \(P\) to be the identity and \(M_1\) and \(M_2\) are fully positive definite (since we chose \(\Lambda,\Gamma_c, \Gamma_s\) to have positive spectra).  
+
+
+
+ -->
+
+
+
+<p>
+\(M_1\) and \(M_2\) can be constructed in the following way.  
+
+From the above data, we have that \(\mathbf{M}_1\) is given by 
+$$
+\begin{aligned}
+\mathbf{M}_1 = M_2^{-\top} M_1 
+= 
+W \ 
+\textbf{blkdg}\Big(\big[\Lambda \ \Gamma_c \ \Gamma_s \Big] \Big) \ 
+W^{-1}
+\qquad \text{with} \quad 
+W = 
+\begin{bmatrix}
+Y & V_c & V_s \\
+X & U_c & U_s
+\end{bmatrix}
+\end{aligned}
+$$
+we can define individual (symmetric) cost matrices as 
+$$
+\begin{aligned}
+M_2^{-T} = 
+W \ \textbf{blkdg}
+\Big(\big[
+I_{4 \times 4}
+\ 
+P^\top
+I_{3 \times 3}
+\ I_{1 \times 1}
+\big]\Big)
+W^\top, 
+\quad 
+M_1
+=
+W^{-\top} \ \textbf{blkdg}
+\Big(\big[
+\Lambda 
+\ 
+P \Gamma_c \ 
+\Gamma_s
+\big]\Big)
+W^{-1} 
+\end{aligned}
+$$
+where \(P\) is some permutation potentially with negative signs in it.  Note that each \(M_2\) and \(M_1\) are both symmetric and \(\mathbf{M}_1 = M_2^{-\top}M_1\) has desired structure above. (Note a similar construction from this paper by Bosch \cite{bosch1986factorization} can be used in general to write any matrix as a product of two symmetric matrices.)
+For these examples to describe an actual game we will need to check that both \(A_1\) and \(A_2\) are positive definite as well (which we do for each of the following examples).  
+
+The permutation matrix \(P\) will be necessary to guarantee that \(M_2,M_1\) are symmetric regardless of the structure of \(\Gamma_c\) (as well as guarantee the positive-definiteness of \(A_1,A_2\)). If \(\Gamma_c\), has only real positive eigenvalues then we can simply choose $P=I$ and both \(M_2\) and \(M_1\) will be symmetric (and positive definite). If, however, \(\Gamma_c\) is a scaled-rotation (complex eigenvalues) or has a nontrivial Jordan structure other permutations must be used such that \(P\) and \(P\Gamma_c\) are both symmetric. For example, for \(\Gamma_c\) a scaled rotation such as the following, we can choose 
+
+$$
+\begin{aligned}
+\Gamma_c= 
+\rho_c
+\begin{bmatrix}
+\cos \phi & -\sin \phi & 0 \\
+\sin \phi & \cos \phi  & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\quad \Rightarrow \quad 
+P = 
+\begin{bmatrix} 
+0 & 1 & 0 \\ 
+1 & 0 & 0 \\
+0 & 0 & 1 
+\end{bmatrix}
+\end{aligned}
+$$
+
+For \(\Gamma_c\) with a nontrivial Jordan structure such as the following, we can choose
+$$
+\begin{aligned}
+\Gamma_c
+= 
+\begin{bmatrix}
+\rho_c & 1 & 0 \\
+0 & \rho_c & 1 \\
+0 & 0 & \rho_c
+\end{bmatrix},
+\quad \Rightarrow \quad 
+\begin{bmatrix} 
+0 & 0 & 1 \\ 
+0 & 1 & 0 \\
+1 & 0 & 0 
+\end{bmatrix}
+\end{aligned}
+$$
+
+
+In both cases one can check that both \(P\) and \(P \Gamma_c\) are symmetric.   
 
 
 </p>
 
-
-
-
-
-
-Basic geometry examples 
-
-
-</p>
 </div>
+
+
+
+<div class="txt" style="padding:40px">
+<b> Basic Geometry Visualizations </b>
+
+</div>
+
+
+
 
 
 <div class='imgFixed' >
