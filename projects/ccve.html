@@ -147,9 +147,9 @@
 
         <div class="txt" style="padding:40px">
 
-
+          <p>
           This page is meant as supplement paper to the monographs (INSERT LINK).  
-
+        </p>
 
 
             </div>
@@ -270,7 +270,7 @@ $$ \begin{aligned}
 & = \big\{Y \ \big| \ AY = I\big\}
  = \big\{Y \ \big| \ Y = A^\dagger + N U, \ U \in \mathbb{R}^{m \times m} \big\}
 \end{aligned} $$
-for any invertible  \( U \in \mathbb{R}^{m \times m}$
+for any invertible  \( U \in \mathbb{R}^{m \times m}\)
 where  \( A^\dagger = A^\top(AA^\top)^{-1} \) is the left pseudo-inverse and  \( N \) is any basis for the nullspace.
 
 
@@ -406,7 +406,7 @@ We now give an example of  \( X, Y \in \mathbb{R}^{3 \times 2} \) .  Suppose  \(
 
 <p>
 This list of special cases is meant to be thorough and touch on most of the interesting cases--- specifically when the crossover eigenvalues contain complex eigenvalue pairs or nontrivial Jordan blocks--- however, it is not meant to be exhaustive. The details of some special cases, such as nontrivial Jordan blocks with complex eigenvalues and other combinations of the cases outlined below can be analyzed using similar techniques. 
-We focus exclusively on the limiting behavior. Various versions of the dynamic expansions could be developed to further elucidate the precise relationship between the transients (due to the evolution of  \( Z_1[k] \) and  \( Z_ s[k]$) with the limiting behaviors (due to the evolution of  \( Z_ c[k]\).  The authors, however, found these expansions to be overly complicated without yielding much insight (though further attempts could be made).  Also, if  \( \max |{\text{spec}}_ s(\mathbf{M})| \) is significantly smaller than  \( \rho_ c \) , the transient portion will die out quickly. 
+We focus exclusively on the limiting behavior. Various versions of the dynamic expansions could be developed to further elucidate the precise relationship between the transients (due to the evolution of  \( Z_1[k] \) and  \( Z_ s[k] \) with the limiting behaviors (due to the evolution of  \( Z_ c[k]\).  The authors, however, found these expansions to be overly complicated without yielding much insight (though further attempts could be made).  Also, if  \( \max |{\text{spec}}_ s(\mathbf{M})| \) is significantly smaller than  \( \rho_ c \) , the transient portion will die out quickly. 
 
 </p>
 
@@ -424,9 +424,22 @@ The qualitative geometry is primarily determined by the eigenvalues of  \( \math
 For each example, we will choose 
 $$ \begin{aligned}
 \Lambda = \textbf{dg}\Big(\big[ \ 1.1 \ \ 1.1 \ \ 1.1  \ \ 1.1 \ \big]\Big), \qquad 
+\Gamma_c = \text{vary by example}, \qquad 
 \Gamma_ s = \textbf{dg}\Big(\big[ \ 0.7 \ \big]\Big)  
 \end{aligned} $$
-The structure of  \( \Gamma_ c \) will vary between each example and will be detailed in each section (though in all cases we will take the magnitude of the eigenvalues of  \( \Gamma_ c \) to be  \( \rho_ c = 1$). The other parameters for each example (including the eigenvectors of  \( \mathbf{M}_1$) as well as a discussion of the specific symmetric cost matrices  \( M_1,M_2 \) that would generate  \( \mathbf{M}_1 = M_2^{-\top}M_1 \) are included in Appendix \ref{app:exampleparams} for each example. 
+The structure of  \( \Gamma_ c \) will vary between each example and will be detailed in each section (though in all cases we will take the magnitude of the eigenvalues of  \( \Gamma_ c \) to be  \( \rho_ c = 1 \). The other parameters for each example (including the eigenvectors of  \( \mathbf{M}_1 \) as well as a discussion of the specific symmetric cost matrices  \( M_1,M_2 \) that would generate  \( \mathbf{M}_1 = M_2^{-\top}M_1 \) are included in Appendix \ref{app:exampleparams} for each example. 
+
+</p>
+
+<p>
+The eigenvectors are given by 
+
+
+</p>
+
+
+
+
 
 
 Basic geometry examples 
@@ -491,10 +504,14 @@ remains constant as well. There is thus a  \( c_1^2 \)-dimensional subspace of m
 
 </p>
 </div>
-<div class='imgFixed' > <img src="/figs/projects/ccve/continuum.png" width=80%></img> </div>
+<div class='imgFixed' >
+  <img src="/figs/projects/ccve/continuum.png" width=70%></img>
+    <!-- <img src="/figs/projects/ccve/continuum_inits.png" width=30%></img> -->
+</div>
 
 <div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_continuum012.gif" width=80%></img> 
+  <img src="/figs/projects/ccve/continuum_inits.png" width=40%></img>
+<img src="/figs/projects/ccve/ccve_continuum012_inits.gif" width=40%></img> 
 </div>
 
 
@@ -530,11 +547,14 @@ Z_ c[0] \Big)^{-1}\xi^\top
 </p>
 </div>
 
-<div class='imgFixed' > <img src="/figs/projects/ccve/reflect.png" width=80%></img> </div>
+<div class='imgFixed' >
+  <img src="/figs/projects/ccve/reflect.png" width=80%></img>
+</div>
 
 
 <div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_reflect012.gif" width=80%></img> 
+    <img src="/figs/projects/ccve/reflect_inits.png" width=40%></img>
+<img src="/figs/projects/ccve/ccve_reflect012_inits.gif" width=40%></img> 
 </div>
 
 
@@ -640,7 +660,7 @@ It is worth noting also that the magnitude of
 \(\pi[k] \) here is any orthonormal basis for the span of  \( R^k Z[k] \) (for example
 \( \pi = R^kZ_ c \big((R^kZ_ c)^\top R^kZ_ c\big)^{-1/2} \) ).  
 The magnitude of 
-$\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much the rows of  \( \xi^\top V_ c \) and the columns of  \( \pi[k] \) or  \( R^k Z_ c[k] \) line up with each other.  The magnitude can increase dramatically if the any of the columns of  \( R^k Z_ c \) gets close to being orthogonal to the rows of  \( \xi^\top V_ c \) , ie. if  \( \xi^\top V_ c \pi[k] \) becomes close to singular.  In addition there is always several subspaces of initial  \( Z_ c \)'s that will blow up after  \( k \) time steps.  Specifically, take  \( Z_ c = (R^k)^\top Z_ c' \) for any  \( Z_ c' \) such that  \( \xi^\top V_ c Z_ c' \) is not invertible.  After  \( k \) time steps,  \( Z_ c[k] = R^k Z_ c = Z_ c' \) and  \( (\xi^\top V_ c Z_ c[k])^{-1} \)  blows up.
+\(\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much the rows of  \( \xi^\top V_ c \) and the columns of  \( \pi[k] \) or  \( R^k Z_ c[k] \) line up with each other.  The magnitude can increase dramatically if the any of the columns of  \( R^k Z_ c \) gets close to being orthogonal to the rows of  \( \xi^\top V_ c \) , ie. if  \( \xi^\top V_ c \pi[k] \) becomes close to singular.  In addition there is always several subspaces of initial  \( Z_ c \)'s that will blow up after  \( k \) time steps.  Specifically, take  \( Z_ c = (R^k)^\top Z_ c' \) for any  \( Z_ c' \) such that  \( \xi^\top V_ c Z_ c' \) is not invertible.  After  \( k \) time steps,  \( Z_ c[k] = R^k Z_ c = Z_ c' \) and  \( (\xi^\top V_ c Z_ c[k])^{-1} \)  blows up.
 
 </p>
 </div>
@@ -848,10 +868,11 @@ Z_{ c 3}
 \end{aligned} $$
 
 where  \( W_3 = U_3 - X Y^\dagger  V_3 \) and  \( \mathcal{C} = \xi^\top V_3 \) where all the matrices here are real.  
-Note also that if  \( W_3 = 0 \) (\(V_3 = 0 \) ,  \( U_3 = 0 \) ), ie. a complex eigenvector from every conjugate pair in the cross over set is included in the equilibrium, we get the simpler form
+Note also that if  \( W_3 = 0 \) ( and also \(V_3 = 0 \) ,  \( U_3 = 0 \) ), ie. a complex eigenvector from every conjugate pair in the cross over set is included in the equilibrium, we get the simpler form
 
 
-$$ \begin{aligned}
+$$
+\begin{aligned}
 \Pi 
 & = 
 \Big[\textbf{Re} \ \ \textbf{Im}  \Big] 
@@ -863,7 +884,7 @@ $$ \begin{aligned}
 Z_{ c 1}  \\  Z_{ c 2}
 \end{bmatrix} 
 \Big( \mathcal{A} Z_{ c 1}  + 
-\mathcal{B} Z_{ c 2}  \Big)^{-1} \xi^\top  \notag \\
+\mathcal{B} Z_{ c 2}  \Big)^{-1} \xi^\top  \\
 & = 
 \textbf{Re} \ \xi^\top + 
 \textbf{Im} \cdot 
@@ -872,14 +893,14 @@ Z_{ c 1}  \\  Z_{ c 2}
 \big) 
 \big( \mathcal{A} Z_{ c 1} + 
 \mathcal{B} Z_{ c 2}  \big)^{-1} \xi^\top 
-\label{eq:singleReIm}
-\end{aligned} $$
+\end{aligned}
+$$
 </p>
 
 <b> Single Crossover Conjugate Pair </b>
 
 <p>
-Note that formula \eqref{eq:singleReIm} is particularly applicable in the important common case, where there is only one conjugate pair of crossover eigenvectors/values and  \( \mathcal{A},\mathcal{B}, Z_{ c 1},Z_{ c 2} \) are all scalars,  \( \mathbf{Re},\mathbf{Im} \) are column vectors, and  \( \xi^\top \) is a row vector.  
+Note that this formula is particularly applicable in the important common case, where there is only one conjugate pair of crossover eigenvectors/values and  \( \mathcal{A},\mathcal{B}, Z_{ c 1},Z_{ c 2} \) are all scalars,  \( \mathbf{Re},\mathbf{Im} \) are column vectors, and  \( \xi^\top \) is a row vector.  
 In this case, for cross eigenvalues  \( \lambda,\lambda^* = \rho_ c e^{\pm i \phi} \) ,  \( R \) is simply given by  \( R = R_\phi \in \mathbb{R}^{2 \times 2} \) and  \( R^k = R_{k\phi} \) for the phase angle  \( \phi \) . The matrix  \( 
 \big[ \mathcal{A} \ \mathcal{B} ; 
 -\mathcal{B} \ \mathcal{A} \big]
@@ -1092,15 +1113,14 @@ $$ \begin{aligned}
 
 It follows that  \( Z_ c[k] = N^{c-1}Z_ c[0] \) approaches  \( \mathbf{I}_1 Z_{cc}[0] \) as  \( k \) gets large where  \( \mathbf{I}_1 \) is the first column of the  \( c \times c  \)  identity.  It follows then that
 
-$$ \begin{aligned}
+$$ 
+\begin{aligned}
 \begin{bmatrix} U_ c \\ V_ c \end{bmatrix}
  J^kZ_ c \big(\xi^\top V_ c J^k Z_ c \big)^{-1} 
-}
 \to 
 \begin{bmatrix} U_ c \\ V_ c
 \end{bmatrix}
  \mathbf{I}_1 Z_{cc}[0] \big(\xi^\top V_ c \mathbf{I}_1 Z_{cc}[0]\big)^{-1} 
-}
 \end{aligned} $$
 
 
@@ -1112,9 +1132,15 @@ $$ \begin{aligned}
 
 
 
-<div class='imgFixed' > <img src="/figs/projects/ccve/jordan.png" width=100%></img> </div>
+<div class='imgFixed' >
+  <img src="/figs/projects/ccve/jordan.png" width=100%></img>
+</div>
 
 
+<div class='imgFixed' >
+  <img src="/figs/projects/ccve/jordan_inits.png" width=40%></img>
+  <img src="/figs/projects/ccve/ccve_jordan012_inits.gif" width=40%></img>
+</div>
 
 
 
