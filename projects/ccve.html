@@ -111,10 +111,10 @@
 
   </style>
 
-  <!-- <link rel="stylesheet" href="/css/main.css" ></link> -->
+  <link rel="stylesheet" href="/css/main.css" ></link>
   <!-- <link rel="stylesheet" href="/main.css" ></link> -->
   <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/cssmain.css" width=20%></img>  -->
-  <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link>
+  <!-- <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link> -->
 
     </head>
 
@@ -371,6 +371,9 @@ While the above geometry is informative, it is somewhat limited by the low dimen
 
 <div class='imgFixed' > <img src="/figs/projects/ccve/AinR1x3projective.png" width=90%></img> </div>
 
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/projection3x1.gif" width=85%  ></img>
+ </div>
         <div class="txt" style="padding:40px">
 
 
@@ -581,6 +584,45 @@ $$
 </p>
 
 
+</div>
+
+
+
+
+
+
+<div class="txt" style="padding:40px">
+
+<b> Example of Periodic Asymptotic Behavior. </b>
+
+</div>
+
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_details1.png" width=100%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_limits.png" width=100%></img> </div>
+
+
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex012.gif" width=100%></img> 
+</div>
+<!-- <div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex1.gif" width=80%></img> 
+</div>
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex2.gif" width=80%></img> 
+</div>
+ -->
+
+
+
+
+
+
+<div class="txt" style="padding:40px">
+
+
+
+
+
 <p>
 Several things are worth considering. First, note the rotational motion of the term  \( Z_ c[k] = R^k Z_ c[0] \) that results in periodic oscillations of the columns of  \( \Pi[k] \) within the plane spanned by  \( U_ c - XY^\dagger  V_ c \) .  If  \( R \in \mathbb{R}^{2 \times 2} \) and  \( Z_ c \in \mathbb{R}^2 \) then the oscillations occur back and forth on a 1D affine space as illustrated in Fig.~\ref{fig:AinR1x2} in Appendix~\ref{app:proj}.  The magnitude of this oscillation follows a tangent curve, as illustrated in the initial motivating example (see Section \ref{sec:motivate}), and depending on the rotation of phase the oscillation pattern can appear deceptively simple, pseudo-random/chaotic, or clearly illustrate the tangent nature.  In the general higher dimensional case, the oscillations can be much more complicated. 
  Fig.~\ref{fig:AinR1x3} (Appendix ~\ref{app:proj}) gives a good visualization of possible oscillation curves even in the simple case where  \( R \in \mathbb{R}^{3\times 3} \) and  \( Z_ c \in \mathbb{R}^3 \) .  For general  \( R \in \mathbb{R}^{c\times c} \) and  \( Z_ c \in \mathbb{R}^{c \times c_1} \) the oscillations could be very rich.  
@@ -608,42 +650,12 @@ $\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much 
 
 
 
-
-
-
-
-
-
-<div class="txt" style="padding:40px">
-
-<b> Example of Periodic Asymptotic Behavior. </b>
-
-</div>
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex_details1.png" width=80%></img> </div>
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex_limits.png" width=80%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_tan.png" width=100%></img> </div>
 
 
 <div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex012.gif" width=80%></img> 
+<img src="/figs/projects/ccve/ccve_hyperbolic012.gif" width=100%></img> 
 </div>
-<!-- <div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex1.gif" width=80%></img> 
-</div>
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex2.gif" width=80%></img> 
-</div>
- -->
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex_tan.png" width=80%></img> </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -928,49 +940,25 @@ The single crossover conjugate pair case is the most common when there are compl
 </div>
 
 
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex2D.png" width=80%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex2D.png" width=100%></img> </div>
 
-<div class='imgFixed' > <img src="/figs/projects/ccve/real_imag.png" width=80%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/real_imag.png" width=100%></img> </div>
+
+<div class='imgFixed' >
+<img src="/figs/projects/ccve/ccve_complex2D012.gif" width=100%></img> 
+</div>
 
 
 
 <div class="txt" style="padding:40px">
-<p> And finally showing the asymptotic limit behavior. </p>
-</div>
-
-
-
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex2D012.gif" width=80%></img> 
-</div>
-
-
-
-
-
-
-<!--
-
-
-
-
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.9\textwidth]
-{figs/real_imag.png}
-\caption{Asymptotic behavior of  \( L[k] \) with complex crossover eigenvalues. (a) Convex-hull of fixed, high rank component  \( L_{\text{eq}} = XY^\dagger \in \mathbb{R}^{3 \times 5} \) . (b) Rank-1 component  \( \Pi[k] \in \mathbb{R}^{3 \times 5} \) . Note the rotational evolution of  \( \Pi[k] \) with increasing  \( k \) .  (c) Combination  \( L[k] = L_{\text{eq}} + \Pi[k] \in \mathbb{R}^{3 \times 5} \) .  
-}
-\label{fig:blah1}
-\end{center}
-\end{figure}
-
 
 
 <b> Jordan Blocks </b>
 
-Another case that clearly must be considered is when the crossover eigenvalues have a non-trivial Jordan structure, ie.  \( \Gamma_1 \) (and thus by implication  \( \mathbf{M}$) is not diagonalizable.  In this case, we take 
-$\Gamma_1 = J \) with eigenvalues of some magnitude  \( \rho_ c \) .
+<p>
+
+Another case that clearly must be considered is when the crossover eigenvalues have a non-trivial Jordan structure, ie.  \( \Gamma_1 \) (and thus by implication  \( \mathbf{M} \) is not diagonalizable.  In this case, we take 
+\( \Gamma_1 = J \) with eigenvalues of some magnitude  \( \rho_ c \) .
 Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are constructed of eigenvectors and generalized eigenvectors.  In this case  \( \Pi[k] \) is given by 
 $$ \begin{aligned}
 \Pi[k] = 
@@ -982,16 +970,19 @@ J^kZ_ c \Big(\xi^\top V_ c J^kZ_ c\Big)^{-1}\xi^\top
 
 To further understand this, we  first examine the term  \( J^k Z_ c \) for a single Jordan block  \( J \in \mathbb{R}^{c \times c} \) .  Powers of  \( J \) can be explicitly given by the formula 
 
-$$ \begin{aligned}
-J = \bmat{
+$$ 
+\begin{aligned}
+J = 
+\begin{bmatrix}
 \lambda & 1 & \cdots & 0 & 0 \\
 0 & \lambda & \cdots & 0 & 0 \\
 \vdots & \vdots & \ddots & \vdots & \vdots \\
 0 & 0 & \cdots & \lambda & 1 \\
 0 & 0 & \cdots & 0 &  \lambda 
-}
+\end{bmatrix}
 \quad \implies \quad 
-J^k = \bmat{
+J^k = 
+\begin{bmatrix}
 \lambda^k & 
 \left(\substack{k \\ 1 } \right)\lambda^{k-1} & \cdots & 
 \left(\substack{k \\ c-2 } \right)\lambda^{k-c+2} & 
@@ -1003,7 +994,7 @@ J^k = \bmat{
 \vdots & \vdots & \ddots & \vdots & \vdots \\
 0 & 0 & \cdots & \lambda^k & \left(\substack{k \\ 1 } \right)\lambda^{k-1} \\
 0 & 0 & \cdots & 0 &  \lambda^k 
-}
+\end{bmatrix}
 \end{aligned} $$
 Alternatively, we can write 
 $$ \begin{aligned}
@@ -1027,9 +1018,8 @@ J^k = \big(\lambda I + N)^k
 where  \( N \in \mathbb{R}^{c \times c} \) is the canonical nilpotent matrix with 1's on the super diagonal.
 Given the projective structure, we do not care about the magnitude of  \( J^k Z_ c \) and thus we can 
 divide each term  of  \( J^k \) by 
-$
-\left(\substack{k \\ c-1 } \right)
-\lambda^{k-c+1}  \( . 
+\( \left(\substack{k \\ c-1 } \right)
+\lambda^{k-c+1}  \). 
 
 
 
@@ -1058,8 +1048,8 @@ $$ \begin{aligned}
 \end{aligned} $$
 Note that for  \( j\leq c-2 \) this term has powers of  \( k \) in the denominator but for  \( j=c-1 \) it is simply 1.
 Now dividing  \( J^k \) by 
-$\left(\substack{k \\ c-1 } \right)
-\lambda^{k-c+1}  \( , we get 
+\(\left(\substack{k \\ c-1 } \right)
+\lambda^{k-c+1}  \) , we get 
 
 
 $$ \begin{aligned}
@@ -1100,22 +1090,29 @@ $$ \begin{aligned}
 
 
 
-It follows that  \( Z_ c[k] = N^{c-1}Z_ c[0] \) approaches  \( \mathbf{I}_1 Z_{cc}[0] \) as  \( k \) gets large where  \( \mathbf{I}_1 \) is the first column of the  \( c \times c  \(  identity.  It follows then that
+It follows that  \( Z_ c[k] = N^{c-1}Z_ c[0] \) approaches  \( \mathbf{I}_1 Z_{cc}[0] \) as  \( k \) gets large where  \( \mathbf{I}_1 \) is the first column of the  \( c \times c  \)  identity.  It follows then that
+
 $$ \begin{aligned}
-\bmat{ U_ c \\ V_ c} J^kZ_ c \big(\xi^\top V_ c J^k Z_ c \big)^{-1} 
+\begin{bmatrix} U_ c \\ V_ c \end{bmatrix}
+ J^kZ_ c \big(\xi^\top V_ c J^k Z_ c \big)^{-1} 
+}
 \to 
-\bmat{ U_ c \\ V_ c} \mathbf{I}_1 Z_{cc}[0] \big(\xi^\top V_ c \mathbf{I}_1 Z_{cc}[0]\big)^{-1} 
+\begin{bmatrix} U_ c \\ V_ c
+\end{bmatrix}
+ \mathbf{I}_1 Z_{cc}[0] \big(\xi^\top V_ c \mathbf{I}_1 Z_{cc}[0]\big)^{-1} 
+}
 \end{aligned} $$
 
 
- -->
+ 
+
+</p>
+</div>
 
 
 
 
-
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/jordan.png" width=80%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/jordan.png" width=100%></img> </div>
 
 
 
