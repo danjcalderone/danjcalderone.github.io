@@ -111,10 +111,10 @@
 
   </style>
 
-<!--   <link rel="stylesheet" href="/css/main.css" ></link> -->
+  <link rel="stylesheet" href="/css/main.css" ></link>
   <!-- <link rel="stylesheet" href="/main.css" ></link> -->
   <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/cssmain.css" width=20%></img>  -->
-  <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link>
+  <!-- <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link> -->
 
     </head>
 
@@ -228,7 +228,7 @@ where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imagina
 
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_2x2example_from0to4.gif" width=40%></img> 
+<img src="/figs/projects/ccve/ccve_2x2example_from0to4.gif" width=40%></img> 
 </div>
 
 
@@ -241,9 +241,9 @@ where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imagina
 
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v1.png" width=30%></img> 
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v2.png" width=30%></img> 
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v3.png" width=30%></img> 
+<img src="/figs/projects/ccve/a1v1.png" width=30%></img> 
+<img src="/figs/projects/ccve/a1v2.png" width=30%></img> 
+<img src="/figs/projects/ccve/a1v3.png" width=30%></img> 
 </div>
 
 
@@ -354,8 +354,8 @@ This is illustrated here.
 
 
 <div class='imgFixed' >
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x2projective.png" width=45%></img>
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/projection2x1.gif" width=45% aspect-ratio=1:1 ></img>
+  <img src="/figs/projects/ccve/AinR1x2projective.png" width=45%></img>
+  <img src="/figs/projects/ccve/projection2x1.gif" width=45% aspect-ratio=1:1 ></img>
 
 
 </div>
@@ -369,10 +369,10 @@ Note that if  \( X \) were to rotate around in a circle, the projection would os
 While the above geometry is informative, it is somewhat limited by the low dimension.  If the nullspace of  \( A \) has dimension higher than 1, we can see richer geometry.  In Fig.~\ref{fig:AinR1x3} we illustrate the geometry for  \( A \in \mathbb{R}^{1 \times 3} \) with a 2D nullspace.  We show the projected points  \( Y=X(AX)^{-1} \) for various poins  \( X \) on the unit sphere in  \( \mathbb{R}^3 \) . 
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x3projective.png" width=90%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/AinR1x3projective.png" width=90%></img> </div>
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/projection3x1.gif" width=85%  ></img>
+<img src="/figs/projects/ccve/projection3x1.gif" width=85%  ></img>
  </div>
         
 
@@ -393,7 +393,7 @@ We now give an example of  \( X, Y \in \mathbb{R}^{3 \times 2} \) .  Suppose  \(
 </div>
 
 
-<!-- <div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR2x3projective.png" width=80%></img> </div> -->
+<!-- <div class='imgFixed' > <img src="/figs/projects/ccve/AinR2x3projective.png" width=80%></img> </div> -->
 
 
 
@@ -589,7 +589,7 @@ W \ \textbf{blkdg}
 \Big(\big[
 I_{4 \times 4}
 \ 
-P^\top
+P
 I_{3 \times 3}
 \ I_{1 \times 1}
 \big]\Big)
@@ -601,7 +601,7 @@ W^{-\top} \ \textbf{blkdg}
 \Big(\big[
 \Lambda 
 \ 
-P \Gamma_c \ 
+P^\top \Gamma_c \ 
 \Gamma_s
 \big]\Big)
 W^{-1} 
@@ -610,7 +610,7 @@ $$
 where \(P\) is some permutation potentially with negative signs in it.  Note that each \(M_2\) and \(M_1\) are both symmetric and \(\mathbf{M}_1 = M_2^{-\top}M_1\) has desired structure above. (Note a similar construction from this paper by Bosch \cite{bosch1986factorization} can be used in general to write any matrix as a product of two symmetric matrices.)
 For these examples to describe an actual game we will need to check that both \(A_1\) and \(A_2\) are positive definite as well (which we do for each of the following examples).  
 
-The permutation matrix \(P\) will be necessary to guarantee that \(M_2,M_1\) are symmetric regardless of the structure of \(\Gamma_c\) (as well as guarantee the positive-definiteness of \(A_1,A_2\)). If \(\Gamma_c\), has only real positive eigenvalues then we can simply choose $P=I$ and both \(M_2\) and \(M_1\) will be symmetric (and positive definite). If, however, \(\Gamma_c\) is a scaled-rotation (complex eigenvalues) or has a nontrivial Jordan structure other permutations must be used such that \(P\) and \(P\Gamma_c\) are both symmetric. For example, for \(\Gamma_c\) a scaled rotation such as the following, we can choose 
+The permutation matrix \(P\) will be necessary to guarantee that \(M_2,M_1\) are symmetric regardless of the structure of \(\Gamma_c\) (as well as guarantee the positive-definiteness of \(A_1,A_2\)). If \(\Gamma_c\), has only real positive eigenvalues then we can simply choose \(P=I\) and both \(M_2\) and \(M_1\) will be symmetric (and positive definite). If, however, \(\Gamma_c\) is a scaled-rotation (complex eigenvalues) or has a nontrivial Jordan structure other permutations must be used such that \(P\) and \(P^\top \Gamma_c\) are both symmetric. For example, for \(\Gamma_c\) a scaled rotation such as the following, we can choose 
 
 $$
 \begin{aligned}
@@ -651,7 +651,7 @@ $$
 $$
 
 
-In both cases one can check that both \(P\) and \(P \Gamma_c\) are symmetric.   
+In both cases, one can check that both \(P\) and \(P^\top \Gamma_c\) are symmetric.   
 
 
 </p>
@@ -670,7 +670,7 @@ In both cases one can check that both \(P\) and \(P \Gamma_c\) are symmetric.
 
 
 <div class='imgFixed' >
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/base.png" width=60%></img>
+  <img src="/figs/projects/ccve/base.png" width=60%></img>
 </div>
 
 
@@ -690,12 +690,38 @@ The simplest case is when the eigenvalues clearly into two sets of the appropria
 
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/unique.png" width=65%></img>
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_unique012.gif" width=40%></img> 
+<img src="/figs/projects/ccve/unique.png" width=65%></img>
+<img src="/figs/projects/ccve/ccve_unique012.gif" width=40%></img> 
 </div>
 
+
+        <div class="txt" style="padding:40px">
+<b> Parameters (unique case): </b>
+
+<p>
+For this example, we set 
+$$
+\begin{aligned}
+\Gamma_c = 
+\begin{bmatrix}
+ 1.0  &  0.0  &  0.0  \\ 
+ 0.0  &  0.9  &  0.0  \\ 
+ 0.0  &  0.0  &  0.9 
+\end{bmatrix}, \qquad 
+P = I_{3 \times 3}
+\end{aligned}
+$$
+One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
+</p>
+</div>
+
+
+
+
+
+
 <!-- <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_unique012.gif" width=80%></img> 
+<img src="/figs/projects/ccve/ccve_unique012.gif" width=80%></img> 
 </div>
  -->
 
@@ -725,13 +751,30 @@ remains constant as well. There is thus a  \( c_1^2 \)-dimensional subspace of m
 </p>
 </div>
 <div class='imgFixed' >
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum.png" width=70%></img>
-    <!-- <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum_inits.png" width=30%></img> -->
+  <img src="/figs/projects/ccve/continuum.png" width=70%></img>
+    <!-- <img src="/figs/projects/ccve/continuum_inits.png" width=30%></img> -->
 </div>
 
 <div class='imgFixed' >
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum_inits.png" width=40%></img>
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_continuum012_inits.gif" width=40%></img> 
+  <img src="/figs/projects/ccve/continuum_inits.png" width=40%></img>
+<img src="/figs/projects/ccve/ccve_continuum012_inits.gif" width=40%></img> 
+</div>
+
+
+<div class="txt" style="padding:40px">
+<b> Parameters (continuum case): </b>
+<p>
+For this example, we set 
+$$
+\begin{aligned}
+\Gamma_c = I_{3 \times 3}
+ \qquad 
+P = I_{3 \times 3}
+\end{aligned}
+$$
+One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
+</p> 
+
 </div>
 
 
@@ -739,9 +782,6 @@ remains constant as well. There is thus a  \( c_1^2 \)-dimensional subspace of m
 
 
 <div class="txt" style="padding:40px">
-
-
-
 
 
 <b> Reflecting Equilibria </b>
@@ -768,16 +808,36 @@ Z_ c[0] \Big)^{-1}\xi^\top
 </div>
 
 <div class='imgFixed' >
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect.png" width=80%></img>
+  <img src="/figs/projects/ccve/reflect.png" width=80%></img>
 </div>
 
 
 <div class='imgFixed' >
-    <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect_inits.png" width=40%></img>
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_reflect012_inits.gif" width=40%></img> 
+    <img src="/figs/projects/ccve/reflect_inits.png" width=40%></img>
+<img src="/figs/projects/ccve/ccve_reflect012_inits.gif" width=40%></img> 
 </div>
 
+<div class="txt" style="padding:40px">
+<b> Parameters (reflect case): </b>
 
+<p>
+
+For this example, we set 
+$$
+\begin{aligned}
+\Gamma_c = 
+\begin{bmatrix}
+ 1.0  &  0.0  &  0.0  \\ 
+ 0.0  &  -1.0  &  0.0  \\ 
+ 0.0  &  0.0  &  1.0 
+\end{bmatrix}, \qquad 
+P = I_{3 \times 3}
+\end{aligned}
+$$
+One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
+</p>
+
+</div>
 
 
 
@@ -785,6 +845,7 @@ Z_ c[0] \Big)^{-1}\xi^\top
 
 
 <b> Periodic-Equilibria (Complex Eigenvalues) </b>
+
 
 <p>
 
@@ -811,7 +872,7 @@ R^k = \textbf{blkdg}\big(\big[R_{\phi_1}^k \ R_{\phi_2}^k \ \dots \big]\big)
 \end{aligned} 
 $$
 
-Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are no longer (complex) eigenvectors but rather appropriate real bases for the planes of rotation.  This can be achieved by taking pairs of columns that contain the real and imaginary parts of eigenvectors as is typical in real, block diagonal expansions of complex eigenstructures.  In this case  \( \Pi[k] \) oscillates based on phases  \( \phi_1,\phi_2, \dots  \)  For any initial condition  \( Z_ c[0] \) we have that
+Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are no longer (complex) eigenvectors but rather appropriate real bases for the planes of rotation.  This can be achieved by taking pairs of columns that contain the real and imaginary parts of eigenvectors as is typical in real, block diagonal expansions of complex eigenstructures.  In this case  \( \Pi[k] \) oscilla tes based on phases  \( \phi_1,\phi_2, \dots  \)  For any initial condition  \( Z_ c[0] \) we have that
 
 $$
 \begin{aligned}
@@ -837,18 +898,18 @@ $$
 
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_details1.png" width=100%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_limits.png" width=100%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_details1.png" width=100%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_limits.png" width=100%></img> </div>
 
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_complex012.gif" width=100%></img> 
+<img src="/figs/projects/ccve/ccve_complex012.gif" width=100%></img> 
 </div>
 <!-- <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_complex1.gif" width=80%></img> 
+<img src="/figs/projects/ccve/ccve_complex1.gif" width=80%></img> 
 </div>
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_complex2.gif" width=80%></img> 
+<img src="/figs/projects/ccve/ccve_complex2.gif" width=80%></img> 
 </div>
  -->
 
@@ -859,6 +920,35 @@ $$
 
 <div class="txt" style="padding:40px">
 
+
+
+<b> Parameters (complex rotation case): </b>
+
+<p>
+
+For this example, we set 
+$$
+\begin{aligned}
+\Gamma_c = 
+\begin{bmatrix}
+ 0.99  &  -0.04  &  0.11  \\ 
+ 0.06  &  0.99  &  -0.09  \\ 
+ -0.11  &  0.1  &  0.99 
+\end{bmatrix}, \qquad 
+P = 
+\begin{bmatrix}
+ 0  &  1  &  0  \\ 
+ 1  &  0  &  0  \\ 
+ 0  &  0  &  1 
+\end{bmatrix}
+\end{aligned}
+$$
+
+Here \(\Gamma_c\) is a 3D rotation matrix with axis 
+\(\begin{bmatrix} 0.62  &  0.72  &  0.32 \end{bmatrix}\)
+ and phase \(\pi/20\) radians. 
+One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
+</p>
 
 
 
@@ -890,11 +980,50 @@ The magnitude of
 
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_tan.png" width=100%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_tan.png" width=100%></img> </div>
 
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_hyperbolic012.gif" width=100%></img> 
+<img src="/figs/projects/ccve/ccve_hyperbolic012.gif" width=100%></img> 
+</div>
+
+
+
+<div class="txt" style="padding:40px">
+
+
+<b> Parameters (complex hyperbolic case): </b>
+
+<p>
+
+For this example, we set 
+$$
+\begin{aligned}
+\Gamma_c = 
+\begin{bmatrix}
+ 0.99  &  -0.14  &  0.03  \\ 
+ 0.14  &  0.99  &  0.07  \\ 
+ -0.04  &  -0.06  &  1.0 
+\end{bmatrix}, \qquad 
+P = 
+\begin{bmatrix}
+ 0  &  1  &  0  \\ 
+ 1  &  0  &  0  \\ 
+ 0  &  0  &  1 
+\end{bmatrix}
+\end{aligned}
+$$
+
+Here \(\Gamma_c\) is a 3D rotation matrix with axis 
+\(
+\begin{bmatrix}
+ -0.43  &  0.23  &  0.87 
+\end{bmatrix}
+\)
+ and phase \(\pi/20\) radians.
+One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
+</p>
+
 </div>
 
 
@@ -1176,18 +1305,57 @@ L,L^*
 \end{aligned} $$
 The single crossover conjugate pair case is the most common when there are complex equilibria and this formula can provide perhaps the quickest and most useful intuition.  
 
+</p>
 
 
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex2D.png" width=100%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex2D.png" width=100%></img> </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/real_imag.png" width=100%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/real_imag.png" width=100%></img> </div>
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_complex2D012.gif" width=100%></img> 
+<img src="/figs/projects/ccve/ccve_complex2D012.gif" width=100%></img> 
 </div>
+
+
+
+
+
+
+
+<div class="txt" style="padding:40px">
+
+
+<b> Parameters (complex 2D rotation): </b>
+
+<p>
+
+For this example, we set 
+$$
+\begin{aligned}
+\Gamma_c = 
+\begin{bmatrix}
+ 0.99  &  -0.16  &  0.0  \\ 
+ 0.16  &  0.99  &  0.0  \\ 
+ 0.0  &  0.0  &  0.95 
+\end{bmatrix}
+P = 
+\begin{bmatrix}
+ 0  &  1  &  0  \\ 
+ 1  &  0  &  0  \\ 
+ 0  &  0  &  -1 
+\end{bmatrix}
+\end{aligned}
+$$
+
+Here \(\Gamma_c\) is a 2D rotation matrix in the upper left corner with phase \(\pi/20\) radians.
+One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
+</p>
+
+</div>
+
 
 
 
@@ -1353,14 +1521,64 @@ $$
 
 
 <div class='imgFixed' >
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/jordan.png" width=100%></img>
+  <img src="/figs/projects/ccve/jordan.png" width=100%></img>
 </div>
 
 
 <div class='imgFixed' >
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/jordan_inits.png" width=40%></img>
-  <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/ccve_jordan012_inits.gif" width=40%></img>
+  <img src="/figs/projects/ccve/jordan_inits.png" width=40%></img>
+  <img src="/figs/projects/ccve/ccve_jordan012_inits.gif" width=40%></img>
 </div>
+
+
+
+
+
+
+
+<div class="txt" style="padding:40px">
+
+<b> Parameters (Jordan block case): </b>
+
+<p>
+
+For this example, we set 
+$$
+\begin{aligned}
+\Gamma_c = 
+\begin{bmatrix}
+ 1  &  1  &  0 \\ 
+ 0  &  1  &  1 \\ 
+ 0  &  0  &  1 
+\end{bmatrix}, \qquad 
+P = 
+\begin{bmatrix}
+ 0 & 0 & 1 \\ 
+ 0 & 1 & 0 \\
+ 1 & 0 & 0 
+\end{bmatrix}
+\end{aligned}
+$$
+
+Here \(\Gamma_c\) is a 2D rotation matrix in the upper left corner with phase \(\pi/20\) radians.
+One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
+</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
