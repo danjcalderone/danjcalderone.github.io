@@ -104,16 +104,82 @@
   left: 0px;
   z-index: -1;
 }
+</style>
+
+
+
+
+    <style>
+      #wrapframe { width: 100%; padding: 0;
+        /*aspect-ratio: 1.;*/ /*overflow: hidden;*/
+      }
+
+
+
+      #scaled-frame {
+        width: calc(100%/0.6) !important; aspect-ratio: 1.2;
+        -webkit-transform: scale(0.6);
+        transform: scale(0.6);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        border:1px solid  black;
+        /*position: relative;*/
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        #scaled-frame {
+          zoom: 1;
+        }
+      }
+    </style>
 
 
 
 
 
-  </style>
 
-  <!-- <link rel="stylesheet" href="/css/main.css" ></link> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--     <style>
+
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+    </style> -->
+
+
+
+
+
+  <link rel="stylesheet" href="/css/main.css" ></link>
   <!-- <link rel="stylesheet" href="/main.css" ></link> -->
-  <link rel="stylesheet" href="/Users/dan/Documents/danjcalderone.github.io/css/main.css" ></link>
+  <!-- <link rel="stylesheet" href="/css/main.css" ></link> -->
 
     </head>
 
@@ -128,26 +194,43 @@
 
     <div class="wrapper">
       <div class="sidebar">
-      <div w3-include-html="/nav/sidebarBLOG.html"></div>
-
-
-
-
+      <div w3-include-html="/nav/sidebarPROJECT.html"></div>
       </div>
+
+
+
+
       <div class=main_content>
 
 
         <h1><div id="header">
-          Multi-modal Choice Modeling in Chattanooga Transportation (CARTA)
+          Multi-modal Choice Modeling <br> Chattanooga Transportation (CARTA)
         </div></h1>
 
-          <div class='imgFixed' >
-<iframe id="igraph" scrolling="no" style="border:none;"
-src="/Users/dan/Documents/danjcalderone.github.io/projects/carta/figure.html"
-height="525" width="100%"
-style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);"
-></iframe>
+        <div class="txt" style="padding:40px">
 
+
+          <b> Case Studies: </b>
+        </div>
+
+          <div class='imgFixed' >
+      <div id="wrapframe">
+
+      <iframe id="scaled-frame" src="/projects/carta/figure.html"
+      scrolling="no"
+      
+      ></iframe>
+    </div>
+
+
+<!-- scrolling="no" style="border:none;" -->
+
+<!--           <iframe id="igraph"
+          src="/projects/carta/figure.html"
+          height="800" width="1000"
+          style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);"
+          ></iframe>
+ -->
 
       </div>
 
@@ -243,13 +326,13 @@ where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imagina
 
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v1.png" width=20%></img> 
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v2.png" width=20%></img> 
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/a1v3.png" width=20%></img> 
+<img src="/figs/projects/ccve/a1v1.png" width=20%></img> 
+<img src="/figs/projects/ccve/a1v2.png" width=20%></img> 
+<img src="/figs/projects/ccve/a1v3.png" width=20%></img> 
 </div>
 
 <div class='imgFixed' >
-<img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/2x2example.gif" width=40%></img> 
+<img src="/figs/projects/ccve/2x2example.gif" width=40%></img> 
 </div>
 
 
@@ -358,7 +441,7 @@ This is illustrated here.
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x2projective.png" width=25%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/AinR1x2projective.png" width=25%></img> </div>
 
 
         <div class="txt" style="padding:40px">
@@ -369,7 +452,7 @@ Note that if  \( X \) were to rotate around in a circle, the projection would os
 While the above geometry is informative, it is somewhat limited by the low dimension.  If the nullspace of  \( A \) has dimension higher than 1, we can see richer geometry.  In Fig.~\ref{fig:AinR1x3} we illustrate the geometry for  \( A \in \mathbb{R}^{1 \times 3} \) with a 2D nullspace.  We show the projected points  \( Y=X(AX)^{-1} \) for various poins  \( X \) on the unit sphere in  \( \mathbb{R}^3 \) . 
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR1x3projective.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/AinR1x3projective.png" width=45%></img> </div>
 
         <div class="txt" style="padding:40px">
 
@@ -378,7 +461,7 @@ In each of the above cases  \( X,Y \) are simple column vectors.  We now give an
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/AinR2x3projective.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/AinR2x3projective.png" width=45%></img> </div>
 
 
 </div>
@@ -426,7 +509,7 @@ Basic geometry examples
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/base.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/base.png" width=45%></img> </div>
 
 
 
@@ -442,7 +525,7 @@ The simplest case is when the eigenvalues clearly into two sets of the appropria
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/unique.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/unique.png" width=45%></img> </div>
 
 
 
@@ -468,7 +551,7 @@ $$ \begin{aligned}
 remains constant as well. There is thus a  \( c_1^2 \)-dimensional subspace of marginally-stable equilibria parametrized by  \( Z_ c[0] \in \mathbb{R}^{c_1 \times c_1} \) . 
 
 </p>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/continuum.png" width=45%></img> </div>
 
 
 <div class="txt" style="padding:40px">
@@ -500,7 +583,7 @@ Z_ c[0] \Big)^{-1}\xi^\top
 </p>
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/reflect.png" width=45%></img> </div>
 
 
 
@@ -567,7 +650,7 @@ $\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much 
 </div>
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex2D.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex2D.png" width=45%></img> </div>
 
 
 
@@ -581,9 +664,9 @@ $\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much 
 
 </div>
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_details1.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_details1.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
 
 
 <div class="txt" style="padding:40px">
@@ -1013,14 +1096,14 @@ $$ \begin{aligned}
 
 
 
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/continuum.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/reflect.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex2D.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_details.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/real_imag.png" width=45%></img> </div>
-<div class='imgFixed' > <img src="/Users/dan/Documents/danjcalderone.github.io/figs/projects/ccve/jordan.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/continuum.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/reflect.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex2D.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_details.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_limits.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/complex_tan.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/real_imag.png" width=45%></img> </div>
+<div class='imgFixed' > <img src="/figs/projects/ccve/jordan.png" width=45%></img> </div>
 
 
 

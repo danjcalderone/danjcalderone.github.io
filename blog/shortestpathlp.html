@@ -111,6 +111,36 @@
 
   </style>
 
+
+
+    <style>
+      #wrapframe {
+        width: 100%;
+        aspect-ratio: 1/1;
+        padding: 0;
+        /*aspect-ratio: 1.;*/ 
+        overflow: hidden;
+      }
+
+      #scaled-frame {
+        width: calc(100%/0.78) !important;
+        aspect-ratio: 1.0;
+        -webkit-transform: scale(0.78);
+        transform: scale(0.78);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        border: none;
+        /*border:1px solid  black;*/
+        /*position: relative;*/
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        #scaled-frame {
+          zoom: 1;
+        }
+      }
+    </style>
+
   <link rel="stylesheet" href="main.css" ></link>
   <!-- <link rel="stylesheet" href="/main.css" ></link> -->
   <link rel="stylesheet" href="main.css" ></link>
@@ -146,7 +176,18 @@
         <div class="section basic" >
 
 
-          <div class='imgFixed' ><img src="/figs/blog/routes/routes2.gif" width=95%></img> </div>
+<!--           <div class='imgFixed' >
+            <img src="/figs/blog/routes/routes2.gif" width=95%></img>
+          </div>
+ -->
+
+            <div class='imgFixed' >
+      <div id="wrapframe">
+      <iframe id="scaled-frame" src="/figs/blog/routes/routes2.html"
+      scrolling="no"></iframe>
+    </div>
+  </div>
+
 
         <div class="txt" style="padding: 0px 20px">
 

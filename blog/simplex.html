@@ -113,12 +113,33 @@
 
 
 
-<style>
-#wrap { width: 600px; height: 390px; padding: 0; overflow: hidden; }
-#frame { width: 800px; height: 520px; border: 1px solid black; }
-#frame { zoom: 0.75; -moz-transform: scale(0.75); -moz-transform-origin: 0 0; }
-</style>
+    <style>
+      #wrapframe {
+        width: 100%;
+        aspect-ratio: 1/1;
+        padding: 0;
+        /*aspect-ratio: 1.;*/ 
+        overflow: hidden;
+      }
 
+      #scaled-frame {
+        width: calc(100%/0.78) !important;
+        aspect-ratio: 1.0;
+        -webkit-transform: scale(0.78);
+        transform: scale(0.78);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        border: none;
+        /*border:1px solid  black;*/
+        /*position: relative;*/
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        #scaled-frame {
+          zoom: 1;
+        }
+      }
+    </style>
 
 
 
@@ -154,20 +175,32 @@
         </div></h1>
 
 
+
         <div class="section basic" >
 
 
-            <div class='imgFixed' >
+<!--             <div class='imgFixed' >
                 <img src="/figs/blog/simplex/gif_simplex_main2.gif" width=85%></img>
-              </div>
+            </div>
+ -->
+
+  <div class='imgFixed' >
+      <div id="wrapframe">
+      <iframe id="scaled-frame" src="/figs/blog/simplex/gif_simplex_main.html"
+      scrolling="no"></iframe>
+    </div>
+  </div>
+
+
+
 
 
           <div class="txt" style="padding:40px">
 
-            <p> For interactive visualizations: 
+<!--             <p> For interactive visualizations: 
             <a href="/figs/blog/simplex/gif_simplex_main.html"> link </a> 
             </p>
-
+ -->
             </p>
 
               <b> Simplex Method </b>
