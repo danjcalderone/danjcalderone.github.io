@@ -218,6 +218,1487 @@
 
 
 
+
+
+
+        <div class="txt" style="padding:40px">
+
+
+          <p>
+            As machine learning and complex prediction techniques become more ubiquitous, game theory must adapt to include models that accurately model how agents predict their opponents behavior.  Nash equilibria in their traditional form do not capture this prediction behavior.  Stackleberg equilibria, where a leader player predicts a follower player's optimization problem and uses this to their advantage.  Consistent conjectural variations equilibria (CCVE) extend Stackleberge equilibria to the case where two players both attempt to predict their opponent's actions and optimize accordingly.  The existence of computation of CCVE for two player games center around solving coupled Riccati equations as presented in INSERT LINK. 
+        </p>
+
+
+<!-- 
+<b> Preliminaries </b>
+<p>
+Consider the two-player game \(\mathcal{G}=(f_1,f_2)\) such that \(f_i\in C^2(\mathbb{R}^{d_1}\times \mathbb{R}^{d_2},\mathbb{R})\) for each \(i\in \{1,2\}\). 
+The function \(f_i:\mathbb{R}^{d_1}\times \mathbb{R}^{d_2}\to \mathbb{R}\) is player \(i\)'s cost, which they seek to  minimize  by choosing  \(x_i\in \mathbb{R}^{d_i}\). 
+Let \(x = (x_1,x_2) \in \mathbb{R}^d\) where \(d=d_1 + d_2\) is the dimension of the joint action space.  
+Define the set of \emph{conjectures} \(\Con{1}\times\Con{2}\) to be the set of mappings 
+$$ \begin{aligned}
+\Con{1}\times\Con{2}=\{(\cj{1},\cj{2})|\ \cj{1}:\mathbb{R}^{d_2} \to \mathbb{R}^{d_1}, \ \cj{2}:\mathbb{R}^{d_1} \to \mathbb{R}^{d_2}\}
+\end{aligned} $$
+
+
+
+<b> Definition </b>
+<p>
+A  tuple $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}\in \mathbb{R}^{d_1\times d_2}\times \Con{1}\times\Con{2}$ constitute a \emph{consistent conjectural variations equilibrium (CCVE)} if  $\xc{i}=\cjc{i}(\xc{-i})$ for each $i=1,2$, and
+$$ \begin{aligned}
+    \xc{i}=\amin_{x_i}\{f_i(x_i,x_{-i})|\ x_{-i}=\cjc{-i}(x_i)\},\quad\forall \ i=1,2.
+\end{aligned} $$
+</p>
+
+
+
+Given an \emph{a priori} fixed set of conjectures $(\cj{1},\cj{2})\in \Con{1}\times \Con{2}$, the point $ (\xc{1},\xc{2})$ is a generalized Nash equilibrium of the constrained game $\{\min_{x_i}f_i(x_i,\cj{-i}(x_i))|\ x_i=\cj{i}(\cj{-i}(x_i))\}_{i=1}^2$. However,  finding a CCVE requires finding the maps $(\cjc{1},\cjc{2})$, so the problem of characterizing CCVE \emph{does not} immediately reduce to a generalized Nash equilibrium problem \cite{facchinei2007generalized}.
+
+As shown in \cite{bacsar1998dynamic}, when the costs are \emph{(jointly) strictly convex}, an equivalent characterization of a CCVE in terms of the conjectures is the following: $\{(\xc{1},\xc{2}),(\cjc{1},\cjc{2})\}$ is a CCVE if and only if, for each $i=1,2$, we have
+$$ \begin{aligned}\label{eq:ccvconj}
+D_{x_i}f_i(x^{\tt c}) + D_{x_{-i}}f_i(x^{\tt c}) D_{x_i} \cjc{-i}(\xc{i}) = 0,\  \xc{i}=\cjc{i}(\xc{-i}),
+\end{aligned} $$ 
+where $D_{x}$ is the partial derivative operator with respect to a vector $x$.
+In the \emph{absence of joint strict convexity}, these are first-order conditions; we call solutions to \eqref{eq:ccvconj} \emph{first-order CCVE}. A \emph{second-order CCVE} is a solution to \eqref{eq:ccvconj} with the additional condition $D_{x_i}^2f_i(\xc{i},\cjc{-i}(\xc{i}))\succ 0$. If  $f_i(x_i,\cjc{-i}(x_i))$ is strongly convex in $x_i$, then solutions to \eqref{eq:ccvconj} are a CCVE. 
+
+%that $f_i(x_i,\cjc{-i}(x_i))$ is strongly convex in $x_i$. 
+
+\iffalse
+These are multi-dimensional coupled partial differential equations which are difficult to solve in general. In \cite[\S~4.5]{bacsar1998dynamic}, local approximations are given using Taylor expansions of the conjectures, and plugging them in to \eqref{eq:ccvconj}. 
+To illustrate this, let us consider a scalar game such that each $x_i\in \mathbb{R}$ (cf.~\cite[\S~4.5]{bacsar1998dynamic}). We rewrite \eqref{eq:ccvconj} for $i=1$ as
+%(and analogously \eqref{eq:ccvconj_b}) as
+%$$ \begin{aligned}\frac{\partial f_i(\cjc{i}(x_{-i}),x_{-i})}{\partial x_{i}}+\frac{\partial f_i(\cjc{i}(x_{-i}),x_{-i})}{\partial x_{-i}}\cdot \frac{\partial \cjc{-i}(\cjc{i}(x_{-i}))}{\partial x_i}\equiv 0.\end{aligned} $$ 
+$$ \begin{aligned}\partial_{x_1} f_1(\cjc{1}(x_{2}),x_{2})+\partial_{x_{2}} f_1(\cjc{1}(x_{2}),x_{2})\cdot\partial_{x_1} \cjc{2}(\cjc{1}(x_{2}))\equiv 0,\end{aligned} $$
+where we are compactly writing $\partial_{z}(\cdot)\equiv\partial (\cdot)/\partial_z$. A Taylor expansion of $\cjc{i}$ around  $\xc{-i}$ is given by
+$$ \begin{aligned}\cjc{i}(x_{-i})=\cjc{i}(x_{-i}^{\tt c})+\Delta_{-i}^{\tt c}\tfrac{d\cjc{i}(\xc{-i})}{dx_{-i}}+\tfrac{1}{2}(\Delta_{-i}^{\tt c})^2\tfrac{d^2\cjc{i}(\xc{-i})}{dx_{-i}^2}+\cdots,\end{aligned} $$
+where  $\Delta_{-i}^{\tt c}=(x_{-i}-x_{-i}^{\tt c})$ and $(\xc{i},\xc{-i})$ is a CCVE.
+ Plugging a zero-th order Taylor expansion for conjectures---namely, $\cjc{i}(x_{-i})\approx \xc{i}$ for $i=1,2$---in to this alternative version of \eqref{eq:ccvconj} leads to $\partial_{x_i} f_i(\xc{i},\xc{-i})+\partial_{x_{-i}} f_i(\xc{i},\xc{-i})\cdot\partial_{x_i} \cjc{-i}(\xc{i})= 0$. A solution to this expression is a \emph{0-th order CCVE}. Similarly, using a $1$-st order Taylor expansion $\cjc{i}(\xc{-i})\approx \xc{i}+\frac{d\cjc{i}(\xc{-i})}{dx_{-i}}(x_{-i}-\xc{-i})$, a \emph{1-st order CCVE} solves
+$$ \begin{aligned}
+    \begin{aligned}
+    0&=\partial_{x_i}^2f_i\cdot \tfrac{d\cjc{i}}{dx_{-i}}+\partial_{x_i,x_{-i}}f_i\cdot \left(1+\tfrac{d\cjc{i}}{dx_{-i}}\cdot \tfrac{d \cjc{-i}}{dx_i}\right)\\
+    &\quad+\partial_{x_{-i}}^2f_i\cdot \tfrac{d \cjc{-i}}{dx_i}+\partial_{x_{-i}}f_i\cdot \tfrac{d^2 \cjc{-i}}{dx_i^2}\cdot \tfrac{d \cjc{i}}{dx_{-i}}.
+    \end{aligned}
+\end{aligned} $$
+Using $k$-th order Taylor approximations for conjectures, \cite{bacsar1998dynamic} proceeds in this fashion to define $k$-th order CCVE.
+\fi
+
+The focus of this paper is on characterizing CCVE and corresponding conjectures up to first- and second-order using a quadratic approximation of the game around the equilibrium. When the game is quadratic, a second-order CCVE is precisely a CCVE. 
+Even in quadratic games, the existence of CCVE is not guaranteed, and as we show, for affine conjectures the question of existence boils down to finding solutions to coupled asymmetric Riccati equations. This is analogous to the existence of Nash equilibrium in dynamic linear quadratic games (cf.~\cite{aboukandil2003matrix}, \cite[Ch.~6]{bacsar1998dynamic}).
+
+
+
+
+
+
+<b>Quadratic Game Approximation</b>
+<p>
+
+The local quadratic approximation of cost \(f_i\) is given by
+$$ \begin{aligned}
+ 
+    f_i(x_i,x_{-i})&=\frac{1}{2}\bmat{x_i\\ x_{-i}}^\top\bmat{A_i & B_i^\top\\ B_i& D_i}\bmat{x_i\\ x_{-i}}+\bmat{a_i\\ b_{i}}^\top\bmat{x_i\\ x_{-i}},
+\end{aligned} $$
+where $A_i\in \mathbb{R}^{d_i\times d_i}$, $D_i\in\mathbb{R}^{d_{-i}\times d_{-i}}$, $B_i\in \mathbb{R}^{d_{-i}\times d_i}$, $a_i\in \mathbb{R}^{d_i}$ and $b_i\in \mathbb{R}^{d_{-i}}$ with $A_i=A_i^\top$ and $D_i= D_i^\top $. Further, we assume that $A_i \succ 0$ for each $i=1,2$.
+The $D_i$ matrices penalize player $i$ based solely on $x_{-i}$ and may often be negative or zero.
+As noted quadratic games are a useful approximation of the behavior of more complex games around an equilibrium. 
+%Moreover,  quadratic games of the form considered capture finite time linear quadratic games with open-loop strategies, since the dynamics can effectively be ``unrolled" and the strategy $x_i$ is simply the stacked vector of control inputs.
+
+
+We consider only the space of affine conjectures; analogous to affine optimal policies in linear quadratic optimization problems, affine conjectures are the most natural class of conjectures for quadratic games as will be illustrated through our analysis. In fact, it is straightforward to show that if a player has an affine conjecture for their opponent, then the best response for that player is itself an affine policy. 
+With this in mind, let 
+player $i$ have an affine conjecture given by
+\(
+x_{-i}  = \cj{-i}(x_i) =  L_{i}x_i + \ell_{i}\).
+This results in player $i$ facing the following optimization problem:
+$$ \begin{aligned}\min_{x_i}\{f_i(x_i,x_{-i})|\ x_{-i}=c_{-i}(x_i) = L_{i}x_i+\ell_{i}\}.\end{aligned} $$
+
+Conditions for a first-order CCVE 
+% \textcolor{red}{$\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$} 
+in affine conjectures are 
+$$ \begin{aligned}\label{eq:firstorderone}
+  \begin{aligned}
+0&=D_{x_1}f_1(\x{1},\cj{2}(\x{1})), \  0=D_{x_2}f_2(\cj{1}(\x{2}),\x{2}),\\
+\cj{2}(x_1) &=L_1\x{1}+\ell_1, \quad\ \ \cj{1}(x_2)=L_2\x{2}+\ell_2.
+\end{aligned}  
+\end{aligned} $$
+Given \eqref{eq:firstorderone}, the implications for existence can be summarized in the following proposition.
+
+</p>
+
+<b> Proposition </b>
+\label{prop:main}
+Consider a quadratic game $(f_1,f_2)$, and suppose players are restricted to the class of  affine conjectures 
+$\cj{-i}(x_{i})=L_{i}x_{i}+\ell_{i}$
+for $i=1,2$. 
+Suppose that there is a solution $\{(L_1^{\tt c},\ell_1^{\tt c}),(L_2^{\tt c}, \ell_2^{\tt c})\}$ to the coupled Riccati equations,
+$$ \begin{aligned}
+   % \begin{aligned}
+        0&=L_{-i}^\top  (A_{i} + B_{i}^\top  L_{i})  +(B_{i} +D_{i}L_{i}),    \label{eq:coupledriccati}\\
+       0&= \ell_{-i}^\top ( A_{i} +  B_{i}^\top L_{i} )
+ + a_{i}^\top + b_{i}^\top L_{i},  \  \forall\   i\in \{1,2\},\label{eq:affine}
+  %  \end{aligned}
+\end{aligned} $$
+ such that
+ %, for this $(L_1^{\tt c},L_2^{\tt c})$, there exists
+ %$(\ell_1^{\tt c},\ell_2^{\tt c})$ that solve  with 
+ $$ \begin{aligned}\label{eq:range}
+ \begin{bmatrix} \ell_2^{\tt c} \\ \ell_1^{\tt c}
+ \end{bmatrix}
+ % (\ell_2^{\tt c},\ell_1^{\tt c})
+ \in \text{range}\left(\mathbf{L}\right)\quad\text{where}\ \ \mathbf{L}:=\bmat{I & -L_2^{\tt c}\\ -L_1^{\tt c} &  I}.
+ \end{aligned} $$
+Then $\{(x_1^{\tt c},x_2^{\tt c}), (\cjc{1},\cjc{2})\}$ such that $\xc{-i}=\cjc{-i}(\xc{i})=L_{i}^{\tt c}\xc{i}+\ell_{i}^{\tt c}$ for each $i\in \{1,2\}$ is a first-order CCVE.
+%
+%A first-order CCVE exists if 
+% %[I \ -L_2^{\tt c};\ -L_1^{\tt c} \  I]
+%% \textcolor{red}{and $A_i + B_i^\top L_i$ for $i=1,2$ are invertible.} 
+%% \textcolor{red}{such that $\det(I-L_2L_1)\neq 0$ }.  
+Moreover $\{(x_1^{\tt c},x_2^{\tt c}), (\cjc{1},\cjc{2})\}$ is a CCVE if  $(L_1^{\tt c},L_2^{\tt c})$ satisfies
+%a solution to \eqref{eq:coupledriccati} satisfies
+$$ \begin{aligned}
+A_i + (L_i^{\tt c})^\top B_i + B_i^\top L_i^{\tt c} + (L_i^{\tt c})^\top D_i L_i^{\tt c}  \succ 0,
+\   i=1,2.
+\label{eq:2ndorderprop}
+\end{aligned} $$
+
+\begin{proof}
+    The first order conditions in \eqref{eq:firstorderone} plus affine structure of the conjectures lead to the following equations:
+   % $$ \begin{aligned}
+    $0=x_{i}^\top( A_{i} +  B_{i}^\top L_{i} )+x_{-i}^\top  ( B_{i}+D_{i}L_{i}) +a_{i}^\top +b_{i}^\top L_{i}$, and
+    $x_{i}=L_{-i}x_{-i}+\ell_{-i}$ for $i=1,2$.
+Plugging the latter into the former we have that
+%    (L_{i}x_{i}+\ell_{i})^\top( A_{-i} +  B_{-i}^\top L_{-i} )&=-x_{i}^\top  ( B_{-i}+D_{-i}L_{-i}) - a_{-i}^\top - b_{-i}^\top L_{-i}.
+%\end{aligned} $$
+%Hence we deduce that
+    $$ \begin{aligned}\label{eq:zerocond}
+    \begin{aligned}
+            0&=x_{-i}^\top (L_{-i}^\top( A_{i} +  B_{i}^\top L_{i} )+( B_{i}+D_{i}L_{i}))\\
+    &\quad +\ell_{-i}^\top ( A_{i} +  B_{i}^\top L_{i} )
+ + a_{i}^\top + b_{i}^\top L_{i}, \ \forall i=1,2.
+    \end{aligned}
+\end{aligned} $$
+Observe that  \eqref{eq:zerocond} holds if \eqref{eq:coupledriccati} and \eqref{eq:affine} hold. 
+%$$ \begin{aligned}
+%    0&=L_i^\top( A_{-i} +  B_{-i}^\top L_{-i} )+( B_{-i}+D_{-i}L_{-i}),\label{eq:bigL}\\
+%    0&=\ell_i^\top ( A_{-i} +  B_{-i}^\top L_{-i} )
+% + a_{-i}^\top + b_{-i}^\top L_{-i},\ \ \forall i=1,2.\label{eq:littlel}
+%\end{aligned} $$
+By assumption there is a solution $\{(L_1^{\tt c},\ell_1^{\tt c}),(L_2^{\tt c},\ell_2^{\tt c})\}$ to \eqref{eq:coupledriccati} and \eqref{eq:affine} satisfying \eqref{eq:range}. Hence, solving  $\{x_i=L_{-i}^{\tt c}x_{-i}+\ell_{-i}^{\tt c},\  i=1,2\}$  yields a first order CCVE $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$.
+%%which produces a solution $(\ell_1^{\tt c},\ell_2^{\tt c})$ to .
+% 
+ %the affine term $\ell_i$ is  determined by plugging $(L_1^{\tt c},L_2^{\tt c})$ into \eqref{eq:littlel}. % making \eqref{eq:littlel} redundant.
+%Using  $(L_1^{\tt c},L_2^{\tt c})$ in  \eqref{eq:affine}, we compute $(\ell_1^{\tt c},\ell_2^{\tt c})$ which satisfies \eqref{eq:range} by assumption so that subsequently  % where $\cjc{i}(\xc{-i})=L_{-i}^{\tt c}\xc{-i}+\ell_{-i}^{\tt c}$.  
+
+For quadratic games, a second-order CCVE is a CCVE. 
+%The following conditions characterize when a second-order CCVE exits.
+Expanding out player $i$'s cost, we have that %given the affine conjecture, we get
+$$ \begin{aligned}
+f_i(x_i,\cj{-i}(x_i)) 
+& =
+\tfrac{1}{2}x_i^\top (A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i ) x_i \\
+&
++ (a_i^\top + \ell_i^\top B_i +b_i^\top L_i ) x_i
++ \ell_i^\top D_i \ell_i + b_i^\top \ell_i.
+\end{aligned} $$
+Hence, $f_i$ is strongly convex if \eqref{eq:2ndorderprop} holds at $(L_1^{\tt c},L_2^{\tt c})$; this is sufficient to guarantee that $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$ is a CCVE.
+%The second order condition ensures that the cost $f_i(x_i,\cjc{-i}(x_i))$ is strongly convex which is sufficient to guarantee that $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$ is a CCVE.
+%
+%where $L_i^{\tt c}$ solves \eqref{eq:bigL} for $i=1,2$ precisely as claimed in \eqref{eq:coupledriccati}.
+\end{proof}
+
+It is worth pointing out that \eqref{eq:coupledriccati} does not depend on \eqref{eq:affine} and hence can be solved independently. Additionally, a more restrictive yet simpler-to-check version of \eqref{eq:range} is that 
+$\mathbf{L}$
+is invertible or, equivalently,
+$\det\big(I  -L_2^{\tt c}L_1^{\tt c}\big) \neq 0$. 
+%%%%%%%% end original %%%%%%%%%%%%%%%
+\iffalse
+\section{NEW VERSION I}
+\textcolor{red}{
+\begin{proposition}
+For a quadratic game $(f_1,f_2)$, consider the class of  affine conjectures 
+$\cj{-i}(x_{i})=L_{i}x_{i}+\ell_{i}$
+for $i=1,2$. Suppose $(L_1^{\tt c},L_2^{\tt c})$ solve the coupled Riccati equations,
+ $$ \begin{aligned}
+L_{-i}^\top  (A_i + B_i^\top  L_i)  +(B_i +D_iL_i)=0, \quad \forall\   i\in \{1,2\},    \label{eq:coupledriccati}
+ \end{aligned} $$
+ and there exists $(\ell_1^{\tt c},\ell_2^{\tt c})$ satisfying 
+ $$ \begin{aligned}
+\ell_{-i}^\top ( A_{i} +  B_{i}^\top L_{i}^{\tt c} )
+ + a_{i}^\top + b_{i}^\top L_{i}^{\tt c} =0, \quad   \forall\   i\in \{1,2\},
+\label{eq:coupledell}
+ \end{aligned} $$ 
+ such that  $$ \begin{aligned}\label{eq:range}(\ell_1^{\tt c},\ell_2^{\tt c})\in \text{range}\left(\mathbf{L}\right)\quad\text{where}\ \ \mathbf{L}:=\bmat{I & -L_2^{\tt c}\\ -L_1^{\tt c} &  I}.
+ \end{aligned} $$
+ with $(x_1^{\tt c},x_2^{\tt c})$ satisfying 
+ $x_i^{\tt c} = L_{-i}^{\tt c}x_{-i}^{\tt c} + \ell_{-i}^{\tt c}$ for $i=1,2$. It follows that
+ $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$
+ % $(x_1^{\tt c},x_2^{\tt c},L_1^{\tt c},L_2^{\tt c},\ell_1^{\tt c},\ell_2^{\tt c})$ 
+ is a first-order CCVE. 
+In addition, if  $(L_1^{\tt c},L_2^{\tt c})$ satisfies
+%a solution to \eqref{eq:coupledriccati} satisfies
+  $$ \begin{aligned}
+A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i  \succ 0
+\quad \forall \ i\in \{1,2\},
+\label{eq:2ndorderprop}
+\end{aligned} $$
+then it is a CCVE.
+\end{proposition}
+\begin{proof}
+    If $x_i^{\tt c} = L_{-i}^{\tt c}x_{-i}^{\tt c} + \ell_{-i}^{\tt c}$, left multiplying by 
+    $(A_i +B_i^\top L_i^{\tt c})^\top$ and plugging in \eqref{eq:coupledriccati} and \eqref{eq:coupledell}
+    gives
+   % $$ \begin{aligned}
+    $$
+    0=( A_{i} +  B_{i}^\top L_{i}^{\tt c} )^\top x_i^{\tt c} + ( B_{i}+D_{i}L_{i}^{\tt c})^\top x_{-i}^{\tt c} +(a_{i}^\top + b_i^\top L_{i}^{\tt c})^\top $$
+    which are the first order optimality conditions for player $i$. 
+%The following conditions characterize when a second-order CCVE exits.
+Expanding out player $i$'s cost, we have that %given the affine conjecture, we get
+$$ \begin{aligned}
+f_i(x_i,\cj{-i}(x_i)) 
+& =
+\tfrac{1}{2}x_i^\top (A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i ) x_i \\
+&
++ (a_i^\top + \ell_i^\top B_i +b_i^\top L_i ) x_i
++ \ell_i^\top D_i \ell_i + b_i^\top \ell_i.
+\end{aligned} $$
+Hence, $f_i$ is strongly convex if \eqref{eq:2ndorderprop} holds at $(L_1^{\tt c},L_2^{\tt c})$; this is sufficient to guarantee that $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$ is a second-order CCVE which is precisely a CCVE. 
+%The second order condition ensures that the cost $f_i(x_i,\cjc{-i}(x_i))$ is strongly convex which is sufficient to guarantee that $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$ is a CCVE.
+%
+%where $L_i^{\tt c}$ solves \eqref{eq:bigL} for $i=1,2$ precisely as claimed in \eqref{eq:coupledriccati}.
+\end{proof}
+}
+\section{NEW VERSION II}
+f{
+\begin{proposition}
+\label{prop:main}
+For a quadratic game $(f_1,f_2)$, consider the class of  affine conjectures 
+$\cj{-i}(x_{i})=L_{i}x_{i}+\ell_{i}$
+for $i=1,2$. Suppose $(L_1^{\tt c},L_2^{\tt c})$ solve the coupled Riccati equations
+ $$ \begin{aligned}
+L_{-i}^\top  (A_i + B_i^\top  L_i)  +(B_i +D_iL_i)=0, \quad \forall\   i\in \{1,2\},    \label{eq:coupledriccati} 
+ \end{aligned} $$
+ and there exists $(\ell_1^{\tt c},\ell_2^{\tt c})$ and then $(x_1^{\tt c}, x_2^{\tt c})$ satisfying the resulting affine equations
+ $$ \begin{aligned}
+\ell_{-i}^\top ( A_{i} +  B_{i}^\top L_{i}^{\tt c} )
+ + a_{i}^\top + b_{i}^\top L_{i}^{\tt c} & =0, \quad   \forall\   i\in \{1,2\},
+\label{eq:coupledell} \\
+x_i - L_{-i}^{\tt c}x_{-i} - \ell_{-i}^{\tt c} & = 0, \quad   \forall\   i\in \{1,2\}.
+\label{eq:couplex}
+ \end{aligned} $$ 
+  It follows that
+ $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$
+ % $(x_1^{\tt c},x_2^{\tt c},L_1^{\tt c},L_2^{\tt c},\ell_1^{\tt c},\ell_2^{\tt c})$ 
+ is a first-order CCVE. 
+In addition, if  $(L_1^{\tt c},L_2^{\tt c})$ satisfies
+%a solution to \eqref{eq:coupledriccati} satisfies
+  $$ \begin{aligned}
+A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i  \succ 0
+\quad \forall \ i\in \{1,2\},
+\label{eq:2ndorderprop}
+\end{aligned} $$
+then it is a CCVE.
+\end{proposition}
+\begin{proof}
+    If $x_i^{\tt c} = L_{-i}^{\tt c}x_{-i}^{\tt c} + \ell_{-i}^{\tt c}$, left multiplying by 
+    $(A_i +B_i^\top L_i^{\tt c})^\top$ and plugging in \eqref{eq:coupledriccati} and \eqref{eq:coupledell}
+    gives
+   % $$ \begin{aligned}
+    $$
+    0=( A_{i} +  B_{i}^\top L_{i}^{\tt c} )^\top x_i^{\tt c} + ( B_{i}+D_{i}L_{i}^{\tt c})^\top x_{-i}^{\tt c} +(a_{i}^\top + b_i^\top L_{i}^{\tt c})^\top $$
+    which are the first order optimality conditions for player $i$. 
+%The following conditions characterize when a second-order CCVE exits.
+Expanding out player $i$'s cost, we have that %given the affine conjecture, we get
+$$ \begin{aligned}
+f_i(x_i,\cj{-i}(x_i)) 
+& =
+\tfrac{1}{2}x_i^\top (A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i ) x_i \\
+&
++ (a_i^\top + \ell_i^\top B_i +b_i^\top L_i ) x_i
++ \ell_i^\top D_i \ell_i + b_i^\top \ell_i.
+\end{aligned} $$
+Hence, $f_i$ is strongly convex if \eqref{eq:2ndorderprop} holds at $(L_1^{\tt c},L_2^{\tt c})$; this is sufficient to guarantee that $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$ is a second-order CCVE which is precisely a CCVE. 
+%The second order condition ensures that the cost $f_i(x_i,\cjc{-i}(x_i))$ is strongly convex which is sufficient to guarantee that $\{(\xc{1},\xc{2}), (\cjc{1},\cjc{2})\}$ is a CCVE.
+%
+%where $L_i^{\tt c}$ solves \eqref{eq:bigL} for $i=1,2$ precisely as claimed in \eqref{eq:coupledriccati}.
+\end{proof}
+Given solutions to \eqref{eq:coupledriccati} and
+\eqref{eq:coupledell}, a necessary and sufficient condition for 
+\eqref{eq:couplex} to have solutions is that $$ \begin{aligned}\label{eq:range}(\ell_1^{\tt c},\ell_2^{\tt c})\in \text{range}\left(\mathbf{L}\right)\quad\text{where}\ \ \mathbf{L}:=\bmat{I & -L_2^{\tt c}\\ -L_1^{\tt c} &  I}.
+ \end{aligned} $$
+ A more restrictive yet simpler-to-check version of \eqref{eq:range} is that 
+$\mathbf{L}$
+is invertible or, equivalently,
+$\det\big(I  -L_2^{\tt c}L_1^{\tt c}\big) \neq 0$.
+Further, if $(A_i+{L_i^{\tt c}}^\top B_i)$ is invertible for $i=1,2$, then $(\ell_1^{\tt c},\ell_2^{\tt c})$ are determined uniquely by \eqref{eq:coupledell}. 
+}
+\fi
+%%% Removed for length can go in arxiv
+%That is, if we find solutions $(L_1^{\tt c}, L_2^{\tt c})$ to \eqref{eq:coupledriccati} satisfying $\det\big(I  -L_2^{\tt c}L_1^{\tt c}\big) \neq 0$, then there are solutions $(\ell_1^{\tt c}, \ell_2^{\tt c})$ to equations $x_{i}=L_{-i}^{\tt c}x_{-i}+\ell_{-i}$ for $i=1,2$ and we 
+%simply need to check that they 
+%satisfy $\ell_i^\top ( A_{-i} +  B_{-i}^\top L_{-i}^{\tt c} )
+% + a_{-i}^\top + b_{-i}^\top L_{-i}^{\tt c}=0$ for $i=1,2$. 
+%%% 
+% \textcolor{red}{
+% $$ \begin{aligned}
+%     \ell_i^\top ( A_{-i} +  B_{-i}^\top L_{-i}^{\tt c} )
+%  + a_{-i}^\top + b_{-i}^\top L_{-i}^{\tt c}&=0\\
+%  x_{i}^\top -x_{-i}^\top L_{-i}^{\tt c}-\ell_{-i}^\top&=0
+% \end{aligned} $$
+% }
+%\textcolor{red}{
+%\begin{proof}
+%The consistent conjecture conditions for affine conjectures are given by 
+%$ x_{-i} = L_i x_i + \ell_i $ and applying the chain rule gives the first order optimality conditions for each player as $
+%\big(A^\top_i + L_i^\top B_i \big) x_i + \big(B_1^\top + L_1^\top D_1^\top \big) x_{-i}
+%+a_i+L_i^\top b_i = 0
+%$.  Assuming $A_i^\top_i + L_i^\top B_i$ is invertible gives the consistency conditions conditions
+%$$ \begin{aligned}
+% \label{eq:L2fromL1} 
+%     \begin{aligned}
+%     L_{-i}^\top  & = -(B_i +D_iL_i)(A_i + B_i^\top  L_i)^{-1},\\
+%      \ell_{-i}^\top  & = - (a_i^\top  + b_i^\top  L_i)(A_i + B_i^\top  L_i)^{-1} \ \ \ \forall\ i\in \{1,2\}.
+%     \end{aligned}
+% \end{aligned} $$
+%\end{proof}
+%}
+%
+%\textcolor{blue}{
+%\begin{proposition}
+%For a quadratic game $(f_1,f_2)$, given affine conjectures of the form 
+%$\cj{-i}(x_{i})=L_{i}x_{i}+\ell_{i}$
+%for $i=1,2$, a first-order CCVE exists if there are solutions to coupled Riccati equations,
+% $$ \begin{aligned}
+%L_{-i}^\top  (A_i + B_i^\top  L_i)  +(B_i +D_iL_i)=0, \quad \forall\   i\in \{1,2\}.    \label{eq:coupledriccati}
+% \end{aligned} $$ 
+% In addition, if a solution to \eqref{eq:coupledriccati} satisfies
+%  $$ \begin{aligned}
+%A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i  \succ 0
+%\quad \forall \ i\in \{1,2\},
+%\label{eq:2ndorderprop}
+%\end{aligned} $$
+%then that solution is a CCVE.
+%\end{proposition}
+%\begin{proof}
+%    The first order conditions plus affine structure of the conjectures lead to the following equations defining a first order CCVE:
+%    $$ \begin{aligned}
+%    x_{-i}^\top( A_{-i} +  B_{-i}^\top L_{-i} )&=-x_{i}^\top  ( B_{-i}+D_{-i}L_{-i}) - a_{-i}^\top - b_{-i}^\top L_{-i}\\
+%    x_{-i}&=L_{i}x_{i}+\ell_{i}
+%\end{aligned} $$
+%Plugging the latter into the former we have that
+%    $$ \begin{aligned}
+%    (L_{i}x_{i}+\ell_{i})^\top( A_{-i} +  B_{-i}^\top L_{-i} )&=-x_{i}^\top  ( B_{-i}+D_{-i}L_{-i}) - a_{-i}^\top - b_{-i}^\top L_{-i}.
+%\end{aligned} $$
+%Hence we deduce that
+%    $$ \begin{aligned}\label{eq:zerocond}
+%    0&=x_i^\top (L_i^\top( A_{-i} +  B_{-i}^\top L_{-i} )+( B_{-i}+D_{-i}L_{-i}))+\ell_i^\top ( A_{-i} +  B_{-i}^\top L_{-i} )
+% + a_{-i}^\top + b_{-i}^\top L_{-i}.
+%\end{aligned} $$
+%If 
+%$$ \begin{aligned}
+%    0&=(L_i^\top( A_{-i} +  B_{-i}^\top L_{-i} )+( B_{-i}+D_{-i}L_{-i}))\label{eq:bigL}\\
+%    0&=\ell_i^\top ( A_{-i} +  B_{-i}^\top L_{-i} )
+% + a_{-i}^\top + b_{-i}^\top L_{-i},\label{eq:littlel}
+%\end{aligned} $$
+%then \eqref{eq:zerocond} holds. Moreover, once a solution $L_i$ is determined from \eqref{eq:bigL}, the affine term $\ell_i$ is precisely determined from \eqref{eq:littlel} making \eqref{eq:littlel} redundant.
+%Hence, $x_i^{\tt c}=L_{-i}^{\tt c}x_{-i}^{\tt c}+\ell_{-i}^{\tt c}$ for $i=1,2$ where $L_i^{\tt c}$ solves \eqref{eq:bigL} for $i=1,2$ precisely as claimed in \eqref{eq:coupledriccati}.
+%\end{proof}
+%}
+%
+%
+%% where $\nabla_if_i:=\nabla_{x_i}f_i+ (\nabla_{x_i} \cj{-i})^\top  \nabla_{x_{-i}}f_i$.
+%%\textcolor{blue}{
+%Indeed, applying the chain rule, player $i$'s first order optimality conditions are 
+%$$ \begin{aligned}
+%0 & = 
+%x_i^\top ( A_i +  B_i^\top L_i ) + x_{-i}^\top  ( B_i+D_iL_i) + a_i^\top + b_i^\top L_{i}. 
+%\end{aligned} $$
+%
+%\section{WORKING ZONE}
+%Two sets of equations for $(x_1,x_2)$: \\
+%$$ \begin{aligned}
+%\text{Eqn 1:} \quad 
+%\bmat{I & -L_2 \\ -L_1 & I }
+%\bmat{x_1 \\ x_2 } = \bmat{\ell_2 \\ \ell_1}, \qquad \quad 
+%\text{Eqn 2:} \quad 
+%\bmat{A^\top_1 + L_1^\top B_1 & B_1^\top + L_1^\top D_1^\top \\ 
+%B_2^\top + L_2^\top D_2^\top & 
+%A^\top_2 + L_2^\top B_2 
+%}\bmat{x_1 \\ x_2 } = 
+%\bmat{-a_1-L_1^\top b_1 \\ -a_2-L_2^\top b_2 }
+%\end{aligned} $$
+%Let 
+%$\mathcal{M} = \textbf{blkdiag}\Big([
+%A^\top_1 + L_1^\top B_1 \ \  A^\top_2 + L_2^\top B_2]\Big)$.  
+%Left multiplying Eqn 2 by $\mathcal{M}^{-1}$ gives
+%$$ \begin{aligned}
+%\bmat{I& \big(A^\top_1 + L_1^\top B_1 \big)^{-1} \big(B_1^\top + L_1^\top D_1^\top\big) \\ 
+%\big(A^\top_2 + L_2^\top B_2 \big)^{-1}\big(B_2^\top + L_2^\top D_2^\top \big) & I 
+%}\bmat{x_1 \\ x_2 } = 
+%\bmat{\big(A^\top_1 + L_1^\top B_1 \big)^{-1}\big(-a_1-L_1^\top b_1\big) \\ \big(A^\top_2 + L_2^\top B_2\big)^{-1} \big(-a_2-L_2^\top b_2\big) }
+%\end{aligned} $$
+%If the conditions we've been using hold, then the consistency conditions (Eqn 1) and the first order conditions (Eqn 2) become the same condition. 
+% Alternatively right multiplying Eqn 1 by 
+% $\mathcal{M}$ gives 
+%$$ \begin{aligned}
+%\bmat{\big(A^\top_1 + L_1^\top B_1 \big)& -\big(A^\top_1 + L_1^\top B_1 \big)L_2  \\ 
+%-\big(A^\top_2 + L_2^\top B_2 \big)L_1  & 
+%\big(A^\top_2 + L_2^\top B_2 \big)
+%}\bmat{x_1 \\ x_2 } = 
+%\bmat{\big(A^\top_1 + L_1^\top B_1 \big)\ell_2 \\ \big(A^\top_2 + L_2^\top B_2\big)\ell_1 }
+%\end{aligned} $$
+%(This still might be problematic if $\mathcal{M}$ is not invertible, right?)
+%
+%\textcolor{red}{
+%$$ \begin{aligned}
+%    x_i^\top( A_i +  B_i^\top L_i )&=-x_{-i}^\top  ( B_i+D_iL_i) + a_i^\top + b_i^\top L_{i}\\
+%    x_{i}&=L_{-i}x_{-i}+\ell_{-i}
+%\end{aligned} $$
+%$$ \begin{aligned}
+%    x_{-i}^\top( A_{-i} +  B_{-i}^\top L_{-i} )&=-x_{i}^\top  ( B_{-i}+D_{-i}L_{-i}) + a_{-i}^\top + b_{-i}^\top L_{-i}\\
+%    x_{-i}&=L_{i}x_{i}+\ell_{i}
+%\end{aligned} $$
+%}
+%\textcolor{blue}{
+%If $x_i$ is consistent with player $-i$'s conjecture, then $x_i = L_{-i}x_{-i} + \ell_{-i}$. Plugging this in for $x_{i}$ gives 
+%$$ \begin{aligned}
+%0&=x_{-i}^\top (L_{-i}^\top (A_i + B_i^\top L_i) + B_i + D_iL_i)
+%+ \ell_{-i}^\top (A_i + B_i^\top L_i) + a_i^\top + b_i^\top L_i.\\
+%&x_{-i}^\top (L_{-i}^\top (A_i + B_i^\top L_i) + B_i + D_iL_i)\\
+%&=- (\ell_{-i}^\top (A_i + B_i^\top L_i) + a_i^\top + b_i^\top L_i)\\
+%&\implies\\
+%\end{aligned} $$
+%}
+%
+%%}
+%$$ \begin{aligned}x_{-i}=L_{i}x_i+\ell_i\end{aligned} $$
+%$$ \begin{aligned}
+%0 & = 
+%(L_{-i}x_{-i}+\ell_{-i})^\top ( A_i +  B_i^\top L_i ) + x_{-i}^\top  ( B_i+D_iL_i) + a_i^\top + b_i^\top L_{i}.  \\
+%0&=x_{-i}^\top (L_{-i}^\top (A_i + B_i^\top L_i) + B_i + D_iL_i) + \ell_{-i}^\top (A_i + B_i^\top L_i) + a_i^\top + b_i^\top L_i.
+%\end{aligned} $$
+%\djc{RIGHT HERE}
+%$$ \begin{aligned}
+%  -( (L_{-i}x_{-i})^\top +x_{-i}^\top  ( B_i+D_iL_i))&=
+%\end{aligned} $$
+%
+%$$ \begin{aligned}
+%&-x_i^\top ( A_i +  B_i^\top L_i ) -x_i^\top \\
+%& = 
+%+ (\ell_i)^\top  ( B_i+D_iL_i) + a_i^\top + b_i^\top L_{i}. 
+%\end{aligned} $$
+%$$ \begin{aligned}
+%    &x_i^\top ( A_i +  B_i^\top L_i +L_i^\top (B_i+D_iL_i))\\
+%    &=-(\ell_i)^\top  ( B_i+D_iL_i) + a_i^\top + b_i^\top L_{i}
+%\end{aligned} $$
+%$$ \begin{aligned}
+%    &x_i^\top \\
+%    &=-( A_i +  B_i^\top L_i +L_i^\top (B_i+D_iL_i))^{-1}(\ell_i)^\top  ( B_i+D_iL_i) + a_i^\top + b_i^\top L_{i}\\
+%    &=L_{-i}x_{-i}+\ell_{-i}
+%\end{aligned} $$
+% $$ \begin{aligned}
+% \label{eq:L2fromL1} 
+%     \begin{aligned}
+%     L_{-i}^\top (A_i + B_i^\top  L_i) & = -(B_i +D_iL_i),\\
+%      \ell_{-i}^\top  & = - (a_i^\top  + b_i^\top  L_i)(A_i + B_i^\top  L_i)^{-1} \ \ \ \forall\ i\in \{1,2\}.
+%     \end{aligned}
+% \end{aligned} $$
+%% %%%% #### CHECKING SOME THINGS 
+%
+%$$ \begin{aligned}
+%0 = \left.\frac{\partial f_1}{\partial x_1}\right|_{x_2 = L_1 x_1 + \ell_1} + 
+%\left.\frac{\partial f_1}{\partial x_2}
+%\right|_{x_2 = L_1x_1 + \ell_1}
+%L_1
+%\end{aligned} $$
+%$$ \begin{aligned}
+%0 &= \frac{\partial f_i(x_i,L_ix_i+\ell_i)}{\partial x_i} \\
+%&= \frac{\partial}{\partial x_i}\left( \frac{1}{2} x_i^\top A_i x_i + (L_ix_i+\ell_i)^\top B_i x_i + \frac{1}{2}(L_ix_i+\ell_i)^\top D_i (L_ix_i+\ell_i) +  a_i + b_i^\top (L_ix_i+\ell_i)\right)\\
+%&= x_i^\top (A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i) +\ell_i^\top (B_i +  D_iL_i) + a_i^\top + b_i^\top L_i
+%\end{aligned} $$
+%$$ \begin{aligned}
+%0   & =
+%(x_i^\top  A_i + (\ell_i^\top +x_i^\top L_i^\top ) B_i + a_i^\top ) +  \\
+%& \qquad ((\ell_i^\top +x_i^\top L_i^\top )  D_i + x_i^\top  B_i^\top  + b_i^\top )L_{i} \\
+%& =
+%(x_i^\top  A_i + (\ell_i^\top +x_i^\top L_i^\top ) 
+%B_i + a_i^\top ) + \\
+%\qquad ((\ell_i^\top +x_i^\top L_i^\top )  D_i + x_i^\top  B_i^\top  + b_i^\top )L_{i} 
+%\end{aligned} $$
+%$$ \begin{aligned}
+%0   & = x_i^\top (A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i) + a_i^\top + \ell_i^\top B_i + \ell_i^\top D_i L_i + b_i^\top L_i  \\
+%\implies \quad 
+%x_i^\top & =  
+%-\Big(a_i^\top + \ell_i^\top B_i + \ell_i^\top D_i L_i + b_i^\top L_i\Big) 
+%\Big(A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i\Big)^{-1}
+%\end{aligned} $$
+%%###################
+%
+%\section{RETURN TO PAPER}
+%For consistent conjectures we have to have $x_i = L_{-i}x_{-i} + \ell_{-i}$ and $x_{-i} = L_{i}x_{i} + \ell_{i}$. And then reduces to the Ricatti equations.
+%If $x_i$ is consistent with player $-i$'s conjecture, then $x_i = L_{-i}x_{-i} + \ell_{-i}$. Plugging this in for $x_{i}$ gives 
+%$$ \begin{aligned}
+%0&=x_{-i}^\top (L_{-i}^\top (A_i + B_i^\top L_i) + B_i + D_iL_i)\\
+%&\quad+ \ell_{-i}^\top (A_i + B_i^\top L_i) + a_i^\top + b_i^\top L_i.
+%\end{aligned} $$
+%For this to be true for any $x_{-i}$, we need the conditions in \eqref{eq:coupledriccati} to hold.
+Perhaps more intuitively, supposing the inverse of $(A_i+B_i^\top L_i)$ exists,   player $i$'s first order condition is  $x_i^\top  = -x_{-i}^\top (B_i +D_iL_i)(A_i + B_i^\top  L_i)^{-1} - (a_i^\top  + b_i^\top  L_i)(A_i + B_i^\top  L_i)^{-1}$; thus   the consistent conjecture conditions are 
+ $$ \begin{aligned}
+ \label{eq:L2fromL1} 
+     \begin{aligned}
+     L_{-i}^\top  & = -(B_i +D_iL_i)(A_i + B_i^\top  L_i)^{-1},\\
+      \ell_{-i}^\top  & = - (a_i^\top  + b_i^\top  L_i)(A_i + B_i^\top  L_i)^{-1} \ \ \ \forall\ i\in \{1,2\}.
+     \end{aligned}
+ \end{aligned} $$
+This shows that if a player has an affine conjecture for its opponent's play, then its best response can be written as an affine policy. 
+%Note that the Riccati equations \eqref{eq:coupledriccati} are sufficient for first order conditions since $\ell_i$ can be computed separately based on $L_i$ for $i=1,2$.
+%%%% FINE AFTER THIS
+
+We use $(\Lc{i},\ellc{i})$ to refer to consistent conjectures---i.e., the solutions to the coupled Riccati equations \eqref{eq:coupledriccati} and the corresponding affine offsets. 
+Solutions may still exist when the inverses in \eqref{eq:L2fromL1} do not, however, as has been shown in special cases in the literature on CCVE such as for scalar Bertrand games, this leads to a multiplicity of solutions and an equilibrium selection problem (see \cite{olsder1981memo, figuieres2004theory} and references therein). 
+% \textcolor{red}{In addition, since Proposition \ref{prop:main} is a sufficient condition there may be other ways to solve for strategies and conjectures $(x_1,x_2,L_1,L_2,\ell_1,\ell_2)$ that satisfy \eqref{eq:firstorderone} without solving the Riccati equations.  Condition \eqref{eq:coupledriccati} is somewhat natural, however, in that it guarantees player $i$'s conjecture mimics player $-i$'s first order optimality condition.}
+Given page constraints, we leave the analysis of these more nuanced cases to a future paper. 
+
+
+For each $i=1,2$, define the following linear fractional transformation (LFT) update: 
+$$ \begin{aligned}
+L^+_{-i}  = \LFT_{i,-i}( L_i ) = -(A_i \trans  + L_i^\top  B_i )^{-1}(B_i^\top  +L_i^\top D_i \trans ), %\quad i=1,2,
+\end{aligned} $$
+where the subscript $(\cdot)_{12}$ can be read as ``from 1 to 2". The update for $L_i$ naturally defines discrete-time dynamics in the conjecture parameter space %\textcolor{blue}{
+that show how a player should update their conjecture to be consistent with their opponent's current conjecture. %}
+It is also useful to think of dynamic updates for each player separately constructed by composing the updates as follows:
+$$ \begin{aligned}
+L^+_i  & = \LFT_{-i,i}(
+\LFT_{i,-i}(L_i)
+) \label{eq:update1} \\
+& = - \left(A_{-i} \trans - (B_i +D_iL_i)(A_i + B_i^\top  L_i)^{-1} B_{-i}\right)^{-1} \notag \\
+&\quad\cdot(B_{-i}^\top  - (B_i +D_iL_i)(A_i + B_i^\top  L_i)^{-1} D_{-i} \trans ), \ \ i=1,2. \notag
+\end{aligned} $$
+%\textcolor{blue}{
+\begin{remark}
+The first order conditions in \eqref{eq:coupledriccati}
+%or \eqref{eq:L2fromL1} 
+guarantee that the players have consistent conjectures. The second order conditions \eqref{eq:2ndorderprop} guarantee that given their conjecture, player $i$'s cost is 
+convex in $x_i$. Expounding the first order conditions---characterizing the LFT dynamics, finding fixed points by solving  \eqref{eq:coupledriccati}, and characterizing their stability---is non-trivial and is the primary focus of this paper. Our results will show that there is a limited number of stable first-order CCVE.  Once these stable equilibria are found, the second order conditions \eqref{eq:2ndorderprop} can easily be checked.  For further discussion, see Section \ref{sec:2ndorder} and \cite{calderone2023arxiv}.
+\end{remark}
+
+\subsection{LFT Matrix Representation}
+We will see in the subsequent section that LFTs can be efficiently represented by matrices and their composition by matrix manipulation. Towards this end, let us define some useful objects that will be used throughout.
+%\ljr{add dimensions....}
+Define the $d\times d$ symmetric real valued matrices (where $d = d_1 + d_2$)
+$$ \begin{aligned}\label{eq:LFTmatrices}
+M_1  = 
+\begin{bmatrix}
+A_1 & B_1^\top  \\
+B_1 & D_1
+\end{bmatrix}, \ \ \text{and}\ \ 
+M_2 = 
+\begin{bmatrix}
+D_2 & B_2 \\
+B_2^\top  & A_2
+\end{bmatrix}.
+\end{aligned} $$
+We make the following assumption on $M_1$ and $M_2$. 
+\begin{assumption}\label{a:well-defined} The matrices $M_1,M_2$ are invertible.
+\end{assumption}
+We will be directly interested in the two products $\mathbf{M}_1 = M_2 \itrans M_1$ and $\mathbf{M}_2 = M_1 \itrans M_2$.
+Note that 
+$
+M_1,M_2 \ \text{invertible}
+\iff 
+\mathbf{M}_1,\mathbf{M}_2 \ \text{invertible}. 
+$
+Let $\text{spec}\big(\mathbf{M}_1\big)$ and $\text{spec}\big(\mathbf{M}_2\big)$ refer to the spectra of each matrix.  A simple argument shows that $\text{spec}(\mathbf{M}_1) = 1/\text{spec}(\mathbf{M}_2)$ where we use $1/(\cdot)$ to mean element-wise inversion.  
+Since $M_1,M_2$ are symmetric, $\mathbf{M}_1 = \mathbf{M}_2^{-1}$; however, much of the following Riccati analysis works for asymmetric $M_1,M_2$ as well.
+  
+
+\subsection{Examples}
+In this section, we present two illustrative quadratic games and comment on CCVE: an open-loop dynamic game and a repeated human vs. machine game.
+\subsubsection{Linear quadratic dynamic game}
+%\edit{
+Consider a two player linear quadratic dynamic game with open loop policies $\mathbf{u}_i=(u_{i,0},\ldots, u_{i,T-1})$ for $i=1,2$:
+$$ \begin{aligned}
+   f_i(\mathbf{u}_1,\mathbf{u}_2)&=\textstyle\sum_{t=0}^{T-1} \ \ \frac{1}{2}z_t^\top Q_iz_t+\frac{1}{2} {u}_{i,t}^\top R_i {u}_{i,t}+{u}_{i,t}^\top R_{i}^{-i} {u}_{-i,t}\\
+   &\quad\textstyle+\frac{1}{2} z_{T}^\top Q_{i,f}z_T\\ %+z_{T+1}^\top Q_{i,f}z_{T+1}\\
+   z_{t+1}&=Fz_t+G_1u_{1,t}+G_2u_{2,t}, \ z_t\in \mathbb{R}^{n}.
+\end{aligned} $$
+Unfolding the dynamics and letting $Z=[z_0^\top,\ldots,z_T^\top]^\top$, we have that $Z=W_1\mathbf{u}_1+W_2\mathbf{u}_2+\mathbf{F}z_0$
+where $$ \begin{aligned}
+W_i&=\bmat{0& \cdots& & & 0\\ G_i& 0 &\cdots& &0\\
+  FG_i & G_i& 0& \cdots&0\\
+    \vdots &\vdots &\ddots &\ddots&\vdots \\
+    F^{T-2}G_i& F^{T-3}G_i& \cdots & G_i & 0\\
+    F^{T-1}G_i& F^{T-2}G_i& \cdots & FG_i& G_i},\quad i=1,2,
+\end{aligned} $$
+and $\mathbf{F}=\bmat{I & F^\top & \cdots & (F^{T-1})^\top & (F^{T})^\top }^\top$.
+Define the following cost matrices: $\mathbf{Q}_i:=\text{diag}(Q_i,\ldots, Q_i,Q_{i,f})\in \mathbb{R}^{n(T+1)\times n(T+1)}$, $\mathbf{R}_i:=\text{diag}(R_i,\ldots, R_i)\in \mathbb{R}^{d_iT\times d_iT}$, and $\mathbf{R}_{i}^{-i}:=\text{diag}(R_{i}^{-i},\ldots, R_{i}^{-i})\in \mathbb{R}^{d_iT\times d_{-i}T}$.
+Player $i$'s cost is 
+$$ \begin{aligned}
+    &f_i(\mathbf{u}_i,\mathbf{u}_{-i})= \tfrac{1}{2} \mathbf{u}_i^\top \mathbf{R}_i\mathbf{u}_i+\mathbf{u}_{i}^\top \mathbf{R}_{i}^{-i}\mathbf{u}_{-i}\\
+    &+\tfrac{1}{2} (W_1\mathbf{u}_1+W_2\mathbf{u}_2+\mathbf{F}z_0)^\top
+    \mathbf{Q}_i (W_1\mathbf{u}_1+W_2\mathbf{u}_2+\mathbf{F}z_0).
+\end{aligned} $$
+Expanding and regrouping this cost gives that 
+$A_i  =\mathbf{R}_i+W_i^\top \mathbf{Q}_iW_i$, $B_i =\big(\mathbf{R}_{i,-i}+W_i^\top \mathbf{Q}_iW_{-i}\big)^\top$, $D_i  = W_{-i}^\top \mathbf{Q}_iW_{-i}$, $a_i^\top  =z_0^\top \mathbf{F}^\top \mathbf{Q}_iW_i$, and $b_i^\top =z_0^\top \mathbf{F}^\top \mathbf{Q}_iW_{-i}$. 
+In a typical LQR problem it is assumed that $\mathbf{R}_i\succ 0$ and $Q_i\succeq0$ in order for solutions to exist (there are conditions that weaken these assumptions), and hence $A_i\succ 0$. 
+In this case $A_i$ is non-degenerate, and hence a sufficient condition for $\mathbf{M}_i$ for $i=1,2$ to each be non-degenerate is that the Schur complement of $M_i$ with respect to $(\mathbf{R}_i+W_i^\top \mathbf{Q}_iW_i)$ is non-degenerate; indeed, this follows from the fact that 
+$$ \begin{aligned}[\det(M_i)\neq 0\ \forall i\in\{1,2\}]\Longleftrightarrow[\det(\mathbf{M}_i)\neq 0\ \forall i\in\{1,2\}].\end{aligned} $$
+% %}
+
+\subsubsection{Adaptive human-machine interactions}
+%\edit{
+It has recently been shown that CCVE well-model human-machine co-adaptation~\cite{chasnov2023human}.  In this study the human and the machine have scalar quadratic costs, 
+$$ \begin{aligned}
+    f_i(x_i,x_{-i})=\frac{1}{2}\bmat{x_i\\ x_{-i}}^\top\bmat{q_i & r_i\\ r_i& s_i}\bmat{x_i\\ x_{-i}}+\bmat{w_i\\ v_{i}}^\top\bmat{x_i\\ x_{-i}},
+\end{aligned} $$
+and series of experiments show convergence of repeated game play to CCVE in a computer-facilitated task. 
+Assumption~\ref{a:well-defined} is satisfied  if $\det(M_i)\neq 0$ $\Longleftrightarrow$ $q_is_i-r_i^2\neq 0$ for each $i=1,2$. This holds for the games studied in \cite{chasnov2023human}; it is shown in the supplement of the same reference that CCVE exist in affine conjectures for the games studied therein. 
+%}
+
+
+
+
+\iffalse
+\subsection{Warm-Up: Scalar M\"obius Transformations}
+In order to get some intuition for why the matrices $\mathbf{M}_i$ have the form they, it is instructive to consider the scalar setting. 
+It turns out that for scalar games the LFT description of the CCVE conjecture parameters is equivalent to a M\"obius transformation, and examining this case provides useful intuition for the more general case.
+
+Indeed, the variables $L_1, L_2$ and parameters are all now scalar so that the LFT for player one reduces to 
+$$ \begin{aligned}
+    L_1 = \LFT_{21}(L_2) = -(B_2  +L_2  D_2)/(A_2  + L_2B_2),
+\end{aligned} $$
+with composition map $\LFT_{21}\circ \LFT_{12}(L_1)$ given by
+$$ \begin{aligned}
+   L_1  = 
+\frac{(B_1D_2-A_1B_2) + (D_1D_2-B_1B_2)L_1}{(A_1A_2 - B_1 B_2) + (A_2 B_1 - D_1B_2)L_1}  
+\end{aligned} $$
+The expressions for player two are analogous.
+It is well known that a M\"obius transformation can be represented in the matrix form
+%; more explicitly the form is 
+given in \eqref{eq:LFTmatrices} with scalar the entries \cite[Ch. VII]{lang2013complex}.
+The matrix representation of the composition map is
+$$ \begin{aligned}
+\boldsymbol{\mathrm{M}}_1
+&= 
+\begin{bmatrix}
+A_1 A_2 - B_1 B_2 & A_2 B_1 - D_1 B_2 \\
+B_1 D_2 -A_1B_2& D_1 D_2 -B_1B_2
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+A_2 & -B_2 \\
+-B_2 & D_2 
+\end{bmatrix}
+\begin{bmatrix}
+A_1 & B_1 \\ 
+B_1 & D_1 
+\end{bmatrix}=\text{det}(M_2)M_2^{-1}M_1
+\end{aligned} $$
+Note that scaling by the determinant is unimportant since the the matrix representation does not change with scaling. 
+
+Fixed points of M\"obius transformations can be characterized in terms of the eigenvectors of their matrix representations. 
+For a scalar LFT with matrix representation $\mathbf{M}_1$ there are two fixed points each characterized by an eigenvector of $\mathbf{M}_1$. 
+Specifically, suppose {\small $[1 \ v]^\top$} is a right eigenvector of $\mathbf{M}_1=[m_{11} \ m_{12}; m_{21}\ m_{22}]$. Then we have 
+$$ \begin{aligned}
+\begin{bmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{bmatrix} \begin{bmatrix} 1 \\ v \end{bmatrix} = 
+\begin{bmatrix} m_{11} + m_{12}v \\ m_{21} + m_{22} v \end{bmatrix} =
+\begin{bmatrix} 1 \\ v \end{bmatrix} \lambda
+\end{aligned} $$
+and it follows that $v = (m_{21} + m_{22} v)/( m_{11} + m_{12}v)$, ie. $v$ is a fixed point for the LFT.  Further analysis shows that the stability of each fixed point depends on the ratio of the two eigenvalues with one stable and one unstable fixed point or two marginally stable fixed points \cite{lang2013complex}.  
+
+In order to extend this analysis to matrix LFTs, we use tools from algebraic Riccati equation analysis. Yet, at its core the idea is very much the same as in the scalar case in that the eigenstructure of $\mathbf{M}_1$ tells us everything about the stability properties of CCVE as we will see in the coming sections.
+\fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{LFT Dynamics: Matrix Form}
+In this section, we give an extended analysis of the LFT dynamics in \eqref{eq:update1}.
+Define the blocks of the product matrices $\mathbf{M}_1 = M_2 \itrans M_1$  and $\mathbf{M}_2 = M_1 \itrans M_2$ as follows:
+$$ \begin{aligned}
+\mathbf{M}_1  = 
+\begin{bmatrix} 
+\mathbf{A}_1 & \mathbf{B}_1 \\ \mathbf{C}_1 & \mathbf{D}_1 
+\end{bmatrix}, \ \ \text{and}\ \ 
+\mathbf{M}_2 = 
+\begin{bmatrix} 
+\mathbf{D}_2 & \mathbf{C}_2 \\ \mathbf{B}_2 & \mathbf{A}_2
+\end{bmatrix}.
+\end{aligned} $$
+
+
+\begin{theorem}
+\label{thm:invupdate}
+The composite LFT update in \eqref{eq:update1} can be written in the compact form
+$$ \begin{aligned}
+    \label{eq:main_composite_dynamics}
+    L_i^+ = \big(\mathbf{C}_i+\mathbf{D}_iL_i\big)\big(\mathbf{A}_i+\mathbf{B}_iL_i\big)^{-1}.
+\end{aligned} $$
+\end{theorem}
+\begin{proof}
+(An expanded version of this proof is given in 
+\cite{calderone2023arxiv}.)
+We show the proof for $i=1$ and $-i=2$ for clarity.
+Expanding $\mathbf{M}_1=M_2 \itrans M_1$ by using block matrix inversion on $M_2 \itrans$, we deduce that
+$$ \begin{aligned}
+\mathbf{M}_1 
+&=\begin{bmatrix}
+S_2^{-1}E & S_2^{-1}F  \\
+A_2 \itrans (B_1 -B_2^\top S_2^{-1} E)
+& 
+A_2 \itrans (D_1 
+- B_2^\top S_2^{-1}F)
+\end{bmatrix},
+\end{aligned} $$
+with 
+$S_2 = D_2 \trans - B_2 A_2 \itrans B_2^\top$, 
+$E = A_1 - B_2 A_2 \itrans B_1$, and 
+$F = B_1^\top - B_2 A_2 \itrans D_1$. We have specifically chosen a block matrix inversion that requires $A_2 \trans $ and %Schur complement 
+$S_2$ to be invertible, yet  does not require $D_2$ to be non-singular---in many practical cases it will not be. 
+Proceeding from \eqref{eq:update1}, we have that
+$$ \begin{aligned}
+    L_1^+
+&= - \left(A_{2} \trans - (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1}B_{2}\right)^{-1} \\
+& \quad\cdot(B_{2}^\top  - (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2} \trans ).
+\end{aligned} $$
+Applying the Woodbury matrix identity to the inverse and collecting terms,
+we deduce that
+$$ \begin{aligned}
+   \begin{aligned}
+    L_1^+&=- A_{2} \itrans
+B_{2}^\top  + A_{2} \itrans (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2} \trans   \\
+&  
+- A_{2} \itrans 
+(B_1 +D_1L_1)  ( E + F L_1)^{-1} [B_2 A_2 \itrans B_{2}^\top  \\
+&
+- B_2 A_2 \itrans (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2} \trans  ]
+\end{aligned} 
+\end{aligned} $$
+After algebraic manipulation, the term in $[\cdot]$ satisfies
+$$ \begin{aligned}
+    \begin{aligned}
+    &B_2 A_2 \itrans B_2^\top - B_2 A_2 \itrans (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2} \trans \\
+    & =
+ -S_2 + D_2 \trans
+ - B_2 A_2 \itrans
+(B_1 +D_1 L_1 )(A_1 + B_1^{\top}  L_1)^{-1} D_{2} \trans \\
+& = 
+-S_2 + (E + F L_1 ) (A_1 + B_1^\top  L_1)^{-1} D_2 \trans.
+    \end{aligned}
+\end{aligned} $$
+Substituting this into the expression for $L_1^+$, we have that
+$$ \begin{aligned}
+    L_1^+&=- A_{2} \itrans
+B_{2}^\top  + A_{2} \itrans  (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2} \trans  \\
+& \quad 
+- A_{2} \itrans 
+(B_1 +D_1L_1)  ( E + F L_1 )^{-1} \\
+& \quad \cdot 
+[-S_2 + (E + F L_1) (A_1 + B_1^\top  L_1)^{-1} D_2 \trans].
+    %- A_{2}^{-\top}B_{2}^\top
+%+ A_{2}^{-\top}
+%(B_1 +D_1L_1)  ( E + F L_1 )^{-1} M 
+\end{aligned} $$
+Distributing through the last multiplicative term and canceling out appropriate terms we have that
+$$ \begin{aligned}
+ \begin{aligned}
+    L_1^+&=- A_{2} \itrans B_{2}^\top
++ A_{2} \itrans 
+(B_1 +D_1L_1)  ( E + F L_1  )^{-1} S_2\\
+&=(A_2 \itrans (B_1+D_1L_1)-A_{2} \itrans B_2^\top S_2^{-1}(E+FL_1))\\
+&\qquad\cdot(E+FL_1)^{-1}S_2\\
+&=(\mathbf{C}_1 + \mathbf{D}_1L_1 )(\mathbf{A}_1 + \mathbf{B}_1L_1)^{-1}, 
+\end{aligned}   
+\end{aligned} $$
+    which concludes the proof.
+    \end{proof}
+\iffalse
+\begin{proof}
+We show the proof for $i=1$ and $-i=2$ for clarity.
+Expanding $\mathbf{M}_1=M_2^{-\top}M_1$ by using block matrix inversion on $M_2^{-\top}$
+% $D_2^\top - B_2 A_2^{-\top} B_2^{\top}$
+$$ \begin{aligned}
+M_2^{-\top} = \bmat{
+\big(D_2^\top - B_2A_2^{-\top} B_2^\top \big)^{-1}
+& - \big(D_2^\top - B_2A_2^{-\top} B_2^\top \big)^{-1} B_2 A_2^{-\top} \\
+- A_2^{-\top} B_2^\top \big(D_2^\top - B_2A_2^{-\top} B_2^\top \big)^{-1} & 
+A_2^{-\top} + A_2^{-\top} B_2^\top 
+\big(D_2^\top - B_2A_2^{-\top} B_2^\top \big)^{-1}
+B_2 A_2^{-\top}
+}
+\end{aligned} $$
+we deduce that
+$$ \begin{aligned}
+\mathbf{M}_1 = M_2^{-\top }M_1 
+= \begin{bmatrix}
+G^{-1}E & G^{-1}F  \\
+A_2^{-\top}(B_1 -B_2^\top G^{-1} E)
+& 
+A_2^{-\top}(D_1 
+- B_2^\top G^{-1}F)
+\end{bmatrix},
+\label{eq:M1expand}
+\end{aligned} $$
+with 
+$$ \begin{aligned}
+G = D_2^\top - B_2 A_2^{-\top}B_2^\top, \qquad 
+E = A_1 - B_2 A_2^{-\top}B_1, \qquad 
+F = B_1^\top - B_2 A_2^{-\top} D_1.
+\end{aligned} $$
+We have specifically chosen a block matrix inversion that requires $A_2^\top$ and %Schur complement 
+$G$ to be invertible, yet  does not explicitly require $D_2$ to be invertible ---in many practical cases it will not be. 
+Proceeding from the update \eqref{eq:update1}, we have that
+$$ \begin{aligned}
+    L_1^+
+&= - \left[A_{2}^\top - (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1}B_{2}\right]^{-1} 
+ % \\ & \quad\cdot
+\Big(B_{2}^\top  - (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2}^\top \Big).
+\end{aligned} $$
+Applying the Woodbury matrix identity to the inverse 
+$$ \begin{aligned}
+\big[\cdot \big]^{-1} 
+& = \left[A_{2}^\top - (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1}B_{2}\right]^{-1} \\
+& =
+A_2^{-\top} + A_2^{-\top}
+\big(B_1 +D_1L_1\big)\Big(
+A_1 + B_1^\top  L_1 
+- B_2 A_2^{-\top} \big(B_1 + D_1 L_1 \big)
+\Big)^{-1}B_2 A_2^{-\top} \\
+& =
+A_2^{-\top} + A_2^{-\top}
+\big(B_1 +D_1L_1\big)\Big(
+E + FL_1
+\Big)^{-1}B_2 A_2^{-\top}
+\end{aligned} $$
+and collecting terms,
+we deduce that
+$$ \begin{aligned}
+   \begin{aligned}
+    L_1^+&=- A_{2}^{-\top}
+B_{2}^\top  + A_{2}^{-\top} (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2}^\top   \\
+&  
+- A_{2}^{-\top}
+(B_1 +D_1L_1)  ( E + F L_1)^{-1} \Big[B_2 A_2^{-\top}B_{2}^\top  
+- B_2 A_2^{-\top}  (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2}^\top \Big]
+\end{aligned} 
+\end{aligned} $$
+After some algebraic manipulation, we have that the last multiplicative term in $[\cdot]$ satisfies
+$$ \begin{aligned}
+    \begin{aligned}
+    \big[\cdot\big] & = B_2 A_2 \itrans B_2^\top - B_2 A_2 \itrans \big(B_1 +D_1L_1\big)\big(A_1 + B_1^\top  L_1\big)^{-1} D_{2} \trans \\
+    & =
+ -G + D_2 \trans
+ +\big(- B_2 A_2 \itrans B_1 - B_2 A_2 \itrans D_1 L_1 \big)\big(A_1 + B_1^{\top}  L_1\big)^{-1} D_{2} \trans \\
+ & = 
+ -G 
+ +\big(A_1 + B_1^{\top}  L_1 - B_2 A_2 \itrans B_1 - B_2 A_2 \itrans D_1 L_1 \big)\big(A_1 + B_1^{\top}  L_1\big)^{-1} D_{2} \trans  \\
+& = 
+-G + (E + F L_1 ) (A_1 + B_1^\top  L_1)^{-1} D_2 \trans.
+    \end{aligned}
+\end{aligned} $$
+Substituting this into the expression for $L_1^+$ and simplifying gives 
+$$ \begin{aligned}
+    L_1^+&=- A_{2}^{-\top}
+B_{2}^\top  + A_{2}^{-\top} (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2}^\top  \\
+& \quad 
+- A_{2}^{-\top}
+(B_1 +D_1L_1)  ( E + F L_1 )^{-1} 
+\left(-G + (E + F L_1) (A_1 + B_1^\top  L_1)^{-1} D_2 \trans \right). \\
+&=- A_{2}^{-\top}
+B_{2}^\top  + A_{2}^{-\top} (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1} D_{2}^\top  \\
+& \quad 
++ A_{2}^{-\top}
+(B_1 +D_1L_1)  ( E + F L_1 )^{-1} G
+-A_{2}^{-\top}
+(B_1 +D_1L_1) (A_1 + B_1^\top  L_1)^{-1} D_2 \trans \\
+&=- A_{2}^{-\top}
+B_{2}^\top  
++ A_{2}^{-\top}
+(B_1 +D_1L_1)  ( E + F L_1 )^{-1} G
+\end{aligned} $$
+Arranging further and finally comparing with \eqref{eq:M1expand} gives 
+$$ \begin{aligned}
+ \begin{aligned}
+    L_1^+
+&=\Big(A_2^{-\top}\big(B_1+D_1L_1\big)-A_{2}^{-\top}B_2^\top G^{-1}\big(E+FL_1\big)\Big)\big(E+FL_1\big)^{-1}G\\
+&=\Big(A_2^{-\top}\big(B_1-B_2^\top G^{-1}E \big) +
+A_2^{-\top}\big(D_1-B_2^\top G^{-1}F\big)L_1 \Big)
+\Big(G^{-1}E+G^{-1}FL_1\Big)^{-1}\\
+&=(\mathbf{C}_1 + \mathbf{D}_1L_1 )(\mathbf{A}_1 + \mathbf{B}_1L_1)^{-1}, 
+\end{aligned}   
+\end{aligned} $$
+which concludes the proof.
+\end{proof}
+\fi
+We note that this update can be written as
+$$ \begin{aligned}
+\begin{bmatrix} I \\ L_1^+ \end{bmatrix} 
+= 
+\mathbf{M}_1
+\begin{bmatrix} I \\ L_1 \end{bmatrix}
+\Big[ \mathbf{A}_1+\mathbf{B}_1L_1 \Big]^{-1}
+\label{eq:invcomp2}
+\end{aligned} $$
+
+Starting at $L_1(0)$, iterating \eqref{eq:invcomp2} for $k$ steps leads to 
+$$ \begin{aligned}
+\begin{bmatrix} I \\ L_1(k) \end{bmatrix} 
+& 
+=
+\begin{bmatrix} 
+\mathbf{A}_1 & \mathbf{B}_1 \\ \mathbf{C}_1 & \mathbf{D}_1 
+\end{bmatrix}^k
+\begin{bmatrix} I \\ L_1(0) \end{bmatrix}\Pi_{t=0}^{k-1}(\mathbf{A}_1+\mathbf{B}_1L_1(t))^{-1}
+\end{aligned} $$
+ On the one hand, the evolution of $L_1(k)$ is governed by repeated application of $\mathbf{M}_1$ as in a discrete time linear system.  However, the right multiplication by $\Pi_{t=0}^{k-1}(\mathbf{A}_1+\mathbf{B}_1L_1(t))^{-1}$
+makes the evolution nonlinear.  Some features of the evolution of linear systems do apply, however.  Specifically if $[I; L_1(0)]$
+initially spans an  $\mathbf{M}_1$--invariant subspace, then $[I; L_1(k)]$
+will remain within that subspace as well for all $k$.  This fact is at the heart of the equilibrium analysis in the next section.
+%}
+
+
+\section{Equilibrium Analysis via Invariant Subspaces}
+
+Equilibrium points for the LFT dynamics can be found using invariant subspaces.  
+The following theorem defines fixed points of the composite LFT dynamics \eqref{eq:main_composite_dynamics} from which first order CCVE can be directly computed.
+\begin{theorem}[Equilibrium Computation]
+\label{thm:equilib}
+Let 
+$K_1 = [ Y_1; X_1] \in \mathbb{C}^{d\times d_1}$ where $Y_1\in \mathbb{C}^{d_1\times d_1}$ and $X_1\in \mathbb{C}^{d_2\times d_1}$ 
+define an $\mathbf{M}_1$--invariant subspace where $Y_1$ is square and nonsingular.
+It follows that $L_1 = X_1Y_1^{-1}\in \mathbb{C}^{d_2\times d_1}$ is fixed point of the composite LFT dynamics \eqref{eq:main_composite_dynamics}. A completely analogous statement holds for $L_2=X_2Y_2^{-1}$. 
+\end{theorem}
+
+\begin{proof} 
+Select the columns of $K_1$ to span a right-invariant subspace of $\mathbf{M}_1$, so that
+$M_2 \itrans M_1 K_1  = K_1\Lambda$.   
+%\djc{
+In general, $K_1$ can be complex leading to complex conjectures. For problems with real parameters, however, $K_1$ can often be chosen to be real. Even if the invariant subspace contains conjugate pairs of eigenvectors, $K_1$ can be chosen to be a real basis with vectors spanning any planes of rotation and $\Lambda$ will simply be block diagonal as opposed to diagonal. The main exception to this is if the $\mathbf{M}_1$-invariant subspace contains only one complex eigenvector from a complex conjugate pair (see Remark \ref{rem:distinct} below).
+Since $\mathbf{M}_1$ is invertible, the matrix $\Lambda$ will be as well. Hence we have that
+%\ljr{what is going on here? there is no lead into the next expression}
+$$ \begin{aligned}
+\mathbf{M}_1
+\begin{bmatrix}
+Y_1 \\ X_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+Y_1 \\ X_1
+\end{bmatrix}
+\Lambda
+\implies
+\begin{bmatrix}
+\mathbf{A}_1 & \mathbf{B}_1 \\ \mathbf{C}_1 & \mathbf{D}_1 
+\end{bmatrix}
+\begin{bmatrix}
+I \\ L_1 
+\end{bmatrix}
+=
+\begin{bmatrix}
+I \\ L_1
+\end{bmatrix}
+\mathbf{H}_1
+\end{aligned} $$
+where we have right multiplied by $Y_1^{-1}$ and plugged in $L_1$ and $\mathbf{H}_1 = Y_1\Lambda Y_1^{-1}$. Note that $\mathbf{H}_1$ is invertible.
+
+The top equation gives $\big(\mathbf{A}_1+\mathbf{B}_1L_1) = \mathbf{H}_1$.
+Plugging this result into the bottom equation gives $\mathbf{C}_1 + \mathbf{D}_1L_1  = L_1(\mathbf{A}_1+\mathbf{B}_1L_1)$ which implies $L_1 = \big(\mathbf{C}_1 + \mathbf{D}_1L_1)(\mathbf{A}_1+\mathbf{B}_1L_1)^{-1}$.
+This verifies that $L_1=X_1Y_{1}^{-1}$ is a fixed point of the dynamics as claimed which completes the proof. 
+%\ljr{I am confused about this proof. Can we rewrite it more clearly to show that $L_1$ is a fixed point.}
+\end{proof}
+In the case where $Y_1$ is not invertible, this method cannot be used and we leave analysis of this case to future work.  
+While the choice of $\mathbf{M}_1$--invariant subspace matters for the computation of the equilibrium, the choice of basis  does not.  
+\begin{proposition}[Invariance with respect to basis.]
+\label{prop:basis}
+Let  $K_1 = \big[  Y_1; \ X_1 \big]$ and $K_1' = \big[  Y_1'; \ X_1'\big]$ be two different bases for the same $\mathbf{M}_1$--invariant subspace with $Y_1,Y_1'$ square and non-singular. Then $L_1 = X_1Y_1^{-1} = X_1'Y_1'^{-1}$.
+\end{proposition}
+\begin{proof}
+Since $K_1$ and $K_1'$ are bases for the same space, there exists square, non-singular $W$ such that $K' = KW$.  It follows that $X_1'Y_1'^{-1} = X_1WW^{-1}Y_1^{-1} = X_1Y_1^{-1}$.
+\end{proof}
+
+
+
+\subsection{Alternative Computation}
+\label{sec:alt}
+The equilibrium solution can be derived from \eqref{eq:update1}  using an alternative method without initially showing that the composite LFT map is given by the formula in Theorem \ref{thm:invupdate}.
+%and \eqref{eq:invcomp2}. 
+Since the analysis is more direct---and also provides inspiration for Theorem \ref{thm:invupdate} and a useful perspective for proofs later on---we reproduce it here.  
+Expanding and rearranging \eqref{eq:update1} at equilibrium, we get that $A_2 \trans L_1-  (B_1 +D_1L_1)(A_1 + B_1^\top L_1)^{-1} B_2L = - B_2^\top  + (B_1 +D_1L_1)(A_1 + B_1^\top L_1)^{-1}D_2 \trans $ which implies 
+$$ \begin{aligned}\label{eq:rearrange1}
+  \begin{aligned}
+A_2 \trans  L_1+B_2^\top  &= (B_1 +D_1L_1)(A_1 + B_1^\top  L_1)^{-1}
+ (D_2 \trans  + B_2L_1). 
+\end{aligned}  
+\end{aligned} $$
+Using this form of the fixed point equations, we can solve for the equilibrium using a similar invariant subspace argument. 
+\begin{proposition}[Alternative Equilibrium Computation]
+\label{prop:alt}
+Let the columns of $K_1 = \big[  Y_1^\top \ X_1^\top \big]^\top$ solve the generalized eigenvalue problem $M_1K_1 = M_2 \trans K_1 \Lambda$. Then $L_1 = X_1Y_1^{-1}$ solves \eqref{eq:rearrange1}.  
+\end{proposition}
+\begin{proof} The expression 
+$M_1K_1  = M_2 \trans K_1 \Lambda$ gives 
+$$ \begin{aligned}
+\begin{bmatrix}
+A_1 & B_1^\top  \\
+B_1 & D_1 
+\end{bmatrix}
+\begin{bmatrix}
+I \\ L_1
+\end{bmatrix}
+= 
+\begin{bmatrix}
+D_2 \trans & B_2 \\
+B_2^\top  & A_2 \trans
+\end{bmatrix}
+\begin{bmatrix}
+I \\ L_1
+\end{bmatrix} \mathbf{H}_1
+\label{eq:blab}
+\end{aligned} $$
+where $\mathbf{H}_1= Y_1 \Lambda Y_1^{-1}$. This expression arises since we have right multiplied by $Y_1^{-1}$ and plugged in $L_1=X_1Y_1^{-1}$.  Again, since $\mathbf{M}_1$ is non-singular, $\mathbf{H}_1$ will be as well.
+The top and bottom equation, respectively, can be rearranged to deduce that  $( A_1+B_1^\top L_1)^{-1}( D_2 \trans +B_2 L_1)  = \mathbf{H}_1^{-1}$ so that
+$(B_1 + D_1 L_1)\mathbf{H}_1^{-1}  =(B_2^\top + A_2 \trans L_1 )$.
+Plugging in $\mathbf{H}_1^{-1}$ leads to \eqref{eq:rearrange1}, which concludes the proof.
+\end{proof}
+
+Inspiration for the the composite dynamics can then be seen by noting that for invertible $M_2$,  we see that 
+$M_1K_1 = M_2 \trans K_1 \Lambda
+\ \iff \ M_2 \itrans M_1K_1 = K_1 \Lambda.$
+
+
+At first pass, there are many ways to choose an $\mathbf{M}_1$--invariant subspace to compute $L_1$.  Explicitly, there are  
+$d \choose d_1$ 
+ways to select a basis of eigenvectors.  A further stability analysis (cf.~Section \ref{sec:stability}) shows that there is only \emph{one way} to select an invariant subspace that leads to a stable $L_1$ when the eigenvalues of $\mathbf{M}_1$ have distinct magnitudes.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Equilibrium Stability}
+\label{sec:stability}
+We next characterize the stability properties of fixed points of \eqref{eq:coupledriccati}---which includes the set of CCVE---and show how stability is related to the matrices $\mathbf{M}_i$, $i=1,2$.
+The local stability  of a nonlinear system can be characterized by examining the eigenstructure of the local linearization; in particular, by the Hartman-Grobman theorem, if the eigenvalues of the local linearization evaluated at a fixed point of the nonlinear system have modulus less than one, then the fixed point is a locally asymptotically stable equilibrium of the nonlinear system.
+
+\begin{theorem}[Perturbation Dynamics]
+The linearized perturbation dynamics at fixed point $(L_1,L_2)$ are 
+$
+\Delta L_i^+   = \mathbf{\Omega}_i(\Delta L_i; L_i)  = (\mathbf{D}_i  -  L_i \mathbf{B}_i) \Delta L_i (\mathbf{A}_i + \mathbf{B}_iL_i)^{-1}$.   
+\end{theorem}
+\begin{proof}
+ Perturbing the equilibrium conjectures gives $L_i^+ + \Delta L_i^+= (\mathbf{C}_i + \mathbf{D}_i L_i + \mathbf{D}_i \Delta L_i )
+ (\mathbf{A}_i + \mathbf{B}_iL_i+\mathbf{B}_i\Delta L_i)^{-1}$.
+ At equilibrium $L_i = L_i^+$, we have
+ that $(L_i + \Delta L_i^+)
+(\mathbf{A}_i + \mathbf{B}_iL_i+\mathbf{B}_i \Delta L_i)=(\mathbf{C}_i + \mathbf{D}_i L_i + \mathbf{D}_i \Delta L_i )$.
+Recall that in equilibrium $L_i(\mathbf{A}_i + \mathbf{B}_iL_i) - (\mathbf{C}_i + \mathbf{D}_i L_i) = 0$.
+Therefore,
+ we deduce that 
+ %$$ \begin{aligned}
+  $\Delta L_i^+  =  (\mathbf{D}_i  -  L_i \mathbf{B}_i ) \Delta L_i 
+(\mathbf{A}_i+ \mathbf{B}_i L_i +\mathbf{B}_i \Delta L_i  )^{-1}$.
+ %\end{aligned} $$
+Applying the Woodbury matrix identity to the inverse and noting limits we further deduce that
+ $$ \begin{aligned}
+\Delta L_i^+  & =  \big(\mathbf{D}_i  -  L_i \mathbf{B}_i ) \Delta L_i (\mathbf{A}_i + \mathbf{B}_iL_i)^{-1} \\
+& - 
+ (\mathbf{D}_i  -  L_i \mathbf{B}_i ) \Delta L_i 
+(\mathbf{A}_i + \mathbf{B}_iL_i)^{-1}\mathbf{B}_i \\
+& \cdot 
+[
+I + \Delta L_i (\mathbf{A}_i + \mathbf{B}_iL_i)^{-1}\mathbf{B}_i ]^{-1}\Delta L_i(\mathbf{A}_i + \mathbf{B}_iL_i)^{-1}.
+ \end{aligned} $$
+ %\ljr{what does this $\rightarrow I$ mean?}
+Dropping higher order terms completes the proof.
+%we have
+%$$ \begin{aligned}
+%\Delta L_i^+   =  (\mathbf{D}_i  -  L_i \mathbf{B}_i) %\Delta L_i (\mathbf{A}_i + \mathbf{B}_iL_i)^{-1}.
+%\end{aligned} $$
+% This concludes the proof.
+\end{proof}
+
+
+Note that $\mathbf{\Omega}_i(  \ \cdot \ ; L_i)$ for $i=1,2$ are linear operators in the form of a discrete time Lyapunov equation.  To understand their stability, we recall a result from discrete time Lyapunov theory given here without proof. 
+
+
+\begin{lemma}[DT Lyapunov Operators]
+\label{lem:dtlyap2}
+For $A,B \in \mathbb{C}^{n \times n}$, the linear operator $\mathcal{A}(X) = AXB$ 
+%with $X \in \mathbb{C}^{n \times n}$
+has eigenvalues of the form $\lambda_j\mu_k$ where $\lambda_j \in \text{spec}(A)$ and $\mu_k \in \text{spec}(B)$.  
+\end{lemma}
+The following characterization of the spectra of $\mathbf{\Omega}_i( \ \cdot \ ; L_i)$ follows immediately. 
+\begin{theorem}
+\label{specratio}
+The spectrum of the linear operator $\mathbf{\Omega}_i( \ \cdot \ ; L_i)$ is given by
+ $\spec(\mathbf{\Omega}_i ) = \big\{ \tfrac{\lambda_j}{\mu_k} \ \big| \  \lambda_j \in \spec(\mathbf{D}_i-L_i\mathbf{B}_i), \ \mu_k\in \spec(\mathbf{A}_i+\mathbf{B}_iL_i)\big\}$.
+\end{theorem}
+
+We now establish equivalent conditions for local stability. 
+\begin{theorem}
+\label{thm:uniquestable}
+At a fixed point $(L_1^{\tt c},L_2^{\tt c})$ of \eqref{eq:update1}, without loss of generality (for $i=1,2$), 
+suppose $\spec(\mathbf{M}_1)$ can be divided into two sets $\rho_{\text{L}}(\mathbf{M}_1)$ and $\rho_{\text{S}}(\mathbf{M}_1)$ 
+% such that
+% $\spec(\mathbf{M}_1) = \rho_1(\mathbf{M}_1) \sqcup 
+% \rho_2(\mathbf{M}_1)$ 
+with cardinality $d_1$ and $d_2$ respectively, where all elements of $\rho_{\text{L}}(\mathbf{M}_1)$ have strictly larger magnitude than all elements of $\rho_{\text{S}}(\mathbf{M}_1)$. The following are equivalent:
+
+
+% the $d_1$ largest magnitude eigenvalues and the remaining $d_2$ eigenvalues that have distinctly smaller magnitudes then the first set. 
+
+
+
+% Given a fixed point $(L_1^{\tt c},L_2^{\tt c})$ of \eqref{eq:update1}, without loss of generality, the following are equivalent statements:
+\begin{enumerate}
+    \item[a.]  The fixed point $(L_1^{\tt c},L_2^{\tt c})$ is locally asymptotically stable with respect to \eqref{eq:update1} for $i=1,2$.
+    \item[b.] Eigenvalues
+    $\xi_j\in \spec(\mathbf{\Omega}_1(\ \cdot \ ; L_1^{\tt c}))$
+    satisfy $|\xi_j|<1\ \ \forall\ j$.
+    \item[c.]  The matrix $K_1\in \mathbb{C}^{d\times d_1}$ from Theorem \ref{thm:equilib} (and Proposition \ref{prop:alt}) is chosen to span the $\mathbf{M}_1$--invariant subspace corresponding to the 
+    eigenvalues in $\rho_{\text{L}}(\mathbf{M}_1)$.
+    % $d_1$ largest magnitude eigenvalues.
+\end{enumerate}
+\end{theorem}
+
+
+
+Theorem~\ref{thm:uniquestable} not only establishes equivalent conditions for stability, but also shows that it is sufficient to establish stability for one player in order to show the  combined dynamics (i.e., \eqref{eq:update1} for $i=1,2$) are stable. However, the per player (local) rates of convergence depend on the eigenstructure of their individual dynamics.
+\begin{corollary}
+Players locally converge to $(L_1^{\tt c},L_2^{\tt c})$ with iteration complexity $O(\xi_{i,\max}^k)$ where $\xi_{i,\max}:=\max_{\xi\in \spec(\Omega_i(\ \cdot \ ; L_i^{\tt c})}{|\xi|}$ for player $i=1,2$, respectively.
+\end{corollary}
+
+Without loss of generality, the following lemma characterizes the eigenstructure of $\mathbf{M}_1$ and $\mathbf{M}_2$.
+%, and is used to prove Theorem~\ref{thm:uniquestable}.
+\begin{lemma}
+\label{thm:sim}
+%\ljr{add some statement here. what is this theorem saying.}
+The matrices $L_1$ computed from Theorem \ref{thm:invupdate} and $L_2$ from \eqref{eq:L2fromL1} define the following similarity transforms on $\mathbf{M}_1$
+and  $\mathbf{M}_2$, respectively:
+$$ \begin{aligned}
+\begin{bmatrix}
+I & 0 \\-L_1 &  I
+\end{bmatrix}
+% \bigg[ \ \mathbf{M}_1 \ \bigg]
+\begin{bmatrix}
+\mathbf{A}_1 & \mathbf{B}_1\\ 
+\mathbf{C}_1 & \mathbf{D}_1
+\end{bmatrix}
+\begin{bmatrix}
+I & 0 \\ L_1 &  I
+\end{bmatrix}
+&= 
+\begin{bmatrix} 
+\mathbf{H}_1 & \mathbf{B}_1 \\
+0 & \mathbf{H}_1'
+\end{bmatrix},
+\label{eq:triangle1} \\
+\begin{bmatrix}
+I & -L_2\\ 0 & I  
+\end{bmatrix}
+% \bigg[ \ \mathbf{M}_2 \ \bigg]
+\begin{bmatrix}
+\mathbf{D}_2 & \mathbf{C}_2\\ 
+\mathbf{B}_2 & \mathbf{A}_2
+\end{bmatrix}
+\begin{bmatrix}
+I & L_2 \\ 0 & I  
+\end{bmatrix} 
+& =
+\begin{bmatrix} 
+\mathbf{H}_2' & 0 \\
+ \mathbf{B}_2 &  \mathbf{H}_2
+\end{bmatrix},
+\label{eq:triangle2}
+\end{aligned} $$
+where $
+\mathbf{H}_1 = \mathbf{A}_1 + \mathbf{B}_1L_1 
+$, $\mathbf{H}_1' = \mathbf{D}_1 -L_1 \mathbf{B}_1$,
+$\mathbf{H}_2  = \mathbf{A}_2 + \mathbf{B}_2 L_2 $, and 
+$\mathbf{H}_2' = \mathbf{D}_2 - L_2 \mathbf{B}_2 $.  
+Furthermore, the spectrum of the $\mathbf{M}_1$-invariant subspace spanned by $[I; L_1]$
+is $\text{spec}(\mathbf{H}_1)$ and the spectrum of the 
+$\mathbf{M}_2$-invariant subspace spanned by $[L_2; I]$ is $\text{spec}(\mathbf{H}_2)$ and we can also write 
+$$ \begin{aligned}
+\mathbf{H}_1 & = \mathbf{A}_1 + \mathbf{B}_1L_1 = 
+\big(D_2 \trans + B_2 L_1 \big)^{-1}
+\big(A_1 + B_1^\top L_1 \big)  \\
+\mathbf{H}_2' & = \mathbf{D}_2 - L_2 \mathbf{B}_2 = 
+(A_1 + B_1^\top L_1)^{-\top}(D_2 \trans + B_2L_1)^\top.
+\end{aligned} $$
+and $\mathbf{H}_2'$ is similar to $\mathbf{H}_1^{-\top}$.
+\end{lemma}
+\begin{proof}
+(An expanded version of this lemma is given in 
+\cite{calderone2023arxiv}.)
+Each block of \eqref{eq:triangle1} is immediate with the zero block coming from  %fixed point equation 
+\eqref{eq:main_composite_dynamics}.
+%---i.e., $L_i=(\mathbf{C}_i+\mathbf{D}_iL_i)(\mathbf{A}_i+\mathbf{B}_iL_i)^{-1}$. 
+%
+%\ljr{this does not make sense}
+We now derive 
+the similarity transform on $\mathbf{M}_2$.
+%follows from the fact that that 
+%Since 
+Observe that
+\eqref{eq:L2fromL1} can be rewritten as $(A_1 + B_1^\top L_1)^{-\top}[I\ L_1^\top]M_1 \trans =[I\ -L_2]$. 
+Expanding $[ I \ -L_2]  \mathbf{M}_2$, we get 
+$$ \begin{aligned}
+\begin{bmatrix} I \  -L_2 \end{bmatrix} M_1 \itrans M_2  
+& = (A_1 + B_1^\top L_1)^{-\top} \begin{bmatrix} I \ \ L_1^\top \end{bmatrix} M_2 \\
+& = (A_1 + B_1^\top L_1)^{-\top} \mathbf{H}_1^{-\top} \begin{bmatrix} I \  L_1^\top \end{bmatrix} M_1 \trans  \\
+& = \mathbf{H}_2' \begin{bmatrix} I \ -L_2 \end{bmatrix}
+\end{aligned} $$
+where the second line comes from \eqref{eq:blab}
+and 
+$
+\mathbf{H}_2'
+ = [A_1 + B_1^\top L_1]^{-\top} \mathbf{H}_1^{-\top} [A_1 + B_1^\top L_1]^{\top}$.
+Note that $\mathbf{H}_2'$ and $\mathbf{H}_1^{-\top}$ are similar. 
+The above gives us the top row of the following:
+$$ \begin{aligned}
+\begin{bmatrix} I & -L_2 \\ 0 & I  \end{bmatrix}
+\begin{bmatrix}
+\mathbf{D}_2 & \mathbf{C}_2 \\
+\mathbf{B}_2 & \mathbf{A}_2
+\end{bmatrix}
+=
+\begin{bmatrix} 
+\mathbf{H}_2' & 0 \\
+ \mathbf{B}_2 &  \mathbf{A}_2 + \mathbf{B}_2 L_2
+\end{bmatrix}
+\begin{bmatrix} I & -L_2 \\ 0 & I \end{bmatrix}
+\end{aligned} $$
+and the bottom row is then immediate. Right multiplying by $[I \ L_2; 0 \ I]$ gives \eqref{eq:triangle2}.
+The characterization of the invariant subspaces spanned by $[I; L_1]$ and $[L_2; I]$ follows immediately from the block diagonal structure.  The alternate characterizations of $\mathbf{H}_1$ and $\mathbf{H}_2'$ follow from the characterization of $\mathbf{H}_1$ given in Proposition \ref{prop:alt} and the definition of $\mathbf{H}_2'$ above which concludes the proof. \end{proof}
+\iffalse
+
+\begin{proof}
+The expression in \eqref{eq:triangle1} is immediate with the zero block coming from the fixed point equation \eqref{eq:main_composite_dynamics}:
+%---i.e., $L_i=(\mathbf{C}_i+\mathbf{D}_iL_i)(\mathbf{A}_i+\mathbf{B}_iL_i)^{-1}$. 
+$$ \begin{aligned}
+\begin{bmatrix}
+I & 0 \\-L_1 &  I
+\end{bmatrix}
+% \bigg[ \ \mathbf{M}_1 \ \bigg]
+\begin{bmatrix}
+\mathbf{A}_1 & \mathbf{B}_1\\ 
+\mathbf{C}_1 & \mathbf{D}_1
+\end{bmatrix}
+\begin{bmatrix}
+I & 0 \\ L_1 &  I
+\end{bmatrix}
+=
+\begin{bmatrix} 
+\mathbf{A}_1  + \mathbf{B}_1L_1 & \mathbf{B}_1 \\
+-L_1 (\mathbf{A}_1 + \mathbf{B}_1 L_1) + 
+\mathbf{C}_1 + \mathbf{D}_1 L_1 
+& \mathbf{D}_1 - L_1 \mathbf{B}_1
+\end{bmatrix} 
+=
+\begin{bmatrix} 
+\mathbf{H}_1 & \mathbf{B}_1 \\
+0 & \mathbf{H}_1'
+\end{bmatrix}.
+\end{aligned} $$
+To see the similarity transform on $\mathbf{M}_2$, note that \eqref{eq:L2fromL1} can be rewritten as 
+% $$ \begin{aligned}
+% (A_1 + B_1^\top L_1)^{-\top}\big[I \ \ L_1^\top \big]M_1^\top=\big[I \ \ -L_2\big].
+% \end{aligned} $$
+$$ \begin{aligned}
+\begin{bmatrix}
+I \\ -L_2^\top 
+\end{bmatrix}
+= 
+M_1
+\begin{bmatrix}
+I \\ L_1
+\end{bmatrix}
+(A_1 + B_1^\top L_1)^{-1}.
+\label{eq:asdf1}
+\end{aligned} $$
+Transposing and expanding allows us to write 
+% $[ I \ -L_2]  \mathbf{M}_2$ as
+$$ \begin{aligned}
+\begin{bmatrix} I \  -L_2 \end{bmatrix} 
+\mathbf{M}_2
+& = \begin{bmatrix} I \  -L_2 \end{bmatrix} M_1^{-\top} M_2   = (A_1 + B_1^\top L_1)^{-\top} \begin{bmatrix} I \ \ L_1^\top \end{bmatrix} M_2.
+\end{aligned} $$
+The expression in \eqref{eq:blab}
+gives 
+$$ \begin{aligned}M_2^\top \bmat{I \\ L_1}
+=M_1 \bmat{I \\ L_1}\mathbf{H}_1^{-1},\end{aligned} $$
+which allows us to write 
+$$ \begin{aligned}
+\begin{bmatrix} I \  -L_2 \end{bmatrix} \mathbf{M}_2
+& = (A_1 + B_1^\top L_1)^{-\top} \mathbf{H}_1^{-\top} \begin{bmatrix} I \  L_1^\top \end{bmatrix} M_1^\top \\
+& = (A_1 + B_1^\top L_1)^{-\top} \mathbf{H}_1^{-\top} 
+(A_1 + B_1^\top L_1)^{\top}
+(A_1 + B_1^\top L_1)^{-\top}
+\begin{bmatrix} I \  L_1^\top \end{bmatrix} M_1^\top \\
+& = \mathbf{H}_2' \begin{bmatrix} I \ -L_2 \end{bmatrix}
+\end{aligned} $$
+where in the last step we have used \eqref{eq:asdf1} again and substituted 
+$
+\mathbf{H}_2'
+ = [A_1 + B_1^\top L_1]^{-\top} \mathbf{H}_1^{-\top} [A_1 + B_1^\top L_1]^{\top}  $
+Note that $\mathbf{H}_2'$ and $\mathbf{H}_1^{-\top}$ are similar. 
+From the above expression, we deduce the top row of the following equation:
+% above gives us the top row of the following equation 
+$$ \begin{aligned}
+\begin{bmatrix} I & -L_2 \\ 0 & I  \end{bmatrix}
+\begin{bmatrix}
+\mathbf{D}_2 & \mathbf{C}_2 \\
+\mathbf{B}_2 & \mathbf{A}_2
+\end{bmatrix}
+=
+\begin{bmatrix} 
+\mathbf{H}_2' & 0 \\
+ \mathbf{B}_2 &  \mathbf{A}_2 + \mathbf{B}_2 L_2
+\end{bmatrix}
+\begin{bmatrix} I & -L_2 \\ 0 & I \end{bmatrix}
+\end{aligned} $$
+and the bottom row is then immediate. Right multiplying by $\left[\substack{I \ L_2\\ 0 \ I}\right] $ gives \eqref{eq:triangle2}.
+The characterization of the invariant subspaces spanned by $[I; L_1]$ and $[L_2; I]$ follows immediately from the block diagonal structure.  The alternate characterizations of $\mathbf{H}_1$ and $\mathbf{H}_2'$ follow from the characterization of $\mathbf{H}_1$ given in Proposition \ref{prop:alt} and the definition of $\mathbf{H}_2'$ above which concludes the proof. \end{proof}
+\fi
+
+
+We now prove Theorem \ref{thm:uniquestable}.
+
+% \begin{proof}[Proof of Theorem \ref{thm:uniquestable}] 
+% The fact that a.$\Longleftrightarrow$b.~is immediate from Hartman-Grobman \cite{sastry2013nonlinear}. Hence, it only remains to show that b.$\Longleftrightarrow$c. 
+% The block diagonal structure given in Lemma \ref{thm:sim} gives that 
+% $\text{spec}(\mathbf{M}_i) = \text{spec}(\mathbf{H}_i) \sqcup \text{spec}(\mathbf{H}_{i}')$. Since the perturbation dynamics are given by $\Delta L_i^+ = \mathbf{H}_i' \Delta L_i \mathbf{H}_i^{-1}$, 
+% and $\spec\big(\mathbf{H}_1\big)$ corresponds to $K_1$, b. follows by Thm. \ref{specratio} if and only if $K_1$ corresponds to $\rho_\text{L}(\mathbf{M}_1)$.  
+% % the eigenstructure characterization in Lemma \ref{lem:dtlyap2}.  
+% % noting that $\spec\big(\mathbf{H}_1\big)$ corresponds to the invariant subspace $K_1$ and the eigenstructure characterization in Lemma \ref{lem:dtlyap2}.  
+% Since $\mathbf{H}_1^{-\top}$ and $\mathbf{H}_2'$ are similar (cf.~Lemma~\ref{thm:sim}) and noting that $\spec(\mathbf{M}_1)=1/\spec(\mathbf{M}_2)$ as stated previously, this choice also implies that player 2's perturbation dynamics are asymptotically stable which in turn implies the dynamics \eqref{eq:update1} are locally asymptotically stable.
+% %around $(L_1^{\tt c},L_2^{\tt c})$. 
+% \end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:uniquestable}] 
+% (b.$\Longleftrightarrow$c.)
+In the following, we will use the fact that 
+$\text{spec}(\mathbf{M}_i) = \text{spec}(\mathbf{H}_i) \sqcup \text{spec}(\mathbf{H}_{i}')$ which follows 
+from the block diagonal structures in Lemma \ref{thm:sim}. 
+The perturbation dynamics at equilibrium for each player are 
+$\Delta L_i^+ = \mathbf{\Omega}_i(\Delta L_i; L_i) = \mathbf{H}_i' \Delta L_i \mathbf{H}_i^{-1}$. b. holds (by Thm. \ref{specratio}) iff $\spec(\mathbf{H}_1) = \rho_\text{L}(\mathbf{M}_1)$ and 
+$\spec(\mathbf{H}_1') = \rho_\text{S}(\mathbf{M}_1)$ which in turn holds iff 
+$K_1$ is chosen corresponding to $\rho_\text{L}(\mathbf{M}_1)$. 
+% by the block diagonal structure in Lemma \ref{thm:sim}.
+Since $\spec(\mathbf{M}_1)=1/\spec(\mathbf{M}_2)$ 
+and $\mathbf{H}_2'$ and $\mathbf{H}_1^{-\top}$ are similar (cf.~Lemma~\ref{thm:sim}), the above holds iff 
+$\spec(\mathbf{H}_2') = 1/\rho_\text{L}(\mathbf{M}_1)$ and 
+$\spec(\mathbf{H}_2) = 1/\rho_\text{S}(\mathbf{M}_1)$ and by Thm. \ref{specratio} this is equivalent to $|\xi_j|<1$ for all 
+$\xi_j\in \spec(\mathbf{\Omega}_2( \ \cdot \ ; L_2^{\tt c}))$ as well. b. and the equivalent statement for $\mathbf{\Omega_2}$ are then equivalent to a. by Hartman-Grobman \cite{sastry2013nonlinear}.
+\end{proof}
+
+
+ \begin{remark}
+ \label{rem:distinct}
+Theorem \ref{thm:uniquestable} implies that if the eigenvalues of $\mathbf{M}_1$ (and $\mathbf{M}_2$) clearly divide into ``large'' and ``small'' sets where all the eigenvalues in the large set have strictly greater magnitude than those in the small set, then there is a unique way to choose an asymptotically stable 
+fixed point of the composite dynamics \eqref{eq:update1}.
+% CCVE 
+% \textcolor{red}{that satisfies 
+% \eqref{eq:coupledriccati}
+% }.  
+When the eigenvalues cannot clearly be divided this way, there may be multiple ways to construct marginally stable 
+fixed points.
+% CCVE. 
+Two interesting cases are when there are eigenvalues from the same Jordan subspace or complex eigenvalues from the same conjugate pair in each set. 
+In this second case, the only (marginally) stable conjectures will be complex and any associated real conjectures will exhibit oscillatory behavior analogous to elliptic M\"obius transformations. These interesting cases will be examined in a subsequent paper.  
+\end{remark}
+
+
+%\textcolor{blue}{
+\iffalse
+\section{Observations on the Second Order Conditions}
+\label{sec:2ndorder}
+Given the stability considerations given above there is generally a unique (or limited number) of stable first-order CCVE---i.e., first-order CCVE that can be reached via the response dynamics between the players.  Once these stable equilibria are determined, one should check the second order conditions 
+$$ \begin{aligned}
+A_i + L_i^\top B_i + B_i^\top L_i + L_i^\top D_i L_i  
+\succ 0     
+\qquad \qquad \text{for  $i=1,2$.}
+\label{eq:2ndorderremark}
+\end{aligned} $$
+to see if the stable first-order CCVE is well-posed---i.e., if the stable point is a CCVE for the game.  In general this is not guaranteed and will depend on the relative magnitudes of the parameters $A_i,B_i,$ and $D_i$.  In particular, a large enough $A_i \succ 0$ will clearly make it more likely for \eqref{eq:2ndorderremark} to be satisfied. \eqref{eq:2ndorderremark} can also be rewritten as 
+$$ \begin{aligned}
+\begin{bmatrix}
+I \\ L_1 
+\end{bmatrix}^\top 
+\begin{bmatrix}
+A_1 & B_1^\top \\
+B_1 & D_1
+\end{bmatrix}
+\begin{bmatrix}
+I \\ L_1 
+\end{bmatrix}
+\succ 0, \qquad \qquad 
+\begin{bmatrix}
+L_2 \\ I
+\end{bmatrix}^\top 
+\begin{bmatrix}
+D_2 & B_2 \\
+B_2^\top  & A_2
+\end{bmatrix} 
+\begin{bmatrix}
+L_2 \\ I
+\end{bmatrix}
+\succ 0, 
+\end{aligned} $$
+and thus $M_1, M_2 \succ 0 $ 
+are sufficient conditions for \eqref{eq:2ndorderremark} to be satisfied; however, in many practical problems, $M_1,M_2 \nsucc 0$ since $D_1$ and $D_2$ may be zero, low rank, indefinite, or even negative definite.  Simple numerical experiments also show that $M_1,M_2 \succ 0$ is far too conservative of a condition and that \eqref{eq:2ndorderremark} often holds even when it does not. Further analysis of this condition is left to future work.  
+\fi
+
+\section{Comments on Second Order Conditions}
+\label{sec:2ndorder}
+For stable first order CCVE, the second order conditions \eqref{eq:2ndorderprop} can be checked to see if each player's optimization is convex. This is not guaranteed and will depend on the relative magnitudes of the parameters $A_i,B_i,$ and $D_i$. 
+Simple analysis shows that $M_1, M_2 \succ 0$ is sufficient to guarantee \eqref{eq:2ndorderprop}; however, this is often not true since $D_1,D_2$ might be zero, low-rank, indefinite, or even negative-definite. Simple numerical experiments also show that $M_1,M_2 \succ 0$ is far too conservative a condition and often not necessary for \eqref{eq:2ndorderprop} to hold. 
+%CHANGELOG:
+For further discussion
+and 
+numerical examples, see \cite{calderone2023arxiv}.
+
+
+
+ -->
+
 <!-- <div class='imgFixed' >
 <figure width=33%> <center>
 <img src="/figs/projects/ccve/a1v1.png" width=100%></img> 
