@@ -109,8 +109,8 @@
 
 
 
-    <style>
-      #wrapframe { width: 100%; padding: 0;
+<!--     <style>
+      #wrapframe { width: 100%; padding: 0; 
         /*aspect-ratio: 1.;*/ /*overflow: hidden;*/
       }
 
@@ -131,9 +131,38 @@
           zoom: 1;
         }
       }
+    </style> -->
+
+
+
+
+    <style>
+      #wrapframe {
+        width: 100%;
+        aspect-ratio: 1/1;
+        padding: 0;
+        /*aspect-ratio: 1.;*/ 
+        overflow: hidden;
+      }
+
+      #scaled-frame {
+        width: calc(100%/0.78) !important;
+        aspect-ratio: 1.0;
+        -webkit-transform: scale(0.78);
+        transform: scale(0.78);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        border: none;
+        /*border:1px solid  black;*/
+        /*position: relative;*/
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        #scaled-frame {
+          zoom: 1;
+        }
+      }
     </style>
-
-
 
 
 
@@ -215,7 +244,7 @@
 
           <div class='imgFixed' >
       <div id="wrapframe">
-      <iframe id="scaled-frame1" src="/projects/carta/dash1.html"
+      <iframe id="scaled-frame" src="/projects/carta/dash1.html"
       scrolling="no"></iframe>
       </div>
       </div>
@@ -223,7 +252,7 @@
 
      <div class='imgFixed' >
       <div id="wrapframe">
-      <iframe id="scaled-frame2" src="/projects/carta/dash2.html"
+      <iframe id="scaled-frame" src="/projects/carta/dash2.html"
       scrolling="no"></iframe>
       </div>
       </div>
@@ -308,7 +337,7 @@
 
 
 
-    <script>
+<!--     <script>
        var iframe1 = document.getElementById("scaled-frame1");
        iframe1.width = iframe.contentWindow.document.body.scrollWidth;
        iframe1.height = iframe.contentWindow.document.body.scrollHeight;
@@ -318,7 +347,7 @@
        iframe2.height = iframe.contentWindow.document.body.scrollHeight;
 
     </script>
-
+ -->
 
 
 
