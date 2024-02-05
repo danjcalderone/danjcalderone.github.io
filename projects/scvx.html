@@ -120,23 +120,69 @@
 
   <link rel="stylesheet" href="/css/main.css" ></link>
     </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <body>
     <header > <h1> danjcalderone </h1> </header>
+
+
+
     <div w3-include-html="/nav/topics.html"></div>
+
+
+
     <div class="wrapper">
       <div class="sidebar">
+
+
       <div w3-include-html="/nav/sidebarPROJECTS.html"></div>
+
+      </div>
+      <div class=main_content>
 
 
         <h1><div id="header">
-          Successive Convexification (SCVX)
-          <br> for Trajectory Planning
+          Hyperparameter Tuning for Trajectory Planning
+          <br>
+          via Successive Convexification (SCVX)
         </div></h1>
 
 
-        <div class="section basic" >
         <div class="txt" style="padding: 20px 0px">
 
+
+          <p>
+            The following is an exposition of successive convex programming for trajectory planning.  This work is in collaboration with Skye McEowen and Behcet Ackimese through <a href="https://depts.washington.edu/uwacl/"> the ACL Lab <a>.
+          </p>
+
+
+            <p>
+            The current exposition covers the basics of using successive convex programming for trajectory generating and planning. 
+            Our current research involves improving performance by doing hyperparameter tuning using dual variable information from the subproblems.  We are currently submitting these results to LCSS/CDC 2024.  
+            </p>          
+            
+
+            <p>
+
+            Mceowen, S., <b> Calderone, D.J. </b>, Ackimese, B., Autotuning Hyperparameters for Successive Convex Programming Using Dual Variables 2024 - SUBMITTED 
+
+          </p>
 
 
               <b> Problem Setup </b>
@@ -280,7 +326,7 @@
  -->                
                 </div>
 
-<div class="txt" style="padding: 20px 0px">
+              <div class="txt" style="padding: 20px 0px">
 
               Note that in computing the initial control and state trajectories we have ignored the obstacles and we will need to fix this in the next step.  
 

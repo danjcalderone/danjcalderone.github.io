@@ -118,6 +118,12 @@
 
 
 
+
+
+
+
+
+
     <div w3-include-html="/nav/topics.html"></div>
 
 
@@ -136,14 +142,13 @@
 
 
         <h1><div id="header">
-          Bipartite Matching and Routing with Congestion Costs
+          Bipartite Matching & Routing <br> with Congestion Costs
         </div></h1>
 
 
 
 
         <div class="txt" style="padding:40px">
-
 
           <p>
             The following is an exposition of Kelly Ho's Master's thesis (advisors: Dan Calderone and Lillian Ratliff).
@@ -155,10 +160,10 @@
             </a>
             </p>
 
-            <p>  The results are also submitted to LCSS/CDC 2024.  </p>
+            <p>  The results are in submission to LCSS/CDC 2024.  </p>
 
 
-          <b> Problem Setup </b>
+          <b> Motivation </b>
 
           <p>
             In this setup, we consider a problem setup where we have multiple agents transversing an environment in the presence of congestion and the targets for each agent have to be assigned as well as the paths for each agent.  The motivating example for this formulation is to model interactions of robots on large sorting floors such as at Amazon distribution centers. 
@@ -170,6 +175,7 @@
             We consider an environment such as a standard grid world model modeled by a graph \(\mathcal{G} = (\mathcal{V},\mathcal{E})\) with nodes \(\mathcal{V}\) and edges \(\mathcal{E}\).  In the grid world context, nodes (or states) usually refer to the cells in the grid world and the edges are the connections between them.  (We give more details on some of the grid world modeling in a section below.)  We consider a population of agents \(\mathcal{I}\) each assigned to an origin location in the grid world.  We will often denote agents by the index \(i\). The possible destination locations (to be assigned to each agent) will be denoted by \(\mathcal{J}\) and denoted by the index \(j\). Each edge in the graph \(e \in \mathcal{E}\) is associated with a flow variable \(x_e \in \mathbb{R}_+\) that denotes how much population mass uses that edge and a latency function \(\ell_e(x_e)\) which gives the travel time for taking a particular edge.  Congestion effects are modeled by the fact that the congestion function is usually taken to be positive, monotonically increasing function of flow.  We will keep track of flows for each agent/population from a source \(i\) to destination \(j\) as well with edge flows denoted as \(x_{ije}\) and compute the total flow on each edge by summing over \(i,j\) \(x_e = \sum_{ij}x_{ije}\). Note that congestion will still be a function of total flow on an edge, ie. \(\ell_e(x_e\). 
             We will denote the vector forms of the flows as \(x_{ij}\in \mathbb{R}^{|\mathcal{E}|}\) for each population and \(x \in \mathbb{R}^{|\mathcal{E}|}\) 
             for the total flows.  We will also represent the latency functions in vector form as vector valued function \(\ell(x):x\mapsto \mathbb{R}^{|\mathcal{E}|}\). 
+
 
 
 
@@ -300,6 +306,9 @@
             In the monograph listed above, we give an algorithm for how to implement the Frank-Wolfe algorithm to solve this joint routing matching problem with congestion.  The solution to each subproblem LP can be implemented using efficient shortest path algorithms such as Dijkstra/A\(^*\) and the matching portion can be solved using Munkres algorithm.  For further details the reader is referred to Kelly's master's thesis (linked above). 
 
           </p>
+
+
+
 
 <!--             <p> 
               $$
