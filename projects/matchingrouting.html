@@ -106,9 +106,6 @@
 }
 
 
-
-
-
   </style>
 
 <!--   <link rel="stylesheet" href="/css/main.css" ></link> -->
@@ -151,7 +148,7 @@
 
 
         <h1><div id="header">
-          Consistent Conjectural Variations <br> Equilibria (CCVE): Dynamics
+          Matching + Routing Game 
         </div></h1>
 
 
@@ -161,80 +158,173 @@
 
 
           <p>
-          This page is meant as supplement paper to the monographs (INSERT LINK).  
-        </p>
+            The following is an exposition of Kelly Ho's Master's thesis (advisors: Dan Calderone and Lillian Ratliff).
+          </p>
+            <p>
+            Thesis: <a href="/papers/MS_Thesis_KH.pdf"> 
+          Bipartite Matching and Routing with Congestion Costs: 
+          A convex approach to robot task assignment and the multi-agent pathfinding problem
+            </a>
+            </p>
+
+            <p>  The results are also submitted to LCSS/CDC 2024.  </p>
 
 
-          <b> Motivating Example </b>
+          <b> Problem Setup </b>
 
           <p>
-          Consider the   \( 2 \times 2 \)  CCVE with cost parameters given by 
+            In this setup, we consider a problem setup where we have multiple agents transversing an environment in the presence of congestion and the targets for each agent have to be assigned as well as the paths for each agent.  The motivating example for this formulation is to model interactions of robots on large sorting floors such as at Amazon distribution centers. 
+          </p>
 
-           $$
-          \begin{aligned}
-          M_1 = 
-          \begin{bmatrix}
-          a_1 & b_1 \\
-          b_1 & 0
-          \end{bmatrix}, \qquad 
-          M_2 = 
-          \begin{bmatrix}
-          0 & b_2 \\
-          b_2 & a_2
-          \end{bmatrix}
-          \end{aligned}
-           $$
-          As discussed in Section XXX, the two potential equilibrium conjectures can be computed as 
-           $$
-          \begin{aligned}
-          L_1,L_1' 
-          & 
-          = 
-          -\tfrac{1}{2}\Bigg(z_1 \pm
-          \sqrt{\tfrac{z_1}{z_2}
-          \Big(
-          z_1 z_2 - 4
-          \Big)}\Bigg) 
-          = 
-          -\frac{z_1}{2}\Bigg(1 \pm
-          \sqrt{
-          1 - \tfrac{4}{z_1z_2}
-          }\Bigg).
-          \end{aligned}
-           $$
-          where   \( z_1 = a_1/b_1 \)  and   \( z_2 = a_2 /b_2 \) .  These conjectures are complex if and only if the   \( z_1,z_2 \)  satisfy the condition.  
-           $$
-          \begin{aligned}
-          z_1z_2(z_1z_2 - 4) < 0 \quad \iff \quad 
-          (z_1z_2)^2 < 4z_1z_2  
-          \end{aligned}
-           $$
-          For   \( a_2 = b_1 = b_2 = 1 \) , this condition is satisfied in the range   \( 0< a_1 \leq 4  \) .  
+          <b> Problem Setup </b>
 
-          In the complex case, the phase of the eigenvalues is given by 
-$$
-\begin{aligned}
-    \phi = \tan^{-1}\left(\frac{\sqrt{z_1z_2(4-z_1z_2)}}{z_1z_2 -2}\right)
-\end{aligned}
-$$
-and the dynamics oscillate according to the equation.
+          <p> 
+            We consider an environment such as a standard grid world model modeled by a graph \(\mathcal{G} = (\mathcal{V},\mathcal{E})\) with nodes \(\mathcal{V}\) and edges \(\mathcal{E}\).  In the grid world context, nodes (or states) usually refer to the cells in the grid world and the edges are the connections between them.  (We give more details on some of the grid world modeling in a section below.)  We consider a population of agents \(\mathcal{I}\) each assigned to an origin location in the grid world.  We will often denote agents by the index \(i\). The possible destination locations (to be assigned to each agent) will be denoted by \(\mathcal{J}\) and denoted by the index \(j\). Each edge in the graph \(e \in \mathcal{E}\) is associated with a flow variable \(x_e \in \mathbb{R}_+\) that denotes how much population mass uses that edge and a latency function \(\ell_e(x_e)\) which gives the travel time for taking a particular edge.  Congestion effects are modeled by the fact that the congestion function is usually taken to be positive, monotonically increasing function of flow.  We will keep track of flows for each agent/population from a source \(i\) to destination \(j\) as well with edge flows denoted as \(x_{ije}\) and compute the total flow on each edge by summing over \(i,j\) \(x_e = \sum_{ij}x_{ije}\). Note that congestion will still be a function of total flow on an edge, ie. \(\ell_e(x_e\). 
+            We will denote the vector forms of the flows as \(x_{ij}\in \mathbb{R}^{|\mathcal{E}|}\) for each population and \(x \in \mathbb{R}^{|\mathcal{E}|}\) 
+            for the total flows.  We will also represent the latency functions in vector form as vector valued function \(\ell(x):x\mapsto \mathbb{R}^{|\mathcal{E}|}\). 
 
 
-$$
-\begin{aligned}
-L_1(k) & = 
-\textbf{Re} +
-\textbf{Im} \tan\Big(k\phi + \psi\Big)
-\end{aligned}
-$$
 
-where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imaginary parts of the equilibrium conjectures (that depend on the initial conditions and problem parameters,   \( k \)  is the time step and   \( \psi \)  is a phase offset that depends on the initial conditions.  In this animation below, we fix   \( a_2 = b_1 = b_2 = 1 \)  and vary   \( a_1 \)  starting from 0 and plot   \( L_1(k) - \textbf{Re})/\textbf{Im} \)  in order to isolate the oscillatory behavior .  Note that the conjecture is constant until we enter complex region; here the conjecture begins to oscillate following the tangent curves shown.   Note that the oscillation can be sporadic for different values of   \( a_1 \)  and the nature of the tangent curve is only seen close to the crossover value   \( a_1 = 4 \) .  
 
-        </p>
+            In the formulations that follow, we will use several matrices (from algebraic graph theory) to encode the connectivity structure of the graph \(\mathcal{G}\).   Specifically the traditional node-edge incidence matrix for a graph is denoted \(E \in \mathbb{R}^{|\mathcal{V}|\times|\mathcal{E}|}\) and encodes which edges are connected to which nodes.  We give many more details about this matrix and it's properties in this blog post: <a href="/blog/treescycles.html"> Incidence Matrices </a>
+            
+            </p>
+
+            <b> Convex Optimization Formulations </b>
+
+
+            <p>
+            Here we detail several well-known convex optimization optimization formulations for routing games and matching problems.  Our work in this project has been to combine these formulations into a single optimization problem framework for solving a matching+path planning problem in the presence of congestion.  
+            </p>
+
+
+            <b> Routing Game Formulation </b>
+
+            <p>
+            Shortest path problems without congestion can be framed as solving a linear program.  We detailed this linear program as well as discussed using the simplex method to solve it in this blog post: <a href="/blog/shortestpathlp.html"> Shortest Path LP </a> .  (As a side note, the simplex method used in that post was a visualization and conceptual exercise; in practice Dijkstra, A\(^*\), or other grapth theoretic algorithms are far more efficient.)   In the presence of congestion, we can modify the problem by introducing routing game potential function 
+            $$
+            \begin{aligned}
+            F(x) = \sum_e \int_0^{x_e} \ell_e(s) \ ds = \sum_e \int_0^{\sum_{ij} x_{ije}} \ell_e(s) \ ds
+            \end{aligned}
+            $$
+            giving the following optimization formulation. 
+              $$
+            \begin{aligned}
+            \min_{x_{ije}} & \quad F(x) \\
+            \text{s.t.} & \quad Ex_{ij} = S_{ij}M_{ij}, \ x_{ij} \geq 0 \ \ \forall ij \\
+            & \quad x = \sum_{ij}x_{ij}
+            \end{aligned}
+            $$
+
+            The vectors \(S_{ij} \in \mathbb{R}^{|\mathcal{V}|}\) are source-sink vectors that encode information about origin \(i\) and destination \(j\).  Again, we refer to the shortest path LP blog post above for more details. \(M_{ij} \in \mathbb{R}_+\) is the population mass starting at origin \(i\) and traveling to destination \(j\). 
+
+            </p>
+
+            <b> Linear Assignment Matching Problem </b>
+
+            <p>
+              The linear assignment matching problem finds minimum weight complete matching for a completely connected weighted bipartite graph.  Applications include many problems where resources need to be allocated optimally such as assigning \(n\) workers to perform \(n\) tasks in the most efficient way.   A summary of this problem formulation is given in this slide: <a href="/teaching/cvx/matching.pdf"> Linear Assignment Matching Convex Program</a>   Common solution techniques include using the Hungarian/Munkres algorithm or using linear programming techniques.  We detail the the linear programming technique here.  
+            </p>
+
+
+            <p>
+              This problem can be framed as the following linear program.   Consider the scenario where we want to assign \(n\)-agents to \(n\)-tasks. Assigning agent \(i\) to task \(j\) incurs a cost of \(C_{ij}\).  Organizing the costs into a matrix \(C \in \mathbb{R}^{n \times n}\) where the \(C_{ij}\) is the cost of agent \(i\) performing task \(j\), we can formulate the following linear program. 
+
+
+              $$
+            \begin{aligned}
+            \min_M & \quad \text{Tr}(C^\top M) = \sum_{ij} C_{ij}M_{ij} \\
+            \text{s.t.} & \mathbf{1}^\top M = \mathbf{1}^\top, \ M \mathbf{1} = \mathbf{1}, \ M \geq 0 
+            \end{aligned}
+            $$
+
+            Here \(M \in \mathbb{R}^{n \in n}\) is a matrix where \(M_{ij}\) says how much mass or "effort" from 0 to 1 (100%) agent \(i\) puts toward task \(j\).  The constraints ensure that each agent gives 1 unit of effort (\(M\mathbf{1} = \mathbf{1})), that each of task only gets 1 unit of effort assigned to it (\(\mathbf{1}^\top M = \mathbf{1}^\top\)), and that all efforts are positive (\(M \geq 0\)).  Algebraically, here \(M\) is constrained to be a doubly stochastic matrix (positive elements, both rows and columns each sum to 1).  From the Birkhoff-von-Neumann Theorem, we know that the space of doubly stochastic matrices is the convex hull of the space of permutation matrices.  If \(M\) is a permutation matrix, then each agent is assigned to one and only one task and all the tasks get an agent.  By allowing \(M\) to be a doubly stochastic matrix (instead of a permutation matrix), we are solving a convex-relaxation of the matching problem where agents can split effort across multiple tasks.  This relaxation is actually tight in that there will always be a vertex (a permutation matrix) that actually achieves the optimal cost.  
+
+
+            </p>
+
+
+            <b> Combined Matching and Routing Formulation </b>
+
+
+            In our work, we combine the above routing game formulation and the matching formulation to solve a task assignment problem where the costs for each task are shortest path costs through a congested environment.  The joint formulation is as follows. 
+
+            <p> 
+
+              $$
+            \begin{aligned}
+            \min_{x_{ije}} & \quad F(x) \\
+            \text{s.t.} & \quad Ex_{ij} = S_{ij}M_{ij}, \ x_{ij} \geq 0 \ \ \forall ij \\
+            & \quad x = \sum_{ij}x_{ij} \\ 
+            & \quad \mathbf{1}^\top M = \mathbf{1}^\top, \ M \mathbf{1} = \mathbf{1}, \ M \geq 0 
+            \end{aligned}
+            $$
+
+            Note here that we have simply organized the mass on each route \(M_{ij}\) from the routing game into task assignment mass matrix for the linear assignment convex program introduced second.  By analyzing the KKT conditions of this problem, we can show that at optimum this problem finds an optimal matching between agent starting locations and task destinations where the costs are given by shortest path costs with congestion. 
+
+            </p>
+
+            <b> KKT Conditions and Dual Variable Description </b>
+
+            <p> 
+              Noting that \(\frac{\partial F}{\partial x} = \ell(x)^\top\), the stationarity portion of the KKT conditions for the joint optimization problem are as follows. 
+              $$
+              \begin{aligned}
+              \ell(x)^\top - v_{ij}^\top E_{ij} - \mu_{ij}^\top & = 0, \ \ \mu_{ij} \geq 0, \ \ \mu_{ij}^\top x_{ij} = 0 \quad \forall ij \\
+              C - \mathbf{1}u^\top - w \mathbf{1}^\top - U & = 0, \ \ U \geq 0, \ \ \text{Tr}(U^\top M)=0, \quad C_{ij} = v_{ij}^\top S_{ij}
+              \end{aligned}
+              $$
+              Here we have included the following dual variables.  \(v_{ij} \in \mathbb{R}^{|\mathcal{V}|}\) are dual variables for each incidence matrix constraints that have interpretation as the cost-to-go to the destination for that population. \(\mu_{ij}\) comes from the positivity of \(x_{ij}\)
+              and can be interpreted as the inefficiency of traveling on each edge. From the double stochasticity constraints, we get dual variables \(u \in \mathbb{R}^{|\mathcal{J}|}\) and  \(v \in \mathbb{R}^{|\mathcal{I}|}\).  \(u\) is a "column potential" variable that gives a lower bound on the cost of performing each task adn \(v\) is a "row potential" variable that gives a lower bound on the cost incurred by each agent. (See explanations of the Hungarian/Munkres algorithm for more details.) \(U \in \mathbb{R}^{|\mathcal{I}|\times|\mathcal{J}|}\) comes from the positivity of \(M\) and \(U_{ij}\) can be interpreted as the inefficiency of agent \(i\) performing task \(j\). The interpretation of the dual variables as well as the point of the optimization becomes clear from the following arguments. 
+            </p>
+
+
+              <p>
+              Consider any path from origin \(i\) to origin \(j\) represented by an indicator vector \(\xi_{ij} \in \mathbb{R}^{|\mathcal{E}|}\) where \((\xi_{ij})_e = 1 \) if edge \(e\) is in the path, \((\xi_{ij})_e = 0 \) otherwise.  Note that by construction \(E_{ij}\xi_{ij} = S_{ij}\).  Right multiplying this indicator vector by the first KKT condition above we get 
+
+              $$
+              \begin{aligned}
+              \ell(x)^\top \xi_{ij} & = v_{ij}^\top E_{ij}\xi_{ij} + \mu_{ij}^\top \xi_{ij} = v_{ij}^\top S_{ij} + \mu_{ij}^\top \xi_{ij}
+              \end{aligned}
+              $$
+              Note that here the left-hand side (LHS) is the cost of the path (with congestion).  The term \(v_{ij}^\top S_{ij}\) is independent of the path and only depends on the origin/destination encoded in the source-sink vector \(S_{ij}\).  Since the term \(\mu_{ij}^\top \xi_{ij} \geq 0\) the term \(v_{ij}^\top S_{ij}\) is a lower bound on the optimal path cost; since \(\mu_{ij}^\top x_{ij}=0\) if the support of \(\xi_{ij}\) is contained in the support of \(x_{ij}\) then \(\mu_{ij}^\top \xi_{ij}=0\) it is actually an optimal path with cost \(v_{ij}^\top S_{ij}\) which we can define as \(C_{ij}\).  We now have that the cost matrix \(C\) in the second KKT condition contains the minimal path cost information for each pair. 
+
+              We can now evaluate the cost of a particular matching by right multiplying the second KKT condition by the appropriate permutation matrix \(P\) and taking a trace.  Since \(P\) is a permutation, we have that \(P \geq 0 \), \(\mathbf{1}^\top P = \mathbf{1}^\top \), and \(P\mathbf{1}=\mathbf{1}\). 
+              Applying this we get 
+              $$
+              \begin{aligned}
+              \text{Tr}(C^\top P) =  
+              \text{Tr}(u \mathbf{1}^\top P) + \text{Tr}(\mathbf{1}v^\top P) = 
+              \mathbf{1}^\top u + v^\top \mathbf{1} + \text{Tr}(U^\top P)
+              \end{aligned}
+              $$
+              Note again that \(\mathbf{1}^\top u + v^\top \mathbf{1}\) is independent of the matching and also a lower bound on the optimal matching cost since \(text{Tr}(U^\top P) \geq 0\).  Since \(\text{Tr}(U^\top M) = 0\) if the support of \(P\) is contained the support of \(M\) then \(\text{Tr}(U^\top P) = 0\) and \(P\) is an optimal matching. 
+
+
+            </p>
+
+
+
+            <b> Frank-Wolfe Algorithm Implementation: Combining Dijkstra/A\(^*\) and Munkres </b>
+
+
+            <p>
+            In the monograph listed above, we give an algorithm for how to implement the Frank-Wolfe algorithm to solve this joint routing matching problem with congestion.  The solution to each subproblem LP can be implemented using efficient shortest path algorithms such as Dijkstra/A\(^*\) and the matching portion can be solved using Munkres algorithm.  For further details the reader is referred to Kelly's master's thesis (linked above). 
+
+          </p>
+
+<!--             <p> 
+              $$
+              \begin{aligned}
+              \end{aligned}
+              $$
+            </p>
+ -->
+
 </div>
 
 
-<div class='imgFixed' >
+<!-- <div class='imgFixed' >
   <figure>
     <center>
   <img 
@@ -246,26 +336,6 @@ where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imagina
 </div>
 
 
-
-
-<!-- <div class='imgFixed' >
-<figure width=33%> <center>
-<img src="/figs/projects/ccve/a1v1.png" width=100%></img> 
-<figcaption>  Italy.</figcaption>
-</figure></center>
-<figure width=33%> <center>
-<img src="/figs/projects/ccve/a1v2.png" width=100%></img> 
-<figcaption>  Italy.</figcaption>
-</figure></center>
-<figure width=33%> <center> 
-<img src="/figs/projects/ccve/a1v3.png" width=100%></img> 
-<figcaption>  Italy.</figcaption>
-</figure></center>
-</center>
-</div> -->
-
-
-
 <div class='imgFixed' >
 <figure > <center>
 <img src="/figs/projects/ccve/a1v1.png" width=32%></img> 
@@ -275,1336 +345,9 @@ where   \( \textbf{Re} \)  and   \( \textbf{Im} \)  are the real and the imagina
 </figcaption>
 </figure></center>
 </div>
-
+ -->
 
       
-<div class='txt' style="padding:40px">
-  <!-- <div markdown='2' style="padding:40px"> -->
-
-
-
-<b> Geometry of   \( X(AX)^{-1} \)  </b>
-
-<p>
-Here we give intuition for the geometery of projective transformations. 
-</p>
-
-<b>Subspace </b>
-
-<p>
-In general for terms of the form   \( Y = X(AX)^{-1} \)  where  \( A \in \mathbb{R}^{m \times n} \) is fat  \( (m < n) \) and  \( Y,X \in \mathbb{R}^{n \times m} \) ,  \( Y \) resides in the affine set   \( \mathcal{Y} = \big\{Y \big| AY = I\big\} \) .  This can be checked immediately since clearly  \( A \cdot X(AX)^{-1} = I \) .  Equivalently, the  \( i \)-th column of  \( Y \) satisfies  \( AY_i = I_i \) where  \( I_i \) is the  \( i \)-th column of the identity.  
-
-The set  \( \mathcal{Y} \) can alternatively be characterized as 
-$$ \begin{aligned}
-\mathcal{Y}
-& = \big\{Y \ \big| \ AY = I\big\}
- = \big\{Y \ \big| \ Y = A^\dagger + N U, \ U \in \mathbb{R}^{m \times m} \big\}
-\end{aligned} $$
-for any invertible  \( U \in \mathbb{R}^{m \times m}\)
-where  \( A^\dagger = A^\top(AA^\top)^{-1} \) is the left pseudo-inverse and  \( N \) is any basis for the nullspace.
-
-
-
-
-
-
-Any  \( Y \in \mathcal{Y} \) can also be parametrized by a matrix  \( X \) .  This  \( X \) is not unique, however; any  \( X \) since any  \( X \) that spans the same subspace will result in the same  \( Y \) . Mathematically, this is because  \( X' = XZ_1 \) for square invertible  \( Z_1 \) , yields the same  \( Y \)
-$$ \begin{aligned}
-Y' = 
-X'(AX')^{-1}
-& = XZ_1(AXZ_1)^{-1}  \\
-& = XZ_1Z_1^{-1}(AX)^{-1} = X(AX)^{-1} = Y 
-\end{aligned} $$
-In particular, if desired, we can always take  \( X' \) to be an orthonormal basis for the subspace spanned by  \( X \) by taking  \( Z_1 = (X^\top X)^{-\tfrac{1}{2}} \) .  
-
-
-For a given   \( Y \)  if we wish to characterize the set
- \( \mathcal{X}(Y) = \big\{X \big| Y = X(AX)^{-1}
-\big\} \) this can be done as follows.
-Write  \( X \) in the alternate coordinates,  \( X = \big[A^\dagger \ N\big]Z  = A^\dagger Z_1 + N Z_2 
- \) where  \( Z = [Z_1 ; Z_2 ] \) .  For a given  \( Y \) , this then gives
-$$ \begin{aligned}
-Y & = (A^\dagger Z_1 + N Z_2)\big(A(A^\dagger Z_1 + N Z_2)\big)^{-1}  \\
-& = (A^\dagger Z_1 + N Z_2)\big(Z_1 \big)^{-1} \\
-& = A^\dagger  + N Z_2 Z_1^{-1}    
-\end{aligned} $$
-Left multiplying by  \( (N^\top N)^{-1}N^\top \) gives that  \( Z_2 = (N^\top N)^{-1}N^\top Y Z_1 \) which gives 
-$$ \begin{aligned}
-X & = \Big[ A^\dagger \ N \Big]
-\begin{bmatrix} 
-I \\ (N^\top N)^{-1}N^\top Y
-\end{bmatrix}
-Z_1  \\
-& 
-= 
-\Big(A^\dagger + N(N^\top N)^{-1}N^\top Y\Big)
-Z_1 
-\end{aligned} $$
-and thus for any  \( Y \) we have that 
-$$ \begin{aligned}
-\mathcal{X}(Y) & = 
-\big\{X \big| Y = X(AX)^{-1} \big\}  \\
-& = 
-\Big\{X \big| 
-X = \Big(A^\dagger + N(N^\top N)^{-1}N^\top Y\Big)
-Z_1 
-\Big\}
-\end{aligned} $$
-for any invertible  \( Z_1 \in \mathbb{R}^{m \times m} \) . 
-In other words,  \( X \) must be a basis for the subspace  \( \text{span}\big(A^\dagger + N(N^\top N)^{-1}N^\top Y\big) \) . 
-</p>
-
-
-<p>
-
-It is worth computing several examples to get a sense for the geometry. Suppose we take a simple case where  \( A \in \mathbb{R}^{1 \times 2} \) and  \( X,Y \in \mathbb{R}^2 \) .  Consider any  \( X \) written as 
-$$ \begin{aligned}
-X = u_r \ell \cos \theta + u_n \ell \sin \theta
-\end{aligned} $$
-where  \( u_r,u_n \in \mathbb{R}^2 \) are unit vectors in the direction of the range of  \( A^\top \) and the nullspace of  \( A \) , respectively.  In these coordinates, the projective map is given by
-$$ \begin{aligned}
-AX 
-& = \vert\vert A\vert\vert_2 u_r^\top \big(u_r \ell \cos \theta + u_n \ell \sin \theta \big)  = \vert\vert A\vert\vert_2 \ell \cos \theta \\
-\implies \quad 
-& X(AX)^{-1}  = 
-\big(u_r \ell \cos \theta + u_n \ell \sin \theta \big)
-\left(
-\tfrac{1}{\vert\vert A\vert\vert_2 \ell \cos \theta}
-\right) \\
-& \qquad \qquad \ = 
-A^\dagger + 
-\vert\vert A^\dagger\vert\vert_2 
-\tan \theta u_n 
-\end{aligned} $$
-This is illustrated here.
-
-</p>
-
-</div>
-
-
-<div class='imgFixed' >
-  <figure > <center>
-  <img src="/figs/projects/ccve/AinR1x2projective.png" width=49%></img>
-  <img src="/figs/projects/ccve/projection2x1.gif" width=49% ></img>
-<figcaption >  
-  (Left) Structure of the projective transformation \(X(AX)^{-1} \) for \(A \in \mathbb{R}^{2 \times 1}\).  (Right)
-  Animation of projection for rotating \(X\). 
-</figcaption>
-</figure></center>
-</div>
-
-
-<div class="txt" style="padding:40px">
-
-
-Note that if  \( X \) were to rotate around in a circle, the projection would oscillate along the line  \( AY=1 \) .  Note also how  \( \tan \theta \) and the projection blows up as  \( \theta \rightarrow \pm \pi/2 \) .  
-
-While the above geometry is informative, it is somewhat limited by the low dimension.  If the nullspace of  \( A \) has dimension higher than 1, we can see richer geometry.  In Fig.~\ref{fig:AinR1x3} we illustrate the geometry for  \( A \in \mathbb{R}^{1 \times 3} \) with a 2D nullspace.  We show the projected points  \( Y=X(AX)^{-1} \) for various poins  \( X \) on the unit sphere in  \( \mathbb{R}^3 \) . 
-</div>
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/AinR1x3projective.png" width=90%></img> </div>
-
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/projection3x1.gif" width=85%  ></img>
- </div>
-        
-
-
-
-  <div class="txt" style="padding:40px">
-
-<p>
-In each of the above cases  \( X,Y \) are simple column vectors.  
-</p>
-
-
-
-<!-- 
-
-We now give an example of  \( X, Y \in \mathbb{R}^{3 \times 2} \) .  Suppose  \( A \in \mathbb{R}^{2 \times 3} \) with a 1D nullspace.  For  \( Y = X(AX)^{-1} \) with  \( Y=\big[Y_1 \ Y_2 \big] \) the first column  \( Y_1 \) lives in the space  \( AY_1 = I_1 \) and the second colum in  \( AY_2 = I_2 \) .  For a 1D nullspace, the geometry has the form shown in.  The columns of  \( A^\dagger \) lie in each affine space respectively.  In the figure, we show the convex hull of  \( A^\top \) and  \( A^\dagger \) , denoted  \( A^\top \Delta \) and  \( A^\dagger \Delta \) along with  \( X\Delta \) for various  \( X \)'s with columns on the unit sphere and the resulting  \( Y \)'s.   -->
-
-</div>
-
-
-<!-- <div class='imgFixed' > <img src="/figs/projects/ccve/AinR2x3projective.png" width=80%></img> </div> -->
-
-
-
-
-
-        <div class="txt" style="padding:40px">
-
-          <b> Specific Asymptotic Cases </b>
-
-
-
-
-
-
-<p>
-This list of special cases is meant to be thorough and touch on most of the interesting cases--- specifically when the crossover eigenvalues contain complex eigenvalue pairs or nontrivial Jordan blocks--- however, it is not meant to be exhaustive. The details of some special cases, such as nontrivial Jordan blocks with complex eigenvalues and other combinations of the cases outlined below can be analyzed using similar techniques. 
-We focus exclusively on the limiting behavior. Various versions of the dynamic expansions could be developed to further elucidate the precise relationship between the transients (due to the evolution of  \( Z_1[k] \) and  \( Z_ s[k] \) with the limiting behaviors (due to the evolution of  \( Z_ c[k]\).  The authors, however, found these expansions to be overly complicated without yielding much insight (though further attempts could be made).  Also, if  \( \max |{\text{spec}}_ s(\mathbf{M})| \) is significantly smaller than  \( \rho_ c \) , the transient portion will die out quickly. 
-
-</p>
-
-
-
-
-
-<b> Parameters for Examples </b>
-
-
-<p>
-The examples in the next section are specifically constructed to display the geometry of interesting corner cases. 
-% To this end they were reversed engineered based on considerations in the previous sections.  
-The qualitative geometry is primarily determined by the eigenvalues of  \( \mathbf{M}_1 \) and specifically crossover eigenvalues and the structure of the matrix  \( \Gamma_ c \) . 
-For each example, we will choose 
-$$ \begin{aligned}
-\Lambda = \textbf{dg}\Big(\big[ \ 1.1 \ \ 1.1 \ \ 1.1  \ \ 1.1 \ \big]\Big), \qquad 
-\Gamma_c = \text{vary by example}, \qquad 
-\Gamma_ s = \textbf{dg}\Big(\big[ \ 0.7 \ \big]\Big)  
-\end{aligned} $$
-The structure of  \( \Gamma_ c \) will vary between each example and will be detailed in each section (though in all cases we will take the magnitude of the eigenvalues of  \( \Gamma_ c \) to be  \( \rho_ c = 1 \). The other parameters for each example (including the eigenvectors of  \( \mathbf{M}_1 \) as well as a discussion of the specific symmetric cost matrices  \( M_1,M_2 \) that would generate  \( \mathbf{M}_1 = M_2^{-\top}M_1 \) are included in Appendix \ref{app:exampleparams} for each example. 
-
-</p>
-
-<p>
-The eigenstructure is determined by the matrix 
-
-$$
-\begin{aligned}
-W = 
-\begin{bmatrix}
-Y & V_c & V_s \\
-X & U_c & U_s
-\end{bmatrix}
-\end{aligned}
-$$
-with 
-$$ 
-\begin{aligned}
-& 
-Y = 
-\begin{bmatrix}
- 7.52  &  4.85  &  3.04  &  3.29  \\ 
- -4.04  &  -2.0  &  -1.88  &  -2.04  \\ 
- -5.22  &  -3.88  &  -1.44  &  -2.64  \\ 
- 5.62  &  4.17  &  2.62  &  3.84  \\ 
- -7.08  &  -5.26  &  -3.31  &  -3.58 
-\end{bmatrix}, \quad 
-&
-V_c = 
-\begin{bmatrix}
- 0.54  &  0.33  &  -0.19  \\ 
- 0.58  &  -0.06  &  0.1  \\ 
- 0.06  &  -0.1  &  0.69  \\ 
- -0.32  &  0.29  &  0.62  \\ 
- -0.13  &  0.64  &  -0.25 
-\end{bmatrix}, \quad 
-&
-V_s = 
-\begin{bmatrix}
- 0.39  \\ 
- -0.17  \\ 
- 0.32  \\ 
- -0.46  \\ 
- -0.39 
-\end{bmatrix} \\
-&
-X = 
-\begin{bmatrix}
- 0.9  &  1.0  &  0.3  &  -0.3  \\ 
- 0.7  &  0.0  &  0.0  &  0.7  \\ 
- 0.0  &  0.3  &  0.9  &  0.8 
-\end{bmatrix}, \quad 
-&
-U_c = 
-\begin{bmatrix}
- 1.5  &  0.0  &  0.0  \\ 
- 0.0  &  1.5  &  0.0  \\ 
- 0.0  &  0.0  &  1.5 
-\end{bmatrix}, \quad 
-&
-U_s = 
-\begin{bmatrix}
- 0.1  \\ 
- 0.03  \\ 
- -0.08 
-\end{bmatrix}
-\end{aligned}
-$$
-These values are specifically chosen to make the examples as clean and informative as possible.  Specifically, we chose \(X\), \(U_c\) as above, \(Y^\dagger \) below, and \(V_c = (XY^\dagger)^\dagger \) to get the following simple form for \(U_c - XY^\dagger V_c \).  
-$$
-\begin{aligned}
-Y^\dagger = 
-\begin{bmatrix}
- 1.0  &  0.0  &  0.0  &  0.0  &  0.92  \\ 
- 0.0  &  1.0  &  0.0  &  0.0  &  -0.57  \\ 
- 0.0  &  0.0  &  1.0  &  0.0  &  -0.74  \\ 
- 0.0  &  0.0  &  0.0  &  1.0  &  0.79 
-\end{bmatrix}, \quad 
-U_c - XY^\dagger V_c = 
-\begin{bmatrix}
- 0.3  &  0.0  &  0.0  \\ 
- 0.0  &  0.3  &  0.0  \\ 
- 0.0  &  0.0  &  0.3 
-\end{bmatrix}
-\end{aligned}
-$$
-We then choose \(\xi\) to get the following form for \(\xi^\top V_c\) which is the critical normal direction to the projective plane.  
-
-$$
-\begin{aligned}
-\xi^\top = 
-\begin{bmatrix} 2.1  &  1.56  &  0.98  &  1.06  &  1.46 \end{bmatrix}, \quad 
-\xi^\top V_c = 
-\begin{bmatrix}
- 1.56  &  1.75  &  0.73 
-\end{bmatrix}
-\end{aligned}
-$$
-From here the above form of \(Y\) is uniquely determined based on the fact that \(Y^\dagger Y = I\) and \(\xi^\top Y = 0\). \(U_s\) and \(V_s\) govern the transient behavior and were thus chosen randomly.     
-
-</p>
-
-<p>
-The above examples are contrived to help visualize the dynamics. They could, however, have come from real game scenarios.  
-These matrices define the eigenstructure of the product matrix \(\mathbf{M}_1 = M_2^{-\top} M_1\) and we can back out what \(M_1\) and \(M_2\) could have been to generate this structure.  When considering \(M_1\) and \(M_2\), we will also want to check if the appropriate blocks on the diagonal are positive definite indicating that they are valid game cost matrices.  This whole setup seems somewhat contrived however it is useful in determining that the dynamic behaviors shown could arise in real game scenarios.  Further analysis should be done to determine which cases of the dynamics are most common in different game settings.   
-</p>
-
-<!-- <p> 
-
-
-$$
-\begin{aligned}
-\textbf{M}_1 = M_2^{-\top} M_1 = W Q  \ W^{-1}
-\end{aligned}
-$$
-with \( Q = \textbf{blkdg}\Big([\Lambda,\Gamma_c, \Gamma_s]\Big)\).  We can then take \(M_1,M_2\) as 
-
-$$
-\begin{aligned}
-M_2^{-\top} = WP^\top W^\top, \quad M_1 = W^{-\top}  PQ \ W^{-1}
-\end{aligned}
-$$
-where \(P\) is any symmetric permutation matrix that ensures that \(PQ\) is symmetric.  When \(\Gamma_c\), and thus \(Q\), is fully diagonal, we can simply take \(P\) to be the identity and \(M_1\) and \(M_2\) are fully positive definite (since we chose \(\Lambda,\Gamma_c, \Gamma_s\) to have positive spectra).  
-
-
-
- -->
-
-
-
-<p>
-\(M_1\) and \(M_2\) can be constructed in the following way.  
-
-From the above data, we have that \(\mathbf{M}_1\) is given by 
-$$
-\begin{aligned}
-\mathbf{M}_1 = M_2^{-\top} M_1 
-= 
-W \ 
-\textbf{blkdg}\Big(\big[\Lambda \ \Gamma_c \ \Gamma_s \Big] \Big) \ 
-W^{-1}
-\qquad \text{with} \quad 
-W = 
-\begin{bmatrix}
-Y & V_c & V_s \\
-X & U_c & U_s
-\end{bmatrix}
-\end{aligned}
-$$
-we can define individual (symmetric) cost matrices as 
-$$
-\begin{aligned}
-M_2^{-T} = 
-W \ \textbf{blkdg}
-\Big(\big[
-I_{4 \times 4}
-\ 
-P
-I_{3 \times 3}
-\ I_{1 \times 1}
-\big]\Big)
-W^\top, 
-\quad 
-M_1
-=
-W^{-\top} \ \textbf{blkdg}
-\Big(\big[
-\Lambda 
-\ 
-P^\top \Gamma_c \ 
-\Gamma_s
-\big]\Big)
-W^{-1} 
-\end{aligned}
-$$
-where \(P\) is some permutation potentially with negative signs in it.  Note that each \(M_2\) and \(M_1\) are both symmetric and \(\mathbf{M}_1 = M_2^{-\top}M_1\) has desired structure above. (Note a similar construction from this paper by Bosch \cite{bosch1986factorization} can be used in general to write any matrix as a product of two symmetric matrices.)
-For these examples to describe an actual game we will need to check that both \(A_1\) and \(A_2\) are positive definite as well (which we do for each of the following examples).  
-
-The permutation matrix \(P\) will be necessary to guarantee that \(M_2,M_1\) are symmetric regardless of the structure of \(\Gamma_c\) (as well as guarantee the positive-definiteness of \(A_1,A_2\)). If \(\Gamma_c\), has only real positive eigenvalues then we can simply choose \(P=I\) and both \(M_2\) and \(M_1\) will be symmetric (and positive definite). If, however, \(\Gamma_c\) is a scaled-rotation (complex eigenvalues) or has a nontrivial Jordan structure other permutations must be used such that \(P\) and \(P^\top \Gamma_c\) are both symmetric. For example, for \(\Gamma_c\) a scaled rotation such as the following, we can choose 
-
-$$
-\begin{aligned}
-\Gamma_c= 
-\rho_c
-\begin{bmatrix}
-\cos \phi & -\sin \phi & 0 \\
-\sin \phi & \cos \phi  & 0 \\
-0 & 0 & 1
-\end{bmatrix}
-\quad \Rightarrow \quad 
-P = 
-\begin{bmatrix} 
-0 & 1 & 0 \\ 
-1 & 0 & 0 \\
-0 & 0 & 1 
-\end{bmatrix}
-\end{aligned}
-$$
-
-For \(\Gamma_c\) with a nontrivial Jordan structure such as the following, we can choose
-$$
-\begin{aligned}
-\Gamma_c
-= 
-\begin{bmatrix}
-\rho_c & 1 & 0 \\
-0 & \rho_c & 1 \\
-0 & 0 & \rho_c
-\end{bmatrix},
-\quad \Rightarrow \quad 
-\begin{bmatrix} 
-0 & 0 & 1 \\ 
-0 & 1 & 0 \\
-1 & 0 & 0 
-\end{bmatrix}
-\end{aligned}
-$$
-
-
-In both cases, one can check that both \(P\) and \(P^\top \Gamma_c\) are symmetric.   
-
-
-</p>
-
-</div>
-
-
-
-<div class="txt" style="padding:40px">
-<b> Basic Geometry Visualizations </b>
-
-</div>
-
-
-
-
-
-<div class='imgFixed' >
-  <img src="/figs/projects/ccve/base.png" width=60%></img>
-</div>
-
-
-
-
-
-
-        <div class="txt" style="padding:40px">
-<b> Unique-stable equilibrium </b>
-
-<p>
-The simplest case is when the eigenvalues clearly into two sets of the appropriate size with distinct magnitude eigenvalues, ie.  \( c=0 \) .  In this case  \( \Pi[k] \to 0 \) and the asymptotic limit is the unique-stable equilibrum  \( L_0 = XY^{-1} \) and  \( L[k] = L_0 + \Pi[k] \) .
-</p>
-
-
-</div>
-
-
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/unique.png" width=65%></img>
-<img src="/figs/projects/ccve/ccve_unique012.gif" width=40%></img> 
-</div>
-
-
-        <div class="txt" style="padding:40px">
-<b> Parameters (unique case): </b>
-
-<p>
-For this example, we set 
-$$
-\begin{aligned}
-\Gamma_c = 
-\begin{bmatrix}
- 1.0  &  0.0  &  0.0  \\ 
- 0.0  &  0.9  &  0.0  \\ 
- 0.0  &  0.0  &  0.9 
-\end{bmatrix}, \qquad 
-P = I_{3 \times 3}
-\end{aligned}
-$$
-One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
-</p>
-</div>
-
-
-
-
-
-
-<!-- <div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_unique012.gif" width=80%></img> 
-</div>
- -->
-
-
-
-
-        <div class="txt" style="padding:40px">
-
-
-          <b> 
-Marginally-stable
-continuum of equilibria
-</b>
-
-<p>
-
-Suppose  \( \text{spec})_  c (\mathbf{M})  \subset \mathbb{R} \) contains only positive real eigenvalues of magnitude  \( \rho_ c \) and  \( \Gamma_ c \) is diagonalizable.
-In this case, we have  \( \Gamma_ c = 
-\rho_ c I_{c \times c} \) 
-and   \( Z_ c\big(\xi^\top V_ c Z_ c\big)^{-1} \) remains constant over time and  \( L[k] =XY^\dagger + \Pi[k] \) with 
-
-$$ \begin{aligned}
-\Pi[k] & = \big[U-XY^\dagger V] Z_ c[0](\xi^\top V_ c Z_ c[0])^{-1} \xi^\top,
-\end{aligned} $$
-remains constant as well. There is thus a  \( c_1^2 \)-dimensional subspace of marginally-stable equilibria parametrized by  \( Z_ c[0] \in \mathbb{R}^{c_1 \times c_1} \) . 
-
-</p>
-</div>
-<div class='imgFixed' >
-  <img src="/figs/projects/ccve/continuum.png" width=70%></img>
-    <!-- <img src="/figs/projects/ccve/continuum_inits.png" width=30%></img> -->
-</div>
-
-<div class='imgFixed' >
-  <img src="/figs/projects/ccve/continuum_inits.png" width=40%></img>
-<img src="/figs/projects/ccve/ccve_continuum012_inits.gif" width=40%></img> 
-</div>
-
-
-<div class="txt" style="padding:40px">
-<b> Parameters (continuum case): </b>
-<p>
-For this example, we set 
-$$
-\begin{aligned}
-\Gamma_c = I_{3 \times 3}
- \qquad 
-P = I_{3 \times 3}
-\end{aligned}
-$$
-One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
-</p> 
-
-</div>
-
-
-
-
-
-<div class="txt" style="padding:40px">
-
-
-<b> Reflecting Equilibria </b>
-
-<p>
-
-In the case where  \( \Gamma_1 \) is diagonalizable and all eigenvalues in  \( {\text{spec}}_ c(\mathbf{M}) \subset \mathbb{R} \) are real but some are negative,  \( \Gamma_ c \) takes the form  \( \rho_ c{I_\pm}_{c \times c} \) where we use  \( I_\pm \) to denote a diagonal matrix with  \( +1 \) or  \( -1 \) on the diagonal. In this case  \( \Pi[k] \) reflects back and forth between two values. Assuming  \( k=0 \) is starting from a time after the transients have decayed, 
-
-
-$$ \begin{aligned}
-\Pi[k] = 
-\begin{cases}
-\Big[U_ c - XY^\dagger  V_ c \Big] 
-Z_ c[0] \Big(\xi^\top V_ c Z_ c[0]\Big)^{-1}\xi^\top 
-&; \ k \text{ even} \\ 
-\Big[U_ c - XY^\dagger  V_ c \Big] 
-I_\pm Z_ c[0] \Big(\xi^\top V_ c I_\pm 
-Z_ c[0] \Big)^{-1}\xi^\top 
-&; \ k \text{ odd} 
-\end{cases}
-\end{aligned} $$
-
-</p>
-</div>
-
-<div class='imgFixed' >
-  <img src="/figs/projects/ccve/reflect.png" width=80%></img>
-</div>
-
-
-<div class='imgFixed' >
-    <img src="/figs/projects/ccve/reflect_inits.png" width=40%></img>
-<img src="/figs/projects/ccve/ccve_reflect012_inits.gif" width=40%></img> 
-</div>
-
-<div class="txt" style="padding:40px">
-<b> Parameters (reflect case): </b>
-
-<p>
-
-For this example, we set 
-$$
-\begin{aligned}
-\Gamma_c = 
-\begin{bmatrix}
- 1.0  &  0.0  &  0.0  \\ 
- 0.0  &  -1.0  &  0.0  \\ 
- 0.0  &  0.0  &  1.0 
-\end{bmatrix}, \qquad 
-P = I_{3 \times 3}
-\end{aligned}
-$$
-One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
-</p>
-
-</div>
-
-
-
-<div class="txt" style="padding:40px">
-
-
-<b> Periodic-Equilibria (Complex Eigenvalues) </b>
-
-
-<p>
-
-We now consider the highly important case where the crossover set of eigenvalues contains complex conjugate pairs. This case is particularly important because the majority of real matrices have complex eigenvalues and it is quite likely that the crossover set will contain at least one conjugate pair as well.  
-We detail the asymptotic behavior for multiple conjugate pairs in the crossover set; however, the reader should note that the case of a single crossover pair is the most common and important case. 
-
-To understand the equilibrium behavior in this case, we will no longer take  \( \Gamma_ c \) to be diagonal but rather block diagonal with  \( 2\times 2 \) scaled rotations.  Explicitly, for crossover eigenvalues 
-
-$$
-\begin{aligned}
-{\text{spec}}_ c(\mathbf{M}) = \{\rho_ c e^{\pm i \phi_1},\rho_ c e^{\pm i \phi_2}, \dots \}
-\end{aligned}
-$$
-take 
-\(\Gamma_ c = \rho_ c R \)
-where  \( R =\textbf{blkdg}\big(\big[R_{\phi_1} \ R_{\phi_2} \ \dots \big]\big)\)
-for rotations  \( R_{\phi_j} \in \mathbb{R}^{2 \times 2} \) of angle  \( \phi_j \) . Note that  \( \Gamma_1^k = \rho_ c^k R^k \) where  \( R^k \) can be written as 
-
-$$
-\begin{aligned}
-R^k = \textbf{blkdg}\big(\big[R_{\phi_1}^k \ R_{\phi_2}^k \ \dots \big]\big)
-= 
-\textbf{blkdg}\big(\big[R_{k\phi_1} \ R_{k\phi_2} \ \dots \big]\big)
-\end{aligned} 
-$$
-
-Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are no longer (complex) eigenvectors but rather appropriate real bases for the planes of rotation.  This can be achieved by taking pairs of columns that contain the real and imaginary parts of eigenvectors as is typical in real, block diagonal expansions of complex eigenstructures.  In this case  \( \Pi[k] \) oscilla tes based on phases  \( \phi_1,\phi_2, \dots  \)  For any initial condition  \( Z_ c[0] \) we have that
-
-$$
-\begin{aligned}
-\Pi[k] = 
-\Big[U_ c - XY^\dagger  V_ c \Big] 
-R^kZ_ c[0] \Big(\xi^\top V_ c R^kZ_ c[0]\Big)^{-1}\xi^\top
-\end{aligned}
-$$
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<div class="txt" style="padding:40px">
-
-<b> Example of Periodic Asymptotic Behavior. </b>
-
-</div>
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex_details1.png" width=100%></img> </div>
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex_limits.png" width=100%></img> </div>
-
-
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex012.gif" width=100%></img> 
-</div>
-<!-- <div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex1.gif" width=80%></img> 
-</div>
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex2.gif" width=80%></img> 
-</div>
- -->
-
-
-
-
-
-
-<div class="txt" style="padding:40px">
-
-
-
-<b> Parameters (complex rotation case): </b>
-
-<p>
-
-For this example, we set 
-$$
-\begin{aligned}
-\Gamma_c = 
-\begin{bmatrix}
- 0.99  &  -0.04  &  0.11  \\ 
- 0.06  &  0.99  &  -0.09  \\ 
- -0.11  &  0.1  &  0.99 
-\end{bmatrix}, \qquad 
-P = 
-\begin{bmatrix}
- 0  &  1  &  0  \\ 
- 1  &  0  &  0  \\ 
- 0  &  0  &  1 
-\end{bmatrix}
-\end{aligned}
-$$
-
-Here \(\Gamma_c\) is a 3D rotation matrix with axis 
-\(\begin{bmatrix} 0.62  &  0.72  &  0.32 \end{bmatrix}\)
- and phase \(\pi/20\) radians. 
-One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
-</p>
-
-
-
-
-<p>
-Several things are worth considering. First, note the rotational motion of the term  \( Z_ c[k] = R^k Z_ c[0] \) that results in periodic oscillations of the columns of  \( \Pi[k] \) within the plane spanned by  \( U_ c - XY^\dagger  V_ c \) .  If  \( R \in \mathbb{R}^{2 \times 2} \) and  \( Z_ c \in \mathbb{R}^2 \) then the oscillations occur back and forth on a 1D affine space as illustrated in Fig.~\ref{fig:AinR1x2} in Appendix~\ref{app:proj}.  The magnitude of this oscillation follows a tangent curve, as illustrated in the initial motivating example (see Section \ref{sec:motivate}), and depending on the rotation of phase the oscillation pattern can appear deceptively simple, pseudo-random/chaotic, or clearly illustrate the tangent nature.  In the general higher dimensional case, the oscillations can be much more complicated. 
- Fig.~\ref{fig:AinR1x3} (Appendix ~\ref{app:proj}) gives a good visualization of possible oscillation curves even in the simple case where  \( R \in \mathbb{R}^{3\times 3} \) and  \( Z_ c \in \mathbb{R}^3 \) .  For general  \( R \in \mathbb{R}^{c\times c} \) and  \( Z_ c \in \mathbb{R}^{c \times c_1} \) the oscillations could be very rich.  
-
-</p>
-
-
-
-
-
-<p>
-It is worth noting also that the magnitude of 
-\(R^kZ_ c \big(\xi^\top V_ c R^kZ_ c\big)^{-1}\) is determined solely by the term 
-\(\big(\xi^\top V_ c\pi [k]\big)^{-1} \) where 
-\(\pi[k] \) here is any orthonormal basis for the span of  \( R^k Z[k] \) (for example
-\( \pi = R^kZ_ c \big((R^kZ_ c)^\top R^kZ_ c\big)^{-1/2} \) ).  
-The magnitude of 
-\(\big(\xi^\top V_ c\pi [k]\big)^{-1} \) is governed almost entirely by how much the rows of  \( \xi^\top V_ c \) and the columns of  \( \pi[k] \) or  \( R^k Z_ c[k] \) line up with each other.  The magnitude can increase dramatically if the any of the columns of  \( R^k Z_ c \) gets close to being orthogonal to the rows of  \( \xi^\top V_ c \) , ie. if  \( \xi^\top V_ c \pi[k] \) becomes close to singular.  In addition there is always several subspaces of initial  \( Z_ c \)'s that will blow up after  \( k \) time steps.  Specifically, take  \( Z_ c = (R^k)^\top Z_ c' \) for any  \( Z_ c' \) such that  \( \xi^\top V_ c Z_ c' \) is not invertible.  After  \( k \) time steps,  \( Z_ c[k] = R^k Z_ c = Z_ c' \) and  \( (\xi^\top V_ c Z_ c[k])^{-1} \)  blows up.
-
-</p>
-</div>
-
-
-
-
-
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex_tan.png" width=100%></img> </div>
-
-
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_hyperbolic012.gif" width=100%></img> 
-</div>
-
-
-
-<div class="txt" style="padding:40px">
-
-
-<b> Parameters (complex hyperbolic case): </b>
-
-<p>
-
-For this example, we set 
-$$
-\begin{aligned}
-\Gamma_c = 
-\begin{bmatrix}
- 0.99  &  -0.14  &  0.03  \\ 
- 0.14  &  0.99  &  0.07  \\ 
- -0.04  &  -0.06  &  1.0 
-\end{bmatrix}, \qquad 
-P = 
-\begin{bmatrix}
- 0  &  1  &  0  \\ 
- 1  &  0  &  0  \\ 
- 0  &  0  &  1 
-\end{bmatrix}
-\end{aligned}
-$$
-
-Here \(\Gamma_c\) is a 3D rotation matrix with axis 
-\(
-\begin{bmatrix}
- -0.43  &  0.23  &  0.87 
-\end{bmatrix}
-\)
- and phase \(\pi/20\) radians.
-One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
-</p>
-
-</div>
-
-
-
-
-
-
-<div class="txt" style="padding:40px">
-
-
-  <b> Relationship with Complex Equilibria.</b>
-
-
-<p>
-
-It is worth also showing how the expansion above relates to complex equilibria computed by selecting complex eigenvectors and applying Theorem \ref{thm:equilib}.  Complex equilibria of this type will come in conjugate pairs of the form
-
-$$ \begin{aligned}
-L,L^* = \Big[X \ \big[U_\text{R} \ U_\text{I} \big] \left[\substack{ I \\ \pm iI}\right]\Big]\big[Y \ 
-\big[V_\text{R} \ V_\text{I} \big] \left[\substack{ I \\ \pm iI}\right]
-\big]^{-1} 
-\end{aligned} $$
-where here  \( [V_{\text{R}}; U_{\text{R}}] \) and  \( [V_{\text{I}}; U_{\text{I}}] \) are the real and imaginary parts of the crossover eigenvectors.  Here, each complex eigenvector defined by the columns  \( U_{\text{R}},U_{\text{I}},V_{\text{R}},V_{\text{I}} \) should \emph{not} include any conjugate pairs since any complete conjugate pairs can be represented via purely real basis vectors (for the plane of rotation) and included in  \( X \) and  \( Y \) .  Using an expansion similar to the one above we can write
-
-$$ \begin{aligned}
-L,L^* & = XY^\dagger  + 
-\Big[\big[U_\text{R} \ U_\text{I} \big] -XY^\dagger  
-\big[V_\text{R} \ V_\text{I} \big]\Big] \left[\substack{ I \\ \pm iI}\right]
-\Big(
-\big[\xi^\top V_\text{R}  \ \ \xi^\top V_\text{I} \big]
-\left[\substack{ I \\ \pm iI}\right]
-\Big)^{-1} \xi^\top \\
-& = XY^\dagger  + 
-\Big[W_\text{R} \ W_\text{I} \Big] 
-\left[\substack{ I \\ \pm iI}\right]
-\Big(
-\big[
-\mathcal{A} \ \ \mathcal{B} \big]
-\left[\substack{ I \\ \pm iI}\right]
-\Big)^{-1}\xi^\top \\
-& = XY^\dagger  + 
-\Big[W_\text{R} \pm i W_\text{I} \Big] 
-\Big(
-\mathcal{A} \pm i \mathcal{B} 
-\Big)^{-1}\xi^\top
-\end{aligned} $$
-with  \( \mathcal{A} = \xi^\top V_\text{R} \) ,  \( \mathcal{B} = \xi^\top V_\text{I} \) and  \( W_\text{R},W_\text{I} \in \mathbb{R}^{d_\text{I} \times c_\text{R}} \)
-
-$$ \begin{aligned}
-W_\text{R} = U_\text{R} -XY^\dagger  V_\text{R}, \qquad W_\text{I}= U_\text{I} -XY^\dagger   V_\text{I} 
-\end{aligned} $$
-Note here that  \( \mathcal{A},\mathcal{B} \in \mathbb{R}^{c_\text{R} \times c_\text{R}} \) .  
-
-
-Using the following expansion due to Frobenius and Shur 
-
-$$ \begin{aligned}
-\big(\mathcal{A} \pm \mathcal{B}i\big)^{-1}
-=
-\big(
-I
-\mp
-i \mathcal{A}^{-1}\mathcal{B}
-\big) \mathcal{M}^{-1} 
-\end{aligned} $$
-with  \( \mathcal{M} = 
-\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B} \) .
-We can write 
-$$ \begin{aligned}
-L,L^* 
-& = XY^\dagger  + 
-\Big[W_\text{R} \pm i W_\text{I} \Big] 
-\Big[
-I \mp
-i \mathcal{A}^{-1}\mathcal{B}
-\Big]\mathcal{M}^{-1} \xi^\top \\
-& = XY^\dagger  + 
-\Big[
-\big(W_\text{R} + W_\text{I} \mathcal{A}^{-1}\mathcal{B}\big) 
-\pm
-i \big(W_\text{I} - W_\text{R} \mathcal{A}^{-1}\mathcal{B}\big)
-\Big]  \mathcal{M}^{-1} \xi^\top \\
-& 
-= XY^\dagger  + 
-\Big[
-\textbf{Re} \ \xi^\top  \pm i \ \textbf{Im} \ \xi^\top
-\Big]   
-\end{aligned} 
-$$
-where  \( \textbf{Re},\textbf{Im} \in \mathbb{R}^{d_\text{I} \times c_\text{R}}\)
-$$ \begin{aligned}
-\textbf{Re} 
-& = \big(W_\text{R} + W_\text{I} \mathcal{A}^{-1}\mathcal{B}\big) 
-\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1}  
-= 
-\Big[ W_\text{R} \ W_\text{I} \Big]
-\begin{bmatrix} 
-I \\ \mathcal{A}^{-1}\mathcal{B}
-\end{bmatrix}
-\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1}  \\
-\textbf{Im} & = 
-\big(W_\text{I} - W_\text{R} \mathcal{A}^{-1}\mathcal{B}\big)
-\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1}   
-= 
-\Big[ W_\text{R} \ W_\text{I} \Big]
-\begin{bmatrix} 
- -\mathcal{A}^{-1}\mathcal{B} \\ I
-\end{bmatrix}
-\big(\mathcal{A} + \mathcal{B}\mathcal{A}^{-1}\mathcal{B}\big)^{-1} 
-\end{aligned} $$
-Using the following identity (which can be checked directly)
-$$ \begin{aligned}
-\begin{bmatrix} 
-\mathcal{A} & \mathcal{B}\\
--\mathcal{B} & \mathcal{A}
-\end{bmatrix}^{-1} 
-=
-\begin{bmatrix} 
-I & - \mathcal{A}^{-1}\mathcal{B} \\
-\mathcal{A}^{-1}\mathcal{B} & I
-\end{bmatrix}
-\begin{bmatrix} 
-\mathcal{M} & 0 \\
-0 & \mathcal{M}
-\end{bmatrix}^{-1}
-\end{aligned} $$
-and noting that 
-$$ \begin{aligned}
-\Big[\textbf{Re}  \ \  \textbf{Im} \Big] 
-& =
-\bigg[W_\text{R}  \ \  W_\text{I} \bigg]
-\begin{bmatrix} 
-I & - \mathcal{A}^{-1}\mathcal{B} \\
-\mathcal{A}^{-1}\mathcal{B} & I
-\end{bmatrix}
-\begin{bmatrix} 
-\mathcal{M} & 0 \\
-0 & \mathcal{M}
-\end{bmatrix}^{-1} \\
-& =
-\bigg[W_\text{R}  \ \  W_\text{I} \bigg]
-\begin{bmatrix} 
-\mathcal{A} & \mathcal{B}\\
--\mathcal{B} & \mathcal{A}
-\end{bmatrix}^{-1} 
-\end{aligned} $$
-
-We can write the general expansion in 
-\eqref{eq:PiR} with  \( Z_ c = [Z_{ c 1}; Z_{ c 2}; Z_{ c 3}] \) (with the time dependence suppressed) as
-$$ \begin{aligned}
-\Pi 
-& = 
-\Big[W_\text{R} \ W_\text{I} \ W_3 \Big] 
-\left[
-\substack{Z_{ c 1} \\ Z_{ c 2} \\ Z_{ c 3}}
-\right]
-\Big( \mathcal{A} Z_{ c 1} + 
-\mathcal{B} Z_{ c 2} + 
-\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top \\
-& = 
-\Big[W_\text{R} \ W_\text{I} \Big] 
-\begin{bmatrix} Z_{ c 1} \\ Z_{ c 2} 
-\end{bmatrix}
-\Big( \mathcal{A} Z_{ c 1} + 
-\mathcal{B} Z_{ c 2} + 
-\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top  
-+
-W_3 
-Z_{ c 3}
-\Big( \mathcal{A} Z_{ c 1} + 
-\mathcal{B} Z_{ c 2} +
-\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top  \\
-& = 
-\Big[\textbf{Re} \ \ \textbf{Im}  \Big] 
-\begin{bmatrix}
-\mathcal{A} & \mathcal{B} \\
--\mathcal{B} & \mathcal{A}
-\end{bmatrix}
-\begin{bmatrix}
-Z_{ c 1}  \\  Z_{ c 2}
-\end{bmatrix}  
-\Big( \mathcal{A} Z_{ c 1} + 
-\mathcal{B} Z_{ c 2} + 
-\mathcal{C} Z_{ c 3}  \Big)^{-1} \xi^\top 
-+
-W_3 
-Z_{ c 3}
-\Big( \mathcal{A} Z_{ c 1} +
-\mathcal{B} Z_{ c 2}+ 
-\mathcal{C} Z_{ c 3} \Big)^{-1} \xi^\top 
-\end{aligned} $$
-
-where  \( W_3 = U_3 - X Y^\dagger  V_3 \) and  \( \mathcal{C} = \xi^\top V_3 \) where all the matrices here are real.  
-Note also that if  \( W_3 = 0 \) ( and also \(V_3 = 0 \) ,  \( U_3 = 0 \) ), ie. a complex eigenvector from every conjugate pair in the cross over set is included in the equilibrium, we get the simpler form
-
-
-$$
-\begin{aligned}
-\Pi 
-& = 
-\Big[\textbf{Re} \ \ \textbf{Im}  \Big] 
-\begin{bmatrix}
-\mathcal{A} & \mathcal{B} \\
--\mathcal{B} & \mathcal{A}
-\end{bmatrix}
-\begin{bmatrix}
-Z_{ c 1}  \\  Z_{ c 2}
-\end{bmatrix} 
-\Big( \mathcal{A} Z_{ c 1}  + 
-\mathcal{B} Z_{ c 2}  \Big)^{-1} \xi^\top  \\
-& = 
-\textbf{Re} \ \xi^\top + 
-\textbf{Im} \cdot 
-\big(\mathcal{A}Z_{ c 2}
--\mathcal{B}Z_{ c 1} 
-\big) 
-\big( \mathcal{A} Z_{ c 1} + 
-\mathcal{B} Z_{ c 2}  \big)^{-1} \xi^\top 
-\end{aligned}
-$$
-</p>
-
-<b> Single Crossover Conjugate Pair </b>
-
-<p>
-Note that this formula is particularly applicable in the important common case, where there is only one conjugate pair of crossover eigenvectors/values and  \( \mathcal{A},\mathcal{B}, Z_{ c 1},Z_{ c 2} \) are all scalars,  \( \mathbf{Re},\mathbf{Im} \) are column vectors, and  \( \xi^\top \) is a row vector.  
-In this case, for cross eigenvalues  \( \lambda,\lambda^* = \rho_ c e^{\pm i \phi} \) ,  \( R \) is simply given by  \( R = R_\phi \in \mathbb{R}^{2 \times 2} \) and  \( R^k = R_{k\phi} \) for the phase angle  \( \phi \) . The matrix  \( 
-\big[ \mathcal{A} \ \mathcal{B} ; 
--\mathcal{B} \ \mathcal{A} \big]
- \) is also a scaled rotation and can be written as
-
-$$ \begin{aligned}
-\begin{bmatrix}
-\mathcal{A} &  \mathcal{B} \\
--\mathcal{B} & \mathcal{A}
-\end{bmatrix}
-= 
-\sqrt{\mathcal{A}^2 + \mathcal{B}^2}
-\begin{bmatrix}
-\cos \psi & -\sin \psi \\
-\sin \psi & \cos \psi
-\end{bmatrix}
-= 
-\vert \vert [\mathcal{A} \ \mathcal{B} ] \vert \vert_\text{I}
-R_\psi 
-\end{aligned} $$
-
-where  \( \psi = -\arctan (\mathcal{B}/\mathcal{A}) \) and then we can also write  \( Z_ c[0] \) as  \( Z_ c[0] = \vert \vert Z_ c[0] \vert \vert_\text{I} \big[ \cos \theta ; \sin \theta \big]
- \) where  \( \theta = \arctan \big(Z_{ c 2}[0]/Z_{ c 1}[0]\big) \) .  Using the fact that  \( Z_ c[k] = \rho_ c^k R^k Z_ c[0] \) we can then write 
-$$ \begin{aligned}
-\big(\mathcal{A}Z_{ c 2}[k]
--\mathcal{B}Z_{ c 1}[k]
-\big) 
-\big( \mathcal{A} Z_{ c 1}[k]+ 
-\mathcal{B} Z_{ c 2}[k] \big)^{-1} 
-= 
-\tan \big(k \phi +\psi+\theta\big)
-\end{aligned} $$
-Equation~\eqref{eq:singleReIm}
-then becomes 
-$$ \begin{aligned}
-\Pi[k] = \textbf{Re} \ \xi^\top + \textbf{Im}\tan \big(k \phi +\psi+\theta\big) \xi^\top
-\end{aligned} $$
-Note the dependence on the growing phase angle  \( k\phi \) 
-from the eigenvalue pair and also the constant offset phases  \( \psi \) (based on the fixed geometry of the problem parameters) and  \( \theta \) (based on the initial conditions).   Note also that the contribution of the real part of the complex equilibria is fixed and the contribution of the imaginary part oscillates with  \( \tan(k\phi + \psi  + \theta) \) . 
-
-
- To summarize, in the case of a single crossover conjugate pair, real conjectures evolve according to 
-$$ \begin{aligned}
-L[k] & = XY^\dagger + \Big[\textbf{Re} \ \xi^\top \Big] + 
-\tan \big(k \phi +\psi+\theta\big)
-\Big[\textbf{Im}  \ \xi^\top\Big] 
-\end{aligned} $$
-where the pair of complex-conjugate equilibria are given by 
-$$ \begin{aligned}
-L,L^*
-& = XY^\dagger  + 
-\Big[\textbf{Re} \ \xi^\top\Big] \pm i \ \Big[\textbf{Im} \ \xi^\top\Big], 
-\end{aligned} $$
-The single crossover conjugate pair case is the most common when there are complex equilibria and this formula can provide perhaps the quickest and most useful intuition.  
-
-</p>
-
-
-</div>
-
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/complex2D.png" width=100%></img> </div>
-
-<div class='imgFixed' > <img src="/figs/projects/ccve/real_imag.png" width=100%></img> </div>
-
-<div class='imgFixed' >
-<img src="/figs/projects/ccve/ccve_complex2D012.gif" width=100%></img> 
-</div>
-
-
-
-
-
-
-
-<div class="txt" style="padding:40px">
-
-
-<b> Parameters (complex 2D rotation): </b>
-
-<p>
-
-For this example, we set 
-$$
-\begin{aligned}
-\Gamma_c = 
-\begin{bmatrix}
- 0.99  &  -0.16  &  0.0  \\ 
- 0.16  &  0.99  &  0.0  \\ 
- 0.0  &  0.0  &  0.95 
-\end{bmatrix}
-P = 
-\begin{bmatrix}
- 0  &  1  &  0  \\ 
- 1  &  0  &  0  \\ 
- 0  &  0  &  -1 
-\end{bmatrix}
-\end{aligned}
-$$
-
-Here \(\Gamma_c\) is a 2D rotation matrix in the upper left corner with phase \(\pi/20\) radians.
-One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
-</p>
-
-</div>
-
-
-
-
-<div class="txt" style="padding:40px">
-
-
-<b> Jordan Blocks </b>
-
-<p>
-
-Another case that clearly must be considered is when the crossover eigenvalues have a non-trivial Jordan structure, ie.  \( \Gamma_1 \) (and thus by implication  \( \mathbf{M} \) is not diagonalizable.  In this case, we take 
-\( \Gamma_1 = J \) with eigenvalues of some magnitude  \( \rho_ c \) .
-Note here that the columns of  \( K_ c = [V_ c; U_ c] \) are constructed of eigenvectors and generalized eigenvectors.  In this case  \( \Pi[k] \) is given by 
-$$ \begin{aligned}
-\Pi[k] = 
-\Big[U_ c - XY^\dagger  V_ c \Big] 
-J^kZ_ c \Big(\xi^\top V_ c J^kZ_ c\Big)^{-1}\xi^\top 
-\end{aligned} $$
-
-
-
-To further understand this, we  first examine the term  \( J^k Z_ c \) for a single Jordan block  \( J \in \mathbb{R}^{c \times c} \) .  Powers of  \( J \) can be explicitly given by the formula 
-
-$$ 
-\begin{aligned}
-J = 
-\begin{bmatrix}
-\lambda & 1 & \cdots & 0 & 0 \\
-0 & \lambda & \cdots & 0 & 0 \\
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-0 & 0 & \cdots & \lambda & 1 \\
-0 & 0 & \cdots & 0 &  \lambda 
-\end{bmatrix}
-\quad \implies \quad 
-J^k = 
-\begin{bmatrix}
-\lambda^k & 
-\left(\substack{k \\ 1 } \right)\lambda^{k-1} & \cdots & 
-\left(\substack{k \\ c-2 } \right)\lambda^{k-c+2} & 
-\left(\substack{k \\ c-1 } \right)\lambda^{k-c+1}  
-\\
-0 & \lambda^k & \cdots &
-\left(\substack{k \\ c-3 } \right)\lambda^{k-c+3} & 
-\left(\substack{k \\ c-2 } \right)\lambda^{k-c+2}  \\
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-0 & 0 & \cdots & \lambda^k & \left(\substack{k \\ 1 } \right)\lambda^{k-1} \\
-0 & 0 & \cdots & 0 &  \lambda^k 
-\end{bmatrix}
-\end{aligned} $$
-Alternatively, we can write 
-$$ \begin{aligned}
-J^k = \big(\lambda I + N)^k 
-= \sum_{j=0}^k
-\left(
-\begin{matrix}k \\ j
-\end{matrix} \right)
-\lambda^{k-j}N^j 
-= \sum_{j=0}^{\min(k,c-1)}
-\left(
-\begin{matrix} k \\ j
-\end{matrix} \right)
-\lambda^{k-j}N^j
-= \sum_{j=0}^{c-1}
-\left(
-\begin{matrix} k \\ j
-\end{matrix} \right)
-\lambda^{k-j}N^j \ \ \text{for} \ k \gg c
-\end{aligned} $$
-where  \( N \in \mathbb{R}^{c \times c} \) is the canonical nilpotent matrix with 1's on the super diagonal.
-Given the projective structure, we do not care about the magnitude of  \( J^k Z_ c \) and thus we can 
-divide each term  of  \( J^k \) by 
-\( \left(\substack{k \\ c-1 } \right)
-\lambda^{k-c+1}  \). 
-
-
-
-
-
-
-We first note that for  \( j \leq c-1 \) , we can write 
-$$ \begin{aligned}
-\frac{\left(\substack{k \\ j } \right)}{\left(\substack{k \\ c-1 } \right)}
-& = 
-\frac{k!/(k-j)!j!}{k!/(k-c+1)!(c-1)!}
-= \frac{(k-c+1)!(c-1)!}{(k-j)!j!} 
-= \frac{(k-c+1)(k-c)!(c-1)!}{(k-j)!j!} 
-\end{aligned} $$
-and we then have that 
-$$ \begin{aligned}
-\frac{\left(\substack{k \\ j } \right)}{\left(\substack{k \\ c-1 } \right)}
-& = 
-\frac{
-(c-1) \times \cdots \times (j+1)}
-{(k-j) \times \cdots \times (k-c+2)},
-\ \ \text{for} \ \ j \leq c-2, 
-\qquad 
-\frac{\left(\substack{k \\ j } \right)}{\left(\substack{k \\ c-1 } \right)} = 1
-\ \ \text{for} \ \ j = c-1
-\end{aligned} $$
-Note that for  \( j\leq c-2 \) this term has powers of  \( k \) in the denominator but for  \( j=c-1 \) it is simply 1.
-Now dividing  \( J^k \) by 
-\(\left(\substack{k \\ c-1 } \right)
-\lambda^{k-c+1}  \) , we get 
-
-
-$$ \begin{aligned}
-\left(\left(\substack{k \\ c-1 } \right)
-\lambda^{k-c+1}\right)^{-1} J^k 
-& = \sum_{j=0}^{c-1}
-\frac{
-(c-1) \times \cdots \times (j+1)}
-{(k-j) \times \cdots \times (k-c+2)}
-\lambda^{c-1-j}N^j
-\qquad  \text{for} \ k \gg c \\
-& = \sum_{j=0}^{c-2}
-\frac{
-(c-1) \times \cdots \times (j+1)}
-{(k-j) \times \cdots \times (k-c+2)}
-\lambda^{c-1-j}N^j + N^{c-1}
-\qquad  \text{for} \ k \gg c
-\end{aligned} $$
-As  \( k \to \infty \) , for large  \( k \) , we have that the terms in the sum disappear
-$$ \begin{aligned}
-\lim_{k \to \infty}
-\left(\left(\substack{k \\ c-1 } \right)
-\lambda^{k-c+1}\right)^{-1} J^k 
-= 
-\lim_{k \to \infty}
-\sum_{j=0}^{c-1}
-\frac{
-(c-1) \times \cdots \times (j+1)}
-{(k-j) \times \cdots \times (k-c+2)}
-\lambda^{c-1-j}N^j + N^{c-1}
-= N^{c-1}
-\end{aligned} $$
-
-
-
-
-
-
-
-
-It follows that  \( Z_ c[k] = N^{c-1}Z_ c[0] \) approaches  \( \mathbf{I}_1 Z_{cc}[0] \) as  \( k \) gets large where  \( \mathbf{I}_1 \) is the first column of the  \( c \times c  \)  identity.  It follows then that
-
-$$ 
-\begin{aligned}
-\begin{bmatrix} U_ c \\ V_ c \end{bmatrix}
- J^kZ_ c \big(\xi^\top V_ c J^k Z_ c \big)^{-1} 
-\to 
-\begin{bmatrix} U_ c \\ V_ c
-\end{bmatrix}
- \mathbf{I}_1 Z_{cc}[0] \big(\xi^\top V_ c \mathbf{I}_1 Z_{cc}[0]\big)^{-1} 
-\end{aligned} $$
-
-
- 
-
-</p>
-</div>
-
-
-
-
-<div class='imgFixed' >
-  <img src="/figs/projects/ccve/jordan.png" width=100%></img>
-</div>
-
-
-<div class='imgFixed' >
-  <img src="/figs/projects/ccve/jordan_inits.png" width=40%></img>
-  <img src="/figs/projects/ccve/ccve_jordan012_inits.gif" width=40%></img>
-</div>
-
-
-
-
-
-
-
-<div class="txt" style="padding:40px">
-
-<b> Parameters (Jordan block case): </b>
-
-<p>
-
-For this example, we set 
-$$
-\begin{aligned}
-\Gamma_c = 
-\begin{bmatrix}
- 1  &  1  &  0 \\ 
- 0  &  1  &  1 \\ 
- 0  &  0  &  1 
-\end{bmatrix}, \qquad 
-P = 
-\begin{bmatrix}
- 0 & 0 & 1 \\ 
- 0 & 1 & 0 \\
- 1 & 0 & 0 
-\end{bmatrix}
-\end{aligned}
-$$
-
-Here \(\Gamma_c\) is a 2D rotation matrix in the upper left corner with phase \(\pi/20\) radians.
-One can check that the resulting \(M_1, M_2 \) using the formulas above are symmetric with positive definite \(A_1,A_2\). 
-</p>
-
-</div>
-
-
-
-
-
-
 
 
 
