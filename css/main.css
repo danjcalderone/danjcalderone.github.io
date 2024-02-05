@@ -37,7 +37,11 @@
 
 
 html {
-  font-family: "Avenir", sans-serif;
+  /*font-family: "Avenir", sans-serif;*/
+  /*font-family: "Calibri", sans-serif; */
+  /*font-family: "Arial", sans-serif;*/
+  font-family: "Verdana", sans-serif;
+  /*font-family: "Helvetica", sans-serif;*/
 }
 
 body {

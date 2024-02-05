@@ -146,10 +146,10 @@
       }
 
       #scaled-frame {
-        width: calc(100%/0.7) !important;
+        width: calc(100%/0.82) !important;
         aspect-ratio: 1.0;
-        -webkit-transform: scale(0.7);
-        transform: scale(0.7);
+        -webkit-transform: scale(0.82);
+        transform: scale(0.82);
         -webkit-transform-origin: 0 0;
         transform-origin: 0 0;
         border: none;
@@ -238,47 +238,53 @@
 
         <div class="txt" style="padding:40px">
 
-        <p> The following is a supplemental exposition of some of the results in the following manuscript in submission to LCSS/CDC 2024.
-        </p>
-          
-
-        <p>
-        <b> Calderone, D.J. </b>, Chasnov, B.J., Burden, S.A. and Ratliff, L.J., Consistent Conjectural Variations Equilibria: Dynamic Decompositions and Asymptotic Behavior. LCSS 2024 - SUBMITTED
-        </p>
-
-
+        <p> The following is a supplemental exposition of some of the results in the following manuscripts.  </p>
 
           <ul style="PADDING-LEFT: 12px">
-
-         <li> Sullivan J., <b> Calderone, D.J. </b>, Gonzales J., Burden S., Ratliff, L.J., Decomposition and Learning Congestion For Multi-Agent Path Finding and Task Assignment 2024 - SUBMITTED L </li>         
                
-
-          <li><b> Calderone, D.J. </b>, and Ratliff, L.J., Multi-Dimensional Continuous-Type Population Potential Games 2024 - SUBMITTED </li>
-
-
-          
-
-
+          <li><b> Calderone, D.J. </b>, and Ratliff, L.J., Multi-Dimensional Continuous-Type Population Potential Games: Primal-Dual Formulations 2024 - SUBMITTED </li>
           <li><b> Calderone, D.J. </b>, Khanna, A., Dubey A., and Ratliff, L.J., A Hybrid Routing Game/Vehicle Routing Approach to Multi-Modal Transportation Choice in Chattanooga Tennesse 2024 - IN PREPARATION </li>
-
-
+          <li>
+          <b>Calderone, D.</b> and Ratliff, L.J., December. Multi-Dimensional Continuous Type Population Potential Games. In 2019 IEEE 58th Conference on Decision and Control (CDC) (pp. 5138-5143). IEEE. 
+          <a href="https://danjcalderone.github.io/papers/continoustypemd.pdf">pdf</a>
+          <a href="https://danjcalderone.github.io/talks/continoustypemdtalk.pdf">talk</a> 
+          </li>
           </ul>
 
 
 
+          <b> Overview </b>
+          <p>
+          In this work, we develop a simulation engine for studying multi-modal traffic problems. We use a hybrid framework that combines traditional static routing game models for driving and walking modes with more complicated temporal models such as an implementation of RAPTOR for fixed-line transit and VRP solvers (vehicle routing problem) for ondemand transit services.  The focus of our model is understanding tradeoffs between ondemand transit services and fixed-line transit in Chattanooga, TN (CARTA). 
+          </p>
 
 
 
+          <b> Sample Dashboard </b>
+
+          </div>
+
+          <div class='imgFixed' >
+          <div id="wrapframe">
+          <iframe id="scaled-frame" src="/projects/carta/dash1.html"
+          scrolling="no"></iframe>
+          </div>
+          </div>
 
 
+          <div class="txt" style="padding:40px">
+
+          <b> Architecture Overview </b>
 
 
+          <p>
+          Our model currently focuses on st
+
+           with more complex several different dynamistatic routing game models with ur framework is a hybrid combination of different modeling technqiues combines different models of traffic
+
+          </p>
 
 
-
-
-
-          <b> Motivating Example </b>
 
 
 
@@ -286,12 +292,6 @@
           <b> Case Studies: </b>
         </div>
 
-          <div class='imgFixed' >
-      <div id="wrapframe">
-      <iframe id="scaled-frame" src="/projects/carta/dash1.html"
-      scrolling="no"></iframe>
-      </div>
-      </div>
 
 
      <div class='imgFixed' >
@@ -306,7 +306,7 @@
         <div class="section basic" >
 
         <div class="txt" style="padding:40px">
-          <b> Multimodal Simulation Engine </b>
+          <b> Multimodal Simulation </b>
         </div>
 
 
