@@ -255,12 +255,25 @@
 
           <b> Overview </b>
           <p>
-          In this work, we develop a simulation engine for studying multi-modal traffic problems. We use a hybrid framework that combines traditional static routing game models for driving and walking modes with more complicated temporal models such as an implementation of RAPTOR for fixed-line transit and VRP solvers (vehicle routing problem) for ondemand transit services.  The focus of our model is understanding tradeoffs between ondemand transit services and fixed-line transit in Chattanooga, TN (CARTA). 
+          In this work, we develop a simulation engine for studying multi-modal traffic problems. We use a hybrid framework that combines traditional static routing game models for driving and walking modes with more complicated temporal models such as an implementation of RAPTOR for fixed-line transit and VRP solvers (vehicle routing problem) for ondemand transit services.  The goal of this hybrid framework is to be flexible and lightweight.  The focus of our model is understanding tradeoffs between ondemand transit services and fixed-line transit in Chattanooga, TN (CARTA). 
           </p>
 
+          <b> Python Dependencies </b>
+
+          <p> The simulation framework was developed in Python.  Street network information is imported and stored using the Open Street Map package <a href="https://osmnx.readthedocs.io/en/stable/">OSMnx</a> which is built on the general graph manipulation package 
+          <a href="https://networkx.org/">NetworkX</a>.  Fixed line transit information is imported using standard GTFS format (General Transit Feed Specification) using the 
+          package <a href="https://pypi.org/project/gtfs-functions/">gtfs-functions</a>.   Routing game solvers, 
+          <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf"> RAPTOR </a>
+          solvers, and vehicle routing problem (VRP) solvers are implemented on top of these packages.
+        </p>
+          
 
 
           <b> Sample Dashboard </b>
+
+          <p>
+          Below is a sample an interactive dashboard from the output of the model showing origin/destination information for agents in the population and trip segments for different travel models including driving (red), walking (yellow), ondemand transit (blue), and fixed line transit (orange). 
+        </p>
 
           </div>
 
@@ -270,30 +283,7 @@
           scrolling="no"></iframe>
           </div>
           </div>
-
-
-          <div class="txt" style="padding:40px">
-
-          <b> Architecture Overview </b>
-
-
-          <p>
-          Our model currently focuses on st
-
-           with more complex several different dynamistatic routing game models with ur framework is a hybrid combination of different modeling technqiues combines different models of traffic
-
-          </p>
-
-
-
-
-
-
-          <b> Case Studies: </b>
-        </div>
-
-
-
+          
      <div class='imgFixed' >
       <div id="wrapframe">
       <iframe id="scaled-frame" src="/projects/carta/dash2.html"
@@ -303,18 +293,150 @@
 
 
 
-        <div class="section basic" >
+          <div class="txt" style="padding:40px">
 
-        <div class="txt" style="padding:40px">
-          <b> Multimodal Simulation </b>
-        </div>
+          <b> Optimal Routes: Modeling Paradigms </b>
+
+          <p>
+            The simulation framework currently supports four modes of transportation: <b>driving</b>, <b>walking</b>, <b> ondemand transit </b>, <b> fixed line transit </b>.  Each mode uses a slightly different modeling paradigm depending on which factors (such as congestion, timing of trips, line transfers, etc) are important to be realistic.  Here we give details of the modeling choices and solvers for each mode. 
+            </p>
 
 
-        <div class="txt" style="padding:40px">
+
+
+
+
+
+
+                        <p> The simulation framework was developed in Python.  Street network information is imported and stored using the Open Street Map package 
+                          <a href="https://osmnx.readthedocs.io/en/stable/">OSMnx</a> which is built on the general graph manipulation package 
+          <a href="https://networkx.org/">NetworkX</a>.  Fixed line transit information is imported using standard GTFS format (General Transit Feed Specification) using the 
+          package <a href="https://pypi.org/project/gtfs-functions/">gtfs-functions</a>.   Implementations routing game solvers, RAPTOR solvers, and vehicle routing problem (VRP) solvers are implemented on top of these packages.
+        </p>
+
+
+
+
+
+
+
+
+          <ul style="PADDING-LEFT: 12px">
+               
+          <li>
+
+
+            <b> Driving & Walking </b>, 
+            <p> Packages:
+              <a href="https://osmnx.readthedocs.io/en/stable/">OSMnx</a>,
+              <a href="https://networkx.org/">NetworkX</a> </p>
+            <p> Modeling Paradigm: Routing Games </p>
+
+            <p> The driving and walking modes are handled using a traditional static nonatomic routing game framework for congestion.  In this framework, the network is modeled by a graph
+              \(\mathcal{G} = (\mathcal{V},\mathcal{E})\) with nodes \(\mathcal{V}\) modeling intersections and edges \(\mathcal{E}\) modeling streets/footpaths. 
+              Each street in the network \(e \in \mathcal{E}\) is associated with a flow variable \(x_e \in \mathbb{R}_+\) that denotes how much population flow per unit time (cars/min, etc) and a latency function \(\ell_e(x_e)\) which gives the travel time for taking a particular edge depending on usage.  Congestion effects are modeled by the fact that the congestion function is usually taken to be positive, monotonically increasing function of flow.  Different origin-destination pairs each create separate edge flows that are added together to compute total flow on each edge.  Equilibrium flows are determineda according to the well-known Wardrop equilibrium principle.  More details can be found in the literature.  The following reference provides a (comprehensive) review and exposition.
+
+
+              <ul>
+              <li>  Patriksson, M., 2015. The traffic assignment problem: models and methods. Courier Dover Publications. </li></ul>
+
+              Given the traffic equilibrium, shortest paths for individuals are computed using implementations of Dijkstra/A\(^*\) given in NetworkX.
+            
+            </p>
+
+
+
+            </p>
+           </li>
+
+
+            <li>
+            <b> Fixed Line Transit</b>, 
+            <p> Packages:
+              <a href="https://pypi.org/project/gtfs-functions/">gtfs-functions</a>.
+              <a href="https://osmnx.readthedocs.io/en/stable/">OSMnx</a>,
+              <a href="https://networkx.org/">NetworkX</a> </p>
+            <p> Modeling Paradigm: <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf"> RAPTOR </a> </p>
+
+            <p> Fixed line transit information is imported in GTFS format.  Given trip start times, optimal routes are computed using the "novel RoundbAsed Public Transit Optimized Router" algorithm (RAPTOR) developed by Microsoft Research as detailed in <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf"> this paper</a>.  Our implementation is built off the implementation developed 
+              <a href="https://kuanbutts.com/2020/09/12/raptor-simple-example/"> here </a>.
+            </p>
+           </li>
+
+            <li>
+            <b> Ondemand/Micro-Transit</b>, 
+            <p> Packages:
+              <a href="https://osmnx.readthedocs.io/en/stable/">OSMnx</a>,
+              <a href="https://networkx.org/">NetworkX</a> </p>
+            <p> Modeling Paradigm: <a href="https://arxiv.org/abs/2203.15127"> VRP Solver</a> </p>
+
+            <p>
+            Planning for ondemand/micro-transit is done using a VRP solver package developed by Michael Wilbur, et al. at Vanderbilt University.  Details of the implementation are given in this paper.  </p>
+
+            <p>
+            Michael Wilbur, Salah Kadir, Youngseo Kim, Geoffrey Pettet, Ayan Mukhopadhyay, Philip Pugliese, Samitha Samaranayake, Aron Laszka, and Abhishek Dubey. "An online approach to solve the dynamic vehicle routing problem with stochastic trip requests for paratransit services." In ACM/IEEE 13th International Conference on Cyber-Physical Systems (ICCPS). IEEE, April 2022
+            </p>
+
+           </li>
+
+          </ul>
+
+
+          </p>
+
+
+
+          <b> Individual Choice: Multi-factor Discrete Choice Model</b>
+
+          <p>
+            Given the state of the network at equilibrium (as determined by the equilibrium models detailed in the previous section), each individual considers several possible trips from their origin to destination including different combinations of driving, walking, taking ondemand/microtransit from origin to destination and taking fixed-line transit with a walking and/or ondemand segment at either end.  Each possible trip is given a cost based on a weighted sum of various factors for the trip.  Factors include travel time, monetary cost, and number of (mode or fixed line) switches required.  Other arbitrary convenience factors can be added as well.  The cost per trip is determined by the following weighted sum for trip segments (seg) for each individual agent (agnt).
+
+
+            $$
+            \begin{aligned}
+            \text{COST}_{\text{trip}}^{\text{agnt}} & = \sum_{\text{seg}} \bigg[
+            w^{\text{agnt}}_{\text{t}}(\text{TIME})_{\text{seg}} +
+            w^{\text{agnt}}_{\text{m}}(\text{MONEY})_{\text{seg}} + \\
+            & \qquad \qquad 
+            w^{\text{agnt}}_{\text{s}}(\text{SWITCH})_{\text{seg}} +
+            w^{\text{agnt}}_{\text{c}}(\text{CONVEN})_{\text{seg}} \bigg]
+            \end{aligned}
+            $$
+            for individual weights \(w^{\text{agnt}}_{\text{t}}\,w^{\text{agnt}}_\text{{m}}\,w^{\text{agnt}}_\text{{s}},
+            w^{\text{agnt}}_\text{{c}}\).
+
+
+            Each individual then chooses the trip with the lowest overall cost according to their individual weighted sum.  
+
+
+           </p>
+
+
+          <b> Equilibrium Computation Algorithm</b>
+
+          <p>
+            The simulation runs through an iterative process till convergence.  At each iteration, the projected cost per trip segment is computed for each travel mode and then each individual updates their trip choice based on the weighted costs per trip.  The update algorithm for the equilibrium is an extension of a dual algorithm for the traffic assignment problem.  More details will be presented in this manuscript.  
+            <ul>
+          <li><b> Calderone, D.J. </b>, Khanna, A., Dubey A., and Ratliff, L.J., A Hybrid Routing Game/Vehicle Routing Approach to Multi-Modal Transportation Choice in Chattanooga Tennesse 2024 - IN PREPARATION </li>
+          </ul>
+           </p>
+
+           
           <b> System Architecture </b>
+          <p> The following graphic provides a brief overview of the system architecture for the simulator. More details are presented in the monograph above. </p>
         </div>
 
+        
         <div class='imgFixed' >
+          <figure > <center>
+        <img src="/figs/projects/carta/carta_sim_overview.png" width=85%></img> 
+        <figcaption >  
+          Work flow for multi-modal transportation simulator. 
+        </figcaption>
+        </figure></center>
+        </div>
+
+<div class='imgFixed' >
           <figure > <center>
         <img src="/figs/projects/carta/object_diagram2.png" width=85%></img>         
         <figcaption >  
@@ -322,37 +444,6 @@
         </figcaption>
       </figure></center>
         </div>
-
-
-        <div class='imgFixed' >
-          <figure > <center>
-        <img src="/figs/projects/carta/object_flow1.png" width=85%></img> 
-        <figcaption >  
-          Work flow for multi-modal system
-        </figcaption>
-        </figure></center>
-        </div>
-
-
-
-
-        <div class="txt" style="padding:40px">
-
-          <b> System Architecture </b>
-
-          <b> Network Structures </b> <br>
-
-          <b> Driving Network  </b> <br>
-          <b> Walking Network  </b> <br>
-          <b> GTFS Transit Network  </b> <br>
-          <b> Ondemand Micro-Transit </b> <br>
-
-
-        </p>
-
-
-            </div>
-
 
 
 
