@@ -179,14 +179,16 @@
 
           </div>
 
-          <div class='imgFixed' > <img src="/figs/blog/indjoint/simplicies.png" width=85%></img>
+          <div class='imgFixed' >
+            <img src="/figs/blog/indjoint/simplicies.png" width=85%></img>
           </div>
 
-        <div class="txt" style="padding:0px 20px">
+
+<div class="txt" style="padding:0px 20px">
 
 
 
-      <p>          
+      <p>        
 
 
                Note that the simplex itself in each space has dimension one lower than the ambient space (due to the affine constraint \(\mathbf{1}^\top x = 1\).  For example, the simplex in 2D is a 1D line segment, the simplex in 3D is a 2D triangle, and the simplex in 4D is a 3D tetrahedron.  Each set has corners at the standard basis vectors and is bounded away from the origin.  
@@ -248,9 +250,10 @@
                 Using this parametrization on both \(x \in \Delta_2\) and \(y \in \Delta_2\) with two separate scalar parameters \(u\) and \(v\) both in \([0,1]\), we can parametrize the set \(\mathcal{I}\) as well
 
                 $$
+                \begin{aligned}
                 \mathcal{I} =
                 \Bigg\{\ \ \text{vec}(Z) \in \mathbb{R}^4 \ \ \bigg| \ \ 
-                Z = 
+                Z = & 
                 \underbrace{
                 \begin{bmatrix} 1 & 0 \\
                 0 & 0 
@@ -260,16 +263,21 @@
                 \begin{bmatrix} 0 & 1 \\
                 0 & 0 
                 \end{bmatrix}}_{b}
-                u(1-v)+ 
+                u(1-v)
+                \\
+                &
+                + 
                 \underbrace{\begin{bmatrix} 0 & 0 \\
                 1 & 0 
-                \end{bmatrix}}_{c} (1-u)v+ 
+                \end{bmatrix}}_{c} (1-u)v
+                + 
                 \underbrace{
                 \begin{bmatrix} 0 & 0 \\
                 0 & 1
                 \end{bmatrix}}_{d}
                 (1-u)(1-v), \ u,v \in [0,1]
                 \Bigg\}
+                \end{aligned}
                 $$
 
                 Although, we can't easily plot the 4D vectors labeled \(a,b,c,d\) above we can simply plot a similar parametrization with \(a,b,c,d\) each assigned to a 3D vector. (Since \(\Delta_4\) is actually a 3D polytope no information is lost in doing this.)  
@@ -302,6 +310,7 @@
               </p>
 
 </div>
+
 <div class='imgFixed' > <img src="/figs/blog/indjoint/desmos1.png" width=85%></img> </div>
 
 <div class='imgFixed' > <img src="/figs/blog/indjoint/desmos2.png" width=85%></img> </div>
