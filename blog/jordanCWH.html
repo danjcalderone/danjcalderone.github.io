@@ -160,7 +160,9 @@
           <p> In this blog post, we give a symbolic Jordan decomposition of the 
             linear 
             Clohessy-Wiltshire-Hill (CWH) astro-dynamcis equations.  We present this as an exercise in linear algebraic reverse engineering from the commonly known integrated solutions.  (For the basic details of these equations and their solutions, we refer to this well-explained blog 
-            <a href="https://ensatellite.com/hills-equations/" target="_blank">post</a>.)  Note, in this post, we use Jordan form to refer to a pseudo-Jordan form with a block diagonal structure where rather than solving explicitly for complex eigenvalues and eigenvectors, we leave \(2\times 2\) rotation matrices intact.  This form has the advantage of representing 2D planes of rotation with a basis of real vectors (as opposed to the complex conjugate pairs of eigenvectors).  It would be a simple step to go one step further and write the full Jordan form, but the author finds this pseudo-Jordan form more useful.
+            <a href="https://ensatellite.com/hills-equations/" target="_blank">post</a>.) </p>
+            <p>
+             Note, in this post, we use Jordan form to refer to a pseudo-Jordan form with a block diagonal structure where rather than solving explicitly for complex eigenvalues and eigenvectors, we leave \(2\times 2\) rotation matrices intact.  This form has the advantage of representing 2D planes of rotation with a basis of real vectors (as opposed to the complex conjugate pairs of eigenvectors).  It would be a simple step to go one step further and write the full Jordan form, but the author finds this pseudo-Jordan form more useful.
 
 
           </p>
@@ -350,7 +352,7 @@ $$
 1 & 0 & 0 & -2/\omega & 0 & 0 \\
 0 & -6 \omega & -3 & 0 & 0 & 0 \\
 0 & 3 & 2/\omega & 0 & 0 & 0 \\
-0 & 0 & 0 & 1/omega & 0 & 0 \\
+0 & 0 & 0 & 1/\omega & 0 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 0 & 1/\omega 
 \end{bmatrix}
@@ -367,7 +369,7 @@ Reverse Engineering Derivation
 </b>
 
 <p>
-One can of course quickly check the above derivation that \(\mathbf{V}^{-1}\mathbf{V} =I\) and also that \(A = \mathbf{V}J\mathbf{V}^{-1}\) and \(e^{At} = \mathbf{V}e^{Jt}\mathbf{V}^{-1}\).  It is, however, interesting to see how one my guess this as the Jordan form from the time dependent solution that is usually derived.  We detail that process here.  Note that one can work from either the form of \(A\) or  \(e^{At}\) or both since they will have the same eigenvector structure and a clearly defined relationship between their eigenvalues.  We will work mostly from \(e^{At}\). 
+One can of course quickly check the above derivation that \(\mathbf{V}^{-1}\mathbf{V} =I\) and also that \(A = \mathbf{V}J\mathbf{V}^{-1}\) and \(e^{At} = \mathbf{V}e^{Jt}\mathbf{V}^{-1}\).  It is, however, interesting to see how one might guess this as the Jordan form from the time dependent solution that is usually derived.  We detail that process here.  Note that one can work from either the form of \(A\) or  \(e^{At}\) or both since they will have the same eigenvector structure and a clearly defined relationship between their eigenvalues.  We will work mostly from \(e^{At}\). 
   </p>
 
   <p>
@@ -904,7 +906,7 @@ $$
 1 & 0 & 0 & -2/\omega & 0 & 0 \\
 0 & -6 \omega & -3 & 0 & 0 & 0 \\
 0 & 3 & 2/\omega & 0 & 0 & 0 \\
-0 & 0 & 0 & 1/omega & 0 & 0 \\
+0 & 0 & 0 & 1/\omega & 0 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 0 & 1/\omega 
 \end{bmatrix}
