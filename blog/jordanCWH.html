@@ -140,7 +140,7 @@
 
 
         <h1><div id="header">
-          Clohessy-Wiltshire (CWH) Jordan Decomposition
+          Clohessy-Wiltshire-Hill (CWH) Jordan Decomposition
         </div></h1>
 
 
@@ -157,9 +157,9 @@
         <div class="txt" style="padding:0px 20px">
 
 
-          <p> In this blog post, we give a symbolic diagonalization of the 
+          <p> In this blog post, we give a symbolic Jordan decomposition of the 
             linear 
-            Clohessy-Wiltshire (CWH) astro-dynamcis equations.  We present this as an exercise in linear algebraic reverse engineering from the commonly known integrated solutions.  (For the basic details of these equations and their solutions, we refer to this well-explained blog 
+            Clohessy-Wiltshire-Hill (CWH) astro-dynamcis equations.  We present this as an exercise in linear algebraic reverse engineering from the commonly known integrated solutions.  (For the basic details of these equations and their solutions, we refer to this well-explained blog 
             <a href="https://ensatellite.com/hills-equations/">post</a>.)
 
 
@@ -237,7 +237,7 @@ $$
 <p>
 
 
-The Clohessy-Wiltshire (CWH) astro-dynamcis equations are given by the following autonomous linear system.
+The Clohessy-Wiltshire-Hill (CWH) astro-dynamcis equations are given by the following autonomous linear system.
 <!--   For simplicity of understanding, we reorganize the equations as follows.  
  -->              
  Consider the state vector \(\mathbf{x} = (y,\dot{y},x,\dot{x},z,\dot{z})\).  
@@ -304,7 +304,7 @@ $$
               
 
               <p> 
-              We can compute the following diagonalizations \(A = \mathbf{V}J \mathbf{V}^{-1}\)
+              We can compute the following Jordan decomposition \(A = \mathbf{V}J \mathbf{V}^{-1}\)
               and \(e^{At} = \mathbf{V}e^{Jt}\mathbf{V}^{-1}\) with 
 
 
@@ -367,7 +367,7 @@ Reverse Engineering Derivation
 </b>
 
 <p>
-One can of course quickly check the above derivation that \(\mathbf{V}^{-1}\mathbf{V} =I\) and also that \(A = \mathbf{V}J\mathbf{V}^{-1}\) and \(e^{At} = \mathbf{V}e^{Jt}\mathbf{V}^{-1}\).  It is, however, interesting to see how one my guess this as the Jordan form from the time dependent solution that is usually derived.  We detail that process here.  Note that one can work from either the form of \(A\) or  \(e^{At}\) or both since they will have the same eigenvector structure and a clearly defined relationship between their eigenvalues.  We will work mostly from \(e^{Jt}\). 
+One can of course quickly check the above derivation that \(\mathbf{V}^{-1}\mathbf{V} =I\) and also that \(A = \mathbf{V}J\mathbf{V}^{-1}\) and \(e^{At} = \mathbf{V}e^{Jt}\mathbf{V}^{-1}\).  It is, however, interesting to see how one my guess this as the Jordan form from the time dependent solution that is usually derived.  We detail that process here.  Note that one can work from either the form of \(A\) or  \(e^{At}\) or both since they will have the same eigenvector structure and a clearly defined relationship between their eigenvalues.  We will work mostly from \(e^{At}\). 
   </p>
 
   <p>
@@ -883,7 +883,7 @@ $$
   $$
 
 
-Noting the form of \(e^{Jt}\), we note that we can scale some columns of \(\mathbf{V}\) and the corresponding rows of \(\mathbf{W}\) to make the expressions slightly more elegant.  Specifically we scale the 3D plane of rotation by multiplying the middle two columns of \(\mathbf{V}\) by \(-3\omega\) and dividing the middle two rows of \(\mathbf{V}^{-1}\) by \(-3\omega\).  This gives 
+Noting the form of \(e^{Jt}\), we note that we can scale some columns of \(\mathbf{V}\) and the corresponding rows of \(\mathbf{V}^{-1}\) to make the expressions slightly more elegant.  Specifically we scale the 3D plane of rotation by multiplying the middle two columns of \(\mathbf{V}\) by \(-3\omega\) and dividing the middle two rows of \(\mathbf{V}^{-1}\) by \(-3\omega\).  This gives 
 
 $$
 \begin{aligned}
