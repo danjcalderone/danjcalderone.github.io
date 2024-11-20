@@ -160,7 +160,7 @@
           <p> In this blog post, we give a symbolic Jordan decomposition of the 
             linear 
             Clohessy-Wiltshire-Hill (CWH) astro-dynamcis equations.  We present this as an exercise in linear algebraic reverse engineering from the commonly known integrated solutions.  (For the basic details of these equations and their solutions, we refer to this well-explained blog 
-            <a href="https://ensatellite.com/hills-equations/">post</a>.)
+            <a href="https://ensatellite.com/hills-equations/">post</a>.)  Note, in this post, we use Jordan form to refer to a pseudo-Jordan form with a block diagonal structure where rather than solving explicitly for complex eigenvalues and eigenvectors, we leave \(2\times 2\) rotation matrices intact.  This form has the advantage of representing 2D planes of rotation with a basis of real vectors (as opposed to the complex conjugate pairs of eigenvectors).  It would be a simple step to go one step further and write the full Jordan form, but the author finds this pseudo-Jordan form more useful.
 
 
           </p>
@@ -599,7 +599,7 @@ $$
     \end{bmatrix}
     \end{aligned}
     $$
-    which is also correct.  It is still not obvious that this is a propert diagonalization.  We have to check that \(V_1,V_2\) and \(W_1,W_2\) can be components of two matrices that are inverses of each other.  In particular we need to check that 
+    which is also correct.  It is still not obvious that this is a proper diagonalization.  We have to check that \(V_1,V_2\) and \(W_1,W_2\) can be components of two matrices that are inverses of each other.  In particular we need to check that 
 
 
     $$
@@ -635,7 +635,7 @@ $$
     \end{bmatrix}
     \end{aligned}
     $$
-    as desired. (If the multiplication had yielded a scaled version of the identity instead of just the identity, we would have had the option of dividing that scaling factor into the eigenvalues of the diagonalization. In this case, we would have moved away from a strict rotation structure to a rotation with scaling but we would still be albe to continue with our diagonalization.) 
+    as desired. (If the multiplication had yielded a scaled version of the identity instead of just the identity, we would have had the option of dividing that scaling factor into the eigenvalues of the diagonalization. In this case, we would have moved away from a strict rotation structure to a rotation with scaling but we would still be able to continue with our diagonalization.) 
     </p>
 
     <b> 3D Rotation Matrix - Axis of Rotation </b>
