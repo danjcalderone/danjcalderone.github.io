@@ -337,10 +337,10 @@ $$
 \begin{aligned}
 \mathbf{V} = 
 \begin{bmatrix}
-1 & 0 & 0 & 2/\omega & 0 & 0 \\
-0 & -2/3\omega & -1/\omega & 0 & 0 & 0 \\
-0 & 1 & 2 &  0 &  0 & 0 \\
-0 & 0 & 0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 2 & 0 & 0 \\
+0 & -2/3\omega & -1 & 0 & 0 & 0 \\
+0 & 1 & 2\omega &  0 &  0 & 0 \\
+0 & 0 & 0 & \omega & 0 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 0 & \omega  
 \end{bmatrix}, \ \ 
@@ -349,13 +349,13 @@ $$
 \begin{bmatrix}
 1 & 0 & 0 & -2/\omega & 0 & 0 \\
 0 & -6 \omega & -3 & 0 & 0 & 0 \\
-0 & 3 \omega & 2 & 0 & 0 & 0 \\
-0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 3 & 2/\omega & 0 & 0 & 0 \\
+0 & 0 & 0 & 1/omega & 0 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 0 & 1/\omega 
 \end{bmatrix}
 \end{aligned}
-$$ 
+$$
 
 
 
@@ -868,7 +868,9 @@ $$
 
 As shown above, the form of \(e^{Jt}\) is given by 
 
-$$
+
+
+  $$
   \begin{aligned}
   e^{Jt} = 
   \begin{bmatrix}
@@ -879,20 +881,20 @@ $$
    0 & 0 & 0 & 0 & c & -s \\
    0 & 0 & 0 & 0 & s & c 
   \end{bmatrix}
-      \end{aligned}
+  \end{aligned}
   $$
 
 
-Noting the form of \(e^{Jt}\), we note that we can scale some columns of \(\mathbf{V}\) and the corresponding rows of \(\mathbf{V}^{-1}\) to make the expressions slightly more elegant.  Specifically we scale the 3D plane of rotation by multiplying the middle two columns of \(\mathbf{V}\) by \(-3\omega\) and dividing the middle two rows of \(\mathbf{V}^{-1}\) by \(-3\omega\).  This gives 
+Noting the form of \(e^{Jt}\), we note that we can scale some columns of \(\mathbf{V}\) and the corresponding rows of \(\mathbf{V}^{-1}\) to make the expressions slightly more elegant.  Specifically we scale the 3D plane of rotation by multiplying the middle two columns of \(\mathbf{V}\) by \(-3\omega^2\) and dividing the middle two rows of \(\mathbf{V}^{-1}\) by \(-3\omega^2\).  This gives 
 
 $$
 \begin{aligned}
 \mathbf{V} = 
 \begin{bmatrix}
-1 & 0 & 0 & 2/\omega & 0 & 0 \\
-0 & -2/3\omega & -1/\omega & 0 & 0 & 0 \\
-0 & 1 & 2 &  0 &  0 & 0 \\
-0 & 0 & 0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 2 & 0 & 0 \\
+0 & -2/3\omega & -1 & 0 & 0 & 0 \\
+0 & 1 & 2\omega &  0 &  0 & 0 \\
+0 & 0 & 0 & \omega & 0 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 0 & \omega  
 \end{bmatrix}, \ \ 
@@ -901,8 +903,8 @@ $$
 \begin{bmatrix}
 1 & 0 & 0 & -2/\omega & 0 & 0 \\
 0 & -6 \omega & -3 & 0 & 0 & 0 \\
-0 & 3 \omega & 2 & 0 & 0 & 0 \\
-0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 3 & 2/\omega & 0 & 0 & 0 \\
+0 & 0 & 0 & 1/omega & 0 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 0 & 1/\omega 
 \end{bmatrix}
