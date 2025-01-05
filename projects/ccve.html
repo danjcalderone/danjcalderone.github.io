@@ -181,10 +181,11 @@
           </p>
 
 
-        <b> Basic Geometry </b>
+        <b> Basic Geometry: Nash and Stackelberg </b>
 
           <p>            
-            In the linear conjecture case, 
+            In the 2D joint action case, \(u =(u_1,u_2) \in \mathbb{R}^2\), we can visualize fairly cleanly what a consistent conjectural variations equilibria looks like.  Specifically, the traditional Nash equilibria is visualized by defining the optimality curves \(\partial J_1/\partial u_1=0\) and \(\partial J_2/\partial u_2=0\) and computing their intersection as visualized in the figure below.  In this Stackelberg case, one of the players, the leader (in this case player 2), knows the other player (player 1's) optimality curve and can use this information to their advantage.  The Stackelberg equilibria can then be visualized as the optimal point for the leader given that the joint action is constrained to the follower's optimality curve. This generates a new optimality curve for the leader (illustrated in the figure below) that intersects with player 1's optimality curve at the Stackelberg equilibrium.  
+            
         </p>
 
   </div>
@@ -207,12 +208,11 @@
 
         <div class="txt" style="padding:40px">
 
-        <b> Stable CCVE </b>
-        <p>
-        Leveraging tools from the study of linear fractional transformations and algebraic Riccati equations, a local
-        characterization of consistent conjectural variations equilibrium is given for two player games on continuous action spaces
-        with costs approximated by quadratic functions. Further, a discrete time dynamical system in the space of conjectures is 
-        derived and its stability properties are characterized.
+ <b> Basic Geometry: CCVE </b>
+
+          <p>     
+          In the CCVE case, the follower player also starts acting as a leader conjecturing about the new optimality curve of the leader. This starts an iterative process where agents keep updating their estimate of their opponent's optimality curve to be consistent with their current conjecture.  This process terminates at a fixed point called the consistent conjectural variations equilibrum (CCVE) where both players are finally conjecturing optimality curves for their opponents that are consistent with what they are actually doing.  This CCVE equilibrium and the iterative update is illustrated below. 
+            
         </p>
 
 
@@ -231,14 +231,30 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <div class='imgFixed' >
   <figure>
     <center>
   <img 
   src="/figs/projects/ccve/ccve2x2_unstable.jpeg" width=40%>
-  <img 
+    <img 
+  src="/figs/projects/ccve/ccve2x2illustration_unstable.gif" width=40%>
+
+<!--   <img 
   src="/figs/projects/ccve/ccve2x2_unstable_evolve.jpeg" width=40%>  
-  <figcaption> (Left) Unstable CCVE. (Right) Evolution of unstable CCVE towards stable CCVE.
+ -->  
+
+ <figcaption> (Left) Unstable CCVE. (Right) Evolution of unstable CCVE towards stable CCVE.
 </figcaption>
   </center>
 </figure>
@@ -252,8 +268,6 @@
   <img 
   src="/figs/projects/ccve/ccve2x2_unstable_converged.jpeg" width=40%>
 
-  <img 
-  src="/figs/projects/ccve/ccve2x2illustration_unstable.gif" width=40%>
 
   <figcaption> 
     (Left) Stable CCVE as the limit point of evolution from unstable CCVE.  (Right) Animation of evolution from unstable to stable CCVE. 
