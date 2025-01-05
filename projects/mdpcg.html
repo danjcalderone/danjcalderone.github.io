@@ -158,46 +158,81 @@
 
 
         <h1><div id="header">
-          Hyperparameter Tuning for 
-          <br>
-          Trajectory Planning
-          <br>
-          via Successive Convexification (SCVX)
+          Markov Decision Process Congestion Games
         </div></h1>
 
 
         <div class="txt" style="padding: 20px 0px">
 
-
-          <p>
-            The following links provide supplemental material for the following papers.  This work is lead by Skye McEowen and Behcet Ackimese through <a href="https://depts.washington.edu/uwacl/"> the ACL Lab <a>
-          at the University of Washington in Seattle.
-          </p>
-
-          <b> Paper Links </b>
-
-          <ul style="PADDING-LEFT: 12px">
-          <li>Mceowen, S., <b> Calderone, D.</b>, Tiwary, A., Zhou, J., Kim, T., Elango, P., Acikmese, B. Auto-Tuned Primal-Dual Successive Convexification for Hypersonic Reentry Guidance Scitech 2025
-          </li>
-          <li> Mceowen, S., <b> Calderone, D.</b>, Tiwary, A., Elango, P. Kim, T. Acikmese, B.  Auto-tuned Primal-Dual Successive Convexification for Hypersonic Reentry Guidance JGCD 2025 
-          <a href="https://doi.org/10.48550/arXiv.2411.08361"> arxiv preprint <a>
-          </li>
-          <li>
-          Mceowen, S., <b> Calderone, D.</b>, and Acikmese, B. Auto-tuned Primal-dual Successive Convexification for trajectory Optimization LCSS 2025 (in preparation)
-          </li>
-          </ul>
+        <b> Summaryal Summary </b>
+        <p>
+        We extend traditional routing game models to scenarios where agents are solving
+        Markov Decision Processes (MDPs) as opposed to shortest path problems.
+        These models essentially replace the shortest path of objective of agents
+        in a routing game with a stochastic shortest path objective.  Our work presents
+        this model in both the finite and infinite horizon cases and serves as a
+        bridge between routing games and mean-field games on graphs, bringing
+        stochastic network transitions into the routing game framework and extending
+        traditional routing game concepts such as price of anarchy and Braess paradox
+        to the mean-field game setup.
+        </p>
+        <b>Applications: </b>
+        <p>Competition among ride-sharing drivers in urban areas </p>
+        <p>Competition among urban drivers looking for street parking </p>
+        <p>Air traffic control planning</p>
 
 
-          <b> Blog Posts </b>
+
+        <b>Papers: </b>
+
 
           <ul>
-          <li><a href="/blog/reentry.html"> Hypersonic Reentry Modeling </a> 
-            This post gives details and visualizations for the hypersonics dynamics models used in the above manuscripts. 
-          </li>
-          <li><a href="/blog/scvx.html"> Sequential Convex Programming</a>
-            This post gives details on the basics of sequential convex programming for trajectory planning. 
-           </li>  
+
+        <li>Markov Decision Process Routing Games. Dan Calderone and S. Shankar Sastry. ICCPS 2017.
+        <a href="https://danjcalderone.github.iopapers/mdproutingfin.pdf">paper</a></li>
+
+
+        <li> Infinite-horizon average-cost Markov decision process routing games. Dan Calderone and S. Shankar Sastry. ITSC 2017
+        <a href="https://danjcalderone.github.iopapers/mdproutinginf.pdf">paper</a>
+        <a href="https://danjcalderone.github.io/talks/mdproutinginftalk.pdf">talk</a>
+        </li>
+
+
+        <li>
+        Congestion-Aware Path Coordination Game With Markov Decision Process Dynamics.
+        Sarah H.Q. Li, Dan Calderone, Behcet Acikmese LCSS 2023
+        <a href="https://danjcalderone.github.iopapers/mdpcoordination.pdf">paper</a>
+        </li>
+
+
+        <li>
+        Adaptive Constraint Satisfaction for Markov Decision Process
+        Congestion Games: Application to Transportation Networks.
+        Sarah H.Q. Li, Yue Yu, Nico Miguel, Dan Calderone, Lillian J. Ratliff, Daniel Calderone b Lillian J. Ratliff, Behcet Acikmese, Automatica 2022.
+        <a href="https://danjcalderone.github.iopapers/mdpconstraints.pdf">paper</a>
+        </li>
+
+
+        <li>
+        Variable Demand and Multi-commodity Flow in Markovian Network Equilibrium.
+        Yue Yu, Dan Calderone, Sarah H. Q. Li, Lillian J. Ratliff, Behcet Acıkmese Automatica 2022
+        <a href="https://danjcalderone.github.iopapers/mdpalgorithms.pdf">paper</a>
+        </li>
+
+        <li>
+        Sensitivity Analysis for Markov Decision Process Congestion Games.
+        Sarah H.Q. Li, Dan Calderone, Behcet Acikmese CDC 2019
+        <a href="https://danjcalderone.github.iopapers/mdpsensitivity.pdf">paper</a>    
+        </li>
+
+        <li>
+        Tolling for Constraint Satisfaction in Markov Decision Process Congestion Games
+        Sarah H.Q. Li, Yue Yu, Dan Calderone, Lillian J. Ratliff, Behcet Acikmese, ACC 2019
+        <a href="https://danjcalderone.github.iopapers/mdptolling.pdf">paper</a>        
+        </li>
+
           </ul>
+
 
 
             </div>
